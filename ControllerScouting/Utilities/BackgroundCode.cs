@@ -39,7 +39,7 @@ namespace ControllerScouting.Utilities
         public static bool practiceMode = false;                    //Is the scouting system in practice mode?
         public static int practiceTeam = 0;
 
-        public static ComboBox loadRegionalData = new ComboBox();
+        public static ComboBox loadRegionalData = new();
 
         public static readonly string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
         public static readonly string projectBaseDirectory = System.IO.Path.GetFullPath(System.IO.Path.Combine(baseDirectory, @"..\..\"));
