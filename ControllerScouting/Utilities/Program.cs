@@ -27,29 +27,11 @@ namespace ControllerScouting.Utilities
 
             using var _ = Logger.Erase();
             
-            CheckSQLExists();
+            BackgroundCode.Initialize();
+            BackgroundCode.CheckSQLExists();
             Application.Run(new BaseScreen());
         }
 
-        static void CheckSQLExists()
-        {
-            RegistryView registryView = Environment.Is64BitOperatingSystem ? RegistryView.Registry64 : RegistryView.Registry32;
-            using RegistryKey hklm = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, registryView);
-            RegistryKey instanceKey = hklm.OpenSubKey(@"SOFTWARE\Microsoft\Microsoft SQL Server\Instance Names\SQL", false);
-            if (instanceKey != null)
-            {
-                foreach (var instanceName in instanceKey.GetValueNames())
-                {
-                    _ = Logger.Log(Environment.MachineName + @"\" + instanceName);
-                }
-            }
-            Settings.Default.sqlExists = instanceKey != null;
-
-            if (!Settings.Default.sqlExists)
-            {
-                BackgroundCode.dataExport = BackgroundCode.EXPORT_TYPE.CSV;
-            }
-        }
         // Handle UI thread exceptions
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
