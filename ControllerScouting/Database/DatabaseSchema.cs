@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ControllerScouting.Database
@@ -367,8 +368,10 @@ namespace ControllerScouting.Database
             switch (BackgroundCode.dataExport)
             {
                 case BackgroundCode.EXPORT_TYPE.CSV:
-                    foreach (Activity activity in BackgroundCode.activitiesQueue)
+                    while(BackgroundCode.activitiesQueue.Count != 0)
                     {
+                        Activity activity = BackgroundCode.activitiesQueue.Dequeue();
+
                         //Save Record to the CSV file
                         string locationFixed = Settings.Default.CSVLocation.Replace(@"\", @"\\");
                         using StreamWriter sw = File.AppendText(locationFixed + "\\" + databaseName);
@@ -380,8 +383,10 @@ namespace ControllerScouting.Database
                     BackgroundCode.seasonframework.Database.Connection.ConnectionString = Settings.Default._scoutingdbServerConnectionString;
                     BackgroundCode.seasonframework.Database.Connection.Open();
 
-                    foreach (Activity activity in BackgroundCode.activitiesQueue)
+                    while (BackgroundCode.activitiesQueue.Count != 0)
                     {
+                        Activity activity = BackgroundCode.activitiesQueue.Dequeue();
+
                         //Save Record to the database
                         BackgroundCode.seasonframework.ActivitySet.Add(activity);
                         BackgroundCode.seasonframework.SaveChanges();
@@ -399,7 +404,8 @@ namespace ControllerScouting.Database
                         BackgroundCode.seasonframework.SaveChanges();
                     }
                     break;
-                }
+            }
+            _ = SupabaseActivity.WriteToSupabase();
 
             BackgroundCode.activitiesQueue.Clear();
 

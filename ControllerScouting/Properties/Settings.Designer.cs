@@ -100,5 +100,17 @@ namespace ControllerScouting.Properties {
                 this["sqlExists"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("m75pet03aAibeDqw")]
+        public string supabasePassword {
+            get {
+                return ((string)(this["supabasePassword"]));
+            }
+            set {
+                this["supabasePassword"] = value;
+            }
+        }
     }
 }

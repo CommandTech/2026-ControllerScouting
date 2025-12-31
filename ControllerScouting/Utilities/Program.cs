@@ -4,6 +4,8 @@ using Microsoft.Win32;
 using System;
 using System.Text;
 using System.Windows.Forms;
+using Supabase;
+using ControllerScouting.Database;
 
 namespace ControllerScouting.Utilities
 {

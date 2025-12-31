@@ -28,5 +28,14 @@
     <Setting Name="sqlExists" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="supabaseKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFmbnNyYXJnbGxjY2FldWdqZXZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE2MzcyMTcsImV4cCI6MjA3NzIxMzIxN30.mBVQfU67QkpHKDzSqxsq_QGtLzWYZ2-byD55NdW-CSM</Value>
+    </Setting>
+    <Setting Name="supabaseURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://afnsrargllccaeugjevz.supabase.co</Value>
+    </Setting>
+    <Setting Name="supabasePassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">m75pet03aAibeDqw</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
