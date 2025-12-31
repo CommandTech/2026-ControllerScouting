@@ -5,6 +5,8 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using Supabase;
+using System.Windows.Forms;
+using System.Threading;
 
 namespace ControllerScouting.Utilities
 {

@@ -4,7 +4,6 @@ using ControllerScouting.Utilities;
 using Newtonsoft.Json;
 using Supabase;
 using Supabase.Gotrue;
-using Supabase.Gotrue.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,7 +12,6 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 using Client = Supabase.Client;
 
 namespace ControllerScouting.Screens
@@ -249,14 +247,14 @@ namespace ControllerScouting.Screens
         }
         private void BtnInitialDBLoad_Click(object sender, EventArgs e)
         {
-            if (Settings.Default.sqlExists)
+            if (Properties.Settings.Default.sqlExists)
             {
                 BackgroundCode.seasonframework.Database.Connection.Close();
             }
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to load The Blue Alliance data?", "Please Confirm", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                if (Settings.Default.sqlExists)
+                if (Properties.Settings.Default.sqlExists)
                 {
                     BackgroundCode.seasonframework.Database.Connection.Open();
                 }
@@ -327,45 +325,6 @@ namespace ControllerScouting.Screens
             {
                 MessageBox.Show("Could not load data.", "Error: " + e);
             }
-        }
-        private void BtnInitialDBLoad_Click(object sender, EventArgs e)
-        {
-            if (Properties.Settings.Default.sqlExists)
-            {
-                BackgroundCode.seasonframework.Database.Connection.Close();
-            }
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to load The Blue Alliance data?", "Please Confirm", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                if (Properties.Settings.Default.sqlExists)
-                {
-                    BackgroundCode.seasonframework.Database.Connection.Open();
-                }
-                GetEvents(false);
-                SetRedRight();
-
-                Log("Start time is " + DateTime.Now.TimeOfDay);
-            }
-            else
-            {
-                DialogResult manualMatches = MessageBox.Show("Do you want to load manual matches?", "Please Confirm", MessageBoxButtons.YesNo);
-                if (manualMatches == DialogResult.Yes)
-                {
-                    SetRedRight();
-                    Log("Loading manual matches.");
-                    DatabaseCode.LoadManualMatches();
-                    comboBoxSelectRegional.DataSource = null;
-                    comboBoxSelectRegional.Items.Clear();
-                    comboBoxSelectRegional.Items.Add("manualEvent");
-                    comboBoxSelectRegional.SelectedItem = "manualEvent";
-                }
-            }
-        }
-        private static void SetRedRight()
-        {
-            //  Logic for setting left/right and near/far based on side of field scouters are sitting on
-            DialogResult red = MessageBox.Show("Is the Red Alliance on your right?", "Please Confirm", MessageBoxButtons.YesNo);
-            BackgroundCode.redRight = (red == DialogResult.Yes);
         }
 
         private void BtnNextMatch_Click(object sender, EventArgs e)
