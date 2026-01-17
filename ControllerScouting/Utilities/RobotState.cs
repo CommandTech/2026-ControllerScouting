@@ -6,7 +6,7 @@ namespace ControllerScouting.Utilities
 {
     public class RobotState
     {
-        public enum ROBOT_MODE { Auto, Teleop, Defense, Surfacing };
+        public enum ROBOT_MODE { Auto, Teleop, Endgame };
         public enum CYCLE_DIRECTION { Up, Down }
         public enum MATCHEVENT_NAME { Match_Event, GotStuck, BrokeDown, CrossedCenter, LostParts, AdditionalPiece, MultiClimb, NoShow, TippedOver, JammedPiece, WentUnderCages }
         public enum SCOUTER_NAME { Select_Name, Scouter1, Scouter2, Scouter3, Scouter4, Scouter5, Scouter6 }
