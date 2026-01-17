@@ -165,8 +165,6 @@ namespace ControllerScouting.Utilities
         public bool DefTime_StopWatch_running;
         public double DefTimeDouble;
 
-        public enum StartingLocation { Far_Trench, Far_Bump, Hub, Near_Bump, Near_Trench}
-
         public TimeSpan IntakingT = TimeSpan.Zero;
         public Stopwatch IntakingT_StopWatch;
         public bool IntakingT_StopWatch_running;
@@ -182,16 +180,19 @@ namespace ControllerScouting.Utilities
         public bool ShootingT_StopWatch_running;
         public double ShootingTDouble;
 
+        public enum STARTING_LOCATION { Far_Trench, Far_Bump, Hub, Near_Bump, Near_Trench}
+
         public int bumpCounter = 0;
-        public enum climbLevel { No_Climb, L1, L2, L3};
+        public enum CLIMB_LEVEL { No_Climb, L1, L2, L3};
         public bool climbSuccess = false;
-        public enum ladderLocation { Outpost, Center, Depot};
+        public bool DisplayClimbSuccess = false;
+        public enum LADDER_LOCATION { Outpost, Center, Depot};
 
-        public enum DefenseStrategy { None, Trench, Bump, Neutral_Zone, Pushing };
+        public enum DEFENSE_STRATEGY { None, Trench, Bump, Neutral_Zone, Pushing };
 
-        public enum AvoidanceStrategy { None, Trench, Bump, Neutral_Zone, Pushing };
+        public enum AVOIDANCE_STRATEGY { None, Trench, Bump, Neutral_Zone, Pushing };
 
-        public enum Strategy { None, Shooting, Feeding };
+        public enum STRATEGY { None, Shooting, Feeding };
 
 
         public void Transact(int controllerNumber, bool isMatchEevent)
