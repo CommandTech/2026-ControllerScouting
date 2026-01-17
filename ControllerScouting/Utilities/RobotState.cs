@@ -27,16 +27,7 @@ namespace ControllerScouting.Utilities
 
         public bool Flag = false;
         
-        public TimeSpan ClimbT = TimeSpan.Zero;
-        public Stopwatch ClimbT_StopWatch;
-        public bool ClimbT_StopWatch_running;
-        public double ClimbTDouble;
-
-        public TimeSpan DefTime = TimeSpan.Zero;
-        public Stopwatch DefTime_StopWatch;
-        public bool DefTime_StopWatch_running;
-        public double DefTimeDouble;
-
+  
         
         // These are the standard types...
 
@@ -125,11 +116,11 @@ namespace ControllerScouting.Utilities
 
         //2026
         //private LEAVE _Leave;
-        
+
         //2026
         //public LEAVE GetLeave()
         //{ return _Leave; }
-        
+
 
         //2026
         //public LEAVE Leave
@@ -137,7 +128,7 @@ namespace ControllerScouting.Utilities
         //    get { return _Leave; }
         //    set { _Leave = value; }
         //}
-        
+
 
         //2026 cycles
         //public void CycleLeave(CYCLE_DIRECTION CycleDirection)
@@ -155,6 +146,53 @@ namespace ControllerScouting.Utilities
         //        CycleLeave(CycleDirection);
         //    }
         //}
+
+
+        //2026 Enum
+
+        public TimeSpan ClimbT = TimeSpan.Zero;
+        public Stopwatch ClimbT_StopWatch;
+        public bool ClimbT_StopWatch_running;
+        public double ClimbTDouble;
+
+        public TimeSpan TimeOfClimbT = TimeSpan.Zero;
+        public Stopwatch TimeOfClimbT_StopWatch;
+        public bool TimeOfClimbT_StopWatch_running;
+        public double TimeOfClimbTDouble;
+
+        public TimeSpan DefTime = TimeSpan.Zero;
+        public Stopwatch DefTime_StopWatch;
+        public bool DefTime_StopWatch_running;
+        public double DefTimeDouble;
+
+        public enum StartingLocation { Far_Trench, Far_Bump, Hub, Near_Bump, Near_Trench}
+
+        public TimeSpan IntakingT = TimeSpan.Zero;
+        public Stopwatch IntakingT_StopWatch;
+        public bool IntakingT_StopWatch_running;
+        public double IntakingTDouble;
+
+        public TimeSpan FeedingT = TimeSpan.Zero;
+        public Stopwatch FeedingT_StopWatch;
+        public bool FeedingT_StopWatch_running;
+        public double FeedingTDouble;
+
+        public TimeSpan ShootingT = TimeSpan.Zero;
+        public Stopwatch ShootingT_StopWatch;
+        public bool ShootingT_StopWatch_running;
+        public double ShootingTDouble;
+
+        public int bumpCounter = 0;
+        public enum climbLevel { No_Climb, L1, L2, L3};
+        public bool climbSuccess = false;
+        public enum ladderLocation { Outpost, Center, Depot};
+
+        public enum DefenseStrategy { None, Trench, Bump, Neutral_Zone, Pushing };
+
+        public enum AvoidanceStrategy { None, Trench, Bump, Neutral_Zone, Pushing };
+
+        public enum Strategy { None, Shooting, Feeding };
+
 
         public void Transact(int controllerNumber, bool isMatchEevent)
         {
