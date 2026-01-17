@@ -24,14 +24,14 @@ namespace ControllerScouting.Gamepad
         private bool _dpaddown = false;
         private bool _dpadleft = false;
         private bool _dpadright = false;
-        private bool _lTHUp = false;
-        private bool _lTHDown = false;
-        private bool _lTHLeft = false;
-        private bool _lTHRight = false;
-        private bool _rTHUp = false;
-        private bool _rTHDown = false;
-        private bool _rTHLeft = false;
-        private bool _rTHRight = false;
+        private bool _leftStickUp = false;
+        private bool _leftStickDown = false;
+        private bool _leftStickLeft = false;
+        private bool _leftStickRight = false;
+        private bool _rightStickUp = false;
+        private bool _rightStickDown = false;
+        private bool _rightStickLeft = false;
+        private bool _rightStickRight = false;
         private bool _backButton = false;
         private bool _startButton = false;
         private bool _r3 = false;
@@ -52,14 +52,14 @@ namespace ControllerScouting.Gamepad
         private bool _dpaddownPrev = false;
         private bool _dpadleftPrev = false;
         private bool _dpadrightPrev = false;
-        private bool _lTHUpPrev = false;
-        private bool _lTHDownPrev = false;
-        private bool _lTHLeftPrev = false;
-        private bool _lTHRightPrev = false;
-        private bool _rTHUpPrev = false;
-        private bool _rTHDownPrev = false;
-        private bool _rTHLeftPrev = false;
-        private bool _rTHRightPrev = false;
+        private bool _leftStickUpPrev = false;
+        private bool _leftStickDownPrev = false;
+        private bool _leftStickLeftPrev = false;
+        private bool _leftStickRightPrev = false;
+        private bool _rightStickUpPrev = false;
+        private bool _rightStickDownPrev = false;
+        private bool _rightStickLeftPrev = false;
+        private bool _rightStickRightPrev = false;
         private bool _backButtonPrev = false;
         private bool _startButtonPrev = false;
         private bool _r3Prev = false;
@@ -103,18 +103,18 @@ namespace ControllerScouting.Gamepad
                 //reads the direction of the left hand anolog stick
                 int X = _js.GetCurrentState().X;
                 int Y = _js.GetCurrentState().Y;
-                _lTHUp = (-100 < X) && (X < 100) && (Y < -90);
-                _lTHDown = (-100 < X) && (X < 100) && (Y > 90);
-                _lTHRight = (-100 < Y) && (Y < 100) && (X < 90);
-                _lTHLeft = (-100 < Y) && (Y < 100) && (X > -90);
+                _leftStickUp = (-100 < X) && (X < 100) && (Y < -90);
+                _leftStickDown = (-100 < X) && (X < 100) && (Y > 90);
+                _leftStickRight = (-100 < Y) && (Y < 100) && (X < 90);
+                _leftStickLeft = (-100 < Y) && (Y < 100) && (X > -90);
 
                 //reads direction of left hand analog stick
                 int RotationX = _js.GetCurrentState().RotationX;
                 int RotationY = _js.GetCurrentState().RotationY;
-                _rTHUp = (-100 < RotationX) && (RotationX < 100) && (RotationY < -90);
-                _rTHDown = (-100 < RotationX) && (RotationX < 190) && (RotationY > 90);
-                _rTHLeft = (-100 < RotationY) && (RotationY < 100) && (RotationX < -90);
-                _rTHRight = (-100 < RotationY) && (RotationY < 100) && (RotationX > 90);
+                _rightStickUp = (-100 < RotationX) && (RotationX < 100) && (RotationY < -90);
+                _rightStickDown = (-100 < RotationX) && (RotationX < 190) && (RotationY > 90);
+                _rightStickLeft = (-100 < RotationY) && (RotationY < 100) && (RotationX < -90);
+                _rightStickRight = (-100 < RotationY) && (RotationY < 100) && (RotationX > 90);
 
                 //reads which trigger is pressed
                 int Z = _js.GetCurrentState().Z;
@@ -177,29 +177,29 @@ namespace ControllerScouting.Gamepad
         public bool DpadLeft_Press
         { get { return IsPressed(_dpadleft, _dpadleftPrev); } }
 
-        public bool LTHUp_Press
-        { get { return IsPressed(_lTHUp, _lTHUpPrev); } }
+        public bool LeftStickUp_Press
+        { get { return IsPressed(_leftStickUp, _leftStickUpPrev); } }
 
-        public bool LTHRight_Press
-        { get { return IsPressed(_lTHRight, _lTHRightPrev); } }
+        public bool LeftStickRight_Press
+        { get { return IsPressed(_leftStickRight, _leftStickRightPrev); } }
 
-        public bool LTHDown_Press
-        { get { return IsPressed(_lTHDown, _lTHDownPrev); } }
+        public bool LeftStickDown_Press
+        { get { return IsPressed(_leftStickDown, _leftStickDownPrev); } }
 
-        public bool LTHLeft_Press
-        { get { return IsPressed(_lTHLeft, _lTHLeftPrev); } }
+        public bool LeftStickLeft_Press
+        { get { return IsPressed(_leftStickLeft, _leftStickLeftPrev); } }
 
-        public bool RTHUp_Press
-        { get { return IsPressed(_rTHUp, _rTHUpPrev); } }
+        public bool RightStickUp_Press
+        { get { return IsPressed(_rightStickUp, _rightStickUpPrev); } }
 
-        public bool RTHRight_Press
-        { get { return IsPressed(_rTHRight, _rTHRightPrev); } }
+        public bool RightStickRight_Press
+        { get { return IsPressed(_rightStickRight, _rightStickRightPrev); } }
 
-        public bool RTHDown_Press
-        { get { return IsPressed(_rTHDown, _rTHDownPrev); } }
+        public bool RightStickDown_Press
+        { get { return IsPressed(_rightStickDown, _rightStickDownPrev); } }
 
-        public bool RTHLeft_Press
-        { get { return IsPressed(_rTHLeft, _rTHLeftPrev); } }
+        public bool RightStickLeft_Press
+        { get { return IsPressed(_rightStickLeft, _rightStickLeftPrev); } }
 
         public bool BackButton_Press
         { get { return IsPressed(_backButton, _backButtonPrev); } }
@@ -250,29 +250,29 @@ namespace ControllerScouting.Gamepad
         public bool DpadLeft_Release
         { get { return IsReleased(_dpadleft, _dpadleftPrev); } }
 
-        public bool LTHUp_Release
-        { get { return IsReleased(_lTHUp, _lTHUpPrev); } }
+        public bool leftStickUp_Release
+        { get { return IsReleased(_leftStickUp, _leftStickUpPrev); } }
 
-        public bool LTHRight_Release
-        { get { return IsReleased(_lTHRight, _lTHRightPrev); } }
+        public bool leftStickRight_Release
+        { get { return IsReleased(_leftStickRight, _leftStickRightPrev); } }
 
-        public bool LTHDown_Release
-        { get { return IsReleased(_lTHDown, _lTHDownPrev); } }
+        public bool leftStickDown_Release
+        { get { return IsReleased(_leftStickDown, _leftStickDownPrev); } }
 
-        public bool LTHLeft_Release
-        { get { return IsReleased(_lTHLeft, _lTHLeftPrev); } }
+        public bool leftStickLeft_Release
+        { get { return IsReleased(_leftStickLeft, _leftStickLeftPrev); } }
 
-        public bool RTHUp_Release
-        { get { return IsReleased(_rTHUp, _rTHUpPrev); } }
+        public bool rightStickUp_Release
+        { get { return IsReleased(_rightStickUp, _rightStickUpPrev); } }
 
-        public bool RTHRight_Release
-        { get { return IsReleased(_rTHRight, _rTHRightPrev); } }
+        public bool rightStickRight_Release
+        { get { return IsReleased(_rightStickRight, _rightStickRightPrev); } }
 
-        public bool RTHDown_Release
-        { get { return IsReleased(_rTHDown, _rTHDownPrev); } }
+        public bool rightStickDown_Release
+        { get { return IsReleased(_rightStickDown, _rightStickDownPrev); } }
 
-        public bool RTHLeft_Release
-        { get { return IsReleased(_rTHLeft, _rTHLeftPrev); } }
+        public bool rightStickLeft_Release
+        { get { return IsReleased(_rightStickLeft, _rightStickLeftPrev); } }
 
         public bool BackButton_Release
         { get { return IsReleased(_backButton, _backButtonPrev); } }
@@ -323,29 +323,29 @@ namespace ControllerScouting.Gamepad
         public bool DpadLeft_Down
         { get { return _dpadleft; } }
 
-        public bool LTHUp_Down
-        { get { return _lTHUp; } }
+        public bool leftStickUp_Down
+        { get { return _leftStickUp; } }
 
-        public bool LTHRight_Down
-        { get { return _lTHRight; } }
+        public bool leftStickRight_Down
+        { get { return _leftStickRight; } }
 
-        public bool LTHDown_Down
-        { get { return _lTHDown; } }
+        public bool leftStickDown_Down
+        { get { return _leftStickDown; } }
 
-        public bool LTHLeft_Down
-        { get { return _lTHLeft; } }
+        public bool leftStickLeft_Down
+        { get { return _leftStickLeft; } }
 
-        public bool RTHUp_Down
-        { get { return _rTHUp; } }
+        public bool rightStickUp_Down
+        { get { return _rightStickUp; } }
 
-        public bool RTHRight_Down
-        { get { return _rTHRight; } }
+        public bool rightStickRight_Down
+        { get { return _rightStickRight; } }
 
-        public bool RTHDown_Down
-        { get { return _rTHDown; } }
+        public bool rightStickDown_Down
+        { get { return _rightStickDown; } }
 
-        public bool RTHLeft_Down
-        { get { return _rTHLeft; } }
+        public bool rightStickLeft_Down
+        { get { return _rightStickLeft; } }
 
         public bool BackButton_Down
         { get { return _backButton; } }
@@ -369,14 +369,14 @@ namespace ControllerScouting.Gamepad
             _dpadleftPrev = _dpadleft;
             _dpadrightPrev = _dpadright;
             _dpaddownPrev = _dpaddown;
-            _lTHUpPrev = _lTHUp;
-            _lTHDownPrev = _lTHDown;
-            _lTHLeftPrev = _lTHLeft;
-            _lTHRightPrev = _lTHRight;
-            _rTHUpPrev = _rTHUp;
-            _rTHDownPrev = _rTHDown;
-            _rTHLeftPrev = _rTHLeft;
-            _rTHRightPrev = _rTHRight;
+            _leftStickUpPrev = _leftStickUp;
+            _leftStickDownPrev = _leftStickDown;
+            _leftStickLeftPrev = _leftStickLeft;
+            _leftStickRightPrev = _leftStickRight;
+            _rightStickUpPrev = _rightStickUp;
+            _rightStickDownPrev = _rightStickDown;
+            _rightStickLeftPrev = _rightStickLeft;
+            _rightStickRightPrev = _rightStickRight;
             _backButtonPrev = _backButton;
             _startButtonPrev = _startButton;
             _r3Prev = _r3;
