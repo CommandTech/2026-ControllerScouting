@@ -2,6 +2,8 @@
 using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
 using System;
+using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ControllerScouting.Database
@@ -135,7 +137,7 @@ namespace ControllerScouting.Database
                 Activity activity = BackgroundCode.activitiesQueue.Dequeue();
                 try
                 {
-                    var test = new SupabaseActivity
+                    var record = new SupabaseActivity
                     {
                         Team = activity.Team,
                         Match = activity.Match,
@@ -176,7 +178,56 @@ namespace ControllerScouting.Database
                         DisAlg = activity.DisAlg
                     };
 
-                    var insertResponse = await BackgroundCode.supabase.From<SupabaseActivity>().Insert(test);
+                    // Determine table name from BackgroundCode.loadedEvent, sanitize for Postgres table naming
+                    string raw = BackgroundCode.loadedEvent;
+                    string tableName = string.IsNullOrWhiteSpace(raw) ? "activity" : raw.Trim();
+                    // Trim common surrounding characters and sanitize non-word characters to underscores
+                    tableName = tableName.Trim('[', ']', ' ').ToLowerInvariant();
+                    tableName = Regex.Replace(tableName, @"[^\w]", "_");
+
+                    // Try dynamic From(string).Insert(...) first.
+                    var supabaseClient = BackgroundCode.supabase;
+                    MethodInfo fromMethod = supabaseClient?.GetType().GetMethod("From", [typeof(string)]);
+                    if (fromMethod != null)
+                    {
+                        var tableInstance = fromMethod.Invoke(supabaseClient, [tableName]);
+                        if (tableInstance != null)
+                        {
+                            // Try to find an Insert(object) or Insert(dynamic) overload
+                            MethodInfo insertMethod = tableInstance.GetType().GetMethod("Insert", [typeof(object)])
+                                                      ?? tableInstance.GetType().GetMethod("Insert", [typeof(SupabaseActivity)])
+                                                      ?? tableInstance.GetType().GetMethod("Insert", Type.EmptyTypes);
+
+                            if (insertMethod != null)
+                            {
+                                // Invoke and await returned Task
+                                var insertResult = insertMethod.Invoke(tableInstance, insertMethod.GetParameters().Length == 0 ? null : new object[] { record });
+                                if (insertResult is Task task)
+                                {
+                                    await task;
+                                }
+                                else
+                                {
+                                    // As a fallback, call the generic API
+                                    await BackgroundCode.supabase.From<SupabaseActivity>().Insert(record);
+                                }
+                            }
+                            else
+                            {
+                                // Fallback to generic when Insert signature not found
+                                await BackgroundCode.supabase.From<SupabaseActivity>().Insert(record);
+                            }
+                        }
+                        else
+                        {
+                            await BackgroundCode.supabase.From<SupabaseActivity>().Insert(record);
+                        }
+                    }
+                    else
+                    {
+                        // If dynamic From(string) is not available, use the generic approach
+                        await BackgroundCode.supabase.From<SupabaseActivity>().Insert(record);
+                    }
                 }
                 catch (Supabase.Postgrest.Exceptions.PostgrestException ex)
                 {
