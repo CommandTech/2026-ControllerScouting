@@ -8,7 +8,7 @@ namespace ControllerScouting.Utilities
     {
         public enum ROBOT_MODE { Auto, Teleop, Endgame };
         public enum CYCLE_DIRECTION { Up, Down }
-        public enum MATCHEVENT_NAME { Match_Event, GotStuck, BrokeDown, CrossedCenter, LostParts, AdditionalPiece, MultiClimb, NoShow, TippedOver, JammedPiece, WentUnderCages }
+        public enum MATCHEVENT_NAME { Match_Event, GotStuck, BrokeDown, CrossedCenter, LostParts, AdditionalPiece, MultiClimb, NoShow, TippedOver, JammedPiece }
         public enum SCOUTER_NAME { Select_Name, Scouter1, Scouter2, Scouter3, Scouter4, Scouter5, Scouter6 }
 
         public enum BOOLEAN { Z, Yes, No, Error}
@@ -53,7 +53,7 @@ namespace ControllerScouting.Utilities
             get { return _TeamName; }
             set { _TeamName = value; }
         }
-        public MATCHEVENT_NAME Match_event
+        public MATCHEVENT_NAME MatchEvent
         {
             get { return _match_event; }
             set { _match_event = value; }
@@ -152,32 +152,33 @@ namespace ControllerScouting.Utilities
 
         //2026 Enum
 
-        public TimeSpan ClimbT = TimeSpan.Zero;
-        public Stopwatch ClimbT_StopWatch;
-        public bool ClimbT_StopWatch_running;
-        public double ClimbTDouble;
+        public TimeSpan TimeOfClimb = TimeSpan.Zero;
+        public Stopwatch TimeOfClimb_StopWatch;
+        public bool TimeOfClimb_StopWatch_Running;
+        public double TimeOfClimbDouble;
+        public double ClimbTimeDouble;
 
-        public TimeSpan DefTime = TimeSpan.Zero;
-        public Stopwatch DefTime_StopWatch;
-        public bool DefTime_StopWatch_running;
-        public double DefTimeDouble;
+        public TimeSpan DefenseTime = TimeSpan.Zero;
+        public Stopwatch DefenseTime_StopWatch;
+        public bool DefenseTime_StopWatch_Running;
+        public double DefenseTimeDouble;
 
-        public TimeSpan IntakingT = TimeSpan.Zero;
-        public Stopwatch IntakingT_StopWatch;
-        public bool IntakingT_StopWatch_running;
-        public double IntakingTDouble;
+        public TimeSpan FuelIntakingTime = TimeSpan.Zero;
+        public Stopwatch FuelIntakingTime_StopWatch;
+        public bool FuelIntakingTime_StopWatch_Running;
+        public double FuelIntakingTimeDouble;
 
-        public TimeSpan FeedingT = TimeSpan.Zero;
-        public Stopwatch FeedingT_StopWatch;
-        public bool FeedingT_StopWatch_running;
-        public double FeedingTDouble;
+        public TimeSpan FeedingTime = TimeSpan.Zero;
+        public Stopwatch FeedingTime_StopWatch;
+        public bool FeedingTime_StopWatch_Running;
+        public double FeedingTimeDouble;
 
-        public TimeSpan ShootingT = TimeSpan.Zero;
-        public Stopwatch ShootingT_StopWatch;
-        public bool ShootingT_StopWatch_running;
-        public double ShootingTDouble;
+        public TimeSpan FuelShootingTime = TimeSpan.Zero;
+        public Stopwatch FuelShootingTime_StopWatch;
+        public bool FuelShootingTime_StopWatch_Running;
+        public double FuelShootingTimeDouble;
 
-        public int bumpCounter = 0;
+        public int BumpTraversal = 0;
         private BOOLEAN Climb_Success_Endgame = BOOLEAN.Error;
         private BOOLEAN Climb_Auto = BOOLEAN.Error;
         private BOOLEAN End_Match = BOOLEAN.Error;
