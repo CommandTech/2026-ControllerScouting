@@ -136,9 +136,66 @@ namespace ControllerScouting.Gamepad
                 //***********************************
                 else if (robot.Current_Mode == RobotState.ROBOT_MODE.Endgame && robot.GetScouterName() != RobotState.SCOUTER_NAME.Select_Name)
                 {
+                    robot.ClimbT_StopWatch.Start(); // starts the time
+                   robot.ClimbT_StopWatch_running = true;
+
                     if (gamepad.AButton_Down)
                     {
                         robot.CycleLadderLocation(RobotState.CYCLE_DIRECTION.Up);
+                    }
+
+                    if (gamepad.YButton_Press)
+                    {
+                        robot.Climb_Level = RobotState.CLIMB_LEVEL.L3;
+                    }
+                    else if (gamepad.XButton_Press)
+                    {
+                        robot.Climb_Level = RobotState.CLIMB_LEVEL.L2;
+                    }
+                    else if (gamepad.BButton_Press)
+                    {
+                        robot.Climb_Level = RobotState.CLIMB_LEVEL.L1;
+                    }
+                    else if (gamepad.LeftStickLeft_Press)
+                    {
+                        robot.CycleStrategy(RobotState.CYCLE_DIRECTION.Up);
+                    }
+                    else if (gamepad.LeftStickRight_Press)
+                    {
+                        robot.CycleStrategy(RobotState.CYCLE_DIRECTION.Down);
+                    }
+                    else if (gamepad.LeftTrigger_Press)
+                    {
+                        robot.ClimbT_StopWatch.Reset();
+                        robot.ClimbT = robot.ClimbT_StopWatch.Elapsed;
+                        robot.ClimbT_StopWatch_running = false;
+                    }
+                    else if (gamepad.RightButton_Press) {
+                        robot.ClimbT = robot.ClimbT_StopWatch.Elapsed;
+                        robot.ClimbTDouble = robot.ClimbT.TotalSeconds;
+
+                    }
+                    else if (gamepad.RightButton_Press && robot.ClimbTDouble>0)
+                    {
+                        robot.ClimbT_StopWatch.Stop();
+                        robot.ClimbT = robot.ClimbT_StopWatch.Elapsed;
+                        robot.EndmatchTimeDouble = robot.ClimbT.TotalSeconds;
+                        robot.ClimbT_StopWatch_running = false;
+                        robot.CycleEndMatch(RobotState.CYCLE_DIRECTION.Up);
+                    }
+
+                    if (gamepad.DpadLeft_Press)
+                    {
+                        robot.CycleDefenseStrategy(RobotState.CYCLE_DIRECTION.Up);
+                    }
+                    else if (gamepad.DpadRight_Press)
+                    {
+                        robot.CycleAvoidanceStrategy(RobotState.CYCLE_DIRECTION.Up);
+                    }
+                    else if (gamepad.DpadUp_Press) {
+                        robot.CycleClimbSuccessEndgame(RobotState.CYCLE_DIRECTION.Up);
+                    } else if (gamepad.DpadDown_Press) {
+                        robot.CycleClimbSuccessEndgame(RobotState.CYCLE_DIRECTION.Down);
                     }
 
                 }
