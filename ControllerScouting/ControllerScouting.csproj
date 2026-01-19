@@ -10,8 +10,12 @@
     <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
     <LangVersion>latest</LangVersion>
     <UseWindowsForms>true</UseWindowsForms>
+	<Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+	<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
