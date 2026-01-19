@@ -177,6 +177,8 @@ namespace ControllerScouting.Utilities
         public bool ShootingT_StopWatch_running;
         public double ShootingTDouble;
 
+        public double EndmatchTimeDouble;
+
         public int bumpCounter = 0;
         private BOOLEAN Climb_Success_Endgame = BOOLEAN.Error;
         private BOOLEAN Climb_Auto = BOOLEAN.Error;
