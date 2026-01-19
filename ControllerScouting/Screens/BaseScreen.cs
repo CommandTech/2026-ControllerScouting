@@ -574,8 +574,6 @@ namespace ControllerScouting.Screens
         };
         private void UpdateScreen(object sender, EventArgs e)
         {
-            int redScore = 0;
-            int blueScore = 0;
             //Loops through all 6 boxes to update the text to be based on the RobotState
             for (int i = 0; i < 6; i++)
             {
@@ -589,26 +587,14 @@ namespace ControllerScouting.Screens
                     case RobotState.ROBOT_MODE.Teleop:
                         InTeleopMode(i, robotBox);
                         break;
-                    case RobotState.ROBOT_MODE.Defense:
-                        InDefenseMode(i, robotBox);
+                    case RobotState.ROBOT_MODE.Endgame:
+                        InEndgameMode(i, robotBox);
                         break;
-                    case RobotState.ROBOT_MODE.Surfacing:
-                        InSurfacingMode(i, robotBox);
-                        break;
-                }
-
-                if (i < 3)
-                {
-                    redScore += BackgroundCode.Robots[i].PointsScored;
-                }
-                else
-                {
-                    blueScore += BackgroundCode.Robots[i].PointsScored;
                 }
 
                 ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ScoutName", true)[0]).Text = robot.GetScouterName().ToString();
                 ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ScoutName", true)[0]).Visible = true;
-                ((Label)this.Controls.Find($"lbl{robot.ScouterBox}MatchEvent", true)[0]).Text = robot.Match_event.ToString();
+                ((Label)this.Controls.Find($"lbl{robot.ScouterBox}MatchEvent", true)[0]).Text = robot.MatchEvent.ToString();
                 ((Label)this.Controls.Find($"lbl{robot.ScouterBox}MatchEvent", true)[0]).Visible = true;
                 ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).Text = robot.Current_Mode.ToString() + " Mode";
                 ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).Visible = true;
@@ -957,7 +943,7 @@ namespace ControllerScouting.Screens
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position12Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position12Value", true)[0]).ForeColor = System.Drawing.Color.Yellow;
         }
-        private void InSurfacingMode(int Box_Number, int ScouterBox)
+        private void InEndgameMode(int Box_Number, int ScouterBox)
         {
             //Climb Timer
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Text = BackgroundCode.Robots[Box_Number].ClimbT_StopWatch.Elapsed.ToString(@"m\:ss\.fff");
