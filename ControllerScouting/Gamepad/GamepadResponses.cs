@@ -173,7 +173,6 @@ namespace ControllerScouting.Gamepad
                     else if (gamepad.RightButton_Press) {
                         robot.ClimbT = robot.ClimbT_StopWatch.Elapsed;
                         robot.ClimbTDouble = robot.ClimbT.TotalSeconds;
-                        robot.CycleClimbSuccessEndgame(RobotState.CYCLE_DIRECTION.Up);
 
                     }
                     else if (gamepad.RightButton_Press && robot.ClimbTDouble>0)
