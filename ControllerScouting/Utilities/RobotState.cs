@@ -116,39 +116,6 @@ namespace ControllerScouting.Utilities
             return (Enum)enums.GetValue(index);
         }
 
-        //2026
-        //private LEAVE _Leave;
-
-        //2026
-        //public LEAVE GetLeave()
-        //{ return _Leave; }
-
-
-        //2026
-        //public LEAVE Leave
-        //{
-        //    get { return _Leave; }
-        //    set { _Leave = value; }
-        //}
-
-
-        //2026 cycles
-        //public void CycleLeave(CYCLE_DIRECTION CycleDirection)
-        //{
-        //    if (CycleDirection == CYCLE_DIRECTION.Up)
-        //    {
-        //        _Leave = (LEAVE)GetNextEnum<LEAVE>(_Leave);
-        //    }
-        //    else
-        //    {
-        //        _Leave = (LEAVE)GetPreviousEnum<LEAVE>(_Leave);
-        //    }
-        //    if (_Leave == LEAVE.Z)
-        //    {
-        //        CycleLeave(CycleDirection);
-        //    }
-        //}
-
 
         //2026 Enum
 
@@ -179,9 +146,6 @@ namespace ControllerScouting.Utilities
         public double FuelShootingTimeDouble;
 
         public int BumpTraversal = 0;
-        private BOOLEAN Climb_Success = BOOLEAN.Error;
-        private BOOLEAN Auto_Climb = BOOLEAN.Error;
-        private BOOLEAN End_Match = BOOLEAN.Error;
         public bool DisplayClimbSuccess = false;
         public enum STARTING_LOCATION { Far_Trench, Far_Bump, Hub, Near_Bump, Near_Trench }
         public enum LADDER_LOCATION { Outpost, Center, Depot };
@@ -198,6 +162,8 @@ namespace ControllerScouting.Utilities
         private STRATEGY _Strategy;
         private CLIMB_LEVEL _Climb_Level;
         private BOOLEAN _Auto_Climb;
+        private BOOLEAN _Climb_Success;
+        private BOOLEAN _End_Match;
 
 
         public STARTING_LOCATION GetStartingLocation()
@@ -250,17 +216,17 @@ namespace ControllerScouting.Utilities
             get { return _Climb_Level; }
             set { _Climb_Level = value; }
         }
-        public BOOLEAN _Climb_Auto
+        public BOOLEAN Auto_Climb
         {
-            get { return _Climb_Auto; }
-            set { _Climb_Auto = value; }
+            get { return _Auto_Climb; }
+            set { _Auto_Climb = value; }
         }
-        public BOOLEAN _Climb_Success
+        public BOOLEAN Climb_Success
         {
             get { return _Climb_Success; }
             set { _Climb_Success = value; }
         }
-        public BOOLEAN _End_Match
+        public BOOLEAN End_Match
         {
             get { return _End_Match; }
             set { _End_Match = value; }
@@ -336,14 +302,14 @@ namespace ControllerScouting.Utilities
         {
             if (CycleDirection == CYCLE_DIRECTION.Up)
             {
-                _Climb_Auto = (BOOLEAN)GetNextEnum<BOOLEAN>(_Climb_Auto);
+                _Auto_Climb = (BOOLEAN)GetNextEnum<BOOLEAN>(_Auto_Climb);
             }
             else
             {
-                _Climb_Auto = (BOOLEAN)GetPreviousEnum<BOOLEAN>(_Climb_Auto);
+                _Auto_Climb = (BOOLEAN)GetPreviousEnum<BOOLEAN>(_Auto_Climb);
             }
 
-            if (_Climb_Auto == BOOLEAN.Z)
+            if (_Auto_Climb == BOOLEAN.Z)
             {
                 CycleAutoClimb(CycleDirection);
             }

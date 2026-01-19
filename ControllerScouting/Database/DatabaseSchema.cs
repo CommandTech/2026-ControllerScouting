@@ -306,19 +306,21 @@ namespace ControllerScouting.Database
 
             return records;
         }
-        internal static void SaveToRecord(RobotState controller, string recordtype, int controllerNumber)
+        internal static void SaveToRecord(RobotState controller, string recordtype)
         {
 
             if (controller.GetScouterName() != RobotState.SCOUTER_NAME.Select_Name && controller.TeamName != null)
             {
-                Activity activity_record = new Activity();
+                Activity activity_record = new()
+                {
+                    Time = DateTime.Now,
+                    Team = BackgroundCode.Robots[controller.ScouterBox].TeamName,
+                    Match = BackgroundCode.currentMatch,
+                    Mode = controller.Current_Mode.ToString(),
+                    ScouterName = controller.GetScouterName().ToString(),
+                    ScouterError = controller.ScouterError
+                };
 
-                activity_record.Time = DateTime.Now;
-                activity_record.Team = BackgroundCode.Robots[controller.ScouterBox].TeamName;
-                activity_record.Match = BackgroundCode.currentMatch;
-                activity_record.Mode = controller.Current_Mode.ToString();
-                activity_record.ScouterName = controller.GetScouterName().ToString();
-                activity_record.ScouterError = controller.ScouterError;
                 switch (recordtype)
                 {
                     case "EndAuto":

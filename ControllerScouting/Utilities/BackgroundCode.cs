@@ -11,7 +11,7 @@ namespace ControllerScouting.Utilities
 {
     internal class BackgroundCode
     {
-        public static GamePad[] gamePads;                           //List of all the gamepads connected to the computer
+        public static GamePad[]? gamePads;                           //List of all the gamepads connected to the computer
         public static Controllers controllers = new();              //The controller class that handles all the gamepad stuff
         public static readonly List<Thread> controllerThreads = [];
         public static readonly List<CancellationTokenSource> controllerCancellationTokens = [];
@@ -32,14 +32,12 @@ namespace ControllerScouting.Utilities
         public static string homeTeam = "frc842";                   //Your team number
         public static List<string> homePrio = [];                   //List of teams to prioritize based on who you play with next
 
-        public static List<List<string>> manualMatchList = null;    //The list of matches inputed manually
+        public static List<List<string>> manualMatchList;    //The list of matches inputed manually
         public static bool redRight = false;                        //Is red alliance on your right?
         public static int currentMatch = 0;                         //The current match number
         public static string loadedEvent = "";                      //The event currently loaded
         public static bool practiceMode = false;                    //Is the scouting system in practice mode?
         public static int practiceTeam = 0;
-
-        public static ComboBox loadRegionalData = new ComboBox();
 
         public static readonly string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
         public static readonly string projectBaseDirectory = System.IO.Path.GetFullPath(System.IO.Path.Combine(baseDirectory, @"..\..\"));
