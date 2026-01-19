@@ -342,7 +342,7 @@ namespace ControllerScouting.Database
                     case "EndMatch":
                         activity_record.ClimbTime = controller.ClimbTimeDouble;
                         activity_record.TimeOfClimb = controller.TimeOfClimbDouble;
-                        activity_record.AttemptClimb = controller.GetClimbSuccessEndGame().ToString();
+                        activity_record.AttemptClimb = controller.GetClimbSuccess().ToString();
                         activity_record.Avoidance = controller.GetAvoidanceStrategy().ToString();
                         activity_record.Defense = controller.GetDefenseStrategy().ToString();
                         activity_record.EndState = controller.GetClimbLevel().ToString();
@@ -354,8 +354,6 @@ namespace ControllerScouting.Database
                         activity_record.FuelShootingTime = controller.FuelIntakingTimeDouble;
                         activity_record.FuelIntakingTime = controller.FuelIntakingTimeDouble;
                         activity_record.FeedingTime = controller.FeedingTimeDouble;
-
-
 
                         break;
                     case "Match_Event":

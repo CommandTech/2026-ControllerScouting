@@ -15,8 +15,8 @@ namespace ControllerScouting.Gamepad
             if (!robot.NoSho)
             {
                 //If the stopwatch does not exist, creates it
-                robot.ClimbT_StopWatch ??= new Stopwatch();
-                robot.DefTime_StopWatch ??= new Stopwatch();
+                robot.TimeOfClimb_StopWatch ??= new Stopwatch();
+                robot.DefenseTime_StopWatch ??= new Stopwatch();
 
                 gamepad.Update();
 
@@ -42,7 +42,7 @@ namespace ControllerScouting.Gamepad
                 {
                     if (gamepad.LeftTrigger_Press)
                     {
-                        robot.bumpCounter++;
+                        robot.BumpTraversal++;
                     }
                     else if (gamepad.RightTrigger_Press)
                     {
@@ -66,23 +66,23 @@ namespace ControllerScouting.Gamepad
 
                     if (gamepad.LeftButton_Down)
                     {
-                        robot.IntakingT_StopWatch.Start();
-                        robot.IntakingT = robot.IntakingT_StopWatch.Elapsed;
+                        robot.FuelIntakingTime_StopWatch.Start();
+                        robot.FuelIntakingTime = robot.FuelIntakingTime_StopWatch.Elapsed;
                     }
-                    else if (gamepad.RightButton_Release)
+                    else if (gamepad.LeftButton_Release)
                     {
-                        robot.IntakingT_StopWatch.Stop();
-                        robot.IntakingT = robot.IntakingT_StopWatch.Elapsed;
+                        robot.FuelIntakingTime_StopWatch.Stop();
+                        robot.FuelIntakingTime = robot.FuelIntakingTime_StopWatch.Elapsed;
                     }
 
                     if (gamepad.RightButton_Down)
                     {
-                        robot.ShootingT_StopWatch.Start();
-                        robot.ShootingT = robot.ShootingT_StopWatch.Elapsed;
+                        robot.FuelShootingTime_StopWatch.Start();
+                        robot.FuelShootingTime = robot.FuelShootingTime_StopWatch.Elapsed;
                     }
                     else if (gamepad.RightButton_Release) {
-                        robot.IntakingT_StopWatch.Stop();
-                        robot.IntakingT = robot.IntakingT_StopWatch.Elapsed;
+                        robot.FuelShootingTime_StopWatch.Stop();
+                        robot.FuelShootingTime = robot.FuelShootingTime_StopWatch.Elapsed;
                     }
                 }
                 //***********************************
@@ -91,18 +91,18 @@ namespace ControllerScouting.Gamepad
                 else if (robot.Current_Mode == RobotState.ROBOT_MODE.Teleop && robot.GetScouterName() != RobotState.SCOUTER_NAME.Select_Name)
                 {
                     if (gamepad.L3_Down) {
-                        robot.DefTime_StopWatch.Start();
-                        robot.DefTime_StopWatch_running = true;
-                        robot.DefTime = robot.DefTime_StopWatch.Elapsed;
+                        robot.DefenseTime_StopWatch.Start();
+                        robot.DefenseTime_StopWatch_Running = true;
+                        robot.DefenseTime = robot.DefenseTime_StopWatch.Elapsed;
                     } else if (gamepad.L3_Release) {
-                        robot.DefTime_StopWatch.Stop();
-                        robot.DefTime_StopWatch_running = false;
-                        robot.DefTime = robot.DefTime_StopWatch.Elapsed;
+                        robot.DefenseTime_StopWatch.Stop();
+                        robot.DefenseTime_StopWatch_Running = false;
+                        robot.DefenseTime = robot.DefenseTime_StopWatch.Elapsed;
                     }
 
                     if (gamepad.LeftTrigger_Press)
                     {
-                        robot.bumpCounter++;
+                        robot.BumpTraversal++;
                     }
                     else if (gamepad.RightTrigger_Press)
                     {
@@ -110,24 +110,24 @@ namespace ControllerScouting.Gamepad
                     }
                     if (gamepad.LeftButton_Down)
                     {
-                        robot.IntakingT_StopWatch.Start();
-                        robot.IntakingT = robot.IntakingT_StopWatch.Elapsed;
+                        robot.FuelIntakingTime_StopWatch.Start();
+                        robot.FuelIntakingTime = robot.FuelIntakingTime_StopWatch.Elapsed;
                     }
-                    else if (gamepad.RightButton_Release)
+                    else if (gamepad.LeftButton_Release)
                     {
-                        robot.IntakingT_StopWatch.Stop();
-                        robot.IntakingT = robot.IntakingT_StopWatch.Elapsed;
+                        robot.FuelIntakingTime_StopWatch.Stop();
+                        robot.FuelIntakingTime = robot.FuelIntakingTime_StopWatch.Elapsed;
                     }
 
                     if (gamepad.RightButton_Down)
                     {
-                        robot.ShootingT_StopWatch.Start();
-                        robot.ShootingT = robot.ShootingT_StopWatch.Elapsed;
+                        robot.FuelShootingTime_StopWatch.Start();
+                        robot.FuelShootingTime = robot.FuelShootingTime_StopWatch.Elapsed;
                     }
                     else if (gamepad.RightButton_Release)
                     {
-                        robot.IntakingT_StopWatch.Stop();
-                        robot.IntakingT = robot.IntakingT_StopWatch.Elapsed;
+                        robot.FuelShootingTime_StopWatch.Stop();
+                        robot.FuelShootingTime = robot.FuelShootingTime_StopWatch.Elapsed;
                     }
                 }
 
@@ -136,14 +136,13 @@ namespace ControllerScouting.Gamepad
                 //***********************************
                 else if (robot.Current_Mode == RobotState.ROBOT_MODE.Endgame && robot.GetScouterName() != RobotState.SCOUTER_NAME.Select_Name)
                 {
-                    robot.ClimbT_StopWatch.Start(); // starts the time
-                   robot.ClimbT_StopWatch_running = true;
+                    robot.TimeOfClimb_StopWatch.Start(); // starts the time
+                    robot.TimeOfClimb_StopWatch_Running = true;
 
                     if (gamepad.AButton_Down)
                     {
                         robot.CycleLadderLocation(RobotState.CYCLE_DIRECTION.Up);
                     }
-
                     if (gamepad.YButton_Press)
                     {
                         robot.Climb_Level = RobotState.CLIMB_LEVEL.L3;
@@ -193,9 +192,10 @@ namespace ControllerScouting.Gamepad
                         robot.CycleAvoidanceStrategy(RobotState.CYCLE_DIRECTION.Up);
                     }
                     else if (gamepad.DpadUp_Press) {
-                        robot.CycleClimbSuccessEndgame(RobotState.CYCLE_DIRECTION.Up);
-                    } else if (gamepad.DpadDown_Press) {
-                        robot.CycleClimbSuccessEndgame(RobotState.CYCLE_DIRECTION.Down);
+                        robot.CycleClimbSuccess(RobotState.CYCLE_DIRECTION.Up);
+                    } 
+                    else if (gamepad.DpadDown_Press) {
+                        robot.CycleClimbSuccess(RobotState.CYCLE_DIRECTION.Down);
                     }
 
                 }

@@ -179,8 +179,8 @@ namespace ControllerScouting.Utilities
         public double FuelShootingTimeDouble;
 
         public int BumpTraversal = 0;
-        private BOOLEAN Climb_Success_Endgame = BOOLEAN.Error;
-        private BOOLEAN Climb_Auto = BOOLEAN.Error;
+        private BOOLEAN Climb_Success = BOOLEAN.Error;
+        private BOOLEAN Auto_Climb = BOOLEAN.Error;
         private BOOLEAN End_Match = BOOLEAN.Error;
         public bool DisplayClimbSuccess = false;
         public enum STARTING_LOCATION { Far_Trench, Far_Bump, Hub, Near_Bump, Near_Trench }
@@ -197,15 +197,73 @@ namespace ControllerScouting.Utilities
         private AVOIDANCE_STRATEGY _Avoidance_Strategy;
         private STRATEGY _Strategy;
         private CLIMB_LEVEL _Climb_Level;
+        private BOOLEAN _Auto_Climb;
 
 
         public STARTING_LOCATION GetStartingLocation()
         { return _Starting_Location; }
+        public LADDER_LOCATION GetLadderLocation()
+        { return _Ladder_Location; }
+        public DEFENSE_STRATEGY GetDefenseStrategy()
+        { return _Defense_Strategy; }
+        public AVOIDANCE_STRATEGY GetAvoidanceStrategy()
+        { return _Avoidance_Strategy; }
+        public STRATEGY GetStrategy()
+        { return _Strategy; }
+        public CLIMB_LEVEL GetClimbLevel()
+        { return _Climb_Level; }
+        public BOOLEAN GetAutoClimb()
+        { return _Auto_Climb; }
+        public BOOLEAN GetEndMatch()
+        { return _End_Match; }
+        public BOOLEAN GetClimbSuccess()
+        { return _Climb_Success; }
+
 
         public STARTING_LOCATION Starting_Location
         {
             get { return _Starting_Location; }
             set { _Starting_Location = value; }
+        }
+        public LADDER_LOCATION Ladder_Location
+        {
+            get { return _Ladder_Location; }
+            set { _Ladder_Location = value; }
+        }
+        public DEFENSE_STRATEGY Defense_Strategy
+        {
+            get { return _Defense_Strategy; }
+            set { _Defense_Strategy = value; }
+        }
+        public AVOIDANCE_STRATEGY Avoidance_Strategy
+        {
+            get { return _Avoidance_Strategy; }
+            set { _Avoidance_Strategy = value; }
+        }
+        public STRATEGY Strategy
+        {
+            get { return _Strategy; }
+            set { _Strategy = value; }
+        }
+        public CLIMB_LEVEL Climb_Level
+        {
+            get { return _Climb_Level; }
+            set { _Climb_Level = value; }
+        }
+        public BOOLEAN _Climb_Auto
+        {
+            get { return _Climb_Auto; }
+            set { _Climb_Auto = value; }
+        }
+        public BOOLEAN _Climb_Success
+        {
+            get { return _Climb_Success; }
+            set { _Climb_Success = value; }
+        }
+        public BOOLEAN _End_Match
+        {
+            get { return _End_Match; }
+            set { _End_Match = value; }
         }
 
         public void CycleStartingLocation(CYCLE_DIRECTION CycleDirection)
@@ -219,16 +277,6 @@ namespace ControllerScouting.Utilities
                 _Starting_Location = (STARTING_LOCATION)GetPreviousEnum<STARTING_LOCATION>(_Starting_Location);
             }
         }
-
-        public LADDER_LOCATION GetLadderLocation()
-        { return _Ladder_Location; }
-
-        public LADDER_LOCATION Ladder_Location
-        {
-            get { return _Ladder_Location; }
-            set { _Ladder_Location = value; }
-        }
-
         public void CycleLadderLocation(CYCLE_DIRECTION CycleDirection)
         {
             if (CycleDirection == CYCLE_DIRECTION.Up)
@@ -240,17 +288,6 @@ namespace ControllerScouting.Utilities
                 _Ladder_Location = (LADDER_LOCATION)GetPreviousEnum<LADDER_LOCATION>(_Ladder_Location);
             }
         }
-
-
-        public DEFENSE_STRATEGY GetDefenseStrategy()
-        { return _Defense_Strategy; }
-
-        public DEFENSE_STRATEGY Defense_Strategy
-        {
-            get { return _Defense_Strategy; }
-            set { _Defense_Strategy = value; }
-        }
-
         public void CycleDefenseStrategy(CYCLE_DIRECTION CycleDirection)
         {
             if (CycleDirection == CYCLE_DIRECTION.Up)
@@ -262,16 +299,6 @@ namespace ControllerScouting.Utilities
                 _Defense_Strategy = (DEFENSE_STRATEGY)GetPreviousEnum<DEFENSE_STRATEGY>(_Defense_Strategy);
             }
         }
-
-        public AVOIDANCE_STRATEGY GetAvoidanceStrategy()
-        { return _Avoidance_Strategy; }
-
-        public AVOIDANCE_STRATEGY Avoidance_Strategy
-        {
-            get { return _Avoidance_Strategy; }
-            set { _Avoidance_Strategy = value; }
-        }
-
         public void CycleAvoidanceStrategy(CYCLE_DIRECTION CycleDirection)
         {
             if (CycleDirection == CYCLE_DIRECTION.Up)
@@ -283,16 +310,6 @@ namespace ControllerScouting.Utilities
                 _Avoidance_Strategy = (AVOIDANCE_STRATEGY)GetPreviousEnum<AVOIDANCE_STRATEGY>(_Avoidance_Strategy);
             }
         }
-
-        public STRATEGY GetStrategy()
-        { return _Strategy; }
-
-        public STRATEGY Strategy
-        {
-            get { return _Strategy; }
-            set { _Strategy = value; }
-        }
-
         public void CycleStrategy(CYCLE_DIRECTION CycleDirection)
         {
             if (CycleDirection == CYCLE_DIRECTION.Up)
@@ -304,16 +321,6 @@ namespace ControllerScouting.Utilities
                 _Strategy = (STRATEGY)GetPreviousEnum<STRATEGY>(_Strategy);
             }
         }
-
-        public CLIMB_LEVEL GetClimbLevel()
-        { return _Climb_Level; }
-
-        public CLIMB_LEVEL Climb_Level
-        {
-            get { return _Climb_Level; }
-            set { _Climb_Level = value; }
-        }
-
         public void CycleClimbLevel(CYCLE_DIRECTION CycleDirection)
         {
             if (CycleDirection == CYCLE_DIRECTION.Up)
@@ -325,17 +332,6 @@ namespace ControllerScouting.Utilities
                 _Climb_Level = (CLIMB_LEVEL)GetPreviousEnum<STRATEGY>(_Climb_Level);
             }
         }
-
-        public BOOLEAN GetAutoClimb()
-        { return _Climb_Auto; }
-
-        public BOOLEAN _Climb_Auto
-        {
-            get { return _Climb_Auto; }
-            set { _Climb_Auto = value; }
-        }
-
-
         public void CycleAutoClimb(CYCLE_DIRECTION CycleDirection)
         {
             if (CycleDirection == CYCLE_DIRECTION.Up)
@@ -349,17 +345,8 @@ namespace ControllerScouting.Utilities
 
             if (_Climb_Auto == BOOLEAN.Z)
             {
-                CycleClimbSuccessEndgame(CycleDirection);
+                CycleAutoClimb(CycleDirection);
             }
-        }
-
-        public BOOLEAN GetEndMatch()
-        { return _End_Match; }
-
-        public BOOLEAN _End_Match
-        {
-            get { return _End_Match; }
-            set { _End_Match = value; }
         }
         public void CycleEndMatch(CYCLE_DIRECTION CycleDirection)
         {
@@ -374,42 +361,26 @@ namespace ControllerScouting.Utilities
 
             if (_End_Match == BOOLEAN.Z)
             {
-                CycleClimbSuccessEndgame(CycleDirection);
+                CycleEndMatch(CycleDirection);
             }
         }
-        public BOOLEAN GetClimbSuccessEndGame()
-        { return _Climb_Success_Endgame; }
-
-        public BOOLEAN _Climb_Success_Endgame
-        {
-            get { return _Climb_Success_Endgame; }
-            set { _Climb_Success_Endgame = value; }
-        }
-        public void CycleClimbSuccessEndgame(CYCLE_DIRECTION CycleDirection)
+        public void CycleClimbSuccess(CYCLE_DIRECTION CycleDirection)
         {
             if (CycleDirection == CYCLE_DIRECTION.Up)
             {
-                _Climb_Success_Endgame = (BOOLEAN)GetNextEnum<BOOLEAN>(_Climb_Success_Endgame);
+                _Climb_Success = (BOOLEAN)GetNextEnum<BOOLEAN>(_Climb_Success);
             }
             else
             {
-                _Climb_Success_Endgame = (BOOLEAN)GetPreviousEnum<BOOLEAN>(_Climb_Success_Endgame);
+                _Climb_Success = (BOOLEAN)GetPreviousEnum<BOOLEAN>(_Climb_Success);
             }
 
-            if (_Climb_Success_Endgame == BOOLEAN.Z)
+            if (_Climb_Success == BOOLEAN.Z)
             {
-                CycleClimbSuccessEndgame(CycleDirection);
+                CycleClimbSuccess(CycleDirection);
             }
         }
 
-
-
-
-
-        public RobotState GetRobotState()
-        {
-            return this;
-        }
 
         public static RobotState ResetScouter(RobotState state)
         {

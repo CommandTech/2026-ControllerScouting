@@ -22,6 +22,13 @@ namespace ControllerScouting.Screens
             blueTeams = new TableLayoutPanel();
             redTeams = new TableLayoutPanel();
             team0 = new Panel();
+            lbl0Position3Value = new Label();
+            lbl0Position9 = new Label();
+            lbl0Position8 = new Label();
+            lbl0Position7 = new Label();
+            lbl0Position6 = new Label();
+            lbl0Position5 = new Label();
+            lbl0Position4 = new Label();
             lbl0Position3 = new Label();
             lbl0Position2 = new Label();
             lbl0Position1 = new Label();
@@ -44,13 +51,6 @@ namespace ControllerScouting.Screens
             statusLight = new Panel();
             topPanel = new Panel();
             tableLayoutPanel = new TableLayoutPanel();
-            lbl0Position4 = new Label();
-            lbl0Position5 = new Label();
-            lbl0Position6 = new Label();
-            lbl0Position7 = new Label();
-            lbl0Position8 = new Label();
-            lbl0Position9 = new Label();
-            lbl0Position3Value = new Label();
             redTeams.SuspendLayout();
             team0.SuspendLayout();
             topPanel.SuspendLayout();
@@ -211,6 +211,86 @@ namespace ControllerScouting.Screens
             team0.Size = new Size(478, 399);
             team0.TabIndex = 0;
             // 
+            // lbl0Position3Value
+            // 
+            lbl0Position3Value.AutoSize = true;
+            lbl0Position3Value.BackColor = Color.Red;
+            lbl0Position3Value.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
+            lbl0Position3Value.ForeColor = Color.Red;
+            lbl0Position3Value.ImageAlign = ContentAlignment.TopLeft;
+            lbl0Position3Value.Location = new Point(72, 161);
+            lbl0Position3Value.Name = "lbl0Position3Value";
+            lbl0Position3Value.Size = new Size(16, 24);
+            lbl0Position3Value.TabIndex = 406;
+            lbl0Position3Value.Text = ".";
+            lbl0Position3Value.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // lbl0Position9
+            // 
+            lbl0Position9.AutoSize = true;
+            lbl0Position9.Font = new Font("Microsoft Sans Serif", 12.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl0Position9.ForeColor = Color.White;
+            lbl0Position9.Location = new Point(218, 231);
+            lbl0Position9.Name = "lbl0Position9";
+            lbl0Position9.Size = new Size(244, 20);
+            lbl0Position9.TabIndex = 405;
+            lbl0Position9.Text = "Ladder Location: OUTPOST";
+            // 
+            // lbl0Position8
+            // 
+            lbl0Position8.AutoSize = true;
+            lbl0Position8.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl0Position8.ForeColor = Color.White;
+            lbl0Position8.Location = new Point(298, 195);
+            lbl0Position8.Name = "lbl0Position8";
+            lbl0Position8.Size = new Size(164, 24);
+            lbl0Position8.TabIndex = 404;
+            lbl0Position8.Text = "Strategy: VALUE";
+            // 
+            // lbl0Position7
+            // 
+            lbl0Position7.AutoSize = true;
+            lbl0Position7.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl0Position7.ForeColor = Color.White;
+            lbl0Position7.Location = new Point(3, 266);
+            lbl0Position7.Name = "lbl0Position7";
+            lbl0Position7.Size = new Size(153, 24);
+            lbl0Position7.TabIndex = 402;
+            lbl0Position7.Text = "Climb Level: L#";
+            // 
+            // lbl0Position6
+            // 
+            lbl0Position6.AutoSize = true;
+            lbl0Position6.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl0Position6.ForeColor = Color.White;
+            lbl0Position6.Location = new Point(3, 195);
+            lbl0Position6.Name = "lbl0Position6";
+            lbl0Position6.Size = new Size(188, 24);
+            lbl0Position6.TabIndex = 401;
+            lbl0Position6.Text = "Avoidance: VALUE";
+            // 
+            // lbl0Position5
+            // 
+            lbl0Position5.AutoSize = true;
+            lbl0Position5.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl0Position5.ForeColor = Color.White;
+            lbl0Position5.Location = new Point(112, 92);
+            lbl0Position5.Name = "lbl0Position5";
+            lbl0Position5.Size = new Size(216, 24);
+            lbl0Position5.TabIndex = 400;
+            lbl0Position5.Text = "Feeding Timer: 0:00.0";
+            // 
+            // lbl0Position4
+            // 
+            lbl0Position4.AutoSize = true;
+            lbl0Position4.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl0Position4.ForeColor = Color.White;
+            lbl0Position4.Location = new Point(2, 231);
+            lbl0Position4.Name = "lbl0Position4";
+            lbl0Position4.Size = new Size(69, 24);
+            lbl0Position4.TabIndex = 399;
+            lbl0Position4.Text = "Climb:";
+            // 
             // lbl0Position3
             // 
             lbl0Position3.AutoSize = true;
@@ -268,6 +348,7 @@ namespace ControllerScouting.Screens
             lbl0Position0.Size = new Size(262, 20);
             lbl0Position0.TabIndex = 394;
             lbl0Position0.Text = "Starting Location: Outer Trench";
+            lbl0Position0.TextAlign = ContentAlignment.TopRight;
             // 
             // lbl0Position2Value
             // 
@@ -458,86 +539,6 @@ namespace ControllerScouting.Screens
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel.Size = new Size(1460, 872);
             tableLayoutPanel.TabIndex = 0;
-            // 
-            // lbl0Position4
-            // 
-            lbl0Position4.AutoSize = true;
-            lbl0Position4.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl0Position4.ForeColor = Color.White;
-            lbl0Position4.Location = new Point(2, 231);
-            lbl0Position4.Name = "lbl0Position4";
-            lbl0Position4.Size = new Size(69, 24);
-            lbl0Position4.TabIndex = 399;
-            lbl0Position4.Text = "Climb:";
-            // 
-            // lbl0Position5
-            // 
-            lbl0Position5.AutoSize = true;
-            lbl0Position5.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl0Position5.ForeColor = Color.White;
-            lbl0Position5.Location = new Point(112, 92);
-            lbl0Position5.Name = "lbl0Position5";
-            lbl0Position5.Size = new Size(216, 24);
-            lbl0Position5.TabIndex = 400;
-            lbl0Position5.Text = "Feeding Timer: 0:00.0";
-            // 
-            // lbl0Position6
-            // 
-            lbl0Position6.AutoSize = true;
-            lbl0Position6.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl0Position6.ForeColor = Color.White;
-            lbl0Position6.Location = new Point(3, 195);
-            lbl0Position6.Name = "lbl0Position6";
-            lbl0Position6.Size = new Size(188, 24);
-            lbl0Position6.TabIndex = 401;
-            lbl0Position6.Text = "Avoidance: VALUE";
-            // 
-            // lbl0Position7
-            // 
-            lbl0Position7.AutoSize = true;
-            lbl0Position7.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl0Position7.ForeColor = Color.White;
-            lbl0Position7.Location = new Point(3, 266);
-            lbl0Position7.Name = "lbl0Position7";
-            lbl0Position7.Size = new Size(153, 24);
-            lbl0Position7.TabIndex = 402;
-            lbl0Position7.Text = "Climb Level: L#";
-            // 
-            // lbl0Position8
-            // 
-            lbl0Position8.AutoSize = true;
-            lbl0Position8.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl0Position8.ForeColor = Color.White;
-            lbl0Position8.Location = new Point(298, 195);
-            lbl0Position8.Name = "lbl0Position8";
-            lbl0Position8.Size = new Size(164, 24);
-            lbl0Position8.TabIndex = 404;
-            lbl0Position8.Text = "Strategy: VALUE";
-            // 
-            // lbl0Position9
-            // 
-            lbl0Position9.AutoSize = true;
-            lbl0Position9.Font = new Font("Microsoft Sans Serif", 12.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl0Position9.ForeColor = Color.White;
-            lbl0Position9.Location = new Point(218, 231);
-            lbl0Position9.Name = "lbl0Position9";
-            lbl0Position9.Size = new Size(244, 20);
-            lbl0Position9.TabIndex = 405;
-            lbl0Position9.Text = "Ladder Location: OUTPOST";
-            // 
-            // lbl0Position3Value
-            // 
-            lbl0Position3Value.AutoSize = true;
-            lbl0Position3Value.BackColor = Color.Red;
-            lbl0Position3Value.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
-            lbl0Position3Value.ForeColor = Color.Red;
-            lbl0Position3Value.ImageAlign = ContentAlignment.TopLeft;
-            lbl0Position3Value.Location = new Point(72, 161);
-            lbl0Position3Value.Name = "lbl0Position3Value";
-            lbl0Position3Value.Size = new Size(16, 24);
-            lbl0Position3Value.TabIndex = 406;
-            lbl0Position3Value.Text = ".";
-            lbl0Position3Value.TextAlign = ContentAlignment.MiddleRight;
             // 
             // BaseScreen
             // 
