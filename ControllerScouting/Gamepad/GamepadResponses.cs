@@ -46,7 +46,7 @@ namespace ControllerScouting.Gamepad
                     }
                     else if (gamepad.RightTrigger_Press)
                     {
-                        DatabaseCode.SaveToRecord(robot, "Activities", controllerNumber);
+                        DatabaseCode.SaveToRecord(robot, "Activities");
                     }
                     else if (gamepad.XButton_Press)
                     {
@@ -106,7 +106,7 @@ namespace ControllerScouting.Gamepad
                     }
                     else if (gamepad.RightTrigger_Press)
                     {
-                        DatabaseCode.SaveToRecord(robot, "Activities", controllerNumber);
+                        DatabaseCode.SaveToRecord(robot, "Activities");
                     }
                     if (gamepad.LeftButton_Down)
                     {
@@ -165,22 +165,22 @@ namespace ControllerScouting.Gamepad
                     }
                     else if (gamepad.LeftTrigger_Press)
                     {
-                        robot.ClimbT_StopWatch.Reset();
-                        robot.ClimbT = robot.ClimbT_StopWatch.Elapsed;
-                        robot.ClimbT_StopWatch_running = false;
+                        robot.TimeOfClimb_StopWatch.Reset();
+                        robot.TimeOfClimb = robot.TimeOfClimb_StopWatch.Elapsed;
+                        robot.TimeOfClimb_StopWatch_Running = false;
                     }
                     else if (gamepad.RightButton_Press) {
-                        robot.ClimbT = robot.ClimbT_StopWatch.Elapsed;
-                        robot.ClimbTDouble = robot.ClimbT.TotalSeconds;
+                        robot.TimeOfClimb = robot.TimeOfClimb_StopWatch.Elapsed;
+                        robot.TimeOfClimbDouble = robot.TimeOfClimb.TotalSeconds;
 
                     }
-                    else if (gamepad.RightButton_Press && robot.ClimbTDouble>0)
+                    else if (gamepad.RightButton_Press && robot.TimeOfClimbDouble>0)
                     {
-                        robot.ClimbT_StopWatch.Stop();
-                        robot.ClimbT = robot.ClimbT_StopWatch.Elapsed;
-                        robot.EndmatchTimeDouble = robot.ClimbT.TotalSeconds;
-                        robot.ClimbT_StopWatch_running = false;
-                        robot.CycleEndMatch(RobotState.CYCLE_DIRECTION.Up);
+                        robot.TimeOfClimb_StopWatch.Stop();
+                        robot.TimeOfClimb = robot.TimeOfClimb_StopWatch.Elapsed;
+                        robot.TimeOfClimbDouble = robot.TimeOfClimb.TotalSeconds;
+                        robot.TimeOfClimb_StopWatch_Running = false;
+                        robot.End_Match = RobotState.BOOLEAN.Yes;
                     }
 
                     if (gamepad.DpadLeft_Press)
