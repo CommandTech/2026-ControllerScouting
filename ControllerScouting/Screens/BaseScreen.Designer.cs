@@ -51,6 +51,7 @@ namespace ControllerScouting.Screens
             statusLight = new Panel();
             topPanel = new Panel();
             tableLayoutPanel = new TableLayoutPanel();
+            label0Position2Value = new Label();
             redTeams.SuspendLayout();
             team0.SuspendLayout();
             topPanel.SuspendLayout();
@@ -159,11 +160,11 @@ namespace ControllerScouting.Screens
             blueTeams.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33F));
             blueTeams.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33F));
             blueTeams.Dock = DockStyle.Fill;
-            blueTeams.Location = new Point(3, 464);
+            blueTeams.Location = new Point(3, 438);
             blueTeams.Name = "blueTeams";
             blueTeams.RowCount = 1;
             blueTeams.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            blueTeams.Size = new Size(1454, 405);
+            blueTeams.Size = new Size(1294, 379);
             blueTeams.TabIndex = 0;
             // 
             // redTeams
@@ -179,12 +180,13 @@ namespace ControllerScouting.Screens
             redTeams.Name = "redTeams";
             redTeams.RowCount = 1;
             redTeams.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            redTeams.Size = new Size(1454, 405);
+            redTeams.Size = new Size(1294, 379);
             redTeams.TabIndex = 0;
             // 
             // team0
             // 
             team0.BackColor = Color.Black;
+            team0.Controls.Add(label0Position2Value);
             team0.Controls.Add(lbl0Position3Value);
             team0.Controls.Add(lbl0Position9);
             team0.Controls.Add(lbl0Position8);
@@ -208,7 +210,7 @@ namespace ControllerScouting.Screens
             team0.Dock = DockStyle.Fill;
             team0.Location = new Point(3, 3);
             team0.Name = "team0";
-            team0.Size = new Size(478, 399);
+            team0.Size = new Size(425, 373);
             team0.TabIndex = 0;
             // 
             // lbl0Position3Value
@@ -520,7 +522,7 @@ namespace ControllerScouting.Screens
             topPanel.Dock = DockStyle.Fill;
             topPanel.Location = new Point(3, 3);
             topPanel.Name = "topPanel";
-            topPanel.Size = new Size(1454, 44);
+            topPanel.Size = new Size(1294, 44);
             topPanel.TabIndex = 391;
             // 
             // tableLayoutPanel
@@ -537,14 +539,28 @@ namespace ControllerScouting.Screens
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel.Size = new Size(1460, 872);
+            tableLayoutPanel.Size = new Size(1300, 820);
             tableLayoutPanel.TabIndex = 0;
+            // 
+            // label0Position2Value
+            // 
+            label0Position2Value.AutoSize = true;
+            label0Position2Value.BackColor = Color.Red;
+            label0Position2Value.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
+            label0Position2Value.ForeColor = Color.Red;
+            label0Position2Value.ImageAlign = ContentAlignment.TopLeft;
+            label0Position2Value.Location = new Point(409, 61);
+            label0Position2Value.Name = "label0Position2Value";
+            label0Position2Value.Size = new Size(16, 24);
+            label0Position2Value.TabIndex = 407;
+            label0Position2Value.Text = ".";
+            label0Position2Value.TextAlign = ContentAlignment.MiddleRight;
             // 
             // BaseScreen
             // 
             AutoScroll = true;
             BackColor = Color.Black;
-            ClientSize = new Size(1460, 872);
+            ClientSize = new Size(1300, 820);
             Controls.Add(tableLayoutPanel);
             FormBorderStyle = FormBorderStyle.None;
             Name = "BaseScreen";
@@ -601,5 +617,6 @@ namespace ControllerScouting.Screens
         private Label lbl0Position9;
         private Label lbl0Position8;
         private Label lbl0Position3Value;
+        private Label label0Position2Value;
     }
 }
