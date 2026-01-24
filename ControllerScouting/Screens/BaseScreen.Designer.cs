@@ -34,7 +34,6 @@ namespace ControllerScouting.Screens
             lbl0Position1 = new Label();
             lbl0Position4Value = new Label();
             lbl0Position0 = new Label();
-            lbl0Position2Value = new Label();
             team0Divider = new Panel();
             team0ModeDivider = new Panel();
             team0TeamDivider = new Panel();
@@ -51,7 +50,7 @@ namespace ControllerScouting.Screens
             statusLight = new Panel();
             topPanel = new Panel();
             tableLayoutPanel = new TableLayoutPanel();
-            label0Position2Value = new Label();
+            lbl0Position2Value = new Label();
             redTeams.SuspendLayout();
             team0.SuspendLayout();
             topPanel.SuspendLayout();
@@ -186,7 +185,7 @@ namespace ControllerScouting.Screens
             // team0
             // 
             team0.BackColor = Color.Black;
-            team0.Controls.Add(label0Position2Value);
+            team0.Controls.Add(lbl0Position2Value);
             team0.Controls.Add(lbl0Position3Value);
             team0.Controls.Add(lbl0Position9);
             team0.Controls.Add(lbl0Position8);
@@ -199,7 +198,6 @@ namespace ControllerScouting.Screens
             team0.Controls.Add(lbl0Position1);
             team0.Controls.Add(lbl0Position4Value);
             team0.Controls.Add(lbl0Position0);
-            team0.Controls.Add(lbl0Position2Value);
             team0.Controls.Add(team0Divider);
             team0.Controls.Add(team0ModeDivider);
             team0.Controls.Add(team0TeamDivider);
@@ -351,19 +349,6 @@ namespace ControllerScouting.Screens
             lbl0Position0.TabIndex = 394;
             lbl0Position0.Text = "Starting Location: Outer Trench";
             lbl0Position0.TextAlign = ContentAlignment.TopRight;
-            // 
-            // lbl0Position2Value
-            // 
-            lbl0Position2Value.AutoSize = true;
-            lbl0Position2Value.BackColor = Color.Red;
-            lbl0Position2Value.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
-            lbl0Position2Value.ForeColor = Color.Red;
-            lbl0Position2Value.ImageAlign = ContentAlignment.TopLeft;
-            lbl0Position2Value.Location = new Point(72, 109);
-            lbl0Position2Value.Name = "lbl0Position2Value";
-            lbl0Position2Value.Size = new Size(0, 24);
-            lbl0Position2Value.TabIndex = 392;
-            lbl0Position2Value.TextAlign = ContentAlignment.MiddleRight;
             // 
             // team0Divider
             // 
@@ -542,19 +527,19 @@ namespace ControllerScouting.Screens
             tableLayoutPanel.Size = new Size(1300, 820);
             tableLayoutPanel.TabIndex = 0;
             // 
-            // label0Position2Value
+            // lbl0Position2Value
             // 
-            label0Position2Value.AutoSize = true;
-            label0Position2Value.BackColor = Color.Red;
-            label0Position2Value.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
-            label0Position2Value.ForeColor = Color.Red;
-            label0Position2Value.ImageAlign = ContentAlignment.TopLeft;
-            label0Position2Value.Location = new Point(409, 61);
-            label0Position2Value.Name = "label0Position2Value";
-            label0Position2Value.Size = new Size(16, 24);
-            label0Position2Value.TabIndex = 407;
-            label0Position2Value.Text = ".";
-            label0Position2Value.TextAlign = ContentAlignment.MiddleRight;
+            lbl0Position2Value.AutoSize = true;
+            lbl0Position2Value.BackColor = Color.Red;
+            lbl0Position2Value.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
+            lbl0Position2Value.ForeColor = Color.Red;
+            lbl0Position2Value.ImageAlign = ContentAlignment.TopLeft;
+            lbl0Position2Value.Location = new Point(407, 61);
+            lbl0Position2Value.Name = "lbl0Position2Value";
+            lbl0Position2Value.Size = new Size(16, 24);
+            lbl0Position2Value.TabIndex = 407;
+            lbl0Position2Value.Text = ".";
+            lbl0Position2Value.TextAlign = ContentAlignment.MiddleRight;
             // 
             // BaseScreen
             // 
@@ -599,7 +584,6 @@ namespace ControllerScouting.Screens
         private Button btnFunctions;
         private Label lbl0Position4Value;
         private Label lbl0Position0;
-        private Label lbl0Position2Value;
         private Panel team0Divider;
         private Panel team0ModeDivider;
         private Label lblBlueScore;
@@ -617,6 +601,6 @@ namespace ControllerScouting.Screens
         private Label lbl0Position9;
         private Label lbl0Position8;
         private Label lbl0Position3Value;
-        private Label label0Position2Value;
+        private Label lbl0Position2Value;
     }
 }
