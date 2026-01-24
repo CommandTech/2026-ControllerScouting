@@ -218,7 +218,7 @@ namespace ControllerScouting.Screens
             this.btnFetchValues.TabIndex = 11;
             this.btnFetchValues.Text = "Fetch Values";
             this.btnFetchValues.UseVisualStyleBackColor = false;
-            this.btnFetchValues.Click += new System.EventHandler(this.BtnFetchValues_Click);
+            //this.btnFetchValues.Click += new System.EventHandler(this.BtnFetchValues_Click);
             // 
             // panel5
             // 
@@ -281,7 +281,7 @@ namespace ControllerScouting.Screens
             this.btnUpdateDatabase.TabIndex = 11;
             this.btnUpdateDatabase.Text = "Update Database";
             this.btnUpdateDatabase.UseVisualStyleBackColor = false;
-            this.btnUpdateDatabase.Click += new System.EventHandler(this.BtnUpdateDatabase_Click);
+            //this.btnUpdateDatabase.Click += new System.EventHandler(this.BtnUpdateDatabase_Click);
             // 
             // button2
             // 
@@ -1396,7 +1396,7 @@ namespace ControllerScouting.Screens
             this.btnCreateTable.TabIndex = 11;
             this.btnCreateTable.Text = "Create Table";
             this.btnCreateTable.UseVisualStyleBackColor = false;
-            this.btnCreateTable.Click += new System.EventHandler(this.BtnCreateTable_Click);
+            //this.btnCreateTable.Click += new System.EventHandler(this.BtnCreateTable_Click);
             // 
             // scoutingDBDataSet
             // 

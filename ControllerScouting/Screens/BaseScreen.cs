@@ -222,7 +222,7 @@ namespace ControllerScouting.Screens
             {
                 for (int i = 0; i < BackgroundCode.gamePads.Length; i++)
                 {
-                    DatabaseCode.SaveToRecord(BackgroundCode.Robots[BackgroundCode.Robots[i].ScouterBox], "EndMatch", i);
+                    DatabaseCode.SaveToRecord(BackgroundCode.Robots[BackgroundCode.Robots[i].ScouterBox], "EndMatch");
                 }
                 DatabaseCode.SendToDatabase();
                 cbxEndMatch.Checked = false;
@@ -294,11 +294,11 @@ namespace ControllerScouting.Screens
         private void LoadMatch()
         {
             SetTeamNameAndColor(this.lbl0TeamName, BackgroundCode.Robots[0], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Redteam1);
-            SetTeamNameAndColor(this.lbl1TeamName, BackgroundCode.Robots[1], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Redteam2);
-            SetTeamNameAndColor(this.lbl2TeamName, BackgroundCode.Robots[2], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Redteam3);
-            SetTeamNameAndColor(this.lbl3TeamName, BackgroundCode.Robots[3], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Blueteam1);
-            SetTeamNameAndColor(this.lbl4TeamName, BackgroundCode.Robots[4], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Blueteam2);
-            SetTeamNameAndColor(this.lbl5TeamName, BackgroundCode.Robots[5], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Blueteam3);
+            //SetTeamNameAndColor(this.lbl1TeamName, BackgroundCode.Robots[1], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Redteam2);
+            //SetTeamNameAndColor(this.lbl2TeamName, BackgroundCode.Robots[2], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Redteam3);
+            //SetTeamNameAndColor(this.lbl3TeamName, BackgroundCode.Robots[3], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Blueteam1);
+            //SetTeamNameAndColor(this.lbl4TeamName, BackgroundCode.Robots[4], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Blueteam2);
+            //SetTeamNameAndColor(this.lbl5TeamName, BackgroundCode.Robots[5], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Blueteam3);
             
             this.lblMatch.Text = $"{BackgroundCode.currentMatch}/{BackgroundCode.InMemoryMatchList.Count}";
         }
@@ -575,7 +575,7 @@ namespace ControllerScouting.Screens
         private void UpdateScreen(object sender, EventArgs e)
         {
             //Loops through all 6 boxes to update the text to be based on the RobotState
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 1; i++)
             {
                 RobotState robot = BackgroundCode.Robots[i];
                 int robotBox = robot.ScouterBox;
