@@ -8,7 +8,7 @@ namespace ControllerScouting.Utilities
     {
         public enum ROBOT_MODE { Auto, Teleop, Endgame };
         public enum CYCLE_DIRECTION { Up, Down }
-        public enum MATCHEVENT_NAME { Match_Event, GotStuck, BrokeDown, CrossedCenter, LostParts, AdditionalPiece, MultiClimb, NoShow, TippedOver, JammedPiece }
+        public enum MATCHEVENT_NAME { Match_Event, TippedOver, LostParts, GotStuck, BrokenDown, NoShow, JammedPiece, Other }
         public enum SCOUTER_NAME { Select_Name, Scouter1, Scouter2, Scouter3, Scouter4, Scouter5, Scouter6 }
 
         public enum BOOLEAN { Z, Yes, No, Error}
@@ -39,25 +39,25 @@ namespace ControllerScouting.Utilities
 
         public SCOUTER_NAME _ScouterName;          //ScouterName
         private string _TeamName;                   //TeamName
-        private MATCHEVENT_NAME _match_event;       //Match Event
+        private MATCHEVENT_NAME _MatchEvent;       //Match Event
         private ROBOT_MODE _RobotMode;              //Control
 
-        public ROBOT_MODE Current_Mode
-        {
-            get { return _RobotMode; }
-            set { _RobotMode = value; }
-        }
+        //public ROBOT_MODE Current_Mode
+        //{
+        //    get { return _RobotMode; }
+        //    set { _RobotMode = value; }
+        //}
 
         public String TeamName
         {
             get { return _TeamName; }
             set { _TeamName = value; }
         }
-        public MATCHEVENT_NAME MatchEvent
-        {
-            get { return _match_event; }
-            set { _match_event = value; }
-        }
+        //public MATCHEVENT_NAME MatchEvent
+        //{
+        //    get { return _MatchEvent; }
+        //    set { _MatchEvent = value; }
+        //}
 
         //public SCOUTER_NAME ScouterName
         //{
@@ -66,6 +66,12 @@ namespace ControllerScouting.Utilities
         //}
         public SCOUTER_NAME GetScouterName()
         { return _ScouterName; }
+        
+        public MATCHEVENT_NAME GetMatchEvent()
+        { return _MatchEvent; }
+        
+        public ROBOT_MODE GetRobotMode()
+        { return _RobotMode; }
 
 
         //Scouter Name
@@ -84,11 +90,24 @@ namespace ControllerScouting.Utilities
         {
             if (CycleDirection == CYCLE_DIRECTION.Up)
             {
-                _match_event = (MATCHEVENT_NAME)GetNextEnum<MATCHEVENT_NAME>(_match_event);
+                _MatchEvent = (MATCHEVENT_NAME)GetNextEnum<MATCHEVENT_NAME>(_MatchEvent);
             }
             else
             {
-                _match_event = (MATCHEVENT_NAME)GetPreviousEnum<MATCHEVENT_NAME>(_match_event);
+                _MatchEvent = (MATCHEVENT_NAME)GetPreviousEnum<MATCHEVENT_NAME>(_MatchEvent);
+            }
+        }
+        
+        //Cycle Robot Mode
+        public void CycleRobotMode(CYCLE_DIRECTION CycleDirection)
+        {
+            if (CycleDirection == CYCLE_DIRECTION.Up)
+            {
+                _RobotMode = (ROBOT_MODE)GetNextEnum<ROBOT_MODE>(_RobotMode);
+            }
+            else
+            {
+                _RobotMode = (ROBOT_MODE)GetPreviousEnum<ROBOT_MODE>(_RobotMode);
             }
         }
 
@@ -135,15 +154,15 @@ namespace ControllerScouting.Utilities
         public bool FuelIntakingTime_StopWatch_Running;
         public double FuelIntakingTimeDouble;
 
-        public TimeSpan FeedingTime = TimeSpan.Zero;
-        public Stopwatch FeedingTime_StopWatch;
-        public bool FeedingTime_StopWatch_Running;
-        public double FeedingTimeDouble;
-
         public TimeSpan FuelShootingTime = TimeSpan.Zero;
         public Stopwatch FuelShootingTime_StopWatch;
         public bool FuelShootingTime_StopWatch_Running;
         public double FuelShootingTimeDouble;
+
+        public TimeSpan FeedingTime = TimeSpan.Zero;
+        public Stopwatch FeedingTime_StopWatch;
+        public bool FeedingTime_StopWatch_Running;
+        public double FeedingTimeDouble;
 
         public int BumpTraversal = 0;
         public bool DisplayClimbSuccess = false;

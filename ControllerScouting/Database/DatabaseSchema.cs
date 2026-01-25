@@ -316,7 +316,7 @@ namespace ControllerScouting.Database
                     Time = DateTime.Now,
                     Team = BackgroundCode.Robots[controller.ScouterBox].TeamName,
                     Match = BackgroundCode.currentMatch,
-                    Mode = controller.Current_Mode.ToString(),
+                    Mode = controller.GetRobotMode().ToString(),
                     ScouterName = controller.GetScouterName().ToString(),
                     ScouterError = controller.ScouterError
                 };
@@ -359,7 +359,7 @@ namespace ControllerScouting.Database
 
                         break;
                     case "Match_Event":
-                        activity_record.MatchEvent = controller.MatchEvent.ToString();
+                        activity_record.MatchEvent = controller.GetMatchEvent().ToString();
 
                         break;
                     default:

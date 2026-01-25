@@ -22,6 +22,7 @@ namespace ControllerScouting.Screens
             blueTeams = new TableLayoutPanel();
             redTeams = new TableLayoutPanel();
             team0 = new Panel();
+            lbl0Position2Value = new Label();
             lbl0Position3Value = new Label();
             lbl0Position9 = new Label();
             lbl0Position8 = new Label();
@@ -50,7 +51,6 @@ namespace ControllerScouting.Screens
             statusLight = new Panel();
             topPanel = new Panel();
             tableLayoutPanel = new TableLayoutPanel();
-            lbl0Position2Value = new Label();
             redTeams.SuspendLayout();
             team0.SuspendLayout();
             topPanel.SuspendLayout();
@@ -211,6 +211,20 @@ namespace ControllerScouting.Screens
             team0.Size = new Size(425, 373);
             team0.TabIndex = 0;
             // 
+            // lbl0Position2Value
+            // 
+            lbl0Position2Value.AutoSize = true;
+            lbl0Position2Value.BackColor = Color.Red;
+            lbl0Position2Value.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
+            lbl0Position2Value.ForeColor = Color.Red;
+            lbl0Position2Value.ImageAlign = ContentAlignment.TopLeft;
+            lbl0Position2Value.Location = new Point(407, 61);
+            lbl0Position2Value.Name = "lbl0Position2Value";
+            lbl0Position2Value.Size = new Size(16, 24);
+            lbl0Position2Value.TabIndex = 407;
+            lbl0Position2Value.Text = ".";
+            lbl0Position2Value.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // lbl0Position3Value
             // 
             lbl0Position3Value.AutoSize = true;
@@ -218,7 +232,7 @@ namespace ControllerScouting.Screens
             lbl0Position3Value.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
             lbl0Position3Value.ForeColor = Color.Red;
             lbl0Position3Value.ImageAlign = ContentAlignment.TopLeft;
-            lbl0Position3Value.Location = new Point(72, 161);
+            lbl0Position3Value.Location = new Point(165, 161);
             lbl0Position3Value.Name = "lbl0Position3Value";
             lbl0Position3Value.Size = new Size(16, 24);
             lbl0Position3Value.TabIndex = 406;
@@ -526,20 +540,6 @@ namespace ControllerScouting.Screens
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel.Size = new Size(1300, 820);
             tableLayoutPanel.TabIndex = 0;
-            // 
-            // lbl0Position2Value
-            // 
-            lbl0Position2Value.AutoSize = true;
-            lbl0Position2Value.BackColor = Color.Red;
-            lbl0Position2Value.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
-            lbl0Position2Value.ForeColor = Color.Red;
-            lbl0Position2Value.ImageAlign = ContentAlignment.TopLeft;
-            lbl0Position2Value.Location = new Point(407, 61);
-            lbl0Position2Value.Name = "lbl0Position2Value";
-            lbl0Position2Value.Size = new Size(16, 24);
-            lbl0Position2Value.TabIndex = 407;
-            lbl0Position2Value.Text = ".";
-            lbl0Position2Value.TextAlign = ContentAlignment.MiddleRight;
             // 
             // BaseScreen
             // 
