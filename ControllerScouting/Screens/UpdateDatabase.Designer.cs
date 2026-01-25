@@ -31,1813 +31,1343 @@ namespace ControllerScouting.Screens
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.btnFetchValues = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.btnUpdateDatabase = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.checkEndMatch = new System.Windows.Forms.CheckBox();
-            this.checkEndAuto = new System.Windows.Forms.CheckBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.txtDefenseTime = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.comboEndState = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.comboClimbAttempt = new System.Windows.Forms.ComboBox();
-            this.txtClimbTime = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboAlgaeAcqSide = new System.Windows.Forms.ComboBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.comboCoralAcqSide = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.comboAlgaeAcqLoc = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.comboCoralAcqLoc = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.txtDisAlg = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.txtDelAlgaeF = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.txtDelCoralF = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.txtDelAlgaeP = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.txtDelAlgaeN = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtDelCoralL1 = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.txtDelCoralL2 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtDelCoralL3 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtDelCoralL4 = new System.Windows.Forms.TextBox();
-            this.comboAlgaeDelSide = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.comboCoralDelSide = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.comboAlgaeDelDest = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.comboCoralDelDest = new System.Windows.Forms.ComboBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.comboSelectedCage = new System.Windows.Forms.ComboBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.comboLeave = new System.Windows.Forms.ComboBox();
-            this.comboStart = new System.Windows.Forms.ComboBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtEffectiveness = new System.Windows.Forms.TextBox();
-            this.txtAvoidance = new System.Windows.Forms.TextBox();
-            this.txtDefense = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboMatchEvent = new System.Windows.Forms.ComboBox();
-            this.comboMode = new System.Windows.Forms.ComboBox();
-            this.comboStrategy = new System.Windows.Forms.ComboBox();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.checkDefense = new System.Windows.Forms.CheckBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.comboTeamNumber = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboMatchNumber = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.checkActivities = new System.Windows.Forms.CheckBox();
-            this.checkMatchEvent = new System.Windows.Forms.CheckBox();
-            this.btnCreateTable = new System.Windows.Forms.Button();
-            this.scoutingDBDataSet = new ControllerScouting.scoutingdbDataSet();
-            this.updatePreviewsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.updatePreviewsTableAdapter = new ControllerScouting.scoutingdbDataSetTableAdapters.UpdatePreviewsTableAdapter();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtID = new System.Windows.Forms.TextBox();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.teamDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.matchDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.recordTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DriveSta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Defense = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DefenseValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Avoidance = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ScouterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ScouterError = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Match_event = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Strategy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Coop = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DZTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Del_Near_Far = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AcqAlgae_Near_Far = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AcqCoral_Near_Far = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Starting_Loc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Leave = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AcqCoralS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AcqCoralF = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AcqAlgaeR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AcqAlgaeF = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DelCoralL1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DelCoralL2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DelCoralL3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DelCoralL4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DelCoralF = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DelAlgaeP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DelAlgaeN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DelAlgaeF = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClimbT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EndState = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CageAttempt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PointScored = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel10.SuspendLayout();
-            this.panel12.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel8.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel11.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.scoutingDBDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.updatePreviewsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            panel10 = new Panel();
+            panel12 = new Panel();
+            btnFetchValues = new Button();
+            panel5 = new Panel();
+            panel6 = new Panel();
+            panel7 = new Panel();
+            panel8 = new Panel();
+            btnUpdateDatabase = new Button();
+            button2 = new Button();
+            checkEndMatch = new CheckBox();
+            checkEndAuto = new CheckBox();
+            panel3 = new Panel();
+            groupBox3 = new GroupBox();
+            DefenseTimerEndgame = new TextBox();
+            label25 = new Label();
+            AvoidanceStrategyValue = new ComboBox();
+            label16 = new Label();
+            ClimbSuccessValue = new ComboBox();
+            ClimbTimerEndgame = new TextBox();
+            label26 = new Label();
+            label24 = new Label();
+            groupBox1 = new GroupBox();
+            label14 = new Label();
+            label13 = new Label();
+            label5 = new Label();
+            ClimbBoolValue = new ComboBox();
+            label11 = new Label();
+            groupBox2 = new GroupBox();
+            label8 = new Label();
+            bumpCounterTeleop = new TextBox();
+            label15 = new Label();
+            label18 = new Label();
+            panel4 = new Panel();
+            StartingLocationValue = new ComboBox();
+            label33 = new Label();
+            label34 = new Label();
+            label4 = new Label();
+            MatchEventValue = new ComboBox();
+            StrategyValue = new ComboBox();
+            panel11 = new Panel();
+            label37 = new Label();
+            panel2 = new Panel();
+            comboTeamNumber = new ComboBox();
+            label2 = new Label();
+            comboMatchNumber = new ComboBox();
+            label7 = new Label();
+            checkActivities = new CheckBox();
+            checkMatchEvent = new CheckBox();
+            btnCreateTable = new Button();
+            scoutingDBDataSet = new scoutingdbDataSet();
+            updatePreviewsBindingSource = new BindingSource(components);
+            updatePreviewsTableAdapter = new ControllerScouting.scoutingdbDataSetTableAdapters.UpdatePreviewsTableAdapter();
+            dataGridView1 = new DataGridView();
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            teamDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            matchDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            timeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            recordTypeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            modeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            DriveSta = new DataGridViewTextBoxColumn();
+            Defense = new DataGridViewTextBoxColumn();
+            DefenseValue = new DataGridViewTextBoxColumn();
+            Avoidance = new DataGridViewTextBoxColumn();
+            ScouterName = new DataGridViewTextBoxColumn();
+            ScouterError = new DataGridViewTextBoxColumn();
+            Match_event = new DataGridViewTextBoxColumn();
+            Strategy = new DataGridViewTextBoxColumn();
+            Coop = new DataGridViewTextBoxColumn();
+            DZTime = new DataGridViewTextBoxColumn();
+            Del_Near_Far = new DataGridViewTextBoxColumn();
+            AcqAlgae_Near_Far = new DataGridViewTextBoxColumn();
+            AcqCoral_Near_Far = new DataGridViewTextBoxColumn();
+            Starting_Loc = new DataGridViewTextBoxColumn();
+            Leave = new DataGridViewTextBoxColumn();
+            AcqCoralS = new DataGridViewTextBoxColumn();
+            AcqCoralF = new DataGridViewTextBoxColumn();
+            AcqAlgaeR = new DataGridViewTextBoxColumn();
+            AcqAlgaeF = new DataGridViewTextBoxColumn();
+            DelCoralL1 = new DataGridViewTextBoxColumn();
+            DelCoralL2 = new DataGridViewTextBoxColumn();
+            DelCoralL3 = new DataGridViewTextBoxColumn();
+            DelCoralL4 = new DataGridViewTextBoxColumn();
+            DelCoralF = new DataGridViewTextBoxColumn();
+            DelAlgaeP = new DataGridViewTextBoxColumn();
+            DelAlgaeN = new DataGridViewTextBoxColumn();
+            DelAlgaeF = new DataGridViewTextBoxColumn();
+            ClimbT = new DataGridViewTextBoxColumn();
+            EndState = new DataGridViewTextBoxColumn();
+            CageAttempt = new DataGridViewTextBoxColumn();
+            PointScored = new DataGridViewTextBoxColumn();
+            panel1 = new Panel();
+            label3 = new Label();
+            txtID = new TextBox();
+            bumpCounterAuto = new TextBox();
+            label1 = new Label();
+            label6 = new Label();
+            DefenseStrategyValue = new ComboBox();
+            label9 = new Label();
+            climbLevelValue = new ComboBox();
+            label10 = new Label();
+            TeleopFeedingTimer = new TextBox();
+            TeleopDefenseTimer = new TextBox();
+            TeleopIntakeTimer = new TextBox();
+            TeleopShootingTimer = new TextBox();
+            AutoShootingTimer = new TextBox();
+            AutoIntakeTimer = new TextBox();
+            panel10.SuspendLayout();
+            panel12.SuspendLayout();
+            panel5.SuspendLayout();
+            panel6.SuspendLayout();
+            panel7.SuspendLayout();
+            panel8.SuspendLayout();
+            panel3.SuspendLayout();
+            groupBox3.SuspendLayout();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            panel4.SuspendLayout();
+            panel11.SuspendLayout();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)scoutingDBDataSet).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)updatePreviewsBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel1.SuspendLayout();
+            SuspendLayout();
             // 
             // panel10
             // 
-            this.panel10.BackColor = System.Drawing.Color.Goldenrod;
-            this.panel10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel10.Controls.Add(this.panel12);
-            this.panel10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel10.Location = new System.Drawing.Point(793, 622);
-            this.panel10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(181, 32);
-            this.panel10.TabIndex = 363;
+            panel10.BackColor = Color.Goldenrod;
+            panel10.BorderStyle = BorderStyle.FixedSingle;
+            panel10.Controls.Add(panel12);
+            panel10.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            panel10.Location = new Point(694, 583);
+            panel10.Margin = new Padding(3, 2, 3, 2);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(159, 30);
+            panel10.TabIndex = 363;
             // 
             // panel12
             // 
-            this.panel12.BackColor = System.Drawing.Color.Black;
-            this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel12.Controls.Add(this.btnFetchValues);
-            this.panel12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel12.Location = new System.Drawing.Point(-2, -2);
-            this.panel12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(181, 32);
-            this.panel12.TabIndex = 351;
+            panel12.BackColor = Color.Black;
+            panel12.BorderStyle = BorderStyle.FixedSingle;
+            panel12.Controls.Add(btnFetchValues);
+            panel12.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            panel12.Location = new Point(-2, -2);
+            panel12.Margin = new Padding(3, 2, 3, 2);
+            panel12.Name = "panel12";
+            panel12.Size = new Size(159, 30);
+            panel12.TabIndex = 351;
             // 
             // btnFetchValues
             // 
-            this.btnFetchValues.BackColor = System.Drawing.Color.Black;
-            this.btnFetchValues.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFetchValues.ForeColor = System.Drawing.Color.AliceBlue;
-            this.btnFetchValues.Location = new System.Drawing.Point(7, 2);
-            this.btnFetchValues.Margin = new System.Windows.Forms.Padding(4);
-            this.btnFetchValues.Name = "btnFetchValues";
-            this.btnFetchValues.Size = new System.Drawing.Size(167, 28);
-            this.btnFetchValues.TabIndex = 11;
-            this.btnFetchValues.Text = "Fetch Values";
-            this.btnFetchValues.UseVisualStyleBackColor = false;
-            //this.btnFetchValues.Click += new System.EventHandler(this.BtnFetchValues_Click);
+            btnFetchValues.BackColor = Color.Black;
+            btnFetchValues.Font = new Font("Malgun Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnFetchValues.ForeColor = Color.AliceBlue;
+            btnFetchValues.Location = new Point(6, 2);
+            btnFetchValues.Margin = new Padding(4);
+            btnFetchValues.Name = "btnFetchValues";
+            btnFetchValues.Size = new Size(146, 26);
+            btnFetchValues.TabIndex = 11;
+            btnFetchValues.Text = "Fetch Values";
+            btnFetchValues.UseVisualStyleBackColor = false;
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.Goldenrod;
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.panel6);
-            this.panel5.Controls.Add(this.button2);
-            this.panel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel5.Location = new System.Drawing.Point(981, 622);
-            this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(181, 32);
-            this.panel5.TabIndex = 362;
+            panel5.BackColor = Color.Goldenrod;
+            panel5.BorderStyle = BorderStyle.FixedSingle;
+            panel5.Controls.Add(panel6);
+            panel5.Controls.Add(button2);
+            panel5.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            panel5.Location = new Point(858, 583);
+            panel5.Margin = new Padding(3, 2, 3, 2);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(159, 30);
+            panel5.TabIndex = 362;
             // 
             // panel6
             // 
-            this.panel6.BackColor = System.Drawing.Color.Goldenrod;
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.panel7);
-            this.panel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel6.Location = new System.Drawing.Point(-2, -2);
-            this.panel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(181, 32);
-            this.panel6.TabIndex = 351;
+            panel6.BackColor = Color.Goldenrod;
+            panel6.BorderStyle = BorderStyle.FixedSingle;
+            panel6.Controls.Add(panel7);
+            panel6.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            panel6.Location = new Point(-2, -2);
+            panel6.Margin = new Padding(3, 2, 3, 2);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(159, 30);
+            panel6.TabIndex = 351;
             // 
             // panel7
             // 
-            this.panel7.BackColor = System.Drawing.Color.Goldenrod;
-            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel7.Controls.Add(this.panel8);
-            this.panel7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel7.Location = new System.Drawing.Point(-2, -2);
-            this.panel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(181, 32);
-            this.panel7.TabIndex = 351;
+            panel7.BackColor = Color.Goldenrod;
+            panel7.BorderStyle = BorderStyle.FixedSingle;
+            panel7.Controls.Add(panel8);
+            panel7.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            panel7.Location = new Point(-2, -2);
+            panel7.Margin = new Padding(3, 2, 3, 2);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(159, 30);
+            panel7.TabIndex = 351;
             // 
             // panel8
             // 
-            this.panel8.BackColor = System.Drawing.Color.Black;
-            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel8.Controls.Add(this.btnUpdateDatabase);
-            this.panel8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel8.Location = new System.Drawing.Point(-2, -2);
-            this.panel8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(181, 32);
-            this.panel8.TabIndex = 351;
+            panel8.BackColor = Color.Black;
+            panel8.BorderStyle = BorderStyle.FixedSingle;
+            panel8.Controls.Add(btnUpdateDatabase);
+            panel8.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            panel8.Location = new Point(-2, -2);
+            panel8.Margin = new Padding(3, 2, 3, 2);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(159, 30);
+            panel8.TabIndex = 351;
             // 
             // btnUpdateDatabase
             // 
-            this.btnUpdateDatabase.BackColor = System.Drawing.Color.Black;
-            this.btnUpdateDatabase.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateDatabase.ForeColor = System.Drawing.Color.AliceBlue;
-            this.btnUpdateDatabase.Location = new System.Drawing.Point(5, 2);
-            this.btnUpdateDatabase.Margin = new System.Windows.Forms.Padding(4);
-            this.btnUpdateDatabase.Name = "btnUpdateDatabase";
-            this.btnUpdateDatabase.Size = new System.Drawing.Size(167, 28);
-            this.btnUpdateDatabase.TabIndex = 11;
-            this.btnUpdateDatabase.Text = "Update Database";
-            this.btnUpdateDatabase.UseVisualStyleBackColor = false;
-            //this.btnUpdateDatabase.Click += new System.EventHandler(this.BtnUpdateDatabase_Click);
+            btnUpdateDatabase.BackColor = Color.Black;
+            btnUpdateDatabase.Font = new Font("Malgun Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnUpdateDatabase.ForeColor = Color.AliceBlue;
+            btnUpdateDatabase.Location = new Point(4, 2);
+            btnUpdateDatabase.Margin = new Padding(4);
+            btnUpdateDatabase.Name = "btnUpdateDatabase";
+            btnUpdateDatabase.Size = new Size(146, 26);
+            btnUpdateDatabase.TabIndex = 11;
+            btnUpdateDatabase.Text = "Update Database";
+            btnUpdateDatabase.UseVisualStyleBackColor = false;
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.MidnightBlue;
-            this.button2.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.AliceBlue;
-            this.button2.Location = new System.Drawing.Point(5, 2);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(167, 28);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Update Database";
-            this.button2.UseVisualStyleBackColor = false;
+            button2.BackColor = Color.MidnightBlue;
+            button2.Font = new Font("Malgun Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.ForeColor = Color.AliceBlue;
+            button2.Location = new Point(4, 2);
+            button2.Margin = new Padding(4);
+            button2.Name = "button2";
+            button2.Size = new Size(146, 26);
+            button2.TabIndex = 11;
+            button2.Text = "Update Database";
+            button2.UseVisualStyleBackColor = false;
             // 
             // checkEndMatch
             // 
-            this.checkEndMatch.AutoSize = true;
-            this.checkEndMatch.BackColor = System.Drawing.Color.Black;
-            this.checkEndMatch.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkEndMatch.ForeColor = System.Drawing.Color.White;
-            this.checkEndMatch.Location = new System.Drawing.Point(516, 22);
-            this.checkEndMatch.Margin = new System.Windows.Forms.Padding(4);
-            this.checkEndMatch.Name = "checkEndMatch";
-            this.checkEndMatch.Size = new System.Drawing.Size(99, 23);
-            this.checkEndMatch.TabIndex = 357;
-            this.checkEndMatch.Text = "EndMatch";
-            this.checkEndMatch.UseVisualStyleBackColor = false;
+            checkEndMatch.AutoSize = true;
+            checkEndMatch.BackColor = Color.Black;
+            checkEndMatch.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkEndMatch.ForeColor = Color.White;
+            checkEndMatch.Location = new Point(452, 21);
+            checkEndMatch.Margin = new Padding(4);
+            checkEndMatch.Name = "checkEndMatch";
+            checkEndMatch.Size = new Size(79, 17);
+            checkEndMatch.TabIndex = 357;
+            checkEndMatch.Text = "EndMatch";
+            checkEndMatch.UseVisualStyleBackColor = false;
             // 
             // checkEndAuto
             // 
-            this.checkEndAuto.AutoSize = true;
-            this.checkEndAuto.BackColor = System.Drawing.Color.Black;
-            this.checkEndAuto.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkEndAuto.ForeColor = System.Drawing.Color.White;
-            this.checkEndAuto.Location = new System.Drawing.Point(416, 22);
-            this.checkEndAuto.Margin = new System.Windows.Forms.Padding(4);
-            this.checkEndAuto.Name = "checkEndAuto";
-            this.checkEndAuto.Size = new System.Drawing.Size(90, 23);
-            this.checkEndAuto.TabIndex = 356;
-            this.checkEndAuto.Text = "EndAuto";
-            this.checkEndAuto.UseVisualStyleBackColor = false;
+            checkEndAuto.AutoSize = true;
+            checkEndAuto.BackColor = Color.Black;
+            checkEndAuto.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkEndAuto.ForeColor = Color.White;
+            checkEndAuto.Location = new Point(364, 21);
+            checkEndAuto.Margin = new Padding(4);
+            checkEndAuto.Name = "checkEndAuto";
+            checkEndAuto.Size = new Size(72, 17);
+            checkEndAuto.TabIndex = 356;
+            checkEndAuto.Text = "EndAuto";
+            checkEndAuto.UseVisualStyleBackColor = false;
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.Black;
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.groupBox3);
-            this.panel3.Controls.Add(this.groupBox1);
-            this.panel3.Controls.Add(this.groupBox2);
-            this.panel3.Controls.Add(this.panel4);
-            this.panel3.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel3.Location = new System.Drawing.Point(16, 110);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1148, 250);
-            this.panel3.TabIndex = 359;
+            panel3.BackColor = Color.Black;
+            panel3.BorderStyle = BorderStyle.Fixed3D;
+            panel3.Controls.Add(groupBox3);
+            panel3.Controls.Add(groupBox1);
+            panel3.Controls.Add(groupBox2);
+            panel3.Controls.Add(panel4);
+            panel3.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            panel3.Location = new Point(14, 103);
+            panel3.Margin = new Padding(4);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1005, 235);
+            panel3.TabIndex = 359;
             // 
             // groupBox3
             // 
-            this.groupBox3.BackColor = System.Drawing.Color.Black;
-            this.groupBox3.Controls.Add(this.txtDefenseTime);
-            this.groupBox3.Controls.Add(this.label25);
-            this.groupBox3.Controls.Add(this.comboEndState);
-            this.groupBox3.Controls.Add(this.label16);
-            this.groupBox3.Controls.Add(this.comboClimbAttempt);
-            this.groupBox3.Controls.Add(this.txtClimbTime);
-            this.groupBox3.Controls.Add(this.label26);
-            this.groupBox3.Controls.Add(this.label24);
-            this.groupBox3.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox3.Location = new System.Drawing.Point(636, 7);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(130, 235);
-            this.groupBox3.TabIndex = 41;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "SURFACING";
+            groupBox3.BackColor = Color.Black;
+            groupBox3.Controls.Add(climbLevelValue);
+            groupBox3.Controls.Add(label10);
+            groupBox3.Controls.Add(DefenseStrategyValue);
+            groupBox3.Controls.Add(label9);
+            groupBox3.Controls.Add(DefenseTimerEndgame);
+            groupBox3.Controls.Add(label25);
+            groupBox3.Controls.Add(AvoidanceStrategyValue);
+            groupBox3.Controls.Add(label16);
+            groupBox3.Controls.Add(ClimbSuccessValue);
+            groupBox3.Controls.Add(ClimbTimerEndgame);
+            groupBox3.Controls.Add(label26);
+            groupBox3.Controls.Add(label24);
+            groupBox3.Font = new Font("Malgun Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBox3.ForeColor = SystemColors.ButtonFace;
+            groupBox3.Location = new Point(408, 7);
+            groupBox3.Margin = new Padding(4);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Padding = new Padding(4);
+            groupBox3.Size = new Size(262, 220);
+            groupBox3.TabIndex = 41;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "End Game";
+            groupBox3.Enter += groupBox3_Enter;
             // 
-            // txtDefenseTime
+            // DefenseTimerEndgame
             // 
-            this.txtDefenseTime.BackColor = System.Drawing.SystemColors.InfoText;
-            this.txtDefenseTime.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDefenseTime.ForeColor = System.Drawing.Color.White;
-            this.txtDefenseTime.Location = new System.Drawing.Point(18, 199);
-            this.txtDefenseTime.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDefenseTime.Name = "txtDefenseTime";
-            this.txtDefenseTime.Size = new System.Drawing.Size(56, 26);
-            this.txtDefenseTime.TabIndex = 46;
-            this.txtDefenseTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            DefenseTimerEndgame.BackColor = SystemColors.InfoText;
+            DefenseTimerEndgame.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            DefenseTimerEndgame.ForeColor = Color.White;
+            DefenseTimerEndgame.Location = new Point(105, 138);
+            DefenseTimerEndgame.Margin = new Padding(4);
+            DefenseTimerEndgame.Name = "DefenseTimerEndgame";
+            DefenseTimerEndgame.Size = new Size(50, 22);
+            DefenseTimerEndgame.TabIndex = 46;
+            DefenseTimerEndgame.TextAlign = HorizontalAlignment.Center;
             // 
             // label25
             // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(13, 181);
-            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(101, 19);
-            this.label25.TabIndex = 45;
-            this.label25.Text = "Defense Time";
+            label25.AutoSize = true;
+            label25.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label25.Location = new Point(100, 121);
+            label25.Margin = new Padding(4, 0, 4, 0);
+            label25.Name = "label25";
+            label25.Size = new Size(78, 13);
+            label25.TabIndex = 45;
+            label25.Text = "Defense Time";
             // 
-            // comboEndState
+            // AvoidanceStrategyValue
             // 
-            this.comboEndState.BackColor = System.Drawing.Color.Black;
-            this.comboEndState.ForeColor = System.Drawing.Color.White;
-            this.comboEndState.FormattingEnabled = true;
-            this.comboEndState.Items.AddRange(new object[] {
-            "-",
-            "Elsewhere",
-            "Park",
-            "Shallow",
-            "Deep"});
-            this.comboEndState.Location = new System.Drawing.Point(16, 38);
-            this.comboEndState.Margin = new System.Windows.Forms.Padding(4);
-            this.comboEndState.Name = "comboEndState";
-            this.comboEndState.Size = new System.Drawing.Size(79, 28);
-            this.comboEndState.TabIndex = 44;
+            AvoidanceStrategyValue.BackColor = Color.Black;
+            AvoidanceStrategyValue.ForeColor = Color.White;
+            AvoidanceStrategyValue.FormattingEnabled = true;
+            AvoidanceStrategyValue.Items.AddRange(new object[] { "-", "Elsewhere", "Park", "Shallow", "Deep" });
+            AvoidanceStrategyValue.Location = new Point(14, 36);
+            AvoidanceStrategyValue.Margin = new Padding(4);
+            AvoidanceStrategyValue.Name = "AvoidanceStrategyValue";
+            AvoidanceStrategyValue.Size = new Size(70, 23);
+            AvoidanceStrategyValue.TabIndex = 44;
             // 
             // label16
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(11, 18);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(74, 19);
-            this.label16.TabIndex = 43;
-            this.label16.Text = "End State";
+            label16.AutoSize = true;
+            label16.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label16.Location = new Point(10, 17);
+            label16.Margin = new Padding(4, 0, 4, 0);
+            label16.Name = "label16";
+            label16.Size = new Size(62, 13);
+            label16.TabIndex = 43;
+            label16.Text = "Avoidance";
+            label16.Click += label16_Click;
             // 
-            // comboClimbAttempt
+            // ClimbSuccessValue
             // 
-            this.comboClimbAttempt.BackColor = System.Drawing.Color.Black;
-            this.comboClimbAttempt.ForeColor = System.Drawing.Color.White;
-            this.comboClimbAttempt.FormattingEnabled = true;
-            this.comboClimbAttempt.Items.AddRange(new object[] {
-            "-",
-            "Y",
-            "N"});
-            this.comboClimbAttempt.Location = new System.Drawing.Point(18, 94);
-            this.comboClimbAttempt.Margin = new System.Windows.Forms.Padding(4);
-            this.comboClimbAttempt.Name = "comboClimbAttempt";
-            this.comboClimbAttempt.Size = new System.Drawing.Size(79, 28);
-            this.comboClimbAttempt.TabIndex = 38;
+            ClimbSuccessValue.BackColor = Color.Black;
+            ClimbSuccessValue.ForeColor = Color.White;
+            ClimbSuccessValue.FormattingEnabled = true;
+            ClimbSuccessValue.Items.AddRange(new object[] { "-", "Y", "N" });
+            ClimbSuccessValue.Location = new Point(16, 88);
+            ClimbSuccessValue.Margin = new Padding(4);
+            ClimbSuccessValue.Name = "ClimbSuccessValue";
+            ClimbSuccessValue.Size = new Size(70, 23);
+            ClimbSuccessValue.TabIndex = 38;
             // 
-            // txtClimbTime
+            // ClimbTimerEndgame
             // 
-            this.txtClimbTime.BackColor = System.Drawing.SystemColors.InfoText;
-            this.txtClimbTime.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClimbTime.ForeColor = System.Drawing.Color.White;
-            this.txtClimbTime.Location = new System.Drawing.Point(18, 147);
-            this.txtClimbTime.Margin = new System.Windows.Forms.Padding(4);
-            this.txtClimbTime.Name = "txtClimbTime";
-            this.txtClimbTime.Size = new System.Drawing.Size(56, 26);
-            this.txtClimbTime.TabIndex = 41;
-            this.txtClimbTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            ClimbTimerEndgame.BackColor = SystemColors.InfoText;
+            ClimbTimerEndgame.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ClimbTimerEndgame.ForeColor = Color.White;
+            ClimbTimerEndgame.Location = new Point(16, 138);
+            ClimbTimerEndgame.Margin = new Padding(4);
+            ClimbTimerEndgame.Name = "ClimbTimerEndgame";
+            ClimbTimerEndgame.Size = new Size(50, 22);
+            ClimbTimerEndgame.TabIndex = 41;
+            ClimbTimerEndgame.TextAlign = HorizontalAlignment.Center;
             // 
             // label26
             // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(13, 129);
-            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(86, 19);
-            this.label26.TabIndex = 40;
-            this.label26.Text = "Climb Time";
+            label26.AutoSize = true;
+            label26.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label26.Location = new Point(11, 121);
+            label26.Margin = new Padding(4, 0, 4, 0);
+            label26.Name = "label26";
+            label26.Size = new Size(66, 13);
+            label26.TabIndex = 40;
+            label26.Text = "Climb Time";
             // 
             // label24
             // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(12, 74);
-            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(108, 19);
-            this.label24.TabIndex = 35;
-            this.label24.Text = "Climb Attempt";
+            label24.AutoSize = true;
+            label24.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label24.Location = new Point(10, 69);
+            label24.Margin = new Padding(4, 0, 4, 0);
+            label24.Name = "label24";
+            label24.Size = new Size(80, 13);
+            label24.TabIndex = 35;
+            label24.Text = "Climb Success";
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.Black;
-            this.groupBox1.Controls.Add(this.comboAlgaeAcqSide);
-            this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.comboCoralAcqSide);
-            this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.comboAlgaeAcqLoc);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.comboCoralAcqLoc);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox1.Location = new System.Drawing.Point(16, 6);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(153, 236);
-            this.groupBox1.TabIndex = 25;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "ACQUISITION";
-            // 
-            // comboAlgaeAcqSide
-            // 
-            this.comboAlgaeAcqSide.BackColor = System.Drawing.Color.Black;
-            this.comboAlgaeAcqSide.ForeColor = System.Drawing.Color.White;
-            this.comboAlgaeAcqSide.FormattingEnabled = true;
-            this.comboAlgaeAcqSide.Items.AddRange(new object[] {
-            "-",
-            "Near",
-            "Far"});
-            this.comboAlgaeAcqSide.Location = new System.Drawing.Point(14, 197);
-            this.comboAlgaeAcqSide.Margin = new System.Windows.Forms.Padding(4);
-            this.comboAlgaeAcqSide.Name = "comboAlgaeAcqSide";
-            this.comboAlgaeAcqSide.Size = new System.Drawing.Size(119, 29);
-            this.comboAlgaeAcqSide.TabIndex = 360;
+            groupBox1.BackColor = Color.Black;
+            groupBox1.Controls.Add(AutoIntakeTimer);
+            groupBox1.Controls.Add(AutoShootingTimer);
+            groupBox1.Controls.Add(bumpCounterAuto);
+            groupBox1.Controls.Add(label14);
+            groupBox1.Controls.Add(label13);
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(ClimbBoolValue);
+            groupBox1.Controls.Add(label11);
+            groupBox1.Font = new Font("Malgun Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBox1.ForeColor = SystemColors.ButtonFace;
+            groupBox1.Location = new Point(14, 6);
+            groupBox1.Margin = new Padding(4);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Padding = new Padding(4);
+            groupBox1.Size = new Size(134, 221);
+            groupBox1.TabIndex = 25;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Auto";
+            groupBox1.Enter += groupBox1_Enter;
             // 
             // label14
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(12, 177);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(113, 19);
-            this.label14.TabIndex = 359;
-            this.label14.Text = "Algae Acq Side";
-            // 
-            // comboCoralAcqSide
-            // 
-            this.comboCoralAcqSide.BackColor = System.Drawing.Color.Black;
-            this.comboCoralAcqSide.ForeColor = System.Drawing.Color.White;
-            this.comboCoralAcqSide.FormattingEnabled = true;
-            this.comboCoralAcqSide.Items.AddRange(new object[] {
-            "-",
-            "Near",
-            "Far"});
-            this.comboCoralAcqSide.Location = new System.Drawing.Point(14, 94);
-            this.comboCoralAcqSide.Margin = new System.Windows.Forms.Padding(4);
-            this.comboCoralAcqSide.Name = "comboCoralAcqSide";
-            this.comboCoralAcqSide.Size = new System.Drawing.Size(119, 29);
-            this.comboCoralAcqSide.TabIndex = 358;
+            label14.AutoSize = true;
+            label14.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label14.Location = new Point(10, 166);
+            label14.Margin = new Padding(4, 0, 4, 0);
+            label14.Name = "label14";
+            label14.Size = new Size(70, 13);
+            label14.TabIndex = 359;
+            label14.Text = "Intake timer";
             // 
             // label13
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(12, 74);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(110, 19);
-            this.label13.TabIndex = 357;
-            this.label13.Text = "Coral Acq Side";
-            // 
-            // comboAlgaeAcqLoc
-            // 
-            this.comboAlgaeAcqLoc.BackColor = System.Drawing.Color.Black;
-            this.comboAlgaeAcqLoc.ForeColor = System.Drawing.Color.White;
-            this.comboAlgaeAcqLoc.FormattingEnabled = true;
-            this.comboAlgaeAcqLoc.Items.AddRange(new object[] {
-            "-",
-            "Reef",
-            "Floor"});
-            this.comboAlgaeAcqLoc.Location = new System.Drawing.Point(16, 147);
-            this.comboAlgaeAcqLoc.Margin = new System.Windows.Forms.Padding(4);
-            this.comboAlgaeAcqLoc.Name = "comboAlgaeAcqLoc";
-            this.comboAlgaeAcqLoc.Size = new System.Drawing.Size(119, 29);
-            this.comboAlgaeAcqLoc.TabIndex = 356;
+            label13.AutoSize = true;
+            label13.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label13.Location = new Point(10, 69);
+            label13.Margin = new Padding(4, 0, 4, 0);
+            label13.Name = "label13";
+            label13.Size = new Size(38, 13);
+            label13.TabIndex = 357;
+            label13.Text = "Bump";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(14, 127);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(107, 19);
-            this.label5.TabIndex = 355;
-            this.label5.Text = "Algae Acq Loc";
+            label5.AutoSize = true;
+            label5.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Location = new Point(12, 119);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(88, 13);
+            label5.TabIndex = 355;
+            label5.Text = "Shooting Timer";
+            label5.Click += label5_Click;
             // 
-            // comboCoralAcqLoc
+            // ClimbBoolValue
             // 
-            this.comboCoralAcqLoc.BackColor = System.Drawing.Color.Black;
-            this.comboCoralAcqLoc.ForeColor = System.Drawing.Color.White;
-            this.comboCoralAcqLoc.FormattingEnabled = true;
-            this.comboCoralAcqLoc.Items.AddRange(new object[] {
-            "-",
-            "Station",
-            "Floor"});
-            this.comboCoralAcqLoc.Location = new System.Drawing.Point(14, 43);
-            this.comboCoralAcqLoc.Margin = new System.Windows.Forms.Padding(4);
-            this.comboCoralAcqLoc.Name = "comboCoralAcqLoc";
-            this.comboCoralAcqLoc.Size = new System.Drawing.Size(119, 29);
-            this.comboCoralAcqLoc.TabIndex = 354;
+            ClimbBoolValue.BackColor = Color.Black;
+            ClimbBoolValue.ForeColor = Color.White;
+            ClimbBoolValue.FormattingEnabled = true;
+            ClimbBoolValue.Items.AddRange(new object[] { "-", "Station", "Floor" });
+            ClimbBoolValue.Location = new Point(12, 40);
+            ClimbBoolValue.Margin = new Padding(4);
+            ClimbBoolValue.Name = "ClimbBoolValue";
+            ClimbBoolValue.Size = new Size(105, 25);
+            ClimbBoolValue.TabIndex = 354;
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(12, 23);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(104, 19);
-            this.label11.TabIndex = 29;
-            this.label11.Text = "Coral Acq Loc";
+            label11.AutoSize = true;
+            label11.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label11.Location = new Point(10, 22);
+            label11.Margin = new Padding(4, 0, 4, 0);
+            label11.Name = "label11";
+            label11.Size = new Size(37, 13);
+            label11.TabIndex = 29;
+            label11.Text = "Climb";
             // 
             // groupBox2
             // 
-            this.groupBox2.BackColor = System.Drawing.Color.Black;
-            this.groupBox2.Controls.Add(this.label28);
-            this.groupBox2.Controls.Add(this.txtDisAlg);
-            this.groupBox2.Controls.Add(this.label23);
-            this.groupBox2.Controls.Add(this.txtDelAlgaeF);
-            this.groupBox2.Controls.Add(this.label22);
-            this.groupBox2.Controls.Add(this.txtDelCoralF);
-            this.groupBox2.Controls.Add(this.label20);
-            this.groupBox2.Controls.Add(this.txtDelAlgaeP);
-            this.groupBox2.Controls.Add(this.label21);
-            this.groupBox2.Controls.Add(this.txtDelAlgaeN);
-            this.groupBox2.Controls.Add(this.label17);
-            this.groupBox2.Controls.Add(this.txtDelCoralL1);
-            this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Controls.Add(this.txtDelCoralL2);
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.txtDelCoralL3);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.txtDelCoralL4);
-            this.groupBox2.Controls.Add(this.comboAlgaeDelSide);
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.comboCoralDelSide);
-            this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.comboAlgaeDelDest);
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.comboCoralDelDest);
-            this.groupBox2.Controls.Add(this.label18);
-            this.groupBox2.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox2.Location = new System.Drawing.Point(182, 5);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(446, 238);
-            this.groupBox2.TabIndex = 40;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "DELIVERY";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.BackColor = System.Drawing.Color.Black;
-            this.label28.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label28.Location = new System.Drawing.Point(316, 183);
-            this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(124, 20);
-            this.label28.TabIndex = 382;
-            this.label28.Text = "Algae Dislodged";
-            // 
-            // txtDisAlg
-            // 
-            this.txtDisAlg.BackColor = System.Drawing.SystemColors.InfoText;
-            this.txtDisAlg.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDisAlg.ForeColor = System.Drawing.Color.White;
-            this.txtDisAlg.Location = new System.Drawing.Point(320, 204);
-            this.txtDisAlg.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDisAlg.Name = "txtDisAlg";
-            this.txtDisAlg.Size = new System.Drawing.Size(41, 26);
-            this.txtDisAlg.TabIndex = 381;
-            this.txtDisAlg.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.BackColor = System.Drawing.Color.Black;
-            this.label23.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label23.Location = new System.Drawing.Point(316, 129);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(90, 20);
-            this.label23.TabIndex = 380;
-            this.label23.Text = "Algae Floor";
-            // 
-            // txtDelAlgaeF
-            // 
-            this.txtDelAlgaeF.BackColor = System.Drawing.SystemColors.InfoText;
-            this.txtDelAlgaeF.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDelAlgaeF.ForeColor = System.Drawing.Color.White;
-            this.txtDelAlgaeF.Location = new System.Drawing.Point(320, 150);
-            this.txtDelAlgaeF.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDelAlgaeF.Name = "txtDelAlgaeF";
-            this.txtDelAlgaeF.Size = new System.Drawing.Size(41, 26);
-            this.txtDelAlgaeF.TabIndex = 379;
-            this.txtDelAlgaeF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.Color.Black;
-            this.label22.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label22.Location = new System.Drawing.Point(209, 23);
-            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(87, 20);
-            this.label22.TabIndex = 378;
-            this.label22.Text = "Coral Floor";
-            // 
-            // txtDelCoralF
-            // 
-            this.txtDelCoralF.BackColor = System.Drawing.SystemColors.InfoText;
-            this.txtDelCoralF.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDelCoralF.ForeColor = System.Drawing.Color.White;
-            this.txtDelCoralF.Location = new System.Drawing.Point(213, 44);
-            this.txtDelCoralF.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDelCoralF.Name = "txtDelCoralF";
-            this.txtDelCoralF.Size = new System.Drawing.Size(41, 26);
-            this.txtDelCoralF.TabIndex = 377;
-            this.txtDelCoralF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.Color.Black;
-            this.label20.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label20.Location = new System.Drawing.Point(316, 75);
-            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(77, 20);
-            this.label20.TabIndex = 376;
-            this.label20.Text = "Processor";
-            // 
-            // txtDelAlgaeP
-            // 
-            this.txtDelAlgaeP.BackColor = System.Drawing.SystemColors.InfoText;
-            this.txtDelAlgaeP.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDelAlgaeP.ForeColor = System.Drawing.Color.White;
-            this.txtDelAlgaeP.Location = new System.Drawing.Point(320, 96);
-            this.txtDelAlgaeP.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDelAlgaeP.Name = "txtDelAlgaeP";
-            this.txtDelAlgaeP.Size = new System.Drawing.Size(41, 26);
-            this.txtDelAlgaeP.TabIndex = 375;
-            this.txtDelAlgaeP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.BackColor = System.Drawing.Color.Black;
-            this.label21.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label21.Location = new System.Drawing.Point(316, 23);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(35, 20);
-            this.label21.TabIndex = 374;
-            this.label21.Text = "Net";
-            // 
-            // txtDelAlgaeN
-            // 
-            this.txtDelAlgaeN.BackColor = System.Drawing.SystemColors.InfoText;
-            this.txtDelAlgaeN.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDelAlgaeN.ForeColor = System.Drawing.Color.White;
-            this.txtDelAlgaeN.Location = new System.Drawing.Point(320, 44);
-            this.txtDelAlgaeN.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDelAlgaeN.Name = "txtDelAlgaeN";
-            this.txtDelAlgaeN.Size = new System.Drawing.Size(41, 26);
-            this.txtDelAlgaeN.TabIndex = 373;
-            this.txtDelAlgaeN.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.BackColor = System.Drawing.Color.Black;
-            this.label17.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label17.Location = new System.Drawing.Point(156, 182);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(26, 20);
-            this.label17.TabIndex = 372;
-            this.label17.Text = "L1";
-            // 
-            // txtDelCoralL1
-            // 
-            this.txtDelCoralL1.BackColor = System.Drawing.SystemColors.InfoText;
-            this.txtDelCoralL1.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDelCoralL1.ForeColor = System.Drawing.Color.White;
-            this.txtDelCoralL1.Location = new System.Drawing.Point(160, 203);
-            this.txtDelCoralL1.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDelCoralL1.Name = "txtDelCoralL1";
-            this.txtDelCoralL1.Size = new System.Drawing.Size(41, 26);
-            this.txtDelCoralL1.TabIndex = 371;
-            this.txtDelCoralL1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.Color.Black;
-            this.label19.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label19.Location = new System.Drawing.Point(156, 130);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(26, 20);
-            this.label19.TabIndex = 370;
-            this.label19.Text = "L2";
-            // 
-            // txtDelCoralL2
-            // 
-            this.txtDelCoralL2.BackColor = System.Drawing.SystemColors.InfoText;
-            this.txtDelCoralL2.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDelCoralL2.ForeColor = System.Drawing.Color.White;
-            this.txtDelCoralL2.Location = new System.Drawing.Point(160, 151);
-            this.txtDelCoralL2.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDelCoralL2.Name = "txtDelCoralL2";
-            this.txtDelCoralL2.Size = new System.Drawing.Size(41, 26);
-            this.txtDelCoralL2.TabIndex = 369;
-            this.txtDelCoralL2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Black;
-            this.label10.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label10.Location = new System.Drawing.Point(156, 74);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(26, 20);
-            this.label10.TabIndex = 368;
-            this.label10.Text = "L3";
-            // 
-            // txtDelCoralL3
-            // 
-            this.txtDelCoralL3.BackColor = System.Drawing.SystemColors.InfoText;
-            this.txtDelCoralL3.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDelCoralL3.ForeColor = System.Drawing.Color.White;
-            this.txtDelCoralL3.Location = new System.Drawing.Point(160, 95);
-            this.txtDelCoralL3.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDelCoralL3.Name = "txtDelCoralL3";
-            this.txtDelCoralL3.Size = new System.Drawing.Size(41, 26);
-            this.txtDelCoralL3.TabIndex = 367;
-            this.txtDelCoralL3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            groupBox2.BackColor = Color.Black;
+            groupBox2.Controls.Add(TeleopShootingTimer);
+            groupBox2.Controls.Add(TeleopIntakeTimer);
+            groupBox2.Controls.Add(TeleopDefenseTimer);
+            groupBox2.Controls.Add(TeleopFeedingTimer);
+            groupBox2.Controls.Add(label1);
+            groupBox2.Controls.Add(label6);
+            groupBox2.Controls.Add(label8);
+            groupBox2.Controls.Add(bumpCounterTeleop);
+            groupBox2.Controls.Add(label15);
+            groupBox2.Controls.Add(label18);
+            groupBox2.Font = new Font("Malgun Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBox2.ForeColor = SystemColors.ButtonFace;
+            groupBox2.Location = new Point(159, 5);
+            groupBox2.Margin = new Padding(4);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Padding = new Padding(4);
+            groupBox2.Size = new Size(241, 223);
+            groupBox2.TabIndex = 40;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Teleop";
+            groupBox2.Enter += groupBox2_Enter;
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.Black;
-            this.label8.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label8.Location = new System.Drawing.Point(156, 22);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(26, 20);
-            this.label8.TabIndex = 366;
-            this.label8.Text = "L4";
+            label8.AutoSize = true;
+            label8.BackColor = Color.Black;
+            label8.Font = new Font("Malgun Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.ForeColor = SystemColors.ButtonFace;
+            label8.Location = new Point(136, 21);
+            label8.Margin = new Padding(4, 0, 4, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(41, 15);
+            label8.TabIndex = 366;
+            label8.Text = "Bump";
+            label8.Click += label8_Click;
             // 
-            // txtDelCoralL4
+            // bumpCounterTeleop
             // 
-            this.txtDelCoralL4.BackColor = System.Drawing.SystemColors.InfoText;
-            this.txtDelCoralL4.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDelCoralL4.ForeColor = System.Drawing.Color.White;
-            this.txtDelCoralL4.Location = new System.Drawing.Point(160, 43);
-            this.txtDelCoralL4.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDelCoralL4.Name = "txtDelCoralL4";
-            this.txtDelCoralL4.Size = new System.Drawing.Size(41, 26);
-            this.txtDelCoralL4.TabIndex = 365;
-            this.txtDelCoralL4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // comboAlgaeDelSide
-            // 
-            this.comboAlgaeDelSide.BackColor = System.Drawing.Color.Black;
-            this.comboAlgaeDelSide.ForeColor = System.Drawing.Color.White;
-            this.comboAlgaeDelSide.FormattingEnabled = true;
-            this.comboAlgaeDelSide.Items.AddRange(new object[] {
-            "-",
-            "Near",
-            "Far"});
-            this.comboAlgaeDelSide.Location = new System.Drawing.Point(12, 198);
-            this.comboAlgaeDelSide.Margin = new System.Windows.Forms.Padding(4);
-            this.comboAlgaeDelSide.Name = "comboAlgaeDelSide";
-            this.comboAlgaeDelSide.Size = new System.Drawing.Size(119, 29);
-            this.comboAlgaeDelSide.TabIndex = 364;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(10, 178);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(109, 19);
-            this.label12.TabIndex = 363;
-            this.label12.Text = "Algae Del Side";
-            // 
-            // comboCoralDelSide
-            // 
-            this.comboCoralDelSide.BackColor = System.Drawing.Color.Black;
-            this.comboCoralDelSide.ForeColor = System.Drawing.Color.White;
-            this.comboCoralDelSide.FormattingEnabled = true;
-            this.comboCoralDelSide.Items.AddRange(new object[] {
-            "-",
-            "Near",
-            "Far"});
-            this.comboCoralDelSide.Location = new System.Drawing.Point(12, 95);
-            this.comboCoralDelSide.Margin = new System.Windows.Forms.Padding(4);
-            this.comboCoralDelSide.Name = "comboCoralDelSide";
-            this.comboCoralDelSide.Size = new System.Drawing.Size(119, 29);
-            this.comboCoralDelSide.TabIndex = 362;
+            bumpCounterTeleop.BackColor = SystemColors.InfoText;
+            bumpCounterTeleop.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            bumpCounterTeleop.ForeColor = Color.White;
+            bumpCounterTeleop.Location = new Point(140, 40);
+            bumpCounterTeleop.Margin = new Padding(4);
+            bumpCounterTeleop.Name = "bumpCounterTeleop";
+            bumpCounterTeleop.Size = new Size(36, 22);
+            bumpCounterTeleop.TabIndex = 365;
+            bumpCounterTeleop.TextAlign = HorizontalAlignment.Center;
             // 
             // label15
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(10, 75);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(106, 19);
-            this.label15.TabIndex = 361;
-            this.label15.Text = "Coral Del Side";
-            // 
-            // comboAlgaeDelDest
-            // 
-            this.comboAlgaeDelDest.BackColor = System.Drawing.Color.Black;
-            this.comboAlgaeDelDest.ForeColor = System.Drawing.Color.White;
-            this.comboAlgaeDelDest.FormattingEnabled = true;
-            this.comboAlgaeDelDest.Items.AddRange(new object[] {
-            "-",
-            "L4",
-            "L3",
-            "L2",
-            "L1",
-            "Floor"});
-            this.comboAlgaeDelDest.Location = new System.Drawing.Point(12, 148);
-            this.comboAlgaeDelDest.Margin = new System.Windows.Forms.Padding(4);
-            this.comboAlgaeDelDest.Name = "comboAlgaeDelDest";
-            this.comboAlgaeDelDest.Size = new System.Drawing.Size(78, 29);
-            this.comboAlgaeDelDest.TabIndex = 358;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(14, 128);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(109, 19);
-            this.label9.TabIndex = 357;
-            this.label9.Text = "Algae Del Dest";
-            // 
-            // comboCoralDelDest
-            // 
-            this.comboCoralDelDest.BackColor = System.Drawing.Color.Black;
-            this.comboCoralDelDest.ForeColor = System.Drawing.Color.White;
-            this.comboCoralDelDest.FormattingEnabled = true;
-            this.comboCoralDelDest.Items.AddRange(new object[] {
-            "-",
-            "L4",
-            "L3",
-            "L2",
-            "L1",
-            "Floor"});
-            this.comboCoralDelDest.Location = new System.Drawing.Point(12, 43);
-            this.comboCoralDelDest.Margin = new System.Windows.Forms.Padding(4);
-            this.comboCoralDelDest.Name = "comboCoralDelDest";
-            this.comboCoralDelDest.Size = new System.Drawing.Size(79, 29);
-            this.comboCoralDelDest.TabIndex = 356;
+            label15.AutoSize = true;
+            label15.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label15.Location = new Point(9, 70);
+            label15.Margin = new Padding(4, 0, 4, 0);
+            label15.Name = "label15";
+            label15.Size = new Size(78, 13);
+            label15.TabIndex = 361;
+            label15.Text = "Defense Time";
             // 
             // label18
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(14, 23);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(106, 19);
-            this.label18.TabIndex = 29;
-            this.label18.Text = "Coral Del Dest";
+            label18.AutoSize = true;
+            label18.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label18.Location = new Point(8, 21);
+            label18.Margin = new Padding(4, 0, 4, 0);
+            label18.Name = "label18";
+            label18.Size = new Size(78, 13);
+            label18.TabIndex = 29;
+            label18.Text = "Feeding Time";
+            label18.Click += label18_Click;
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.Black;
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel4.Controls.Add(this.comboSelectedCage);
-            this.panel4.Controls.Add(this.label27);
-            this.panel4.Controls.Add(this.comboLeave);
-            this.panel4.Controls.Add(this.comboStart);
-            this.panel4.Controls.Add(this.label31);
-            this.panel4.Controls.Add(this.label33);
-            this.panel4.Controls.Add(this.label29);
-            this.panel4.Controls.Add(this.label34);
-            this.panel4.Controls.Add(this.label30);
-            this.panel4.Controls.Add(this.label6);
-            this.panel4.Controls.Add(this.txtEffectiveness);
-            this.panel4.Controls.Add(this.txtAvoidance);
-            this.panel4.Controls.Add(this.txtDefense);
-            this.panel4.Controls.Add(this.label4);
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Controls.Add(this.comboMatchEvent);
-            this.panel4.Controls.Add(this.comboMode);
-            this.panel4.Controls.Add(this.comboStrategy);
-            this.panel4.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel4.Location = new System.Drawing.Point(774, 17);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(359, 225);
-            this.panel4.TabIndex = 349;
+            panel4.BackColor = Color.Black;
+            panel4.BorderStyle = BorderStyle.Fixed3D;
+            panel4.Controls.Add(StartingLocationValue);
+            panel4.Controls.Add(label33);
+            panel4.Controls.Add(label34);
+            panel4.Controls.Add(label4);
+            panel4.Controls.Add(MatchEventValue);
+            panel4.Controls.Add(StrategyValue);
+            panel4.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            panel4.Location = new Point(677, 16);
+            panel4.Margin = new Padding(4);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(315, 211);
+            panel4.TabIndex = 349;
             // 
-            // comboSelectedCage
+            // StartingLocationValue
             // 
-            this.comboSelectedCage.BackColor = System.Drawing.Color.Black;
-            this.comboSelectedCage.ForeColor = System.Drawing.Color.White;
-            this.comboSelectedCage.FormattingEnabled = true;
-            this.comboSelectedCage.Items.AddRange(new object[] {
-            "-",
-            "Shallow",
-            "Deep"});
-            this.comboSelectedCage.Location = new System.Drawing.Point(130, 28);
-            this.comboSelectedCage.Margin = new System.Windows.Forms.Padding(4);
-            this.comboSelectedCage.Name = "comboSelectedCage";
-            this.comboSelectedCage.Size = new System.Drawing.Size(95, 27);
-            this.comboSelectedCage.TabIndex = 61;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.BackColor = System.Drawing.Color.Black;
-            this.label27.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label27.Location = new System.Drawing.Point(126, 5);
-            this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(107, 20);
-            this.label27.TabIndex = 60;
-            this.label27.Text = "Selected Cage";
-            // 
-            // comboLeave
-            // 
-            this.comboLeave.BackColor = System.Drawing.Color.Black;
-            this.comboLeave.ForeColor = System.Drawing.Color.White;
-            this.comboLeave.FormattingEnabled = true;
-            this.comboLeave.Items.AddRange(new object[] {
-            "-",
-            "Y",
-            "N"});
-            this.comboLeave.Location = new System.Drawing.Point(9, 88);
-            this.comboLeave.Margin = new System.Windows.Forms.Padding(4);
-            this.comboLeave.Name = "comboLeave";
-            this.comboLeave.Size = new System.Drawing.Size(95, 27);
-            this.comboLeave.TabIndex = 59;
-            // 
-            // comboStart
-            // 
-            this.comboStart.BackColor = System.Drawing.Color.Black;
-            this.comboStart.ForeColor = System.Drawing.Color.White;
-            this.comboStart.FormattingEnabled = true;
-            this.comboStart.Items.AddRange(new object[] {
-            "-",
-            "C1",
-            "C2",
-            "C3",
-            "Center",
-            "C4",
-            "C5",
-            "C6"});
-            this.comboStart.Location = new System.Drawing.Point(9, 152);
-            this.comboStart.Margin = new System.Windows.Forms.Padding(4);
-            this.comboStart.Name = "comboStart";
-            this.comboStart.Size = new System.Drawing.Size(95, 27);
-            this.comboStart.TabIndex = 58;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.BackColor = System.Drawing.Color.Black;
-            this.label31.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label31.Location = new System.Drawing.Point(241, 6);
-            this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(34, 20);
-            this.label31.TabIndex = 45;
-            this.label31.Text = "Def";
+            StartingLocationValue.BackColor = Color.Black;
+            StartingLocationValue.ForeColor = Color.White;
+            StartingLocationValue.FormattingEnabled = true;
+            StartingLocationValue.Items.AddRange(new object[] { "-", "Y", "N" });
+            StartingLocationValue.Location = new Point(5, 25);
+            StartingLocationValue.Margin = new Padding(4);
+            StartingLocationValue.Name = "StartingLocationValue";
+            StartingLocationValue.Size = new Size(84, 21);
+            StartingLocationValue.TabIndex = 59;
             // 
             // label33
             // 
-            this.label33.AutoSize = true;
-            this.label33.BackColor = System.Drawing.Color.Black;
-            this.label33.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label33.Location = new System.Drawing.Point(241, 130);
-            this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(68, 20);
-            this.label33.TabIndex = 57;
-            this.label33.Text = "Strategy";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.BackColor = System.Drawing.Color.Black;
-            this.label29.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label29.Location = new System.Drawing.Point(241, 65);
-            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(37, 20);
-            this.label29.TabIndex = 49;
-            this.label29.Text = "Avo";
+            label33.AutoSize = true;
+            label33.BackColor = Color.Black;
+            label33.Font = new Font("Malgun Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label33.ForeColor = SystemColors.ButtonFace;
+            label33.Location = new Point(201, 5);
+            label33.Margin = new Padding(4, 0, 4, 0);
+            label33.Name = "label33";
+            label33.Size = new Size(57, 15);
+            label33.TabIndex = 57;
+            label33.Text = "Strategy";
             // 
             // label34
             // 
-            this.label34.AutoSize = true;
-            this.label34.BackColor = System.Drawing.Color.Black;
-            this.label34.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label34.Location = new System.Drawing.Point(5, 65);
-            this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(49, 20);
-            this.label34.TabIndex = 55;
-            this.label34.Text = "Leave";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.BackColor = System.Drawing.Color.Black;
-            this.label30.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label30.Location = new System.Drawing.Point(5, 130);
-            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(97, 20);
-            this.label30.TabIndex = 47;
-            this.label30.Text = "Robot Setup";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Black;
-            this.label6.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label6.Location = new System.Drawing.Point(302, 6);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(29, 20);
-            this.label6.TabIndex = 48;
-            this.label6.Text = "Eff";
-            // 
-            // txtEffectiveness
-            // 
-            this.txtEffectiveness.BackColor = System.Drawing.SystemColors.InfoText;
-            this.txtEffectiveness.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEffectiveness.ForeColor = System.Drawing.Color.White;
-            this.txtEffectiveness.Location = new System.Drawing.Point(306, 28);
-            this.txtEffectiveness.Margin = new System.Windows.Forms.Padding(4);
-            this.txtEffectiveness.Name = "txtEffectiveness";
-            this.txtEffectiveness.Size = new System.Drawing.Size(41, 26);
-            this.txtEffectiveness.TabIndex = 47;
-            this.txtEffectiveness.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtAvoidance
-            // 
-            this.txtAvoidance.BackColor = System.Drawing.SystemColors.InfoText;
-            this.txtAvoidance.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAvoidance.ForeColor = System.Drawing.Color.White;
-            this.txtAvoidance.Location = new System.Drawing.Point(245, 89);
-            this.txtAvoidance.Margin = new System.Windows.Forms.Padding(4);
-            this.txtAvoidance.Name = "txtAvoidance";
-            this.txtAvoidance.Size = new System.Drawing.Size(41, 26);
-            this.txtAvoidance.TabIndex = 46;
-            this.txtAvoidance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtDefense
-            // 
-            this.txtDefense.BackColor = System.Drawing.SystemColors.InfoText;
-            this.txtDefense.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDefense.ForeColor = System.Drawing.Color.White;
-            this.txtDefense.Location = new System.Drawing.Point(245, 28);
-            this.txtDefense.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDefense.Name = "txtDefense";
-            this.txtDefense.Size = new System.Drawing.Size(41, 26);
-            this.txtDefense.TabIndex = 43;
-            this.txtDefense.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            label34.AutoSize = true;
+            label34.BackColor = Color.Black;
+            label34.Font = new Font("Malgun Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label34.ForeColor = SystemColors.ButtonFace;
+            label34.Location = new Point(1, 4);
+            label34.Margin = new Padding(4, 0, 4, 0);
+            label34.Name = "label34";
+            label34.Size = new Size(106, 15);
+            label34.TabIndex = 55;
+            label34.Text = "Starting Location";
+            label34.Click += label34_Click;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Black;
-            this.label4.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label4.Location = new System.Drawing.Point(129, 130);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 20);
-            this.label4.TabIndex = 45;
-            this.label4.Text = "Match Event";
+            label4.AutoSize = true;
+            label4.BackColor = Color.Black;
+            label4.Font = new Font("Malgun Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = SystemColors.ButtonFace;
+            label4.Location = new Point(103, 5);
+            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(79, 15);
+            label4.TabIndex = 45;
+            label4.Text = "Match Event";
             // 
-            // label1
+            // MatchEventValue
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Black;
-            this.label1.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(129, 65);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 20);
-            this.label1.TabIndex = 44;
-            this.label1.Text = "Mode";
+            MatchEventValue.BackColor = Color.Black;
+            MatchEventValue.ForeColor = Color.White;
+            MatchEventValue.FormattingEnabled = true;
+            MatchEventValue.Items.AddRange(new object[] { "Match_Event", "BrokeDown", "CrossedCenter", "LostParts", "AdditionPiece", "MultiClimb", "NoShow", "TippedOver", "JammedPiece", "WentUnderCages" });
+            MatchEventValue.Location = new Point(104, 25);
+            MatchEventValue.Margin = new Padding(4);
+            MatchEventValue.Name = "MatchEventValue";
+            MatchEventValue.Size = new Size(84, 21);
+            MatchEventValue.TabIndex = 42;
             // 
-            // comboMatchEvent
+            // StrategyValue
             // 
-            this.comboMatchEvent.BackColor = System.Drawing.Color.Black;
-            this.comboMatchEvent.ForeColor = System.Drawing.Color.White;
-            this.comboMatchEvent.FormattingEnabled = true;
-            this.comboMatchEvent.Items.AddRange(new object[] {
-            "Match_Event",
-            "BrokeDown",
-            "CrossedCenter",
-            "LostParts",
-            "AdditionPiece",
-            "MultiClimb",
-            "NoShow",
-            "TippedOver",
-            "JammedPiece",
-            "WentUnderCages"});
-            this.comboMatchEvent.Location = new System.Drawing.Point(130, 152);
-            this.comboMatchEvent.Margin = new System.Windows.Forms.Padding(4);
-            this.comboMatchEvent.Name = "comboMatchEvent";
-            this.comboMatchEvent.Size = new System.Drawing.Size(95, 27);
-            this.comboMatchEvent.TabIndex = 42;
-            // 
-            // comboMode
-            // 
-            this.comboMode.BackColor = System.Drawing.Color.Black;
-            this.comboMode.ForeColor = System.Drawing.Color.White;
-            this.comboMode.FormattingEnabled = true;
-            this.comboMode.Items.AddRange(new object[] {
-            "Auto",
-            "Teleop",
-            "Surfacing",
-            "Defense"});
-            this.comboMode.Location = new System.Drawing.Point(130, 87);
-            this.comboMode.Margin = new System.Windows.Forms.Padding(4);
-            this.comboMode.Name = "comboMode";
-            this.comboMode.Size = new System.Drawing.Size(95, 27);
-            this.comboMode.TabIndex = 42;
-            // 
-            // comboStrategy
-            // 
-            this.comboStrategy.BackColor = System.Drawing.Color.Black;
-            this.comboStrategy.ForeColor = System.Drawing.Color.White;
-            this.comboStrategy.FormattingEnabled = true;
-            this.comboStrategy.Items.AddRange(new object[] {
-            "None",
-            "Defense",
-            "CoralScorer",
-            "AlgaeScorer",
-            "Hybrid",
-            "Surfacing"});
-            this.comboStrategy.Location = new System.Drawing.Point(245, 152);
-            this.comboStrategy.Margin = new System.Windows.Forms.Padding(4);
-            this.comboStrategy.Name = "comboStrategy";
-            this.comboStrategy.Size = new System.Drawing.Size(84, 27);
-            this.comboStrategy.TabIndex = 43;
+            StrategyValue.BackColor = Color.Black;
+            StrategyValue.ForeColor = Color.White;
+            StrategyValue.FormattingEnabled = true;
+            StrategyValue.Items.AddRange(new object[] { "None", "Defense", "CoralScorer", "AlgaeScorer", "Hybrid", "Surfacing" });
+            StrategyValue.Location = new Point(204, 25);
+            StrategyValue.Margin = new Padding(4);
+            StrategyValue.Name = "StrategyValue";
+            StrategyValue.Size = new Size(74, 21);
+            StrategyValue.TabIndex = 43;
             // 
             // panel11
             // 
-            this.panel11.BackColor = System.Drawing.Color.Black;
-            this.panel11.Controls.Add(this.checkDefense);
-            this.panel11.Controls.Add(this.label37);
-            this.panel11.Controls.Add(this.panel2);
-            this.panel11.Controls.Add(this.checkActivities);
-            this.panel11.Controls.Add(this.checkMatchEvent);
-            this.panel11.Controls.Add(this.btnCreateTable);
-            this.panel11.Location = new System.Drawing.Point(-5, 4);
-            this.panel11.Margin = new System.Windows.Forms.Padding(4);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1193, 100);
-            this.panel11.TabIndex = 361;
-            // 
-            // checkDefense
-            // 
-            this.checkDefense.AutoSize = true;
-            this.checkDefense.BackColor = System.Drawing.Color.Black;
-            this.checkDefense.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkDefense.ForeColor = System.Drawing.Color.White;
-            this.checkDefense.Location = new System.Drawing.Point(634, 18);
-            this.checkDefense.Margin = new System.Windows.Forms.Padding(4);
-            this.checkDefense.Name = "checkDefense";
-            this.checkDefense.Size = new System.Drawing.Size(85, 23);
-            this.checkDefense.TabIndex = 358;
-            this.checkDefense.Text = "Defense";
-            this.checkDefense.UseVisualStyleBackColor = false;
+            panel11.BackColor = Color.Black;
+            panel11.Controls.Add(label37);
+            panel11.Controls.Add(panel2);
+            panel11.Controls.Add(checkActivities);
+            panel11.Controls.Add(checkMatchEvent);
+            panel11.Controls.Add(btnCreateTable);
+            panel11.Location = new Point(-4, 4);
+            panel11.Margin = new Padding(4);
+            panel11.Name = "panel11";
+            panel11.Size = new Size(1044, 94);
+            panel11.TabIndex = 361;
+            panel11.Paint += panel11_Paint;
             // 
             // label37
             // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.ForeColor = System.Drawing.Color.Red;
-            this.label37.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.label37.Location = new System.Drawing.Point(557, 263);
-            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(46, 31);
-            this.label37.TabIndex = 277;
-            this.label37.Text = "00";
-            this.label37.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            label37.AutoSize = true;
+            label37.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label37.ForeColor = Color.Red;
+            label37.ImageAlign = ContentAlignment.TopLeft;
+            label37.Location = new Point(487, 247);
+            label37.Margin = new Padding(4, 0, 4, 0);
+            label37.Name = "label37";
+            label37.Size = new Size(38, 26);
+            label37.TabIndex = 277;
+            label37.Text = "00";
+            label37.TextAlign = ContentAlignment.MiddleRight;
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.LightGray;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.comboTeamNumber);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.comboMatchNumber);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel2.Location = new System.Drawing.Point(108, 12);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(298, 76);
-            this.panel2.TabIndex = 344;
+            panel2.BackColor = Color.LightGray;
+            panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(comboTeamNumber);
+            panel2.Controls.Add(label2);
+            panel2.Controls.Add(comboMatchNumber);
+            panel2.Controls.Add(label7);
+            panel2.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            panel2.Location = new Point(94, 11);
+            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(261, 71);
+            panel2.TabIndex = 344;
             // 
             // comboTeamNumber
             // 
-            this.comboTeamNumber.BackColor = System.Drawing.Color.Black;
-            this.comboTeamNumber.ForeColor = System.Drawing.Color.White;
-            this.comboTeamNumber.FormattingEnabled = true;
-            this.comboTeamNumber.Location = new System.Drawing.Point(7, 30);
-            this.comboTeamNumber.Margin = new System.Windows.Forms.Padding(4);
-            this.comboTeamNumber.Name = "comboTeamNumber";
-            this.comboTeamNumber.Size = new System.Drawing.Size(123, 30);
-            this.comboTeamNumber.TabIndex = 1;
+            comboTeamNumber.BackColor = Color.Black;
+            comboTeamNumber.ForeColor = Color.White;
+            comboTeamNumber.FormattingEnabled = true;
+            comboTeamNumber.Location = new Point(6, 28);
+            comboTeamNumber.Margin = new Padding(4);
+            comboTeamNumber.Name = "comboTeamNumber";
+            comboTeamNumber.Size = new Size(108, 25);
+            comboTeamNumber.TabIndex = 1;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Black;
-            this.label2.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(8, 5);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(111, 20);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Team Number";
+            label2.AutoSize = true;
+            label2.BackColor = Color.Black;
+            label2.Font = new Font("Malgun Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(7, 5);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(91, 15);
+            label2.TabIndex = 9;
+            label2.Text = "Team Number";
             // 
             // comboMatchNumber
             // 
-            this.comboMatchNumber.BackColor = System.Drawing.Color.Black;
-            this.comboMatchNumber.ForeColor = System.Drawing.Color.White;
-            this.comboMatchNumber.FormattingEnabled = true;
-            this.comboMatchNumber.Location = new System.Drawing.Point(155, 30);
-            this.comboMatchNumber.Margin = new System.Windows.Forms.Padding(4);
-            this.comboMatchNumber.Name = "comboMatchNumber";
-            this.comboMatchNumber.Size = new System.Drawing.Size(123, 30);
-            this.comboMatchNumber.TabIndex = 2;
+            comboMatchNumber.BackColor = Color.Black;
+            comboMatchNumber.ForeColor = Color.White;
+            comboMatchNumber.FormattingEnabled = true;
+            comboMatchNumber.Location = new Point(136, 28);
+            comboMatchNumber.Margin = new Padding(4);
+            comboMatchNumber.Name = "comboMatchNumber";
+            comboMatchNumber.Size = new Size(108, 25);
+            comboMatchNumber.TabIndex = 2;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Black;
-            this.label7.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(155, 5);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(116, 20);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Match Number";
+            label7.AutoSize = true;
+            label7.BackColor = Color.Black;
+            label7.Font = new Font("Malgun Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.White;
+            label7.Location = new Point(136, 5);
+            label7.Margin = new Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(96, 15);
+            label7.TabIndex = 10;
+            label7.Text = "Match Number";
             // 
             // checkActivities
             // 
-            this.checkActivities.AutoSize = true;
-            this.checkActivities.BackColor = System.Drawing.Color.Black;
-            this.checkActivities.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkActivities.ForeColor = System.Drawing.Color.White;
-            this.checkActivities.Location = new System.Drawing.Point(421, 68);
-            this.checkActivities.Margin = new System.Windows.Forms.Padding(4);
-            this.checkActivities.Name = "checkActivities";
-            this.checkActivities.Size = new System.Drawing.Size(92, 23);
-            this.checkActivities.TabIndex = 4;
-            this.checkActivities.Text = "Activities";
-            this.checkActivities.UseVisualStyleBackColor = false;
+            checkActivities.AutoSize = true;
+            checkActivities.BackColor = Color.Black;
+            checkActivities.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkActivities.ForeColor = Color.White;
+            checkActivities.Location = new Point(368, 64);
+            checkActivities.Margin = new Padding(4);
+            checkActivities.Name = "checkActivities";
+            checkActivities.Size = new Size(73, 17);
+            checkActivities.TabIndex = 4;
+            checkActivities.Text = "Activities";
+            checkActivities.UseVisualStyleBackColor = false;
             // 
             // checkMatchEvent
             // 
-            this.checkMatchEvent.AutoSize = true;
-            this.checkMatchEvent.BackColor = System.Drawing.Color.Black;
-            this.checkMatchEvent.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkMatchEvent.ForeColor = System.Drawing.Color.White;
-            this.checkMatchEvent.Location = new System.Drawing.Point(521, 68);
-            this.checkMatchEvent.Margin = new System.Windows.Forms.Padding(4);
-            this.checkMatchEvent.Name = "checkMatchEvent";
-            this.checkMatchEvent.Size = new System.Drawing.Size(111, 23);
-            this.checkMatchEvent.TabIndex = 6;
-            this.checkMatchEvent.Text = "MatchEvent";
-            this.checkMatchEvent.UseVisualStyleBackColor = false;
+            checkMatchEvent.AutoSize = true;
+            checkMatchEvent.BackColor = Color.Black;
+            checkMatchEvent.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkMatchEvent.ForeColor = Color.White;
+            checkMatchEvent.Location = new Point(456, 64);
+            checkMatchEvent.Margin = new Padding(4);
+            checkMatchEvent.Name = "checkMatchEvent";
+            checkMatchEvent.Size = new Size(88, 17);
+            checkMatchEvent.TabIndex = 6;
+            checkMatchEvent.Text = "MatchEvent";
+            checkMatchEvent.UseVisualStyleBackColor = false;
             // 
             // btnCreateTable
             // 
-            this.btnCreateTable.BackColor = System.Drawing.Color.Black;
-            this.btnCreateTable.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreateTable.ForeColor = System.Drawing.Color.AliceBlue;
-            this.btnCreateTable.Location = new System.Drawing.Point(734, 14);
-            this.btnCreateTable.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCreateTable.Name = "btnCreateTable";
-            this.btnCreateTable.Size = new System.Drawing.Size(167, 28);
-            this.btnCreateTable.TabIndex = 11;
-            this.btnCreateTable.Text = "Create Table";
-            this.btnCreateTable.UseVisualStyleBackColor = false;
-            //this.btnCreateTable.Click += new System.EventHandler(this.BtnCreateTable_Click);
+            btnCreateTable.BackColor = Color.Black;
+            btnCreateTable.Font = new Font("Malgun Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCreateTable.ForeColor = Color.AliceBlue;
+            btnCreateTable.Location = new Point(642, 13);
+            btnCreateTable.Margin = new Padding(4);
+            btnCreateTable.Name = "btnCreateTable";
+            btnCreateTable.Size = new Size(146, 26);
+            btnCreateTable.TabIndex = 11;
+            btnCreateTable.Text = "Create Table";
+            btnCreateTable.UseVisualStyleBackColor = false;
             // 
             // scoutingDBDataSet
             // 
-            this.scoutingDBDataSet.DataSetName = "scoutingdbDataSet";
-            this.scoutingDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            scoutingDBDataSet.DataSetName = "scoutingdbDataSet";
+            scoutingDBDataSet.Namespace = "http://tempuri.org/scoutingdbDataSet.xsd";
+            scoutingDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // updatePreviewsBindingSource
             // 
-            this.updatePreviewsBindingSource.DataMember = "UpdatePreviews";
-            this.updatePreviewsBindingSource.DataSource = this.scoutingDBDataSet;
+            updatePreviewsBindingSource.DataMember = "UpdatePreviews";
+            updatePreviewsBindingSource.DataSource = scoutingDBDataSet;
             // 
             // updatePreviewsTableAdapter
             // 
-            this.updatePreviewsTableAdapter.ClearBeforeFill = true;
+            updatePreviewsTableAdapter.ClearBeforeFill = true;
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.teamDataGridViewTextBoxColumn,
-            this.matchDataGridViewTextBoxColumn,
-            this.timeDataGridViewTextBoxColumn,
-            this.recordTypeDataGridViewTextBoxColumn,
-            this.modeDataGridViewTextBoxColumn,
-            this.DriveSta,
-            this.Defense,
-            this.DefenseValue,
-            this.Avoidance,
-            this.ScouterName,
-            this.ScouterError,
-            this.Match_event,
-            this.Strategy,
-            this.Coop,
-            this.DZTime,
-            this.Del_Near_Far,
-            this.AcqAlgae_Near_Far,
-            this.AcqCoral_Near_Far,
-            this.Starting_Loc,
-            this.Leave,
-            this.AcqCoralS,
-            this.AcqCoralF,
-            this.AcqAlgaeR,
-            this.AcqAlgaeF,
-            this.DelCoralL1,
-            this.DelCoralL2,
-            this.DelCoralL3,
-            this.DelCoralL4,
-            this.DelCoralF,
-            this.DelAlgaeP,
-            this.DelAlgaeN,
-            this.DelAlgaeF,
-            this.ClimbT,
-            this.EndState,
-            this.CageAttempt,
-            this.PointScored});
-            this.dataGridView1.DataSource = this.updatePreviewsBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(11, 6);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1125, 220);
-            this.dataGridView1.TabIndex = 11;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.dataGridView1);
-            this.panel1.Location = new System.Drawing.Point(16, 357);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1148, 238);
-            this.panel1.TabIndex = 358;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Black;
-            this.label3.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label3.Location = new System.Drawing.Point(715, 629);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(25, 20);
-            this.label3.TabIndex = 365;
-            this.label3.Text = "ID";
-            // 
-            // txtID
-            // 
-            this.txtID.BackColor = System.Drawing.Color.Black;
-            this.txtID.ForeColor = System.Drawing.Color.White;
-            this.txtID.Location = new System.Drawing.Point(744, 628);
-            this.txtID.Margin = new System.Windows.Forms.Padding(4);
-            this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(43, 22);
-            this.txtID.TabIndex = 364;
-            this.txtID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, teamDataGridViewTextBoxColumn, matchDataGridViewTextBoxColumn, timeDataGridViewTextBoxColumn, recordTypeDataGridViewTextBoxColumn, modeDataGridViewTextBoxColumn, DriveSta, Defense, DefenseValue, Avoidance, ScouterName, ScouterError, Match_event, Strategy, Coop, DZTime, Del_Near_Far, AcqAlgae_Near_Far, AcqCoral_Near_Far, Starting_Loc, Leave, AcqCoralS, AcqCoralF, AcqAlgaeR, AcqAlgaeF, DelCoralL1, DelCoralL2, DelCoralL3, DelCoralL4, DelCoralF, DelAlgaeP, DelAlgaeN, DelAlgaeF, ClimbT, EndState, CageAttempt, PointScored });
+            dataGridView1.DataSource = updatePreviewsBindingSource;
+            dataGridView1.Location = new Point(10, 6);
+            dataGridView1.Margin = new Padding(2);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.RowTemplate.Height = 24;
+            dataGridView1.Size = new Size(984, 206);
+            dataGridView1.TabIndex = 11;
             // 
             // idDataGridViewTextBoxColumn
             // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Width = 125;
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.ReadOnly = true;
+            idDataGridViewTextBoxColumn.Width = 125;
             // 
             // teamDataGridViewTextBoxColumn
             // 
-            this.teamDataGridViewTextBoxColumn.DataPropertyName = "Team";
-            this.teamDataGridViewTextBoxColumn.HeaderText = "Team";
-            this.teamDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.teamDataGridViewTextBoxColumn.Name = "teamDataGridViewTextBoxColumn";
-            this.teamDataGridViewTextBoxColumn.Width = 125;
+            teamDataGridViewTextBoxColumn.DataPropertyName = "Team";
+            teamDataGridViewTextBoxColumn.HeaderText = "Team";
+            teamDataGridViewTextBoxColumn.MinimumWidth = 6;
+            teamDataGridViewTextBoxColumn.Name = "teamDataGridViewTextBoxColumn";
+            teamDataGridViewTextBoxColumn.Width = 125;
             // 
             // matchDataGridViewTextBoxColumn
             // 
-            this.matchDataGridViewTextBoxColumn.DataPropertyName = "Match";
-            this.matchDataGridViewTextBoxColumn.HeaderText = "Match";
-            this.matchDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.matchDataGridViewTextBoxColumn.Name = "matchDataGridViewTextBoxColumn";
-            this.matchDataGridViewTextBoxColumn.Width = 125;
+            matchDataGridViewTextBoxColumn.DataPropertyName = "Match";
+            matchDataGridViewTextBoxColumn.HeaderText = "Match";
+            matchDataGridViewTextBoxColumn.MinimumWidth = 6;
+            matchDataGridViewTextBoxColumn.Name = "matchDataGridViewTextBoxColumn";
+            matchDataGridViewTextBoxColumn.Width = 125;
             // 
             // timeDataGridViewTextBoxColumn
             // 
-            this.timeDataGridViewTextBoxColumn.DataPropertyName = "Time";
-            this.timeDataGridViewTextBoxColumn.HeaderText = "Time";
-            this.timeDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.timeDataGridViewTextBoxColumn.Name = "timeDataGridViewTextBoxColumn";
-            this.timeDataGridViewTextBoxColumn.Width = 125;
+            timeDataGridViewTextBoxColumn.DataPropertyName = "Time";
+            timeDataGridViewTextBoxColumn.HeaderText = "Time";
+            timeDataGridViewTextBoxColumn.MinimumWidth = 6;
+            timeDataGridViewTextBoxColumn.Name = "timeDataGridViewTextBoxColumn";
+            timeDataGridViewTextBoxColumn.Width = 125;
             // 
             // recordTypeDataGridViewTextBoxColumn
             // 
-            this.recordTypeDataGridViewTextBoxColumn.DataPropertyName = "RecordType";
-            this.recordTypeDataGridViewTextBoxColumn.HeaderText = "RecordType";
-            this.recordTypeDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.recordTypeDataGridViewTextBoxColumn.Name = "recordTypeDataGridViewTextBoxColumn";
-            this.recordTypeDataGridViewTextBoxColumn.Width = 125;
+            recordTypeDataGridViewTextBoxColumn.DataPropertyName = "RecordType";
+            recordTypeDataGridViewTextBoxColumn.HeaderText = "RecordType";
+            recordTypeDataGridViewTextBoxColumn.MinimumWidth = 6;
+            recordTypeDataGridViewTextBoxColumn.Name = "recordTypeDataGridViewTextBoxColumn";
+            recordTypeDataGridViewTextBoxColumn.Width = 125;
             // 
             // modeDataGridViewTextBoxColumn
             // 
-            this.modeDataGridViewTextBoxColumn.DataPropertyName = "Mode";
-            this.modeDataGridViewTextBoxColumn.HeaderText = "Mode";
-            this.modeDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.modeDataGridViewTextBoxColumn.Name = "modeDataGridViewTextBoxColumn";
-            this.modeDataGridViewTextBoxColumn.Width = 125;
+            modeDataGridViewTextBoxColumn.DataPropertyName = "Mode";
+            modeDataGridViewTextBoxColumn.HeaderText = "Mode";
+            modeDataGridViewTextBoxColumn.MinimumWidth = 6;
+            modeDataGridViewTextBoxColumn.Name = "modeDataGridViewTextBoxColumn";
+            modeDataGridViewTextBoxColumn.Width = 125;
             // 
             // DriveSta
             // 
-            this.DriveSta.DataPropertyName = "DriveSta";
-            this.DriveSta.HeaderText = "DriveSta";
-            this.DriveSta.MinimumWidth = 6;
-            this.DriveSta.Name = "DriveSta";
-            this.DriveSta.Width = 125;
+            DriveSta.DataPropertyName = "DriveSta";
+            DriveSta.HeaderText = "DriveSta";
+            DriveSta.MinimumWidth = 6;
+            DriveSta.Name = "DriveSta";
+            DriveSta.Width = 125;
             // 
             // Defense
             // 
-            this.Defense.DataPropertyName = "Defense";
-            this.Defense.HeaderText = "Defense";
-            this.Defense.MinimumWidth = 6;
-            this.Defense.Name = "Defense";
-            this.Defense.Width = 125;
+            Defense.DataPropertyName = "Defense";
+            Defense.HeaderText = "Defense";
+            Defense.MinimumWidth = 6;
+            Defense.Name = "Defense";
+            Defense.Width = 125;
             // 
             // DefenseValue
             // 
-            this.DefenseValue.DataPropertyName = "DefenseValue";
-            this.DefenseValue.HeaderText = "DefenseValue";
-            this.DefenseValue.MinimumWidth = 6;
-            this.DefenseValue.Name = "DefenseValue";
-            this.DefenseValue.Width = 125;
+            DefenseValue.DataPropertyName = "DefenseValue";
+            DefenseValue.HeaderText = "DefenseValue";
+            DefenseValue.MinimumWidth = 6;
+            DefenseValue.Name = "DefenseValue";
+            DefenseValue.Width = 125;
             // 
             // Avoidance
             // 
-            this.Avoidance.DataPropertyName = "Avoidance";
-            this.Avoidance.HeaderText = "Avoidance";
-            this.Avoidance.MinimumWidth = 6;
-            this.Avoidance.Name = "Avoidance";
-            this.Avoidance.Width = 125;
+            Avoidance.DataPropertyName = "Avoidance";
+            Avoidance.HeaderText = "Avoidance";
+            Avoidance.MinimumWidth = 6;
+            Avoidance.Name = "Avoidance";
+            Avoidance.Width = 125;
             // 
             // ScouterName
             // 
-            this.ScouterName.DataPropertyName = "ScouterName";
-            this.ScouterName.HeaderText = "ScouterName";
-            this.ScouterName.MinimumWidth = 6;
-            this.ScouterName.Name = "ScouterName";
-            this.ScouterName.Width = 125;
+            ScouterName.DataPropertyName = "ScouterName";
+            ScouterName.HeaderText = "ScouterName";
+            ScouterName.MinimumWidth = 6;
+            ScouterName.Name = "ScouterName";
+            ScouterName.Width = 125;
             // 
             // ScouterError
             // 
-            this.ScouterError.DataPropertyName = "ScouterError";
-            this.ScouterError.HeaderText = "ScouterError";
-            this.ScouterError.MinimumWidth = 6;
-            this.ScouterError.Name = "ScouterError";
-            this.ScouterError.Width = 125;
+            ScouterError.DataPropertyName = "ScouterError";
+            ScouterError.HeaderText = "ScouterError";
+            ScouterError.MinimumWidth = 6;
+            ScouterError.Name = "ScouterError";
+            ScouterError.Width = 125;
             // 
             // Match_event
             // 
-            this.Match_event.DataPropertyName = "Match_event";
-            this.Match_event.HeaderText = "Match_event";
-            this.Match_event.MinimumWidth = 6;
-            this.Match_event.Name = "Match_event";
-            this.Match_event.Width = 125;
+            Match_event.DataPropertyName = "Match_event";
+            Match_event.HeaderText = "Match_event";
+            Match_event.MinimumWidth = 6;
+            Match_event.Name = "Match_event";
+            Match_event.Width = 125;
             // 
             // Strategy
             // 
-            this.Strategy.DataPropertyName = "Strategy";
-            this.Strategy.HeaderText = "Strategy";
-            this.Strategy.MinimumWidth = 6;
-            this.Strategy.Name = "Strategy";
-            this.Strategy.Width = 125;
+            Strategy.DataPropertyName = "Strategy";
+            Strategy.HeaderText = "Strategy";
+            Strategy.MinimumWidth = 6;
+            Strategy.Name = "Strategy";
+            Strategy.Width = 125;
             // 
             // Coop
             // 
-            this.Coop.DataPropertyName = "Coop";
-            this.Coop.HeaderText = "Coop";
-            this.Coop.MinimumWidth = 6;
-            this.Coop.Name = "Coop";
-            this.Coop.Width = 125;
+            Coop.DataPropertyName = "Coop";
+            Coop.HeaderText = "Coop";
+            Coop.MinimumWidth = 6;
+            Coop.Name = "Coop";
+            Coop.Width = 125;
             // 
             // DZTime
             // 
-            this.DZTime.DataPropertyName = "DZTime";
-            this.DZTime.HeaderText = "DZTime";
-            this.DZTime.MinimumWidth = 6;
-            this.DZTime.Name = "DZTime";
-            this.DZTime.Width = 125;
+            DZTime.DataPropertyName = "DZTime";
+            DZTime.HeaderText = "DZTime";
+            DZTime.MinimumWidth = 6;
+            DZTime.Name = "DZTime";
+            DZTime.Width = 125;
             // 
             // Del_Near_Far
             // 
-            this.Del_Near_Far.DataPropertyName = "Del_Near_Far";
-            this.Del_Near_Far.HeaderText = "Del_Near_Far";
-            this.Del_Near_Far.MinimumWidth = 6;
-            this.Del_Near_Far.Name = "Del_Near_Far";
-            this.Del_Near_Far.Width = 125;
+            Del_Near_Far.DataPropertyName = "Del_Near_Far";
+            Del_Near_Far.HeaderText = "Del_Near_Far";
+            Del_Near_Far.MinimumWidth = 6;
+            Del_Near_Far.Name = "Del_Near_Far";
+            Del_Near_Far.Width = 125;
             // 
             // AcqAlgae_Near_Far
             // 
-            this.AcqAlgae_Near_Far.DataPropertyName = "AcqAlgae_Near_Far";
-            this.AcqAlgae_Near_Far.HeaderText = "AcqAlgae_Near_Far";
-            this.AcqAlgae_Near_Far.MinimumWidth = 6;
-            this.AcqAlgae_Near_Far.Name = "AcqAlgae_Near_Far";
-            this.AcqAlgae_Near_Far.Width = 125;
+            AcqAlgae_Near_Far.DataPropertyName = "AcqAlgae_Near_Far";
+            AcqAlgae_Near_Far.HeaderText = "AcqAlgae_Near_Far";
+            AcqAlgae_Near_Far.MinimumWidth = 6;
+            AcqAlgae_Near_Far.Name = "AcqAlgae_Near_Far";
+            AcqAlgae_Near_Far.Width = 125;
             // 
             // AcqCoral_Near_Far
             // 
-            this.AcqCoral_Near_Far.DataPropertyName = "AcqCoral_Near_Far";
-            this.AcqCoral_Near_Far.HeaderText = "AcqCoral_Near_Far";
-            this.AcqCoral_Near_Far.MinimumWidth = 6;
-            this.AcqCoral_Near_Far.Name = "AcqCoral_Near_Far";
-            this.AcqCoral_Near_Far.Width = 125;
+            AcqCoral_Near_Far.DataPropertyName = "AcqCoral_Near_Far";
+            AcqCoral_Near_Far.HeaderText = "AcqCoral_Near_Far";
+            AcqCoral_Near_Far.MinimumWidth = 6;
+            AcqCoral_Near_Far.Name = "AcqCoral_Near_Far";
+            AcqCoral_Near_Far.Width = 125;
             // 
             // Starting_Loc
             // 
-            this.Starting_Loc.DataPropertyName = "Starting_Loc";
-            this.Starting_Loc.HeaderText = "Starting_Loc";
-            this.Starting_Loc.MinimumWidth = 6;
-            this.Starting_Loc.Name = "Starting_Loc";
-            this.Starting_Loc.Width = 125;
+            Starting_Loc.DataPropertyName = "Starting_Loc";
+            Starting_Loc.HeaderText = "Starting_Loc";
+            Starting_Loc.MinimumWidth = 6;
+            Starting_Loc.Name = "Starting_Loc";
+            Starting_Loc.Width = 125;
             // 
             // Leave
             // 
-            this.Leave.DataPropertyName = "Leave";
-            this.Leave.HeaderText = "Leave";
-            this.Leave.MinimumWidth = 6;
-            this.Leave.Name = "Leave";
-            this.Leave.Width = 125;
+            Leave.DataPropertyName = "Leave";
+            Leave.HeaderText = "Leave";
+            Leave.MinimumWidth = 6;
+            Leave.Name = "Leave";
+            Leave.Width = 125;
             // 
             // AcqCoralS
             // 
-            this.AcqCoralS.DataPropertyName = "AcqCoralS";
-            this.AcqCoralS.HeaderText = "AcqCoralS";
-            this.AcqCoralS.MinimumWidth = 6;
-            this.AcqCoralS.Name = "AcqCoralS";
-            this.AcqCoralS.Width = 125;
+            AcqCoralS.DataPropertyName = "AcqCoralS";
+            AcqCoralS.HeaderText = "AcqCoralS";
+            AcqCoralS.MinimumWidth = 6;
+            AcqCoralS.Name = "AcqCoralS";
+            AcqCoralS.Width = 125;
             // 
             // AcqCoralF
             // 
-            this.AcqCoralF.DataPropertyName = "AcqCoralF";
-            this.AcqCoralF.HeaderText = "AcqCoralF";
-            this.AcqCoralF.MinimumWidth = 6;
-            this.AcqCoralF.Name = "AcqCoralF";
-            this.AcqCoralF.Width = 125;
+            AcqCoralF.DataPropertyName = "AcqCoralF";
+            AcqCoralF.HeaderText = "AcqCoralF";
+            AcqCoralF.MinimumWidth = 6;
+            AcqCoralF.Name = "AcqCoralF";
+            AcqCoralF.Width = 125;
             // 
             // AcqAlgaeR
             // 
-            this.AcqAlgaeR.DataPropertyName = "AcqAlgaeR";
-            this.AcqAlgaeR.HeaderText = "AcqAlgaeR";
-            this.AcqAlgaeR.MinimumWidth = 6;
-            this.AcqAlgaeR.Name = "AcqAlgaeR";
-            this.AcqAlgaeR.Width = 125;
+            AcqAlgaeR.DataPropertyName = "AcqAlgaeR";
+            AcqAlgaeR.HeaderText = "AcqAlgaeR";
+            AcqAlgaeR.MinimumWidth = 6;
+            AcqAlgaeR.Name = "AcqAlgaeR";
+            AcqAlgaeR.Width = 125;
             // 
             // AcqAlgaeF
             // 
-            this.AcqAlgaeF.DataPropertyName = "AcqAlgaeF";
-            this.AcqAlgaeF.HeaderText = "AcqAlgaeF";
-            this.AcqAlgaeF.MinimumWidth = 6;
-            this.AcqAlgaeF.Name = "AcqAlgaeF";
-            this.AcqAlgaeF.Width = 125;
+            AcqAlgaeF.DataPropertyName = "AcqAlgaeF";
+            AcqAlgaeF.HeaderText = "AcqAlgaeF";
+            AcqAlgaeF.MinimumWidth = 6;
+            AcqAlgaeF.Name = "AcqAlgaeF";
+            AcqAlgaeF.Width = 125;
             // 
             // DelCoralL1
             // 
-            this.DelCoralL1.DataPropertyName = "DelCoralL1";
-            this.DelCoralL1.HeaderText = "DelCoralL1";
-            this.DelCoralL1.MinimumWidth = 6;
-            this.DelCoralL1.Name = "DelCoralL1";
-            this.DelCoralL1.Width = 125;
+            DelCoralL1.DataPropertyName = "DelCoralL1";
+            DelCoralL1.HeaderText = "DelCoralL1";
+            DelCoralL1.MinimumWidth = 6;
+            DelCoralL1.Name = "DelCoralL1";
+            DelCoralL1.Width = 125;
             // 
             // DelCoralL2
             // 
-            this.DelCoralL2.DataPropertyName = "DelCoralL2";
-            this.DelCoralL2.HeaderText = "DelCoralL2";
-            this.DelCoralL2.MinimumWidth = 6;
-            this.DelCoralL2.Name = "DelCoralL2";
-            this.DelCoralL2.Width = 125;
+            DelCoralL2.DataPropertyName = "DelCoralL2";
+            DelCoralL2.HeaderText = "DelCoralL2";
+            DelCoralL2.MinimumWidth = 6;
+            DelCoralL2.Name = "DelCoralL2";
+            DelCoralL2.Width = 125;
             // 
             // DelCoralL3
             // 
-            this.DelCoralL3.DataPropertyName = "DelCoralL3";
-            this.DelCoralL3.HeaderText = "DelCoralL3";
-            this.DelCoralL3.MinimumWidth = 6;
-            this.DelCoralL3.Name = "DelCoralL3";
-            this.DelCoralL3.Width = 125;
+            DelCoralL3.DataPropertyName = "DelCoralL3";
+            DelCoralL3.HeaderText = "DelCoralL3";
+            DelCoralL3.MinimumWidth = 6;
+            DelCoralL3.Name = "DelCoralL3";
+            DelCoralL3.Width = 125;
             // 
             // DelCoralL4
             // 
-            this.DelCoralL4.DataPropertyName = "DelCoralL4";
-            this.DelCoralL4.HeaderText = "DelCoralL4";
-            this.DelCoralL4.MinimumWidth = 6;
-            this.DelCoralL4.Name = "DelCoralL4";
-            this.DelCoralL4.Width = 125;
+            DelCoralL4.DataPropertyName = "DelCoralL4";
+            DelCoralL4.HeaderText = "DelCoralL4";
+            DelCoralL4.MinimumWidth = 6;
+            DelCoralL4.Name = "DelCoralL4";
+            DelCoralL4.Width = 125;
             // 
             // DelCoralF
             // 
-            this.DelCoralF.DataPropertyName = "DelCoralF";
-            this.DelCoralF.HeaderText = "DelCoralF";
-            this.DelCoralF.MinimumWidth = 6;
-            this.DelCoralF.Name = "DelCoralF";
-            this.DelCoralF.Width = 125;
+            DelCoralF.DataPropertyName = "DelCoralF";
+            DelCoralF.HeaderText = "DelCoralF";
+            DelCoralF.MinimumWidth = 6;
+            DelCoralF.Name = "DelCoralF";
+            DelCoralF.Width = 125;
             // 
             // DelAlgaeP
             // 
-            this.DelAlgaeP.DataPropertyName = "DelAlgaeP";
-            this.DelAlgaeP.HeaderText = "DelAlgaeP";
-            this.DelAlgaeP.MinimumWidth = 6;
-            this.DelAlgaeP.Name = "DelAlgaeP";
-            this.DelAlgaeP.Width = 125;
+            DelAlgaeP.DataPropertyName = "DelAlgaeP";
+            DelAlgaeP.HeaderText = "DelAlgaeP";
+            DelAlgaeP.MinimumWidth = 6;
+            DelAlgaeP.Name = "DelAlgaeP";
+            DelAlgaeP.Width = 125;
             // 
             // DelAlgaeN
             // 
-            this.DelAlgaeN.DataPropertyName = "DelAlgaeN";
-            this.DelAlgaeN.HeaderText = "DelAlgaeN";
-            this.DelAlgaeN.MinimumWidth = 6;
-            this.DelAlgaeN.Name = "DelAlgaeN";
-            this.DelAlgaeN.Width = 125;
+            DelAlgaeN.DataPropertyName = "DelAlgaeN";
+            DelAlgaeN.HeaderText = "DelAlgaeN";
+            DelAlgaeN.MinimumWidth = 6;
+            DelAlgaeN.Name = "DelAlgaeN";
+            DelAlgaeN.Width = 125;
             // 
             // DelAlgaeF
             // 
-            this.DelAlgaeF.DataPropertyName = "DelAlgaeF";
-            this.DelAlgaeF.HeaderText = "DelAlgaeF";
-            this.DelAlgaeF.MinimumWidth = 6;
-            this.DelAlgaeF.Name = "DelAlgaeF";
-            this.DelAlgaeF.Width = 125;
+            DelAlgaeF.DataPropertyName = "DelAlgaeF";
+            DelAlgaeF.HeaderText = "DelAlgaeF";
+            DelAlgaeF.MinimumWidth = 6;
+            DelAlgaeF.Name = "DelAlgaeF";
+            DelAlgaeF.Width = 125;
             // 
             // ClimbT
             // 
-            this.ClimbT.DataPropertyName = "ClimbT";
-            this.ClimbT.HeaderText = "ClimbT";
-            this.ClimbT.MinimumWidth = 6;
-            this.ClimbT.Name = "ClimbT";
-            this.ClimbT.Width = 125;
+            ClimbT.DataPropertyName = "ClimbT";
+            ClimbT.HeaderText = "ClimbT";
+            ClimbT.MinimumWidth = 6;
+            ClimbT.Name = "ClimbT";
+            ClimbT.Width = 125;
             // 
             // EndState
             // 
-            this.EndState.DataPropertyName = "EndState";
-            this.EndState.HeaderText = "EndState";
-            this.EndState.MinimumWidth = 6;
-            this.EndState.Name = "EndState";
-            this.EndState.Width = 125;
+            EndState.DataPropertyName = "EndState";
+            EndState.HeaderText = "EndState";
+            EndState.MinimumWidth = 6;
+            EndState.Name = "EndState";
+            EndState.Width = 125;
             // 
             // CageAttempt
             // 
-            this.CageAttempt.DataPropertyName = "CageAttempt";
-            this.CageAttempt.HeaderText = "CageAttempt";
-            this.CageAttempt.MinimumWidth = 6;
-            this.CageAttempt.Name = "CageAttempt";
-            this.CageAttempt.Width = 125;
+            CageAttempt.DataPropertyName = "CageAttempt";
+            CageAttempt.HeaderText = "CageAttempt";
+            CageAttempt.MinimumWidth = 6;
+            CageAttempt.Name = "CageAttempt";
+            CageAttempt.Width = 125;
             // 
             // PointScored
             // 
-            this.PointScored.DataPropertyName = "PointScored";
-            this.PointScored.HeaderText = "PointScored";
-            this.PointScored.MinimumWidth = 6;
-            this.PointScored.Name = "PointScored";
-            this.PointScored.Width = 125;
+            PointScored.DataPropertyName = "PointScored";
+            PointScored.HeaderText = "PointScored";
+            PointScored.MinimumWidth = 6;
+            PointScored.Name = "PointScored";
+            PointScored.Width = 125;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.Black;
+            panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(dataGridView1);
+            panel1.Location = new Point(14, 335);
+            panel1.Margin = new Padding(4);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1005, 223);
+            panel1.TabIndex = 358;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Black;
+            label3.Font = new Font("Malgun Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = SystemColors.ButtonFace;
+            label3.Location = new Point(626, 590);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(20, 15);
+            label3.TabIndex = 365;
+            label3.Text = "ID";
+            // 
+            // txtID
+            // 
+            txtID.BackColor = Color.Black;
+            txtID.ForeColor = Color.White;
+            txtID.Location = new Point(651, 589);
+            txtID.Margin = new Padding(4);
+            txtID.Name = "txtID";
+            txtID.Size = new Size(38, 23);
+            txtID.TabIndex = 364;
+            txtID.TextAlign = HorizontalAlignment.Center;
+            // 
+            // bumpCounterAuto
+            // 
+            bumpCounterAuto.BackColor = SystemColors.InfoText;
+            bumpCounterAuto.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            bumpCounterAuto.ForeColor = Color.White;
+            bumpCounterAuto.Location = new Point(12, 86);
+            bumpCounterAuto.Margin = new Padding(4);
+            bumpCounterAuto.Name = "bumpCounterAuto";
+            bumpCounterAuto.Size = new Size(36, 22);
+            bumpCounterAuto.TabIndex = 383;
+            bumpCounterAuto.TextAlign = HorizontalAlignment.Center;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(134, 70);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(70, 13);
+            label1.TabIndex = 386;
+            label1.Text = "Intake timer";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(8, 121);
+            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(88, 13);
+            label6.TabIndex = 384;
+            label6.Text = "Shooting Timer";
+            // 
+            // DefenseStrategyValue
+            // 
+            DefenseStrategyValue.BackColor = Color.Black;
+            DefenseStrategyValue.ForeColor = Color.White;
+            DefenseStrategyValue.FormattingEnabled = true;
+            DefenseStrategyValue.Items.AddRange(new object[] { "-", "Elsewhere", "Park", "Shallow", "Deep" });
+            DefenseStrategyValue.Location = new Point(101, 36);
+            DefenseStrategyValue.Margin = new Padding(4);
+            DefenseStrategyValue.Name = "DefenseStrategyValue";
+            DefenseStrategyValue.Size = new Size(70, 23);
+            DefenseStrategyValue.TabIndex = 48;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.Location = new Point(97, 17);
+            label9.Margin = new Padding(4, 0, 4, 0);
+            label9.Name = "label9";
+            label9.Size = new Size(49, 13);
+            label9.TabIndex = 47;
+            label9.Text = "Defense";
+            // 
+            // climbLevelValue
+            // 
+            climbLevelValue.BackColor = Color.Black;
+            climbLevelValue.ForeColor = Color.White;
+            climbLevelValue.FormattingEnabled = true;
+            climbLevelValue.Items.AddRange(new object[] { "-", "Y", "N" });
+            climbLevelValue.Location = new Point(101, 87);
+            climbLevelValue.Margin = new Padding(4);
+            climbLevelValue.Name = "climbLevelValue";
+            climbLevelValue.Size = new Size(70, 23);
+            climbLevelValue.TabIndex = 50;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.Location = new Point(95, 68);
+            label10.Margin = new Padding(4, 0, 4, 0);
+            label10.Name = "label10";
+            label10.Size = new Size(68, 13);
+            label10.TabIndex = 49;
+            label10.Text = "Climb Level";
+            // 
+            // TeleopFeedingTimer
+            // 
+            TeleopFeedingTimer.BackColor = SystemColors.InfoText;
+            TeleopFeedingTimer.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            TeleopFeedingTimer.ForeColor = Color.White;
+            TeleopFeedingTimer.Location = new Point(10, 37);
+            TeleopFeedingTimer.Margin = new Padding(4);
+            TeleopFeedingTimer.Name = "TeleopFeedingTimer";
+            TeleopFeedingTimer.Size = new Size(76, 22);
+            TeleopFeedingTimer.TabIndex = 388;
+            TeleopFeedingTimer.TextAlign = HorizontalAlignment.Center;
+            // 
+            // TeleopDefenseTimer
+            // 
+            TeleopDefenseTimer.BackColor = SystemColors.InfoText;
+            TeleopDefenseTimer.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            TeleopDefenseTimer.ForeColor = Color.White;
+            TeleopDefenseTimer.Location = new Point(11, 87);
+            TeleopDefenseTimer.Margin = new Padding(4);
+            TeleopDefenseTimer.Name = "TeleopDefenseTimer";
+            TeleopDefenseTimer.Size = new Size(76, 22);
+            TeleopDefenseTimer.TabIndex = 389;
+            TeleopDefenseTimer.TextAlign = HorizontalAlignment.Center;
+            // 
+            // TeleopIntakeTimer
+            // 
+            TeleopIntakeTimer.BackColor = SystemColors.InfoText;
+            TeleopIntakeTimer.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            TeleopIntakeTimer.ForeColor = Color.White;
+            TeleopIntakeTimer.Location = new Point(136, 87);
+            TeleopIntakeTimer.Margin = new Padding(4);
+            TeleopIntakeTimer.Name = "TeleopIntakeTimer";
+            TeleopIntakeTimer.Size = new Size(76, 22);
+            TeleopIntakeTimer.TabIndex = 390;
+            TeleopIntakeTimer.TextAlign = HorizontalAlignment.Center;
+            // 
+            // TeleopShootingTimer
+            // 
+            TeleopShootingTimer.BackColor = SystemColors.InfoText;
+            TeleopShootingTimer.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            TeleopShootingTimer.ForeColor = Color.White;
+            TeleopShootingTimer.Location = new Point(10, 138);
+            TeleopShootingTimer.Margin = new Padding(4);
+            TeleopShootingTimer.Name = "TeleopShootingTimer";
+            TeleopShootingTimer.Size = new Size(76, 22);
+            TeleopShootingTimer.TabIndex = 391;
+            TeleopShootingTimer.TextAlign = HorizontalAlignment.Center;
+            // 
+            // AutoShootingTimer
+            // 
+            AutoShootingTimer.BackColor = SystemColors.InfoText;
+            AutoShootingTimer.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            AutoShootingTimer.ForeColor = Color.White;
+            AutoShootingTimer.Location = new Point(12, 136);
+            AutoShootingTimer.Margin = new Padding(4);
+            AutoShootingTimer.Name = "AutoShootingTimer";
+            AutoShootingTimer.Size = new Size(88, 22);
+            AutoShootingTimer.TabIndex = 392;
+            AutoShootingTimer.TextAlign = HorizontalAlignment.Center;
+            // 
+            // AutoIntakeTimer
+            // 
+            AutoIntakeTimer.BackColor = SystemColors.InfoText;
+            AutoIntakeTimer.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            AutoIntakeTimer.ForeColor = Color.White;
+            AutoIntakeTimer.Location = new Point(12, 183);
+            AutoIntakeTimer.Margin = new Padding(4);
+            AutoIntakeTimer.Name = "AutoIntakeTimer";
+            AutoIntakeTimer.Size = new Size(88, 22);
+            AutoIntakeTimer.TabIndex = 393;
+            AutoIntakeTimer.TextAlign = HorizontalAlignment.Center;
             // 
             // UpdateDatabase
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1180, 665);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtID);
-            this.Controls.Add(this.panel10);
-            this.Controls.Add(this.panel5);
-            this.Controls.Add(this.checkEndMatch);
-            this.Controls.Add(this.checkEndAuto);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel11);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "UpdateDatabase";
-            this.Text = "UpdateDatabase";
-            this.panel10.ResumeLayout(false);
-            this.panel12.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel11.ResumeLayout(false);
-            this.panel11.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.scoutingDBDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.updatePreviewsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Black;
+            ClientSize = new Size(1032, 623);
+            Controls.Add(label3);
+            Controls.Add(txtID);
+            Controls.Add(panel10);
+            Controls.Add(panel5);
+            Controls.Add(checkEndMatch);
+            Controls.Add(checkEndAuto);
+            Controls.Add(panel1);
+            Controls.Add(panel3);
+            Controls.Add(panel11);
+            Margin = new Padding(4);
+            Name = "UpdateDatabase";
+            Text = "UpdateDatabase";
+            panel10.ResumeLayout(false);
+            panel12.ResumeLayout(false);
+            panel5.ResumeLayout(false);
+            panel6.ResumeLayout(false);
+            panel7.ResumeLayout(false);
+            panel8.ResumeLayout(false);
+            panel3.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
+            panel11.ResumeLayout(false);
+            panel11.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)scoutingDBDataSet).EndInit();
+            ((System.ComponentModel.ISupportInitialize)updatePreviewsBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panel1.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -1889,72 +1419,39 @@ namespace ControllerScouting.Screens
         private System.Windows.Forms.ComboBox comboMatchNumber;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ComboBox comboEndState;
+        private System.Windows.Forms.ComboBox AvoidanceStrategyValue;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.ComboBox comboClimbAttempt;
-        private System.Windows.Forms.TextBox txtClimbTime;
+        private System.Windows.Forms.ComboBox ClimbSuccessValue;
+        private System.Windows.Forms.TextBox ClimbTimerEndgame;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboAlgaeAcqSide;
+        private System.Windows.Forms.ComboBox IntakeTimerValue;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ComboBox comboCoralAcqSide;
+        private System.Windows.Forms.ComboBox BumpBool;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox comboAlgaeAcqLoc;
+        private System.Windows.Forms.ComboBox ShootingTimerValue;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboCoralAcqLoc;
+        private System.Windows.Forms.ComboBox ClimbBoolValue;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ComboBox comboAlgaeDelSide;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox comboCoralDelSide;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ComboBox comboAlgaeDelDest;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox comboCoralDelDest;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtEffectiveness;
-        private System.Windows.Forms.TextBox txtAvoidance;
-        private System.Windows.Forms.TextBox txtDefense;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboMatchEvent;
-        private System.Windows.Forms.ComboBox comboMode;
-        private System.Windows.Forms.ComboBox comboStrategy;
+        private System.Windows.Forms.ComboBox MatchEventValue;
+        private System.Windows.Forms.ComboBox StrategyValue;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtID;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox txtDelCoralL1;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox txtDelCoralL2;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtDelCoralL3;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtDelCoralL4;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox txtDelAlgaeF;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox txtDelCoralF;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox txtDelAlgaeP;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox txtDelAlgaeN;
-        private System.Windows.Forms.ComboBox comboStart;
-        private System.Windows.Forms.ComboBox comboLeave;
-        private System.Windows.Forms.TextBox txtDefenseTime;
+        private System.Windows.Forms.TextBox bumpCounterTeleop;
+        private System.Windows.Forms.ComboBox StartingLocationValue;
+        private System.Windows.Forms.TextBox DefenseTimerEndgame;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.CheckBox checkDefense;
-        private System.Windows.Forms.ComboBox comboSelectedCage;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.TextBox txtDisAlg;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn teamDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn matchDataGridViewTextBoxColumn;
@@ -1992,5 +1489,20 @@ namespace ControllerScouting.Screens
         private System.Windows.Forms.DataGridViewTextBoxColumn EndState;
         private System.Windows.Forms.DataGridViewTextBoxColumn CageAttempt;
         private System.Windows.Forms.DataGridViewTextBoxColumn PointScored;
+        private TextBox bumpCounterAuto;
+        private ComboBox comboBox1;
+        private Label label1;
+        private ComboBox comboBox2;
+        private Label label6;
+        private ComboBox DefenseStrategyValue;
+        private Label label9;
+        private ComboBox climbLevelValue;
+        private Label label10;
+        private TextBox AutoIntakeTimer;
+        private TextBox AutoShootingTimer;
+        private TextBox TeleopShootingTimer;
+        private TextBox TeleopIntakeTimer;
+        private TextBox TeleopDefenseTimer;
+        private TextBox TeleopFeedingTimer;
     }
 }
