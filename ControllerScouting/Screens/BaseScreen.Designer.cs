@@ -244,42 +244,44 @@ namespace ControllerScouting.Screens
             lbl0Position9.AutoSize = true;
             lbl0Position9.Font = new Font("Microsoft Sans Serif", 12.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl0Position9.ForeColor = Color.White;
-            lbl0Position9.Location = new Point(218, 231);
+            lbl0Position9.Location = new Point(257, 269);
             lbl0Position9.Name = "lbl0Position9";
             lbl0Position9.Size = new Size(244, 20);
             lbl0Position9.TabIndex = 405;
             lbl0Position9.Text = "Ladder Location: OUTPOST";
+            lbl0Position9.TextAlign = ContentAlignment.TopRight;
             // 
             // lbl0Position8
             // 
             lbl0Position8.AutoSize = true;
             lbl0Position8.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl0Position8.ForeColor = Color.White;
-            lbl0Position8.Location = new Point(298, 195);
+            lbl0Position8.Location = new Point(299, 161);
             lbl0Position8.Name = "lbl0Position8";
             lbl0Position8.Size = new Size(164, 24);
             lbl0Position8.TabIndex = 404;
             lbl0Position8.Text = "Strategy: VALUE";
+            lbl0Position8.TextAlign = ContentAlignment.TopRight;
             // 
             // lbl0Position7
             // 
             lbl0Position7.AutoSize = true;
-            lbl0Position7.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl0Position7.Font = new Font("Microsoft Sans Serif", 13.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl0Position7.ForeColor = Color.White;
             lbl0Position7.Location = new Point(3, 266);
             lbl0Position7.Name = "lbl0Position7";
-            lbl0Position7.Size = new Size(153, 24);
+            lbl0Position7.Size = new Size(148, 22);
             lbl0Position7.TabIndex = 402;
             lbl0Position7.Text = "Climb Level: L#";
             // 
             // lbl0Position6
             // 
             lbl0Position6.AutoSize = true;
-            lbl0Position6.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl0Position6.Font = new Font("Microsoft Sans Serif", 13.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl0Position6.ForeColor = Color.White;
             lbl0Position6.Location = new Point(3, 195);
             lbl0Position6.Name = "lbl0Position6";
-            lbl0Position6.Size = new Size(188, 24);
+            lbl0Position6.Size = new Size(179, 22);
             lbl0Position6.TabIndex = 401;
             lbl0Position6.Text = "Avoidance: VALUE";
             // 
@@ -297,11 +299,11 @@ namespace ControllerScouting.Screens
             // lbl0Position4
             // 
             lbl0Position4.AutoSize = true;
-            lbl0Position4.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl0Position4.Font = new Font("Microsoft Sans Serif", 13.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl0Position4.ForeColor = Color.White;
             lbl0Position4.Location = new Point(2, 231);
             lbl0Position4.Name = "lbl0Position4";
-            lbl0Position4.Size = new Size(69, 24);
+            lbl0Position4.Size = new Size(66, 22);
             lbl0Position4.TabIndex = 399;
             lbl0Position4.Text = "Climb:";
             // 
@@ -345,7 +347,7 @@ namespace ControllerScouting.Screens
             lbl0Position4Value.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
             lbl0Position4Value.ForeColor = Color.Red;
             lbl0Position4Value.ImageAlign = ContentAlignment.TopLeft;
-            lbl0Position4Value.Location = new Point(73, 231);
+            lbl0Position4Value.Location = new Point(77, 231);
             lbl0Position4Value.Name = "lbl0Position4Value";
             lbl0Position4Value.Size = new Size(16, 24);
             lbl0Position4Value.TabIndex = 395;
@@ -429,9 +431,9 @@ namespace ControllerScouting.Screens
             lbl0ModeValue.ForeColor = Color.LimeGreen;
             lbl0ModeValue.Location = new Point(1, 3);
             lbl0ModeValue.Name = "lbl0ModeValue";
-            lbl0ModeValue.Size = new Size(67, 29);
+            lbl0ModeValue.Size = new Size(135, 29);
             lbl0ModeValue.TabIndex = 2;
-            lbl0ModeValue.Text = "Auto:";
+            lbl0ModeValue.Text = "Auto Mode:";
             // 
             // labelMatch
             // 

@@ -168,6 +168,7 @@ namespace ControllerScouting.Gamepad
                     if (gamepad.StartButton_Press)
                     {
                         robot.CycleRobotMode(RobotState.CYCLE_DIRECTION.Up);
+                        robot.TimeOfClimb_StopWatch.Start(); // starts the time
                     }
                 }
 
@@ -176,9 +177,11 @@ namespace ControllerScouting.Gamepad
                 //***********************************
                 else if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Endgame && robot.GetScouterName() != RobotState.SCOUTER_NAME.Select_Name)
                 {
-                    robot.TimeOfClimb_StopWatch.Start(); // starts the time
-                    robot.TimeOfClimb = robot.TimeOfClimb_StopWatch.Elapsed;
-                    robot.TimeOfClimb_StopWatch_Running = true;
+
+                    if (!robot.ClimbedTime)
+                    {
+                        robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
+                    }
 
                     if (gamepad.AButton_Press)
                     {
@@ -204,24 +207,25 @@ namespace ControllerScouting.Gamepad
                     {
                         robot.CycleStrategy(RobotState.CYCLE_DIRECTION.Down);
                     }
-                    else if (gamepad.LeftTrigger_Press)
+                    if (gamepad.LeftButton_Press)
+                    {
+                        robot.TimeOfClimb_StopWatch.Start();
+                    }
+                    if (gamepad.LeftTrigger_Press && robot.TimeOfClimb_StopWatch.IsRunning)
                     {
                         robot.TimeOfClimb_StopWatch.Reset();
-                        robot.TimeOfClimb = robot.TimeOfClimb_StopWatch.Elapsed;
-                        robot.TimeOfClimb_StopWatch_Running = false;
+                        robot.TimeOfClimb_StopWatch.Stop();
+                        robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
                     }
-                    else if (gamepad.RightButton_Press) {
-                        robot.TimeOfClimb = robot.TimeOfClimb_StopWatch.Elapsed;
-                        robot.TimeOfClimbDouble = robot.TimeOfClimb.TotalSeconds;
-
-                    }
-                    else if (gamepad.RightButton_Press && robot.TimeOfClimbDouble>0)
+                    if (gamepad.RightButton_Press && robot.ClimbedTime)
                     {
                         robot.TimeOfClimb_StopWatch.Stop();
                         robot.TimeOfClimb = robot.TimeOfClimb_StopWatch.Elapsed;
-                        robot.TimeOfClimbDouble = robot.TimeOfClimb.TotalSeconds;
-                        robot.TimeOfClimb_StopWatch_Running = false;
                         robot.End_Match = RobotState.BOOLEAN.Yes;
+                    }
+                    else if (gamepad.RightButton_Press) {
+                        robot.ClimbedTime = true;
+                        robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
                     }
 
                     if (gamepad.DpadLeft_Press)
@@ -233,15 +237,17 @@ namespace ControllerScouting.Gamepad
                         robot.CycleAvoidanceStrategy(RobotState.CYCLE_DIRECTION.Up);
                     }
                     else if (gamepad.DpadUp_Press) {
-                        robot.CycleClimbSuccess(RobotState.CYCLE_DIRECTION.Up);
+                        robot.Climb_Success = RobotState.BOOLEAN.Yes;
                     } 
                     else if (gamepad.DpadDown_Press) {
-                        robot.CycleClimbSuccess(RobotState.CYCLE_DIRECTION.Down);
+                        robot.Climb_Success = RobotState.BOOLEAN.No;
                     }
 
-                    if (gamepad.StartButton_Press)
+                    if (gamepad.StartButton_Press && !robot.ClimbedTime && robot.TimeOfClimb_StopWatch.IsRunning)
                     {
                         robot.CycleRobotMode(RobotState.CYCLE_DIRECTION.Down);
+                        robot.TimeOfClimb_StopWatch.Stop();
+                        robot.TimeOfClimb_StopWatch.Reset();
                     }
 
                 }

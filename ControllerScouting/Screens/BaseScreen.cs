@@ -614,6 +614,8 @@ namespace ControllerScouting.Screens
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = false;
 
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = true;
+
 
             // Text change
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Text = "Starting Location: " + BackgroundCode.Robots[Box_Number].GetStartingLocation();
@@ -643,6 +645,7 @@ namespace ControllerScouting.Screens
             //visibility
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position9", true)[0]).Visible = false;
@@ -652,7 +655,6 @@ namespace ControllerScouting.Screens
 
 
             //text change
-            ((Label)this.Controls.Find($"lbl{ScouterBox}ModeValue", true)[0]).Text = "Teleop";
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Defense Timer: " + (int)(BackgroundCode.Robots[Box_Number].DefenseTime.TotalSeconds * 100) / 100f;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Text = "Feeding Timer: " + (int)(BackgroundCode.Robots[Box_Number].FeedingTime.TotalSeconds * 100) / 100f;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + (int)(BackgroundCode.Robots[Box_Number].FuelIntakingTime.TotalSeconds * 100) / 100f;
@@ -668,16 +670,14 @@ namespace ControllerScouting.Screens
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position6", true)[0]).Visible = true;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position9", true)[0]).Visible = true;
 
 
             //text change
-            ((Label)this.Controls.Find($"lbl{ScouterBox}ModeValue", true)[0]).Text = "Endgame Mode";
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Avoidance: " + BackgroundCode.Robots[Box_Number].GetAvoidanceStrategy();
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Climb Timer: " + (int)(BackgroundCode.Robots[Box_Number].TimeOfClimb.TotalSeconds * 100) / 100f;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Climb Timer: " + (int)(BackgroundCode.Robots[Box_Number].ClimbTime.TotalSeconds * 100) / 100f;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position6", true)[0]).Text = "Climb Level: " + BackgroundCode.Robots[Box_Number].GetClimbLevel();
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).Text = "Defense: " + BackgroundCode.Robots[Box_Number].GetDefenseStrategy();
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Text = "Strategy: " + BackgroundCode.Robots[Box_Number].GetStrategy();

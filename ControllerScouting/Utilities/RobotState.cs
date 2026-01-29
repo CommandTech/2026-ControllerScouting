@@ -140,9 +140,9 @@ namespace ControllerScouting.Utilities
 
         public TimeSpan TimeOfClimb = TimeSpan.Zero;
         public Stopwatch TimeOfClimb_StopWatch;
-        public bool TimeOfClimb_StopWatch_Running;
         public double TimeOfClimbDouble;
-        public double ClimbTimeDouble;
+        public TimeSpan ClimbTime;
+        public bool ClimbedTime;
 
         public TimeSpan DefenseTime = TimeSpan.Zero;
         public Stopwatch DefenseTime_StopWatch;

@@ -342,7 +342,7 @@ namespace ControllerScouting.Database
 
                         break;
                     case "EndMatch":
-                        activity_record.ClimbTime = controller.ClimbTimeDouble;
+                        activity_record.ClimbTime = controller.ClimbTime.TotalSeconds;
                         activity_record.TimeOfClimb = controller.TimeOfClimbDouble;
                         activity_record.AttemptClimb = controller.GetClimbSuccess().ToString();
                         activity_record.Avoidance = controller.GetAvoidanceStrategy().ToString();
