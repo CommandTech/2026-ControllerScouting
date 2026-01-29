@@ -52,6 +52,11 @@ namespace ControllerScouting.Gamepad
                     {
                         robot.CycleEventName(RobotState.CYCLE_DIRECTION.Down);
                     }
+
+                    if (gamepad.R3_Down)
+                    {
+                        DatabaseCode.SaveToRecord(robot, "Match_Event");
+                    }
                 }
 
                 //***********************************
@@ -106,6 +111,7 @@ namespace ControllerScouting.Gamepad
 
                     if (gamepad.StartButton_Press)
                     {
+                        DatabaseCode.SaveToRecord(robot, "EndAuto");
                         robot.CycleRobotMode(RobotState.CYCLE_DIRECTION.Up);
                     }
                 }
