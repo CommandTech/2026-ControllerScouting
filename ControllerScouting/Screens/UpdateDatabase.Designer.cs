@@ -89,6 +89,9 @@ namespace ControllerScouting.Screens
             scoutingDBDataSet = new scoutingdbDataSet();
             updatePreviewsBindingSource = new BindingSource(components);
             updatePreviewsTableAdapter = new ControllerScouting.scoutingdbDataSetTableAdapters.UpdatePreviewsTableAdapter();
+            panel1 = new Panel();
+            label3 = new Label();
+            txtID = new TextBox();
             dataGridView1 = new DataGridView();
             idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             teamDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -127,9 +130,6 @@ namespace ControllerScouting.Screens
             EndState = new DataGridViewTextBoxColumn();
             CageAttempt = new DataGridViewTextBoxColumn();
             PointScored = new DataGridViewTextBoxColumn();
-            panel1 = new Panel();
-            label3 = new Label();
-            txtID = new TextBox();
             panel10.SuspendLayout();
             panel12.SuspendLayout();
             panel5.SuspendLayout();
@@ -145,6 +145,7 @@ namespace ControllerScouting.Screens
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)scoutingDBDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)updatePreviewsBindingSource).BeginInit();
+            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -292,7 +293,6 @@ namespace ControllerScouting.Screens
             // 
             panel3.BackColor = Color.Black;
             panel3.BorderStyle = BorderStyle.Fixed3D;
-            panel3.Controls.Add(dataGridView1);
             panel3.Controls.Add(groupBox3);
             panel3.Controls.Add(groupBox1);
             panel3.Controls.Add(groupBox2);
@@ -871,19 +871,54 @@ namespace ControllerScouting.Screens
             // 
             updatePreviewsTableAdapter.ClearBeforeFill = true;
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.Black;
+            panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(dataGridView1);
+            panel1.Location = new Point(14, 335);
+            panel1.Margin = new Padding(4);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1005, 223);
+            panel1.TabIndex = 358;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Black;
+            label3.Font = new Font("Malgun Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = SystemColors.ButtonFace;
+            label3.Location = new Point(626, 590);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(20, 15);
+            label3.TabIndex = 365;
+            label3.Text = "ID";
+            // 
+            // txtID
+            // 
+            txtID.BackColor = Color.Black;
+            txtID.ForeColor = Color.White;
+            txtID.Location = new Point(651, 589);
+            txtID.Margin = new Padding(4);
+            txtID.Name = "txtID";
+            txtID.Size = new Size(38, 23);
+            txtID.TabIndex = 364;
+            txtID.TextAlign = HorizontalAlignment.Center;
+            // 
             // dataGridView1
             // 
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, teamDataGridViewTextBoxColumn, matchDataGridViewTextBoxColumn, timeDataGridViewTextBoxColumn, recordTypeDataGridViewTextBoxColumn, modeDataGridViewTextBoxColumn, DriveSta, Defense, DefenseValue, Avoidance, ScouterName, ScouterError, Match_event, Strategy, Coop, DZTime, Del_Near_Far, AcqAlgae_Near_Far, AcqCoral_Near_Far, Starting_Loc, Leave, AcqCoralS, AcqCoralF, AcqAlgaeR, AcqAlgaeF, DelCoralL1, DelCoralL2, DelCoralL3, DelCoralL4, DelCoralF, DelAlgaeP, DelAlgaeN, DelAlgaeF, ClimbT, EndState, CageAttempt, PointScored });
             dataGridView1.DataSource = updatePreviewsBindingSource;
-            dataGridView1.Location = new Point(2, 192);
+            dataGridView1.Location = new Point(2, 2);
             dataGridView1.Margin = new Padding(2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 24;
             dataGridView1.Size = new Size(984, 261);
-            dataGridView1.TabIndex = 11;
+            dataGridView1.TabIndex = 12;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -1182,40 +1217,6 @@ namespace ControllerScouting.Screens
             PointScored.Name = "PointScored";
             PointScored.Width = 125;
             // 
-            // panel1
-            // 
-            panel1.BackColor = Color.Black;
-            panel1.BorderStyle = BorderStyle.Fixed3D;
-            panel1.Location = new Point(14, 335);
-            panel1.Margin = new Padding(4);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1005, 223);
-            panel1.TabIndex = 358;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.Black;
-            label3.Font = new Font("Malgun Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = SystemColors.ButtonFace;
-            label3.Location = new Point(626, 590);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(20, 15);
-            label3.TabIndex = 365;
-            label3.Text = "ID";
-            // 
-            // txtID
-            // 
-            txtID.BackColor = Color.Black;
-            txtID.ForeColor = Color.White;
-            txtID.Location = new Point(651, 589);
-            txtID.Margin = new Padding(4);
-            txtID.Name = "txtID";
-            txtID.Size = new Size(38, 23);
-            txtID.TabIndex = 364;
-            txtID.TextAlign = HorizontalAlignment.Center;
-            // 
             // UpdateDatabase
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1255,6 +1256,7 @@ namespace ControllerScouting.Screens
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)scoutingDBDataSet).EndInit();
             ((System.ComponentModel.ISupportInitialize)updatePreviewsBindingSource).EndInit();
+            panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -1295,7 +1297,6 @@ namespace ControllerScouting.Screens
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.CheckBox checkActivities;
         private System.Windows.Forms.CheckBox checkMatchEvent;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Button btnFetchValues;
@@ -1337,43 +1338,6 @@ namespace ControllerScouting.Screens
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox TeleopBumpValue;
         private System.Windows.Forms.ComboBox StartingLocationValue;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn teamDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn matchDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn timeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn recordTypeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn modeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DriveSta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Defense;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DefenseValue;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Avoidance;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ScouterName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ScouterError;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Match_event;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Strategy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Coop;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DZTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Del_Near_Far;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AcqAlgae_Near_Far;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AcqCoral_Near_Far;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Starting_Loc;
-        private new System.Windows.Forms.DataGridViewTextBoxColumn Leave;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AcqCoralS;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AcqCoralF;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AcqAlgaeR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AcqAlgaeF;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DelCoralL1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DelCoralL2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DelCoralL3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DelCoralL4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DelCoralF;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DelAlgaeP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DelAlgaeN;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DelAlgaeF;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ClimbT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EndState;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CageAttempt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PointScored;
         private ComboBox comboBox1;
         private Label label1;
         private ComboBox comboBox2;
@@ -1386,5 +1350,43 @@ namespace ControllerScouting.Screens
         private TextBox TeleopIntakeTimerValue;
         private TextBox TeleopDefenseTimerValue;
         private TextBox TeleopFeedingTimerValue;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn teamDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn matchDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn timeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn recordTypeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn modeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn DriveSta;
+        private DataGridViewTextBoxColumn Defense;
+        private DataGridViewTextBoxColumn DefenseValue;
+        private DataGridViewTextBoxColumn Avoidance;
+        private DataGridViewTextBoxColumn ScouterName;
+        private DataGridViewTextBoxColumn ScouterError;
+        private DataGridViewTextBoxColumn Match_event;
+        private DataGridViewTextBoxColumn Strategy;
+        private DataGridViewTextBoxColumn Coop;
+        private DataGridViewTextBoxColumn DZTime;
+        private DataGridViewTextBoxColumn Del_Near_Far;
+        private DataGridViewTextBoxColumn AcqAlgae_Near_Far;
+        private DataGridViewTextBoxColumn AcqCoral_Near_Far;
+        private DataGridViewTextBoxColumn Starting_Loc;
+        private DataGridViewTextBoxColumn Leave;
+        private DataGridViewTextBoxColumn AcqCoralS;
+        private DataGridViewTextBoxColumn AcqCoralF;
+        private DataGridViewTextBoxColumn AcqAlgaeR;
+        private DataGridViewTextBoxColumn AcqAlgaeF;
+        private DataGridViewTextBoxColumn DelCoralL1;
+        private DataGridViewTextBoxColumn DelCoralL2;
+        private DataGridViewTextBoxColumn DelCoralL3;
+        private DataGridViewTextBoxColumn DelCoralL4;
+        private DataGridViewTextBoxColumn DelCoralF;
+        private DataGridViewTextBoxColumn DelAlgaeP;
+        private DataGridViewTextBoxColumn DelAlgaeN;
+        private DataGridViewTextBoxColumn DelAlgaeF;
+        private DataGridViewTextBoxColumn ClimbT;
+        private DataGridViewTextBoxColumn EndState;
+        private DataGridViewTextBoxColumn CageAttempt;
+        private DataGridViewTextBoxColumn PointScored;
     }
 }
