@@ -49,8 +49,6 @@ namespace ControllerScouting.Screens
             label10 = new Label();
             DefenseStrategyValue = new ComboBox();
             label9 = new Label();
-            EndgameDefenseTimerValue = new TextBox();
-            label25 = new Label();
             AvoidanceStrategyValue = new ComboBox();
             label16 = new Label();
             ClimbSuccessValue = new ComboBox();
@@ -58,12 +56,6 @@ namespace ControllerScouting.Screens
             label26 = new Label();
             label24 = new Label();
             groupBox1 = new GroupBox();
-            AutoIntakeTimerValue = new TextBox();
-            AutoShootingTimerValue = new TextBox();
-            AutoBumpValue = new TextBox();
-            label14 = new Label();
-            AutoBumpLabel = new Label();
-            label5 = new Label();
             AutoClimbValue = new ComboBox();
             AutoClimbLabel = new Label();
             groupBox2 = new GroupBox();
@@ -154,7 +146,6 @@ namespace ControllerScouting.Screens
             ((System.ComponentModel.ISupportInitialize)scoutingDBDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)updatePreviewsBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel10
@@ -301,6 +292,7 @@ namespace ControllerScouting.Screens
             // 
             panel3.BackColor = Color.Black;
             panel3.BorderStyle = BorderStyle.Fixed3D;
+            panel3.Controls.Add(dataGridView1);
             panel3.Controls.Add(groupBox3);
             panel3.Controls.Add(groupBox1);
             panel3.Controls.Add(groupBox2);
@@ -315,17 +307,15 @@ namespace ControllerScouting.Screens
             // groupBox3
             // 
             groupBox3.BackColor = Color.Black;
+            groupBox3.Controls.Add(AutoClimbValue);
+            groupBox3.Controls.Add(AutoClimbLabel);
             groupBox3.Controls.Add(ClimbLevelValue);
             groupBox3.Controls.Add(label10);
             groupBox3.Controls.Add(DefenseStrategyValue);
             groupBox3.Controls.Add(label9);
-            groupBox3.Controls.Add(EndgameDefenseTimerValue);
-            groupBox3.Controls.Add(label25);
             groupBox3.Controls.Add(AvoidanceStrategyValue);
             groupBox3.Controls.Add(label16);
             groupBox3.Controls.Add(ClimbSuccessValue);
-            groupBox3.Controls.Add(EndGameClimbTimerValue);
-            groupBox3.Controls.Add(label26);
             groupBox3.Controls.Add(label24);
             groupBox3.Font = new Font("Malgun Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox3.ForeColor = SystemColors.ButtonFace;
@@ -333,10 +323,10 @@ namespace ControllerScouting.Screens
             groupBox3.Margin = new Padding(4);
             groupBox3.Name = "groupBox3";
             groupBox3.Padding = new Padding(4);
-            groupBox3.Size = new Size(262, 220);
+            groupBox3.Size = new Size(262, 175);
             groupBox3.TabIndex = 41;
             groupBox3.TabStop = false;
-            groupBox3.Text = "End Game";
+            groupBox3.Text = "Booleans";
             groupBox3.Enter += groupBox3_Enter;
             // 
             // ClimbLevelValue
@@ -385,29 +375,6 @@ namespace ControllerScouting.Screens
             label9.TabIndex = 47;
             label9.Text = "Defense";
             // 
-            // EndgameDefenseTimerValue
-            // 
-            EndgameDefenseTimerValue.BackColor = SystemColors.InfoText;
-            EndgameDefenseTimerValue.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            EndgameDefenseTimerValue.ForeColor = Color.White;
-            EndgameDefenseTimerValue.Location = new Point(105, 138);
-            EndgameDefenseTimerValue.Margin = new Padding(4);
-            EndgameDefenseTimerValue.Name = "EndgameDefenseTimerValue";
-            EndgameDefenseTimerValue.Size = new Size(50, 22);
-            EndgameDefenseTimerValue.TabIndex = 46;
-            EndgameDefenseTimerValue.TextAlign = HorizontalAlignment.Center;
-            // 
-            // label25
-            // 
-            label25.AutoSize = true;
-            label25.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label25.Location = new Point(100, 121);
-            label25.Margin = new Padding(4, 0, 4, 0);
-            label25.Name = "label25";
-            label25.Size = new Size(78, 13);
-            label25.TabIndex = 45;
-            label25.Text = "Defense Time";
-            // 
             // AvoidanceStrategyValue
             // 
             AvoidanceStrategyValue.BackColor = Color.Black;
@@ -449,7 +416,7 @@ namespace ControllerScouting.Screens
             EndGameClimbTimerValue.BackColor = SystemColors.InfoText;
             EndGameClimbTimerValue.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             EndGameClimbTimerValue.ForeColor = Color.White;
-            EndGameClimbTimerValue.Location = new Point(16, 138);
+            EndGameClimbTimerValue.Location = new Point(136, 87);
             EndGameClimbTimerValue.Margin = new Padding(4);
             EndGameClimbTimerValue.Name = "EndGameClimbTimerValue";
             EndGameClimbTimerValue.Size = new Size(50, 22);
@@ -460,7 +427,7 @@ namespace ControllerScouting.Screens
             // 
             label26.AutoSize = true;
             label26.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label26.Location = new Point(11, 121);
+            label26.Location = new Point(131, 70);
             label26.Margin = new Padding(4, 0, 4, 0);
             label26.Name = "label26";
             label26.Size = new Size(66, 13);
@@ -481,95 +448,19 @@ namespace ControllerScouting.Screens
             // groupBox1
             // 
             groupBox1.BackColor = Color.Black;
-            groupBox1.Controls.Add(AutoIntakeTimerValue);
-            groupBox1.Controls.Add(AutoShootingTimerValue);
-            groupBox1.Controls.Add(AutoBumpValue);
-            groupBox1.Controls.Add(label14);
-            groupBox1.Controls.Add(AutoBumpLabel);
-            groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(AutoClimbValue);
-            groupBox1.Controls.Add(AutoClimbLabel);
+            groupBox1.Controls.Add(TeleopBumpValue);
+            groupBox1.Controls.Add(label8);
             groupBox1.Font = new Font("Malgun Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox1.ForeColor = SystemColors.ButtonFace;
             groupBox1.Location = new Point(14, 6);
             groupBox1.Margin = new Padding(4);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(4);
-            groupBox1.Size = new Size(134, 221);
+            groupBox1.Size = new Size(134, 176);
             groupBox1.TabIndex = 25;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Auto";
+            groupBox1.Text = "Counters";
             groupBox1.Enter += groupBox1_Enter;
-            // 
-            // AutoIntakeTimerValue
-            // 
-            AutoIntakeTimerValue.BackColor = SystemColors.InfoText;
-            AutoIntakeTimerValue.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            AutoIntakeTimerValue.ForeColor = Color.White;
-            AutoIntakeTimerValue.Location = new Point(12, 183);
-            AutoIntakeTimerValue.Margin = new Padding(4);
-            AutoIntakeTimerValue.Name = "AutoIntakeTimerValue";
-            AutoIntakeTimerValue.Size = new Size(88, 22);
-            AutoIntakeTimerValue.TabIndex = 393;
-            AutoIntakeTimerValue.TextAlign = HorizontalAlignment.Center;
-            // 
-            // AutoShootingTimerValue
-            // 
-            AutoShootingTimerValue.BackColor = SystemColors.InfoText;
-            AutoShootingTimerValue.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            AutoShootingTimerValue.ForeColor = Color.White;
-            AutoShootingTimerValue.Location = new Point(12, 136);
-            AutoShootingTimerValue.Margin = new Padding(4);
-            AutoShootingTimerValue.Name = "AutoShootingTimerValue";
-            AutoShootingTimerValue.Size = new Size(88, 22);
-            AutoShootingTimerValue.TabIndex = 392;
-            AutoShootingTimerValue.TextAlign = HorizontalAlignment.Center;
-            // 
-            // AutoBumpValue
-            // 
-            AutoBumpValue.BackColor = SystemColors.InfoText;
-            AutoBumpValue.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            AutoBumpValue.ForeColor = Color.White;
-            AutoBumpValue.Location = new Point(12, 86);
-            AutoBumpValue.Margin = new Padding(4);
-            AutoBumpValue.Name = "AutoBumpValue";
-            AutoBumpValue.Size = new Size(36, 22);
-            AutoBumpValue.TabIndex = 383;
-            AutoBumpValue.TextAlign = HorizontalAlignment.Center;
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label14.Location = new Point(10, 166);
-            label14.Margin = new Padding(4, 0, 4, 0);
-            label14.Name = "label14";
-            label14.Size = new Size(70, 13);
-            label14.TabIndex = 359;
-            label14.Text = "Intake timer";
-            // 
-            // AutoBumpLabel
-            // 
-            AutoBumpLabel.AutoSize = true;
-            AutoBumpLabel.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            AutoBumpLabel.Location = new Point(10, 69);
-            AutoBumpLabel.Margin = new Padding(4, 0, 4, 0);
-            AutoBumpLabel.Name = "AutoBumpLabel";
-            AutoBumpLabel.Size = new Size(38, 13);
-            AutoBumpLabel.TabIndex = 357;
-            AutoBumpLabel.Text = "Bump";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(12, 119);
-            label5.Margin = new Padding(4, 0, 4, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(88, 13);
-            label5.TabIndex = 355;
-            label5.Text = "Shooting Timer";
-            label5.Click += label5_Click;
             // 
             // AutoClimbValue
             // 
@@ -577,22 +468,22 @@ namespace ControllerScouting.Screens
             AutoClimbValue.ForeColor = Color.White;
             AutoClimbValue.FormattingEnabled = true;
             AutoClimbValue.Items.AddRange(new object[] { "-", "Station", "Floor" });
-            AutoClimbValue.Location = new Point(12, 40);
+            AutoClimbValue.Location = new Point(16, 136);
             AutoClimbValue.Margin = new Padding(4);
             AutoClimbValue.Name = "AutoClimbValue";
-            AutoClimbValue.Size = new Size(105, 25);
+            AutoClimbValue.Size = new Size(105, 23);
             AutoClimbValue.TabIndex = 354;
             // 
             // AutoClimbLabel
             // 
             AutoClimbLabel.AutoSize = true;
             AutoClimbLabel.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            AutoClimbLabel.Location = new Point(10, 22);
+            AutoClimbLabel.Location = new Point(14, 118);
             AutoClimbLabel.Margin = new Padding(4, 0, 4, 0);
             AutoClimbLabel.Name = "AutoClimbLabel";
-            AutoClimbLabel.Size = new Size(37, 13);
+            AutoClimbLabel.Size = new Size(67, 13);
             AutoClimbLabel.TabIndex = 29;
-            AutoClimbLabel.Text = "Climb";
+            AutoClimbLabel.Text = "Climb Auto";
             // 
             // groupBox2
             // 
@@ -603,20 +494,20 @@ namespace ControllerScouting.Screens
             groupBox2.Controls.Add(TeleopFeedingTimerValue);
             groupBox2.Controls.Add(label1);
             groupBox2.Controls.Add(label6);
-            groupBox2.Controls.Add(label8);
-            groupBox2.Controls.Add(TeleopBumpValue);
             groupBox2.Controls.Add(label15);
             groupBox2.Controls.Add(label18);
+            groupBox2.Controls.Add(EndGameClimbTimerValue);
+            groupBox2.Controls.Add(label26);
             groupBox2.Font = new Font("Malgun Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox2.ForeColor = SystemColors.ButtonFace;
             groupBox2.Location = new Point(159, 5);
             groupBox2.Margin = new Padding(4);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(4);
-            groupBox2.Size = new Size(241, 223);
+            groupBox2.Size = new Size(241, 177);
             groupBox2.TabIndex = 40;
             groupBox2.TabStop = false;
-            groupBox2.Text = "Teleop";
+            groupBox2.Text = "Timers";
             groupBox2.Enter += groupBox2_Enter;
             // 
             // TeleopShootingTimerValue
@@ -636,7 +527,7 @@ namespace ControllerScouting.Screens
             TeleopIntakeTimerValue.BackColor = SystemColors.InfoText;
             TeleopIntakeTimerValue.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             TeleopIntakeTimerValue.ForeColor = Color.White;
-            TeleopIntakeTimerValue.Location = new Point(136, 87);
+            TeleopIntakeTimerValue.Location = new Point(136, 39);
             TeleopIntakeTimerValue.Margin = new Padding(4);
             TeleopIntakeTimerValue.Name = "TeleopIntakeTimerValue";
             TeleopIntakeTimerValue.Size = new Size(76, 22);
@@ -671,7 +562,7 @@ namespace ControllerScouting.Screens
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(134, 70);
+            label1.Location = new Point(134, 22);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(70, 13);
@@ -695,7 +586,7 @@ namespace ControllerScouting.Screens
             label8.BackColor = Color.Black;
             label8.Font = new Font("Malgun Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = SystemColors.ButtonFace;
-            label8.Location = new Point(136, 21);
+            label8.Location = new Point(4, 20);
             label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
             label8.Size = new Size(41, 15);
@@ -708,12 +599,13 @@ namespace ControllerScouting.Screens
             TeleopBumpValue.BackColor = SystemColors.InfoText;
             TeleopBumpValue.Font = new Font("Malgun Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             TeleopBumpValue.ForeColor = Color.White;
-            TeleopBumpValue.Location = new Point(140, 40);
+            TeleopBumpValue.Location = new Point(8, 39);
             TeleopBumpValue.Margin = new Padding(4);
             TeleopBumpValue.Name = "TeleopBumpValue";
             TeleopBumpValue.Size = new Size(36, 22);
             TeleopBumpValue.TabIndex = 365;
             TeleopBumpValue.TextAlign = HorizontalAlignment.Center;
+            TeleopBumpValue.TextChanged += TeleopBumpValue_TextChanged;
             // 
             // label15
             // 
@@ -752,7 +644,7 @@ namespace ControllerScouting.Screens
             panel4.Location = new Point(677, 16);
             panel4.Margin = new Padding(4);
             panel4.Name = "panel4";
-            panel4.Size = new Size(315, 211);
+            panel4.Size = new Size(315, 72);
             panel4.TabIndex = 349;
             // 
             // StartingLocationValue
@@ -985,12 +877,12 @@ namespace ControllerScouting.Screens
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, teamDataGridViewTextBoxColumn, matchDataGridViewTextBoxColumn, timeDataGridViewTextBoxColumn, recordTypeDataGridViewTextBoxColumn, modeDataGridViewTextBoxColumn, DriveSta, Defense, DefenseValue, Avoidance, ScouterName, ScouterError, Match_event, Strategy, Coop, DZTime, Del_Near_Far, AcqAlgae_Near_Far, AcqCoral_Near_Far, Starting_Loc, Leave, AcqCoralS, AcqCoralF, AcqAlgaeR, AcqAlgaeF, DelCoralL1, DelCoralL2, DelCoralL3, DelCoralL4, DelCoralF, DelAlgaeP, DelAlgaeN, DelAlgaeF, ClimbT, EndState, CageAttempt, PointScored });
             dataGridView1.DataSource = updatePreviewsBindingSource;
-            dataGridView1.Location = new Point(10, 6);
+            dataGridView1.Location = new Point(2, 192);
             dataGridView1.Margin = new Padding(2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 24;
-            dataGridView1.Size = new Size(984, 206);
+            dataGridView1.Size = new Size(984, 261);
             dataGridView1.TabIndex = 11;
             // 
             // idDataGridViewTextBoxColumn
@@ -1294,7 +1186,6 @@ namespace ControllerScouting.Screens
             // 
             panel1.BackColor = Color.Black;
             panel1.BorderStyle = BorderStyle.Fixed3D;
-            panel1.Controls.Add(dataGridView1);
             panel1.Location = new Point(14, 335);
             panel1.Margin = new Padding(4);
             panel1.Name = "panel1";
@@ -1365,7 +1256,6 @@ namespace ControllerScouting.Screens
             ((System.ComponentModel.ISupportInitialize)scoutingDBDataSet).EndInit();
             ((System.ComponentModel.ISupportInitialize)updatePreviewsBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            panel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
 
@@ -1427,11 +1317,8 @@ namespace ControllerScouting.Screens
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox IntakeTimerValue;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox BumpBool;
-        private System.Windows.Forms.Label AutoBumpLabel;
         private System.Windows.Forms.ComboBox ShootingTimerValue;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox AutoClimbValue;
         private System.Windows.Forms.Label AutoClimbLabel;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -1450,8 +1337,6 @@ namespace ControllerScouting.Screens
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox TeleopBumpValue;
         private System.Windows.Forms.ComboBox StartingLocationValue;
-        private System.Windows.Forms.TextBox EndgameDefenseTimerValue;
-        private System.Windows.Forms.Label label25;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn teamDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn matchDataGridViewTextBoxColumn;
@@ -1489,7 +1374,6 @@ namespace ControllerScouting.Screens
         private System.Windows.Forms.DataGridViewTextBoxColumn EndState;
         private System.Windows.Forms.DataGridViewTextBoxColumn CageAttempt;
         private System.Windows.Forms.DataGridViewTextBoxColumn PointScored;
-        private TextBox AutoBumpValue;
         private ComboBox comboBox1;
         private Label label1;
         private ComboBox comboBox2;
@@ -1498,8 +1382,6 @@ namespace ControllerScouting.Screens
         private Label label9;
         private ComboBox ClimbLevelValue;
         private Label label10;
-        private TextBox AutoIntakeTimerValue;
-        private TextBox AutoShootingTimerValue;
         private TextBox TeleopShootingTimerValue;
         private TextBox TeleopIntakeTimerValue;
         private TextBox TeleopDefenseTimerValue;

@@ -60,6 +60,11 @@ namespace ControllerScouting.Screens
 
         }
 
+        private void TeleopBumpValue_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         //    private void BtnCreateTable_Click(object sender, EventArgs e)
         //    {
         //        if (checkEndAuto.Checked || checkActivities.Checked || checkEndMatch.Checked || checkMatchEvent.Checked || checkDefense.Checked)
