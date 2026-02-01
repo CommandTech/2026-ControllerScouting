@@ -41,7 +41,7 @@ namespace ControllerScouting.Database
         public string Mode { get; set; }
         public string DriveStation { get; set; }
         public string StartingLocation { get; set; }
-        public string BumpTraversal { get; set; }
+        public int BumpTraversal { get; set; }
         public string Defense { get; set; }
         public string Avoidance { get; set; }
         public double DefenseTime { get; set; }
@@ -58,7 +58,7 @@ namespace ControllerScouting.Database
         public string AttemptClimb { get; set; }
         public string EndState { get; set; }
         public string Strategy { get; set; }
-        
+
 
         //Examples from previous years
         //public TimeSpan Cycle { get; set; }
@@ -102,7 +102,7 @@ namespace ControllerScouting.Database
                 Mode,
                 DriveStation,
                 StartingLocation,
-                BumpTraversal,
+                BumpTraversal.ToString(),
                 Defense,
                 Avoidance,
                 DefenseTime.ToString(),
@@ -153,7 +153,7 @@ namespace ControllerScouting.Database
         public string Mode { get; set; }
         public string DriveStation { get; set; }
         public string StartingLocation { get; set; }
-        public string BumpTraversal { get; set; }
+        public int BumpTraversal { get; set; }
         public string Defense { get; set; }
         public string Avoidance { get; set; }
         public double DefenseTime { get; set; }
@@ -316,7 +316,7 @@ namespace ControllerScouting.Database
                     Time = DateTime.Now,
                     Team = BackgroundCode.Robots[controller.ScouterBox].TeamName,
                     Match = BackgroundCode.currentMatch,
-                    Mode = controller.Current_Mode.ToString(),
+                    Mode = controller.GetRobotMode().ToString(),
                     ScouterName = controller.GetScouterName().ToString(),
                     ScouterError = controller.ScouterError
                 };
@@ -327,14 +327,14 @@ namespace ControllerScouting.Database
                         activity_record.AutoClimb = controller.GetAutoClimb().ToString();
                         activity_record.StartingLocation = controller.GetStartingLocation().ToString();
 
-                        activity_record.BumpTraversal = controller.BumpTraversal.ToString();
+                        activity_record.BumpTraversal = controller.BumpTraversal;
                         activity_record.FuelShootingTime = controller.FuelIntakingTimeDouble;
                         activity_record.FuelIntakingTime = controller.FuelIntakingTimeDouble;
                         activity_record.FeedingTime = controller.FeedingTimeDouble;
 
                         break;
                     case "Activities":
-                        activity_record.BumpTraversal = controller.BumpTraversal.ToString();
+                        activity_record.BumpTraversal = controller.BumpTraversal;
                         activity_record.FuelIntakingTime = controller.FuelIntakingTimeDouble;
                         activity_record.FuelShootingTime = controller.FuelIntakingTimeDouble;
                         activity_record.DefenseTime = controller.DefenseTimeDouble;
@@ -342,7 +342,7 @@ namespace ControllerScouting.Database
 
                         break;
                     case "EndMatch":
-                        activity_record.ClimbTime = controller.ClimbTimeDouble;
+                        activity_record.ClimbTime = controller.ClimbTime.TotalSeconds;
                         activity_record.TimeOfClimb = controller.TimeOfClimbDouble;
                         activity_record.AttemptClimb = controller.GetClimbSuccess().ToString();
                         activity_record.Avoidance = controller.GetAvoidanceStrategy().ToString();
@@ -352,14 +352,14 @@ namespace ControllerScouting.Database
                         activity_record.Strategy = controller.GetStrategy().ToString();
 
                         activity_record.DefenseTime = controller.DefenseTimeDouble;
-                        activity_record.BumpTraversal = controller.BumpTraversal.ToString();
+                        activity_record.BumpTraversal = controller.BumpTraversal;
                         activity_record.FuelShootingTime = controller.FuelIntakingTimeDouble;
                         activity_record.FuelIntakingTime = controller.FuelIntakingTimeDouble;
                         activity_record.FeedingTime = controller.FeedingTimeDouble;
 
                         break;
                     case "Match_Event":
-                        activity_record.MatchEvent = controller.MatchEvent.ToString();
+                        activity_record.MatchEvent = controller.GetMatchEvent().ToString();
 
                         break;
                     default:
@@ -408,7 +408,7 @@ namespace ControllerScouting.Database
                         BackgroundCode.seasonframework.SaveChanges();
                     }
                     break;
-                }
+            }
 
             BackgroundCode.activitiesQueue.Clear();
 
@@ -450,7 +450,7 @@ namespace ControllerScouting.Database
             }
 
             string locationCorrected = DoubleBackslashesAndEnsureTrailing(location);
-            
+
             string filePath = locationCorrected + databaseName;
             string directoryPath = Path.GetDirectoryName(filePath);
             Directory.CreateDirectory(directoryPath);
