@@ -222,6 +222,7 @@ namespace ControllerScouting.Gamepad
                         robot.TimeOfClimb_StopWatch.Reset();
                         robot.TimeOfClimb_StopWatch.Stop();
                         robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
+                        robot.ClimbedTime = false;
                     }
                     if (gamepad.RightButton_Press && robot.ClimbedTime)
                     {

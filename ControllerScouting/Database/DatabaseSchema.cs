@@ -311,6 +311,7 @@ namespace ControllerScouting.Database
 
             if (controller.GetScouterName() != RobotState.SCOUTER_NAME.Select_Name && controller.TeamName != null)
             {
+
                 Activity activity_record = new()
                 {
                     Time = DateTime.Now,
@@ -318,8 +319,34 @@ namespace ControllerScouting.Database
                     Match = BackgroundCode.currentMatch,
                     Mode = controller.GetRobotMode().ToString(),
                     ScouterName = controller.GetScouterName().ToString(),
-                    ScouterError = controller.ScouterError
+                    ScouterError = controller.ScouterError,
+                    RecordType = recordtype
                 };
+
+                if (controller.ScouterBox == 0)
+                {
+                    activity_record.DriveStation = "red0";
+                } 
+                else if (controller.ScouterBox == 1)
+                {
+                    activity_record.DriveStation = "red1";
+                }
+                else if (controller.ScouterBox == 2)
+                {
+                    activity_record.DriveStation = "red2";
+                }
+                else if (controller.ScouterBox == 3)
+                {
+                    activity_record.DriveStation = "blue0";
+                }
+                else if (controller.ScouterBox == 4)
+                {
+                    activity_record.DriveStation = "blue1";
+                }
+                else if (controller.ScouterBox == 5)
+                {
+                    activity_record.DriveStation = "blue2";
+                }
 
                 switch (recordtype)
                 {
@@ -328,22 +355,38 @@ namespace ControllerScouting.Database
                         activity_record.StartingLocation = controller.GetStartingLocation().ToString();
 
                         activity_record.BumpTraversal = controller.BumpTraversal.ToString();
-                        activity_record.FuelShootingTime = controller.FuelIntakingTimeDouble;
-                        activity_record.FuelIntakingTime = controller.FuelIntakingTimeDouble;
-                        activity_record.FeedingTime = controller.FeedingTimeDouble;
+                        activity_record.FuelShootingTime = controller.FuelShootingTime.TotalSeconds;
+                        activity_record.FuelIntakingTime = controller.FuelIntakingTime.TotalSeconds;
+                        activity_record.FeedingTime = controller.FeedingTime.TotalMinutes;
+
+                        controller.FuelShootingTime_StopWatch.Reset();
+                        controller.FuelShootingTime = controller.FuelShootingTime_StopWatch.Elapsed;
+                        controller.FuelIntakingTime_StopWatch.Reset();
+                        controller.FuelIntakingTime = controller.FuelIntakingTime_StopWatch.Elapsed;
+                        controller.FeedingTime_StopWatch.Reset();
+                        controller.FeedingTime = controller.FeedingTime_StopWatch.Elapsed;
+
 
                         break;
                     case "Activities":
                         activity_record.BumpTraversal = controller.BumpTraversal.ToString();
-                        activity_record.FuelIntakingTime = controller.FuelIntakingTimeDouble;
-                        activity_record.FuelShootingTime = controller.FuelIntakingTimeDouble;
-                        activity_record.DefenseTime = controller.DefenseTimeDouble;
-                        activity_record.FeedingTime = controller.FeedingTimeDouble;
+                        activity_record.FuelIntakingTime = controller.FuelIntakingTime.TotalSeconds;
+                        activity_record.FuelShootingTime = controller.FuelShootingTime.TotalSeconds;
+                        activity_record.DefenseTime = controller.DefenseTime.TotalSeconds;
+                        activity_record.FeedingTime = controller.FeedingTime.TotalMinutes;
 
+                        controller.FuelIntakingTime_StopWatch.Reset();
+                        controller.FuelIntakingTime = controller.FuelIntakingTime_StopWatch.Elapsed;
+                        controller.FuelShootingTime_StopWatch.Reset();
+                        controller.FuelShootingTime = controller.FuelShootingTime_StopWatch.Elapsed;
+                        controller.DefenseTime_StopWatch.Reset();
+                        controller.DefenseTime = controller.DefenseTime_StopWatch.Elapsed;
+                        controller.FeedingTime_StopWatch.Reset();
+                        controller.FeedingTime = controller.FeedingTime_StopWatch.Elapsed;
                         break;
                     case "EndMatch":
                         activity_record.ClimbTime = controller.ClimbTime.TotalSeconds;
-                        activity_record.TimeOfClimb = controller.TimeOfClimbDouble;
+                        activity_record.TimeOfClimb = controller.TimeOfClimb.TotalSeconds;
                         activity_record.AttemptClimb = controller.GetClimbSuccess().ToString();
                         activity_record.Avoidance = controller.GetAvoidanceStrategy().ToString();
                         activity_record.Defense = controller.GetDefenseStrategy().ToString();
@@ -351,11 +394,11 @@ namespace ControllerScouting.Database
                         activity_record.LadderLocation = controller.GetLadderLocation().ToString();
                         activity_record.Strategy = controller.GetStrategy().ToString();
 
-                        activity_record.DefenseTime = controller.DefenseTimeDouble;
+                        activity_record.DefenseTime = controller.DefenseTime.TotalSeconds;
                         activity_record.BumpTraversal = controller.BumpTraversal.ToString();
-                        activity_record.FuelShootingTime = controller.FuelIntakingTimeDouble;
-                        activity_record.FuelIntakingTime = controller.FuelIntakingTimeDouble;
-                        activity_record.FeedingTime = controller.FeedingTimeDouble;
+                        activity_record.FuelShootingTime = controller.FuelShootingTime.TotalSeconds;
+                        activity_record.FuelIntakingTime = controller.FuelIntakingTime.TotalSeconds;
+                        activity_record.FeedingTime = controller.FeedingTime.TotalSeconds;
 
                         break;
                     case "Match_Event":

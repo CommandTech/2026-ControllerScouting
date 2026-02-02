@@ -392,7 +392,7 @@ namespace ControllerScouting.Screens
                         int index = regional.IndexOf(',');
                         if (index > 0) regional = regional[..index];
 
-                        string uri = $"https://www.thebluealliance.com/api/v3/event/{DateTime.Now.Year}{regional}/teams?X-TBA-Auth-Key={Settings.Default.API_KEY}";
+                        string uri = $"https://www.thebluealliance.com/api/v3/event/2025{regional}/teams?X-TBA-Auth-Key={Settings.Default.API_KEY}";
 
                         using (HttpClient client = new())
                         {
@@ -423,7 +423,7 @@ namespace ControllerScouting.Screens
                             }
                         }
 
-                        string matchesuri = $"https://www.thebluealliance.com/api/v3/event/{DateTime.Now.Year}{regional}/matches?X-TBA-Auth-Key={Settings.Default.API_KEY}";
+                        string matchesuri = $"https://www.thebluealliance.com/api/v3/event/2025{regional}/matches?X-TBA-Auth-Key={Settings.Default.API_KEY}";
 
                         using (HttpClient client = new())
                         {
@@ -506,7 +506,7 @@ namespace ControllerScouting.Screens
             }
             else
             {
-                string uri = $"https://www.thebluealliance.com/api/v3/events/{DateTime.Now.Year}?X-TBA-Auth-Key={Settings.Default.API_KEY}";
+                string uri = $"https://www.thebluealliance.com/api/v3/events/2025?X-TBA-Auth-Key={Settings.Default.API_KEY}";
 
                 using HttpClient client = new();
                 try
