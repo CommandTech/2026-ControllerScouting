@@ -11,7 +11,7 @@ namespace ControllerScouting.Utilities
         public enum MATCHEVENT_NAME { Match_Event, TippedOver, LostParts, GotStuck, BrokenDown, NoShow, JammedPiece, Other }
         public enum SCOUTER_NAME { Select_Name, Scouter1, Scouter2, Scouter3, Scouter4, Scouter5, Scouter6 }
 
-        public enum BOOLEAN { Z, Yes, No, Error}
+        public enum BOOLEAN { Z, Yes, No, Error }
 
         // Year to Year ints
         public long ScouterError;
@@ -28,9 +28,9 @@ namespace ControllerScouting.Utilities
         public bool NoSho = false;
 
         public bool Flag = false;
-        
-  
-        
+
+
+
         // These are the standard types...
 
         public ROBOT_MODE Desired_Mode;         //Desired Mode
@@ -70,6 +70,12 @@ namespace ControllerScouting.Utilities
         public MATCHEVENT_NAME GetMatchEvent()
         { return _MatchEvent; }
         
+        public ROBOT_MODE GetRobotMode()
+        { return _RobotMode; }
+
+        public MATCHEVENT_NAME GetMatchEvent()
+        { return _MatchEvent; }
+
         public ROBOT_MODE GetRobotMode()
         { return _RobotMode; }
 

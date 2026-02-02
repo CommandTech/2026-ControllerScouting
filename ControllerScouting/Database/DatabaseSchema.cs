@@ -41,7 +41,7 @@ namespace ControllerScouting.Database
         public string Mode { get; set; }
         public string DriveStation { get; set; }
         public string StartingLocation { get; set; }
-        public string BumpTraversal { get; set; }
+        public int BumpTraversal { get; set; }
         public string Defense { get; set; }
         public string Avoidance { get; set; }
         public double DefenseTime { get; set; }
@@ -58,7 +58,7 @@ namespace ControllerScouting.Database
         public string AttemptClimb { get; set; }
         public string EndState { get; set; }
         public string Strategy { get; set; }
-        
+
 
         //Examples from previous years
         //public TimeSpan Cycle { get; set; }
@@ -102,7 +102,7 @@ namespace ControllerScouting.Database
                 Mode,
                 DriveStation,
                 StartingLocation,
-                BumpTraversal,
+                BumpTraversal.ToString(),
                 Defense,
                 Avoidance,
                 DefenseTime.ToString(),
@@ -153,7 +153,7 @@ namespace ControllerScouting.Database
         public string Mode { get; set; }
         public string DriveStation { get; set; }
         public string StartingLocation { get; set; }
-        public string BumpTraversal { get; set; }
+        public int BumpTraversal { get; set; }
         public string Defense { get; set; }
         public string Avoidance { get; set; }
         public double DefenseTime { get; set; }
@@ -451,7 +451,7 @@ namespace ControllerScouting.Database
                         BackgroundCode.seasonframework.SaveChanges();
                     }
                     break;
-                }
+            }
 
             BackgroundCode.activitiesQueue.Clear();
 
@@ -493,7 +493,7 @@ namespace ControllerScouting.Database
             }
 
             string locationCorrected = DoubleBackslashesAndEnsureTrailing(location);
-            
+
             string filePath = locationCorrected + databaseName;
             string directoryPath = Path.GetDirectoryName(filePath);
             Directory.CreateDirectory(directoryPath);
