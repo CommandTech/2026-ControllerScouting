@@ -38,6 +38,22 @@ namespace ControllerScouting.Database
                 {
                     prop.SetValue(this, "-");
                 }
+                else if (prop.PropertyType == typeof(int) && prop.CanWrite)
+                {
+                    prop.SetValue(this, -1);
+                }
+                else if (prop.PropertyType == typeof(double) && prop.CanWrite)
+                {
+                    prop.SetValue(this, -1.0);
+                }
+                else if (prop.PropertyType == typeof(DateTime) && prop.CanWrite)
+                {
+                    prop.SetValue(this, DateTime.MinValue);
+                }
+                else if (prop.PropertyType == typeof(long) && prop.CanWrite)
+                {
+                    prop.SetValue(this, -1L);
+                }
             }
         }
 
@@ -49,14 +65,13 @@ namespace ControllerScouting.Database
         public string Mode { get; set; }
         public string DriveStation { get; set; }
         public string StartingLocation { get; set; }
-        public int BumpTraversals { get; set; }
+        public int BumpTraversal { get; set; }
         public string Defense { get; set; }
         public string Avoidance { get; set; }
         public double DefenseTime { get; set; }
-        public double FuelIntakeTime { get; set; }
-        public double FuelScoringTime { get; set; }
-        public int FuelIntakeRate { get; set; }
-        public int FuelScoringRate { get; set; }
+        public double FuelIntakingTime { get; set; }
+        public double FuelShootingTime { get; set; }
+        public double FeedingTime { get; set; }
         public double ClimbTime { get; set; }
         public double TimeOfClimb { get; set; }
         public string LadderLocation { get; set; }
@@ -73,6 +88,17 @@ namespace ControllerScouting.Database
         //public DateTime AcquireTime { get; set; }
         //public DateTime DeliverTime { get; set; }
         //public Decimal score_contribution { get; set; }
+    }
+
+    public class Activity : ActivityBase
+    {
+        public Activity() : base() { }
+
+        public Activity DeepCopy()
+        {
+            var json = JsonSerializer.Serialize(this);
+            return JsonSerializer.Deserialize<Activity>(json);
+        }
 
         public string ToCSV()
         {
@@ -85,14 +111,13 @@ namespace ControllerScouting.Database
                 Mode,
                 DriveStation,
                 StartingLocation,
-                BumpTraversals.ToString(),
+                BumpTraversal.ToString(),
                 Defense,
                 Avoidance,
                 DefenseTime.ToString(),
-                FuelIntakeTime.ToString(),
-                FuelScoringTime.ToString(),
-                FuelIntakeRate.ToString(),
-                FuelScoringRate.ToString(),
+                FuelIntakingTime.ToString(),
+                FuelShootingTime.ToString(),
+                FeedingTime.ToString(),
                 ClimbTime.ToString(),
                 TimeOfClimb.ToString(),
                 LadderLocation,
@@ -118,17 +143,6 @@ namespace ControllerScouting.Database
             }
 
             return string.Join(",", values);
-        }
-    }
-
-    public class Activity : ActivityBase
-    {
-        public Activity() : base() { }
-
-        public static T DeepCopy<T>(T obj)
-        {
-            var json = JsonSerializer.Serialize(obj);
-            return JsonSerializer.Deserialize<T>(json);
         }
     }
 
