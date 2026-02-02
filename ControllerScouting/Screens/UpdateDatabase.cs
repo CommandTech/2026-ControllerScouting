@@ -173,7 +173,7 @@ namespace ControllerScouting.Screens
                     {
                         BumpChangeAmount = newBumpValue - result.BumpTraversal;
                     }
-                    List<string> valuesChanged = [];
+                    
                     string query = "UPDATE Activities SET BumpTraversal = '" + TeleopBumpValue.Text + "' WHERE Id = '" + result.Id + "';";
                     seasonframework.Database.ExecuteSqlCommand(query);
 

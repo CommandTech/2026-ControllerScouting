@@ -42,40 +42,17 @@ namespace ControllerScouting.Utilities
         private MATCHEVENT_NAME _MatchEvent;       //Match Event
         private ROBOT_MODE _RobotMode;              //Control
 
-        //public ROBOT_MODE Current_Mode
-        //{
-        //    get { return _RobotMode; }
-        //    set { _RobotMode = value; }
-        //}
-
         public String TeamName
         {
             get { return _TeamName; }
             set { _TeamName = value; }
         }
-        //public MATCHEVENT_NAME MatchEvent
-        //{
-        //    get { return _MatchEvent; }
-        //    set { _MatchEvent = value; }
-        //}
-
-        //public SCOUTER_NAME ScouterName
-        //{
-        //    get { return _ScouterName; }
-        //    set { _ScouterName = value; }
-        //}
         public SCOUTER_NAME GetScouterName()
         { return _ScouterName; }
         
         public MATCHEVENT_NAME GetMatchEvent()
         { return _MatchEvent; }
         
-        public ROBOT_MODE GetRobotMode()
-        { return _RobotMode; }
-
-        public MATCHEVENT_NAME GetMatchEvent()
-        { return _MatchEvent; }
-
         public ROBOT_MODE GetRobotMode()
         { return _RobotMode; }
 

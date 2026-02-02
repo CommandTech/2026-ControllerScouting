@@ -354,7 +354,7 @@ namespace ControllerScouting.Database
                         activity_record.AutoClimb = controller.GetAutoClimb().ToString();
                         activity_record.StartingLocation = controller.GetStartingLocation().ToString();
 
-                        activity_record.BumpTraversal = controller.BumpTraversal.ToString();
+                        activity_record.BumpTraversal = controller.BumpTraversal;
                         activity_record.FuelShootingTime = controller.FuelShootingTime.TotalSeconds;
                         activity_record.FuelIntakingTime = controller.FuelIntakingTime.TotalSeconds;
                         activity_record.FeedingTime = controller.FeedingTime.TotalMinutes;
@@ -369,7 +369,7 @@ namespace ControllerScouting.Database
 
                         break;
                     case "Activities":
-                        activity_record.BumpTraversal = controller.BumpTraversal.ToString();
+                        activity_record.BumpTraversal = controller.BumpTraversal;
                         activity_record.FuelIntakingTime = controller.FuelIntakingTime.TotalSeconds;
                         activity_record.FuelShootingTime = controller.FuelShootingTime.TotalSeconds;
                         activity_record.DefenseTime = controller.DefenseTime.TotalSeconds;
@@ -395,7 +395,7 @@ namespace ControllerScouting.Database
                         activity_record.Strategy = controller.GetStrategy().ToString();
 
                         activity_record.DefenseTime = controller.DefenseTime.TotalSeconds;
-                        activity_record.BumpTraversal = controller.BumpTraversal.ToString();
+                        activity_record.BumpTraversal = controller.BumpTraversal;
                         activity_record.FuelShootingTime = controller.FuelShootingTime.TotalSeconds;
                         activity_record.FuelIntakingTime = controller.FuelIntakingTime.TotalSeconds;
                         activity_record.FeedingTime = controller.FeedingTime.TotalSeconds;

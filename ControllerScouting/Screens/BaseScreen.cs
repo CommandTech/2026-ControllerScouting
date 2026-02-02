@@ -554,28 +554,10 @@ namespace ControllerScouting.Screens
             frm.Show();
         }
 
-        readonly Dictionary<int, string> DefenseEquality = new()
-        {
-            { 0, "None" },
-            { 1, "1 Station" },
-            { 2, "2 Stations" },
-            { 3, "Chasing" },
-            { 4, "Counter" },
-            { 9, "Scouter Error" }
-        };
-        readonly Dictionary<int, string> AvoidanceEquality = new()
-        {
-            { 0, "None" },
-            { 1, "1 Station" },
-            { 2, "2 Stations" },
-            { 3, "Chasing" },
-            { 4, "Counter" },
-            { 9, "Scouter Error" }
-        };
         private void UpdateScreen(object sender, EventArgs e)
         {
             //Loops through all 6 boxes to update the text to be based on the RobotState
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < BackgroundCode.gamePads.Length; i++)
             {
                 RobotState robot = BackgroundCode.Robots[i];
                 int robotBox = robot.ScouterBox;
