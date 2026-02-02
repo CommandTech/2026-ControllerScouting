@@ -25,8 +25,8 @@ namespace ControllerScouting.Utilities
 
             using var _ = Logger.Erase();
             
-            BackgroundCode.Initialize();
             BackgroundCode.CheckSQLExists();
+            BackgroundCode.Initialize();
             Application.Run(new BaseScreen());
         }
 

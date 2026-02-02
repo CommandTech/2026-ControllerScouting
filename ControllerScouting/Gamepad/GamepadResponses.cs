@@ -17,13 +17,16 @@ namespace ControllerScouting.Gamepad
                 //If the stopwatch does not exist, creates it
                 robot.TimeOfClimb_StopWatch ??= new Stopwatch();
                 robot.DefenseTime_StopWatch ??= new Stopwatch();
+                robot.FuelIntakingTime_StopWatch ??= new Stopwatch();
+                robot.FuelShootingTime_StopWatch ??= new Stopwatch();
+                robot.FeedingTime_StopWatch ??= new Stopwatch();
 
                 gamepad.Update();
 
                 //***********************************
                 //CHANGE SCOUTER NAME
                 //***********************************
-                if (robot.Current_Mode == RobotState.ROBOT_MODE.Auto)
+                if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Auto)
                 {
                     //Select Scouter Name
                     if (gamepad.AButton_Down && gamepad.LeftStickLeft_Press)
@@ -35,10 +38,31 @@ namespace ControllerScouting.Gamepad
                         robot.ChangeScouterName(RobotState.CYCLE_DIRECTION.Down);
                     }
                 }
+
+                //***********************************
+                //CHANGE MATCH EVENT
+                //***********************************
+                if (robot.GetScouterName() != RobotState.SCOUTER_NAME.Select_Name)
+                {
+                    if (gamepad.RightStickRight_Press)
+                    {
+                        robot.CycleEventName(RobotState.CYCLE_DIRECTION.Up);
+                    }
+                    else if (gamepad.RightStickLeft_Press)
+                    {
+                        robot.CycleEventName(RobotState.CYCLE_DIRECTION.Down);
+                    }
+
+                    if (gamepad.R3_Down)
+                    {
+                        DatabaseCode.SaveToRecord(robot, "Match_Event");
+                    }
+                }
+
                 //***********************************
                 //AUTO MODE
                 //***********************************
-                if (robot.Current_Mode == RobotState.ROBOT_MODE.Auto && robot.GetScouterName() != RobotState.SCOUTER_NAME.Select_Name)
+                if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Auto && robot.GetScouterName() != RobotState.SCOUTER_NAME.Select_Name)
                 {
                     if (gamepad.LeftTrigger_Press)
                     {
@@ -57,11 +81,11 @@ namespace ControllerScouting.Gamepad
                         robot.CycleStartingLocation(RobotState.CYCLE_DIRECTION.Down);
                     }
                     else if (gamepad.DpadUp_Press) {
-                        robot.Climb_Level = RobotState.CLIMB_LEVEL.L1;
+                        robot.Auto_Climb = RobotState.BOOLEAN.Yes;
                     }
                     else if (gamepad.DpadDown_Press)
                     {
-                        robot.Climb_Level = RobotState.CLIMB_LEVEL.No_Climb;
+                        robot.Auto_Climb = RobotState.BOOLEAN.No;
                     }
 
                     if (gamepad.LeftButton_Down)
@@ -84,11 +108,17 @@ namespace ControllerScouting.Gamepad
                         robot.FuelShootingTime_StopWatch.Stop();
                         robot.FuelShootingTime = robot.FuelShootingTime_StopWatch.Elapsed;
                     }
+
+                    if (gamepad.StartButton_Press)
+                    {
+                        DatabaseCode.SaveToRecord(robot, "EndAuto");
+                        robot.CycleRobotMode(RobotState.CYCLE_DIRECTION.Up);
+                    }
                 }
                 //***********************************
                 //TELEOP MODE
                 //***********************************
-                else if (robot.Current_Mode == RobotState.ROBOT_MODE.Teleop && robot.GetScouterName() != RobotState.SCOUTER_NAME.Select_Name)
+                else if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Teleop && robot.GetScouterName() != RobotState.SCOUTER_NAME.Select_Name)
                 {
                     if (gamepad.L3_Down) {
                         robot.DefenseTime_StopWatch.Start();
@@ -129,17 +159,37 @@ namespace ControllerScouting.Gamepad
                         robot.FuelShootingTime_StopWatch.Stop();
                         robot.FuelShootingTime = robot.FuelShootingTime_StopWatch.Elapsed;
                     }
+
+                    if (gamepad.YButton_Down)
+                    {
+                        robot.FeedingTime_StopWatch.Start();
+                        robot.FeedingTime = robot.FeedingTime_StopWatch.Elapsed;
+                    }
+                    else if (gamepad.YButton_Release)
+                    {
+                        robot.FeedingTime_StopWatch.Stop();
+                        robot.FeedingTime = robot.FeedingTime_StopWatch.Elapsed;
+                    }
+
+                    if (gamepad.StartButton_Press)
+                    {
+                        robot.CycleRobotMode(RobotState.CYCLE_DIRECTION.Up);
+                        robot.TimeOfClimb_StopWatch.Start(); // starts the time
+                    }
                 }
 
                 //***********************************
                 //ENDGAME MODE
                 //***********************************
-                else if (robot.Current_Mode == RobotState.ROBOT_MODE.Endgame && robot.GetScouterName() != RobotState.SCOUTER_NAME.Select_Name)
+                else if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Endgame && robot.GetScouterName() != RobotState.SCOUTER_NAME.Select_Name)
                 {
-                    robot.TimeOfClimb_StopWatch.Start(); // starts the time
-                    robot.TimeOfClimb_StopWatch_Running = true;
 
-                    if (gamepad.AButton_Down)
+                    if (!robot.ClimbedTime)
+                    {
+                        robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
+                    }
+
+                    if (gamepad.AButton_Press)
                     {
                         robot.CycleLadderLocation(RobotState.CYCLE_DIRECTION.Up);
                     }
@@ -163,24 +213,26 @@ namespace ControllerScouting.Gamepad
                     {
                         robot.CycleStrategy(RobotState.CYCLE_DIRECTION.Down);
                     }
-                    else if (gamepad.LeftTrigger_Press)
+                    if (gamepad.LeftButton_Press)
+                    {
+                        robot.TimeOfClimb_StopWatch.Start();
+                    }
+                    if (gamepad.LeftTrigger_Press && robot.TimeOfClimb_StopWatch.IsRunning)
                     {
                         robot.TimeOfClimb_StopWatch.Reset();
-                        robot.TimeOfClimb = robot.TimeOfClimb_StopWatch.Elapsed;
-                        robot.TimeOfClimb_StopWatch_Running = false;
+                        robot.TimeOfClimb_StopWatch.Stop();
+                        robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
+                        robot.ClimbedTime = false;
                     }
-                    else if (gamepad.RightButton_Press) {
-                        robot.TimeOfClimb = robot.TimeOfClimb_StopWatch.Elapsed;
-                        robot.TimeOfClimbDouble = robot.TimeOfClimb.TotalSeconds;
-
-                    }
-                    else if (gamepad.RightButton_Press && robot.TimeOfClimbDouble>0)
+                    if (gamepad.RightButton_Press && robot.ClimbedTime)
                     {
                         robot.TimeOfClimb_StopWatch.Stop();
                         robot.TimeOfClimb = robot.TimeOfClimb_StopWatch.Elapsed;
-                        robot.TimeOfClimbDouble = robot.TimeOfClimb.TotalSeconds;
-                        robot.TimeOfClimb_StopWatch_Running = false;
                         robot.End_Match = RobotState.BOOLEAN.Yes;
+                    }
+                    else if (gamepad.RightButton_Press) {
+                        robot.ClimbedTime = true;
+                        robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
                     }
 
                     if (gamepad.DpadLeft_Press)
@@ -192,19 +244,19 @@ namespace ControllerScouting.Gamepad
                         robot.CycleAvoidanceStrategy(RobotState.CYCLE_DIRECTION.Up);
                     }
                     else if (gamepad.DpadUp_Press) {
-                        robot.CycleClimbSuccess(RobotState.CYCLE_DIRECTION.Up);
+                        robot.Climb_Success = RobotState.BOOLEAN.Yes;
                     } 
                     else if (gamepad.DpadDown_Press) {
-                        robot.CycleClimbSuccess(RobotState.CYCLE_DIRECTION.Down);
+                        robot.Climb_Success = RobotState.BOOLEAN.No;
                     }
 
-                }
+                    if (gamepad.StartButton_Press && !robot.ClimbedTime && robot.TimeOfClimb_StopWatch.IsRunning)
+                    {
+                        robot.CycleRobotMode(RobotState.CYCLE_DIRECTION.Down);
+                        robot.TimeOfClimb_StopWatch.Stop();
+                        robot.TimeOfClimb_StopWatch.Reset();
+                    }
 
-                //***********************************
-                //Any mode
-                //***********************************
-                if (robot.GetScouterName() != RobotState.SCOUTER_NAME.Select_Name)
-                {
                 }
 
                 // Values if robot is NoSho

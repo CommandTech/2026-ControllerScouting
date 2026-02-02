@@ -66,6 +66,12 @@ namespace ControllerScouting.Utilities
         //}
         public SCOUTER_NAME GetScouterName()
         { return _ScouterName; }
+        
+        public MATCHEVENT_NAME GetMatchEvent()
+        { return _MatchEvent; }
+        
+        public ROBOT_MODE GetRobotMode()
+        { return _RobotMode; }
 
         public MATCHEVENT_NAME GetMatchEvent()
         { return _MatchEvent; }
@@ -97,7 +103,7 @@ namespace ControllerScouting.Utilities
                 _MatchEvent = (MATCHEVENT_NAME)GetPreviousEnum<MATCHEVENT_NAME>(_MatchEvent);
             }
         }
-
+        
         //Cycle Robot Mode
         public void CycleRobotMode(CYCLE_DIRECTION CycleDirection)
         {
