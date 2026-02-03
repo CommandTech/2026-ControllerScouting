@@ -433,6 +433,7 @@ namespace ControllerScouting.Database
                     break;
             }
 
+            _ = SupabaseActivity.WriteToSupabase();
             BackgroundCode.activitiesQueue.Clear();
 
             for (int i = 0; i < BackgroundCode.gamePads.Length; i++)
