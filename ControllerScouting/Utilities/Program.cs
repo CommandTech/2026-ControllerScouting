@@ -20,7 +20,7 @@ namespace ControllerScouting.Utilities
             Application.SetCompatibleTextRenderingDefault(false);
 
             //Determines what functions to run when different exceptions are thrown
-            Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
+            Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
             using var _ = Logger.Erase();
@@ -31,7 +31,7 @@ namespace ControllerScouting.Utilities
         }
 
         // Handle UI thread exceptions
-        static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
             HandleException(e.Exception);
         }

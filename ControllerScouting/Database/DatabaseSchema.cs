@@ -396,44 +396,42 @@ namespace ControllerScouting.Database
         }
         public static void SendToDatabase()
         {
-            switch (BackgroundCode.dataExport)
+            foreach (Activity activity in BackgroundCode.activitiesQueue)
             {
-                case BackgroundCode.EXPORT_TYPE.CSV:
-                    foreach (Activity activity in BackgroundCode.activitiesQueue)
-                    {
-                        //Save Record to the CSV file
-                        string locationFixed = Settings.Default.CSVLocation.Replace(@"\", @"\\");
-                        using StreamWriter sw = File.AppendText(locationFixed + "\\" + databaseName);
-                        sw.WriteLine(activity.ToCSV());
-                    }
-                    break;
-                case BackgroundCode.EXPORT_TYPE.SQLonline:
-                    BackgroundCode.seasonframework.Database.Connection.Close();
-                    BackgroundCode.seasonframework.Database.Connection.ConnectionString = Settings.Default._scoutingdbServerConnectionString;
-                    BackgroundCode.seasonframework.Database.Connection.Open();
+                switch (BackgroundCode.dataExport)
+                {
+                    case BackgroundCode.EXPORT_TYPE.CSV:
+                        {
+                            //Save Record to the CSV file
+                            string locationFixed = Settings.Default.CSVLocation.Replace(@"\", @"\\");
+                            using StreamWriter sw = File.AppendText(locationFixed + "\\" + databaseName);
+                            sw.WriteLine(activity.ToCSV());
+                        }
+                        break;
+                    case BackgroundCode.EXPORT_TYPE.SQLonline:
+                        BackgroundCode.seasonframework.Database.Connection.Close();
+                        BackgroundCode.seasonframework.Database.Connection.ConnectionString = Settings.Default._scoutingdbServerConnectionString;
+                        BackgroundCode.seasonframework.Database.Connection.Open();
 
-                    foreach (Activity activity in BackgroundCode.activitiesQueue)
-                    {
                         //Save Record to the database
                         BackgroundCode.seasonframework.ActivitySet.Add(activity);
                         BackgroundCode.seasonframework.SaveChanges();
-                    }
-                    break;
-                case BackgroundCode.EXPORT_TYPE.SQLlocal:
-                    BackgroundCode.seasonframework.Database.Connection.Close();
-                    BackgroundCode.seasonframework.Database.Connection.ConnectionString = Settings.Default._scoutingdbConnectionString;
-                    BackgroundCode.seasonframework.Database.Connection.Open();
 
-                    foreach (Activity activity in BackgroundCode.activitiesQueue)
-                    {
+                        break;
+                    case BackgroundCode.EXPORT_TYPE.SQLlocal:
+                        BackgroundCode.seasonframework.Database.Connection.Close();
+                        BackgroundCode.seasonframework.Database.Connection.ConnectionString = Settings.Default._scoutingdbConnectionString;
+                        BackgroundCode.seasonframework.Database.Connection.Open();
+
                         //Save Record to the database
                         BackgroundCode.seasonframework.ActivitySet.Add(activity);
                         BackgroundCode.seasonframework.SaveChanges();
-                    }
-                    break;
+                        
+                        break;
+                }
+                _ = SupabaseActivity.WriteToSupabase(activity);
             }
-
-            _ = SupabaseActivity.WriteToSupabase();
+            
             BackgroundCode.activitiesQueue.Clear();
 
             for (int i = 0; i < BackgroundCode.gamePads.Length; i++)

@@ -87,7 +87,7 @@ namespace ControllerScouting.Database
         [Column("BumpTraversal")]
         public int BumpTraversal { get; set; }
 
-        public static async Task WriteToSupabase()
+        public static async Task WriteToSupabase(Activity activity)
         {
             if (BackgroundCode.supabase == null || BackgroundCode.activitiesQueue.Count == 0)
             {
@@ -96,7 +96,6 @@ namespace ControllerScouting.Database
 
             while(BackgroundCode.activitiesQueue.Count != 0)
             {
-                Activity activity = BackgroundCode.activitiesQueue.Dequeue();
                 try
                 {
                     var record = new SupabaseActivity

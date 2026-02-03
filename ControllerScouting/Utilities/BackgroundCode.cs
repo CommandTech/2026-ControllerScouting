@@ -141,7 +141,7 @@ namespace ControllerScouting.Utilities
                 AutoRefreshToken = true
             };
 
-            Client _supabase = new(BackgroundCode.iniFile.Read("SupaBase","url",""), BackgroundCode.iniFile.Read("SupaBase", "key", ""), options);
+            Client _supabase = new(iniFile.Read("SupaBase","url",""), iniFile.Read("SupaBase", "key", ""), options);
 
             status.Client = (Supabase.Gotrue.Client)_supabase.Auth;
 
@@ -149,10 +149,7 @@ namespace ControllerScouting.Utilities
 
             _supabase.Auth.Options.AllowUnconfirmedUserSessions = true;
 
-            BackgroundCode.iniFile.Write("SupaBase", "url", "https://lmqqqmkygfkpuccptvzw.supabase.co");
-            BackgroundCode.iniFile.Write("SupaBase", "key", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxtcXFxbWt5Z2ZrcHVjY3B0dnp3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE3NDYxNTUsImV4cCI6MjA3NzMyMjE1NX0.1_wX1GGEtHkLMo0Z-oI98UHdZnuGL3x3UnDjA0gbvlU");
-
-            string url = $"{BackgroundCode.iniFile.Read("SupaBase", "url", "")}/auth/v1/settings?apikey={BackgroundCode.iniFile.Read("SupaBase", "key", "")}";
+            string url = $"{iniFile.Read("SupaBase", "url", "")}/auth/v1/settings?apikey={iniFile.Read("SupaBase", "key", "")}";
             try
             {
                 _supabase!.Auth.Online = await status.StartAsync(url);
@@ -174,15 +171,15 @@ namespace ControllerScouting.Utilities
 
                 try
                 {
-                    var email = BackgroundCode.iniFile.Read("SupaBase","email","");
-                    var password = BackgroundCode.iniFile.Read("SupaBase", "password","");
+                    var email = iniFile.Read("SupaBase","email","");
+                    var password = iniFile.Read("SupaBase", "password","");
 
                     if (!string.IsNullOrWhiteSpace(email) && !string.IsNullOrWhiteSpace(password))
                     {
                         var session = await _supabase.Auth.SignInWithPassword(email, password);
                         System.Diagnostics.Debug.WriteLine($"Supabase sign-in success. User: {session?.User?.Email ?? "unknown"}");
 
-                        BackgroundCode.supabase = _supabase;
+                        supabase = _supabase;
                     }
                     else
                     {
