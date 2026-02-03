@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
+using Supabase;
+using Client = Supabase.Client;
 
 namespace ControllerScouting.Utilities
 {
@@ -38,6 +40,7 @@ namespace ControllerScouting.Utilities
         public static string loadedEvent = "";                      //The event currently loaded
         public static bool practiceMode = false;                    //Is the scouting system in practice mode?
         public static int practiceTeam = 0;
+        public static Client supabase;
 
         public static readonly string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
         public static readonly string projectBaseDirectory = System.IO.Path.GetFullPath(System.IO.Path.Combine(baseDirectory, @"..\..\"));
@@ -125,7 +128,75 @@ namespace ControllerScouting.Utilities
                 // initializes the database
                 seasonframework.Database.Initialize(true);
             }
+
+            _ = InitialzeSupabase();
         }
+
+        private static async Task InitialzeSupabase()
+        {
+            Supabase.Gotrue.NetworkStatus status = new();
+
+            SupabaseOptions options = new()
+            {
+                AutoRefreshToken = true
+            };
+
+            Client _supabase = new(BackgroundCode.iniFile.Read("SupaBase","url",""), BackgroundCode.iniFile.Read("SupaBase", "key", ""), options);
+
+            status.Client = (Supabase.Gotrue.Client)_supabase.Auth;
+
+            _supabase.Auth.LoadSession();
+
+            _supabase.Auth.Options.AllowUnconfirmedUserSessions = true;
+
+            BackgroundCode.iniFile.Write("SupaBase", "url", "https://lmqqqmkygfkpuccptvzw.supabase.co");
+            BackgroundCode.iniFile.Write("SupaBase", "key", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxtcXFxbWt5Z2ZrcHVjY3B0dnp3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE3NDYxNTUsImV4cCI6MjA3NzMyMjE1NX0.1_wX1GGEtHkLMo0Z-oI98UHdZnuGL3x3UnDjA0gbvlU");
+
+            string url = $"{BackgroundCode.iniFile.Read("SupaBase", "url", "")}/auth/v1/settings?apikey={BackgroundCode.iniFile.Read("SupaBase", "key", "")}";
+            try
+            {
+                _supabase!.Auth.Online = await status.StartAsync(url);
+            }
+            catch (NotSupportedException)
+            {
+                _supabase!.Auth.Online = true;
+            }
+            catch (Exception e)
+            {
+                _ = Logger.Log($"Network Error {e.GetType()}");
+                _supabase!.Auth.Online = false;
+            }
+            if (_supabase.Auth.Online)
+            {
+                await _supabase.InitializeAsync();
+
+                await _supabase.Auth.Settings();
+
+                try
+                {
+                    var email = BackgroundCode.iniFile.Read("SupaBase","email","");
+                    var password = BackgroundCode.iniFile.Read("SupaBase", "password","");
+
+                    if (!string.IsNullOrWhiteSpace(email) && !string.IsNullOrWhiteSpace(password))
+                    {
+                        var session = await _supabase.Auth.SignInWithPassword(email, password);
+                        System.Diagnostics.Debug.WriteLine($"Supabase sign-in success. User: {session?.User?.Email ?? "unknown"}");
+
+                        BackgroundCode.supabase = _supabase;
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.WriteLine("Supabase sign-in skipped: missing INI credentials (Supabase.Auth email/password).");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _ = Logger.Log($"Supabase sign-in failed: {ex.Message}");
+                    System.Diagnostics.Debug.WriteLine($"Supabase sign-in failed: {ex}");
+                }
+            }
+        }
+
         public static void StartControllerThreads()
         {
             foreach (GamePad gamePad in gamePads)
