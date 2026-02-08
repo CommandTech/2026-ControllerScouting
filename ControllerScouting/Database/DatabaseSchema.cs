@@ -38,7 +38,7 @@ namespace ControllerScouting.Database
                 {
                     prop.SetValue(this, "-");
                 }
-                else if (prop.PropertyType == typeof(int) && prop.CanWrite)
+                else if (prop.PropertyType == typeof(int) && prop.CanWrite && prop.Name != "Id")
                 {
                     prop.SetValue(this, -1);
                 }
@@ -431,25 +431,52 @@ namespace ControllerScouting.Database
                         sw.WriteLine(activity.ToCSV());
                     }
                     break;
-                case BackgroundCode.EXPORT_TYPE.SQLonline:
-
+                default:
                     //Save Record to the database
                     BackgroundCode.localSeasonframework.ActivitySet.Add(activity);
                     BackgroundCode.localSeasonframework.SaveChanges();
-
-                    //Save Record to the database
-                    BackgroundCode.serverSeasonframework.ActivitySet.Add(activity);
-                    BackgroundCode.serverSeasonframework.SaveChanges();
-
-                    break;
-                case BackgroundCode.EXPORT_TYPE.SQLlocal:
-
-                    //Save Record to the database
-                    BackgroundCode.localSeasonframework.ActivitySet.Add(activity);
-                    BackgroundCode.localSeasonframework.SaveChanges();
-                        
+                    BackgroundCode.localSQLChanges = true;
                     break;
             }
+        }
+
+        public static void UpdateServerSQL()
+        {
+            try
+            {
+                var localActivities = BackgroundCode.localSeasonframework.ActivitySet.AsNoTracking().ToList();
+                var serverActivities = BackgroundCode.serverSeasonframework.ActivitySet.AsNoTracking().ToList();
+
+                // Using a key that should be unique for an activity record.
+                var localActivityKeys = new HashSet<(string Team, int Match, string ScouterName, DateTime Time)>(
+                    localActivities.Select(a => (a.Team, a.Match, a.ScouterName, a.Time))
+                );
+
+                var serverActivityKeys = new HashSet<(string Team, int Match, string ScouterName, DateTime Time)>(
+                    serverActivities.Select(a => (a.Team, a.Match, a.ScouterName, a.Time))
+                );
+
+                // Find activities present in local but not on server
+                var activitiesToAddToServer = localActivities.Where(local =>
+                    !serverActivityKeys.Contains((local.Team, local.Match, local.ScouterName, local.Time))
+                ).ToList();
+
+                if (activitiesToAddToServer.Count != 0)
+                {
+                    foreach (var activity in activitiesToAddToServer)
+                    {
+                        activity.Id = 0; // Reset ID for insertion as a new record
+                    }
+                    BackgroundCode.serverSeasonframework.ActivitySet.AddRange(activitiesToAddToServer);
+                    BackgroundCode.serverSeasonframework.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                _ = Logger.Log($"An error occurred during database synchronization: {ex.Message}");
+            }
+
+            BackgroundCode.localSQLChanges = false;
         }
 
         public static bool DoesCSVExist(string location)

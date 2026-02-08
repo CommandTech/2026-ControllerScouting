@@ -102,6 +102,11 @@ namespace ControllerScouting.Screens
                     DatabaseCode.SendToDatabase(activity);
                 }
 
+                if (BackgroundCode.dataExport == BackgroundCode.EXPORT_TYPE.SQLonline && BackgroundCode.localSQLChanges)
+                {
+                    DatabaseCode.UpdateServerSQL();
+                }
+
                 Thread.Sleep(20);
             }
         }
@@ -147,19 +152,9 @@ namespace ControllerScouting.Screens
         }
         private void BtnInitialDBLoad_Click(object sender, EventArgs e)
         {
-            if (Settings.Default.sqlExists)
-            {
-                BackgroundCode.localSeasonframework.Database.Connection.Close();
-                BackgroundCode.serverSeasonframework.Database.Connection.Close();
-            }
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to load The Blue Alliance data?", "Please Confirm", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                if (Settings.Default.sqlExists)
-                {
-                    BackgroundCode.localSeasonframework.Database.Connection.Open();
-                    BackgroundCode.serverSeasonframework.Database.Connection.Open();
-                }
                 GetEvents(false);
                 SetRedRight();
 
@@ -238,6 +233,7 @@ namespace ControllerScouting.Screens
                     DatabaseCode.SaveToRecord(BackgroundCode.Robots[BackgroundCode.Robots[i].ScouterBox], "EndMatch");
                 }
 
+
                 for (int i = 0; i < BackgroundCode.gamePads.Length; i++)
                 {
                     if (BackgroundCode.gamePads[i] != null)
@@ -315,11 +311,11 @@ namespace ControllerScouting.Screens
         private void LoadMatch()
         {
             SetTeamNameAndColor(this.lbl0TeamName, BackgroundCode.Robots[0], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Redteam1);
-            //SetTeamNameAndColor(this.lbl1TeamName, BackgroundCode.Robots[1], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Redteam2);
-            //SetTeamNameAndColor(this.lbl2TeamName, BackgroundCode.Robots[2], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Redteam3);
-            //SetTeamNameAndColor(this.lbl3TeamName, BackgroundCode.Robots[3], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Blueteam1);
-            //SetTeamNameAndColor(this.lbl4TeamName, BackgroundCode.Robots[4], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Blueteam2);
-            //SetTeamNameAndColor(this.lbl5TeamName, BackgroundCode.Robots[5], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Blueteam3);
+            SetTeamNameAndColor(this.lbl1TeamName, BackgroundCode.Robots[1], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Redteam2);
+            SetTeamNameAndColor(this.lbl2TeamName, BackgroundCode.Robots[2], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Redteam3);
+            SetTeamNameAndColor(this.lbl3TeamName, BackgroundCode.Robots[3], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Blueteam1);
+            SetTeamNameAndColor(this.lbl4TeamName, BackgroundCode.Robots[4], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Blueteam2);
+            SetTeamNameAndColor(this.lbl5TeamName, BackgroundCode.Robots[5], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Blueteam3);
             
             this.lblMatch.Text = $"{BackgroundCode.currentMatch}/{BackgroundCode.InMemoryMatchList.Count}";
         }
@@ -329,82 +325,6 @@ namespace ControllerScouting.Screens
             label.ForeColor = Color.Orange;
             CheckPrio(label, teamName);
         }
-        void SafeRenameDatabase(SeasonContext context, string oldName, string newName)
-        {
-            try
-            {
-                // 1. Close the active connection to the database we want to rename
-                if (context.Database.Connection.State == System.Data.ConnectionState.Open)
-                    context.Database.Connection.Close();
-
-                // 2. Connect to 'master' to perform the rename operation
-                var builder = new System.Data.SqlClient.SqlConnectionStringBuilder(context.Database.Connection.ConnectionString);
-                builder.InitialCatalog = "master";
-
-                using (var conn = new System.Data.SqlClient.SqlConnection(builder.ConnectionString))
-                {
-                    conn.Open();
-                    using (var cmd = conn.CreateCommand())
-                    {
-                        // 3. Check if the TARGET name already exists
-                        cmd.CommandText = $"SELECT database_id FROM sys.databases WHERE name = '{newName}'";
-                        bool targetExists = cmd.ExecuteScalar() != null;
-
-                        // 4. If target exists, generate a unique backup name to prevent crash
-                        string finalName = newName;
-                        if (targetExists)
-                        {
-                            finalName = $"{newName}_Backup_{DateTime.Now:yyyyMMddHHmmss}";
-                        }
-
-                        // 5. Perform the rename
-                        // We set SINGLE_USER to kick off any other open connections
-                        cmd.CommandText = $@"
-                                            IF EXISTS (SELECT name FROM sys.databases WHERE name = '{oldName}')
-                                            BEGIN
-                                                ALTER DATABASE [{oldName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-                                                ALTER DATABASE [{oldName}] MODIFY NAME = [{finalName}];
-                                                ALTER DATABASE [{finalName}] SET MULTI_USER;
-                                            END";
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Log invalid operations but do not crash the app
-                Console.WriteLine($"Database rename warning: {ex.Message}");
-            }
-        }
-
-        private void RenameDatabaseThread()
-        {
-            SafeRenameDatabase(BackgroundCode.serverSeasonframework, "scoutingdb", $"{DateTime.Now.Year}{regional}");
-            SafeRenameDatabase(BackgroundCode.localSeasonframework, "scoutingdb", $"{DateTime.Now.Year}{regional}");
-
-
-            var localBuilder = new System.Data.SqlClient.SqlConnectionStringBuilder(Settings.Default._scoutingdbConnectionString);
-            localBuilder.InitialCatalog = $"{DateTime.Now.Year}{regional}";
-            BackgroundCode.localSeasonframework.Database.Connection.ConnectionString = localBuilder.ConnectionString;
-
-            var serverBuilder = new System.Data.SqlClient.SqlConnectionStringBuilder(Settings.Default._scoutingdbServerConnectionString);
-            serverBuilder.InitialCatalog = $"{DateTime.Now.Year}{regional}";
-            BackgroundCode.serverSeasonframework.Database.Connection.ConnectionString = serverBuilder.ConnectionString;
-
-            // Attempt to persist the new connection strings to Settings
-            try
-            {
-                // Using indexer to bypass potential property readonly restrictions if attempting to set directly
-                Settings.Default["_scoutingdbConnectionString"] = localBuilder.ConnectionString;
-                Settings.Default["_scoutingdbServerConnectionString"] = serverBuilder.ConnectionString;
-                Settings.Default.Save();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Could not save new connection strings to Settings: " + ex.Message);
-            }
-        }
-
         private async void BtnpopulateForEvent_Click(object sender, EventArgs e)
         {
             if (!loading)
@@ -493,8 +413,33 @@ namespace ControllerScouting.Screens
                         //string uri = $"https://www.thebluealliance.com/api/v3/event/{DateTime.Now.Year}{regional}/teams?X-TBA-Auth-Key={Settings.Default.API_KEY}";
                         string uri = $"https://www.thebluealliance.com/api/v3/event/2025{regional}/teams?X-TBA-Auth-Key={Settings.Default.API_KEY}";
 
-                        Thread renameDatabaseThread = new(() => RenameDatabaseThread());
-                        renameDatabaseThread.Start();
+
+                        var localBuilder = new System.Data.SqlClient.SqlConnectionStringBuilder(Settings.Default._scoutingdbConnectionString)
+                        {
+                            InitialCatalog = $"{DateTime.Now.Year}{regional}"
+                        };
+                        BackgroundCode.localSeasonframework.Database.Connection.ConnectionString = localBuilder.ConnectionString;
+
+                        var serverBuilder = new System.Data.SqlClient.SqlConnectionStringBuilder(Settings.Default._scoutingdbServerConnectionString)
+                        {
+                            InitialCatalog = $"{DateTime.Now.Year}{regional}"
+                        };
+                        BackgroundCode.serverSeasonframework.Database.Connection.ConnectionString = serverBuilder.ConnectionString;
+
+                        // Attempt to persist the new connection strings to Settings
+                        try
+                        {
+                            // Using indexer to bypass potential property readonly restrictions if attempting to set directly
+                            Settings.Default["_scoutingdbConnectionString"] = localBuilder.ConnectionString;
+                            Settings.Default["_scoutingdbServerConnectionString"] = serverBuilder.ConnectionString;
+                            Settings.Default.Save();
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Could not save new connection strings to Settings: " + ex.Message);
+                        }
+
+                        BackgroundCode.InitalizeDB();
 
 
                         using (HttpClient client = new())

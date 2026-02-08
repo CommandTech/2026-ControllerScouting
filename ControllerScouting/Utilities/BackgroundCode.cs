@@ -2,11 +2,7 @@
 using ControllerScouting.Gamepad;
 using ControllerScouting.Properties;
 using Microsoft.Win32;
-using Supabase;
-using System;
 using System.Collections.Concurrent;
-using System.Security.Policy;
-using Client = Supabase.Client;
 
 namespace ControllerScouting.Utilities
 {
@@ -29,6 +25,7 @@ namespace ControllerScouting.Utilities
         public static Activity[] activity_record = new Activity[6]; //The activity record being sent to the database
         public static SeasonContext localSeasonframework = new();        //The database context
         public static SeasonContext serverSeasonframework = new();        //The database context
+        public static bool localSQLChanges = false;                 //If the local database has had changes
 
         public static List<string> teamPrio = [];                   //List of teams to prioritize scouting
         public static string homeTeam = "frc842";                   //Your team number
@@ -85,8 +82,6 @@ namespace ControllerScouting.Utilities
             gamePads = Controllers.GetGamePads();
             // Create and start a new thread for each controller
             StartControllerThreads();
-
-            InitalizeDB();
         }
         public static void CheckSQLExists()
         {
@@ -117,104 +112,26 @@ namespace ControllerScouting.Utilities
             }
         }
 
-        private static void InitalizeDB()
+        public static void InitalizeDB()
         {
             if (Settings.Default.sqlExists)
             {
-                // Ensure Local DB exists (creating with unique file names if necessary)
-                EnsureDatabaseCreated(Settings.Default._scoutingdbConnectionString);
+                localSeasonframework.Database.Connection.Close();
+                serverSeasonframework.Database.Connection.Close();
+
                 // Sets the connection string to the database
                 localSeasonframework.Database.Connection.ConnectionString = Settings.Default._scoutingdbConnectionString;
-                // initializes the database
-                localSeasonframework.Database.Initialize(true);
-
-
-                // Ensure Server DB exists
-                EnsureDatabaseCreated(Settings.Default._scoutingdbServerConnectionString);
                 // Sets the connection string to the database
                 serverSeasonframework.Database.Connection.ConnectionString = Settings.Default._scoutingdbServerConnectionString;
+
+                // initializes the database
+                localSeasonframework.Database.Initialize(true);
                 // initializes the database
                 serverSeasonframework.Database.Initialize(true);
-            }
-        }
 
-        private static void EnsureDatabaseCreated(string connectionString)
-        {
-            var builder = new System.Data.SqlClient.SqlConnectionStringBuilder(connectionString);
-            string targetDb = builder.InitialCatalog;
-            // Connect to master to perform CREATE DATABASE operations
-            builder.InitialCatalog = "master";
+                localSeasonframework.Database.Connection.Open();
+                serverSeasonframework.Database.Connection.Open();
 
-            using (var conn = new System.Data.SqlClient.SqlConnection(builder.ConnectionString))
-            {
-                conn.Open();
-                using (var cmd = conn.CreateCommand())
-                {
-                    // Check if DB logically exists
-                    cmd.CommandText = $"SELECT database_id FROM sys.databases WHERE name = '{targetDb}'";
-                    if (cmd.ExecuteScalar() != null) return;
-
-                    // Try to create the database normally
-                    try
-                    {
-                        cmd.CommandText = $"CREATE DATABASE [{targetDb}]";
-                        cmd.ExecuteNonQuery();
-                    }
-                    catch (System.Data.SqlClient.SqlException ex)
-                    {
-                        // Check for file existence error (Error 1802: CREATE DATABASE failed. Some file names listed could not be created.)
-                        // or (Error 5170: Cannot create file '...mdf' because it already exists.)
-                        if (ex.Message.Contains("already exists"))
-                        {
-                            // Retrieve default data paths to construct a unique filename
-                            string dataPath = GetSqlDataPath(conn, "InstanceDefaultDataPath");
-                            string logPath = GetSqlDataPath(conn, "InstanceDefaultLogPath");
-
-                            // Fallback to master file location if default paths aren't set (common in some configs)
-                            if (string.IsNullOrEmpty(dataPath))
-                            {
-                                dataPath = GetMasterPath(conn);
-                            }
-                            if (string.IsNullOrEmpty(logPath))
-                            {
-                                logPath = dataPath;
-                            }
-
-                            string uniqueSuffix = DateTime.Now.Ticks.ToString();
-                            string mdfName = System.IO.Path.Combine(dataPath, $"{targetDb}_{uniqueSuffix}.mdf");
-                            string ldfName = System.IO.Path.Combine(logPath, $"{targetDb}_log_{uniqueSuffix}.ldf");
-
-                            // Create database with explicit unique filenames
-                            cmd.CommandText = $@"CREATE DATABASE [{targetDb}] 
-                                                 ON PRIMARY (NAME=[{targetDb}_Data], FILENAME='{mdfName}')
-                                                 LOG ON (NAME=[{targetDb}_Log], FILENAME='{ldfName}')";
-                            cmd.ExecuteNonQuery();
-                        }
-                        else
-                        {
-                            throw; // Rethrow other unexpected errors
-                        }
-                    }
-                }
-            }
-        }
-        private static string GetSqlDataPath(System.Data.SqlClient.SqlConnection conn, string property)
-        {
-            using (var cmd = conn.CreateCommand())
-            {
-                cmd.CommandText = $"SELECT CAST(SERVERPROPERTY('{property}') AS NVARCHAR(MAX))";
-                var res = cmd.ExecuteScalar();
-                return res as string;
-            }
-        }
-
-        private static string GetMasterPath(System.Data.SqlClient.SqlConnection conn)
-        {
-            using (var cmd = conn.CreateCommand())
-            {
-                cmd.CommandText = "SELECT TOP 1 physical_name FROM sys.master_files WHERE database_id = 1 AND type = 0";
-                var res = cmd.ExecuteScalar() as string;
-                return res != null ? System.IO.Path.GetDirectoryName(res) : null;
             }
         }
 
