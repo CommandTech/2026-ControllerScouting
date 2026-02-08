@@ -329,6 +329,15 @@ namespace ControllerScouting.Screens
         {
             if (!loading)
             {
+                for (int i = 0; i < BackgroundCode.gamePads.Length; i++)
+                {
+                    if (BackgroundCode.gamePads[i] != null)
+                    {
+                        BackgroundCode.Robots[i] = RobotState.ResetScouter(BackgroundCode.Robots[i]);
+                    }
+                }
+
+
                 loading = true;
                 BackgroundCode.UnSortedMatchList.Clear();
                 BackgroundCode.InMemoryMatchList.Clear();

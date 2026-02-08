@@ -346,9 +346,16 @@ namespace ControllerScouting.Database
                         activity_record.FuelIntakingTime = controller.FuelIntakingTime.TotalSeconds;
                         activity_record.FeedingTime = controller.FeedingTime.TotalMinutes;
 
+
+                        controller.BumpTraversal = 0;
+
                         controller.FuelShootingTime_StopWatch.Reset();
                         controller.FuelIntakingTime_StopWatch.Reset();
                         controller.FeedingTime_StopWatch.Reset();
+
+                        controller.FuelIntakingTime = controller.FuelIntakingTime_StopWatch.Elapsed;
+                        controller.FuelShootingTime = controller.FuelShootingTime_StopWatch.Elapsed;
+                        controller.FeedingTime = controller.FeedingTime_StopWatch.Elapsed;
                         break;
                     case "Activities":
                         if (controller.FuelIntakingTime == TimeSpan.Zero)
@@ -366,10 +373,18 @@ namespace ControllerScouting.Database
                         activity_record.DefenseTime = controller.DefenseTime.TotalSeconds;
                         activity_record.FeedingTime = controller.FeedingTime.TotalMinutes;
 
+
+                        controller.BumpTraversal = 0;
+
                         controller.FuelIntakingTime_StopWatch.Reset();
                         controller.FuelShootingTime_StopWatch.Reset();
                         controller.DefenseTime_StopWatch.Reset();
                         controller.FeedingTime_StopWatch.Reset();
+
+                        controller.FuelIntakingTime = controller.FuelIntakingTime_StopWatch.Elapsed;
+                        controller.FuelShootingTime = controller.FuelShootingTime_StopWatch.Elapsed;
+                        controller.DefenseTime = controller.DefenseTime_StopWatch.Elapsed;
+                        controller.FeedingTime = controller.FeedingTime_StopWatch.Elapsed;
                         break;
                     case "EndMatch":
                         if (controller.Climb_Success == RobotState.BOOLEAN.Z)
@@ -400,10 +415,17 @@ namespace ControllerScouting.Database
                         activity_record.FuelIntakingTime = controller.FuelIntakingTime.TotalSeconds;
                         activity_record.FeedingTime = controller.FeedingTime.TotalSeconds;
 
+                        controller.BumpTraversal = 0;
+
                         controller.FuelIntakingTime_StopWatch.Reset();
                         controller.FuelShootingTime_StopWatch.Reset();
                         controller.DefenseTime_StopWatch.Reset();
                         controller.FeedingTime_StopWatch.Reset();
+
+                        controller.FuelIntakingTime = controller.FuelIntakingTime_StopWatch.Elapsed;
+                        controller.FuelShootingTime = controller.FuelShootingTime_StopWatch.Elapsed;
+                        controller.DefenseTime = controller.DefenseTime_StopWatch.Elapsed;
+                        controller.FeedingTime = controller.FeedingTime_StopWatch.Elapsed;
                         break;
                     case "Match_Event":
                         activity_record.MatchEvent = controller.MatchEvent.ToString();
