@@ -288,10 +288,8 @@ namespace ControllerScouting.Database
         }
         internal static void SaveToRecord(RobotState controller, string recordtype)
         {
-
             if (controller.GetScouterName() != RobotState.SCOUTER_NAME.Select_Name && controller.TeamName != null)
             {
-
                 Activity activity_record = new()
                 {
                     Time = DateTime.Now,
@@ -306,7 +304,7 @@ namespace ControllerScouting.Database
                 if (controller.ScouterBox == 0)
                 {
                     activity_record.DriveStation = "red0";
-                } 
+                }
                 else if (controller.ScouterBox == 1)
                 {
                     activity_record.DriveStation = "red1";
@@ -331,6 +329,15 @@ namespace ControllerScouting.Database
                 switch (recordtype)
                 {
                     case "EndAuto":
+                        if (controller.Starting_Location == RobotState.STARTING_LOCATION.None)
+                        {
+                            controller.ScouterError += 1;
+                        }
+                        if (controller.Auto_Climb == RobotState.BOOLEAN.Z)
+                        {
+                            controller.ScouterError += 10;
+                        }
+
                         activity_record.AutoClimb = controller.GetAutoClimb().ToString();
                         activity_record.StartingLocation = controller.GetStartingLocation().ToString();
 
@@ -340,15 +347,19 @@ namespace ControllerScouting.Database
                         activity_record.FeedingTime = controller.FeedingTime.TotalMinutes;
 
                         controller.FuelShootingTime_StopWatch.Reset();
-                        controller.FuelShootingTime = controller.FuelShootingTime_StopWatch.Elapsed;
                         controller.FuelIntakingTime_StopWatch.Reset();
-                        controller.FuelIntakingTime = controller.FuelIntakingTime_StopWatch.Elapsed;
                         controller.FeedingTime_StopWatch.Reset();
-                        controller.FeedingTime = controller.FeedingTime_StopWatch.Elapsed;
-
-
                         break;
                     case "Activities":
+                        if (controller.FuelIntakingTime == TimeSpan.Zero)
+                        {
+                            controller.ScouterError += 100000;
+                        }
+                        if (controller.FuelShootingTime == TimeSpan.Zero && controller.FeedingTime == TimeSpan.Zero)
+                        {
+                            controller.ScouterError += 10000000;
+                        }
+
                         activity_record.BumpTraversal = controller.BumpTraversal;
                         activity_record.FuelIntakingTime = controller.FuelIntakingTime.TotalSeconds;
                         activity_record.FuelShootingTime = controller.FuelShootingTime.TotalSeconds;
@@ -356,15 +367,24 @@ namespace ControllerScouting.Database
                         activity_record.FeedingTime = controller.FeedingTime.TotalMinutes;
 
                         controller.FuelIntakingTime_StopWatch.Reset();
-                        controller.FuelIntakingTime = controller.FuelIntakingTime_StopWatch.Elapsed;
                         controller.FuelShootingTime_StopWatch.Reset();
-                        controller.FuelShootingTime = controller.FuelShootingTime_StopWatch.Elapsed;
                         controller.DefenseTime_StopWatch.Reset();
-                        controller.DefenseTime = controller.DefenseTime_StopWatch.Elapsed;
                         controller.FeedingTime_StopWatch.Reset();
-                        controller.FeedingTime = controller.FeedingTime_StopWatch.Elapsed;
                         break;
                     case "EndMatch":
+                        if (controller.Climb_Success == RobotState.BOOLEAN.Z)
+                        {
+                            controller.ScouterError += 100;
+                        }
+                        if (controller.Ladder_Location == RobotState.LADDER_LOCATION.None && controller.Climb_Success == RobotState.BOOLEAN.Yes)
+                        {
+                            controller.ScouterError += 1000;
+                        }
+                        if (controller.Strategy == RobotState.STRATEGY.None)
+                        {
+                            controller.ScouterError += 10000;
+                        }
+
                         activity_record.ClimbTime = controller.ClimbTime.TotalSeconds;
                         activity_record.TimeOfClimb = controller.TimeOfClimb.TotalSeconds;
                         activity_record.AttemptClimb = controller.GetClimbSuccess().ToString();
@@ -380,6 +400,10 @@ namespace ControllerScouting.Database
                         activity_record.FuelIntakingTime = controller.FuelIntakingTime.TotalSeconds;
                         activity_record.FeedingTime = controller.FeedingTime.TotalSeconds;
 
+                        controller.FuelIntakingTime_StopWatch.Reset();
+                        controller.FuelShootingTime_StopWatch.Reset();
+                        controller.DefenseTime_StopWatch.Reset();
+                        controller.FeedingTime_StopWatch.Reset();
                         break;
                     case "Match_Event":
                         activity_record.MatchEvent = controller.MatchEvent.ToString();

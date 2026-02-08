@@ -1,14 +1,9 @@
-Doesn't Leave:					1
-Doesn't Set Start:				1
+No Starting Location: 1
+No Auto Climb: 10
 
-Doesn't Set End:				10
-Doesn't Set Def_Rat:			10
-Doesn't Set Def_Eff:			10
-Doesn't Set Avo_Rat:			10
+No Climb Attempt: 100 
+No Ladder Location: 1,000
+No Strategy: 10,000
 
-Removing more ALGAE then held:	100
-Removing more CORAL then held:	10000
-Holding multiple ALGAE:			1000000
-Holding multiple CORAL:			100000000
-
-Transacting when you shouldn't:	10000000000
+No Intake Time: 100,000
+No Shooting or Feeding Time: 10,000,000
