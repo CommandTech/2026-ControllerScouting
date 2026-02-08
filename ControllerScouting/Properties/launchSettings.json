@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ControllerScouting": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

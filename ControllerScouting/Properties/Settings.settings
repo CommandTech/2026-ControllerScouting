@@ -1,0 +1,32 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ControllerScouting.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="_scoutingdbConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionString&gt;Data Source=localhost\SQLEXPRESS;Initial Catalog=scoutingdb;Integrated Security=True;Encrypt=True;TrustServerCertificate=True&lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=localhost\SQLEXPRESS;Initial Catalog=scoutingdb;Integrated Security=True;Encrypt=True;TrustServerCertificate=True</Value>
+    </Setting>
+    <Setting Name="API_KEY" Type="System.String" Scope="User">
+      <Value Profile="(Default)">zhTqFG7csJoif1sNXt3aZngy0LB1X4LxMgTfXBvPscNG0P9FifZCa2uGJcUk2gKW</Value>
+    </Setting>
+    <Setting Name="_scoutingdbServerConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionString&gt;Data Source=tcp:96.236.26.155,49172;Initial Catalog=scoutingdb;Persist Security Info=True;User ID=frc190;Password=2026Scouting;TrustServerCertificate=True&lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=tcp:96.236.26.155,49172;Initial Catalog=scoutingdb;Persist Security Info=True;User ID=frc190;Password=2026Scouting;TrustServerCertificate=True</Value>
+    </Setting>
+    <Setting Name="CSVLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Public\Downloads</Value>
+    </Setting>
+    <Setting Name="csvExists" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="sqlExists" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
