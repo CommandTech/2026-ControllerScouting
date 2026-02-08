@@ -184,6 +184,8 @@ namespace ControllerScouting.Screens
                 }
 
                 MessageBox.Show("Database Updated");
+
+                BackgroundCode.localSQLChanges = true;
             }
             else
             {

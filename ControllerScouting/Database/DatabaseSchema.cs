@@ -467,38 +467,43 @@ namespace ControllerScouting.Database
             try
             {
                 var localActivities = BackgroundCode.localSeasonframework.ActivitySet.AsNoTracking().ToList();
-                var serverActivities = BackgroundCode.serverSeasonframework.ActivitySet.AsNoTracking().ToList();
+                var serverActivities = BackgroundCode.serverSeasonframework.ActivitySet.ToList();
 
-                // Using a key that should be unique for an activity record.
-                var localActivityKeys = new HashSet<(string Team, int Match, string ScouterName, DateTime Time)>(
-                    localActivities.Select(a => (a.Team, a.Match, a.ScouterName, a.Time))
-                );
+                var serverActivityMap = serverActivities.ToDictionary(a => (a.Team, a.Match, a.ScouterName, a.Time));
 
-                var serverActivityKeys = new HashSet<(string Team, int Match, string ScouterName, DateTime Time)>(
-                    serverActivities.Select(a => (a.Team, a.Match, a.ScouterName, a.Time))
-                );
+                var activitiesToAddToServer = new List<Activity>();
 
-                // Find activities present in local but not on server
-                var activitiesToAddToServer = localActivities.Where(local =>
-                    !serverActivityKeys.Contains((local.Team, local.Match, local.ScouterName, local.Time))
-                ).ToList();
-
-                if (activitiesToAddToServer.Count != 0)
+                foreach (var localActivity in localActivities)
                 {
-                    foreach (var activity in activitiesToAddToServer)
+                    var key = (localActivity.Team, localActivity.Match, localActivity.ScouterName, localActivity.Time);
+                    if (serverActivityMap.TryGetValue(key, out var serverActivity))
                     {
-                        activity.Id = 0; // Reset ID for insertion as a new record
+                        var originalId = serverActivity.Id;
+                        BackgroundCode.serverSeasonframework.Entry(serverActivity).CurrentValues.SetValues(localActivity);
+                        serverActivity.Id = originalId;
                     }
-                    BackgroundCode.serverSeasonframework.ActivitySet.AddRange(activitiesToAddToServer);
-                    BackgroundCode.serverSeasonframework.SaveChanges();
+                    else
+                    {
+                        localActivity.Id = 0;
+                        activitiesToAddToServer.Add(localActivity);
+                    }
                 }
+
+                if (activitiesToAddToServer.Any())
+                {
+                    BackgroundCode.serverSeasonframework.ActivitySet.AddRange(activitiesToAddToServer);
+                }
+
+                BackgroundCode.serverSeasonframework.SaveChanges();
             }
             catch (Exception ex)
             {
                 _ = Logger.Log($"An error occurred during database synchronization: {ex.Message}");
             }
-
-            BackgroundCode.localSQLChanges = false;
+            finally
+            {
+                BackgroundCode.localSQLChanges = false;
+            }
         }
 
         public static bool DoesCSVExist(string location)
