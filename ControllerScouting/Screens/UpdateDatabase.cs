@@ -1,18 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using ControllerScouting.Database;
+﻿using ControllerScouting.Database;
+using ControllerScouting.Utilities;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace ControllerScouting.Screens
 {
     public partial class UpdateDatabase : Form
     {
+        private readonly BindingSource bindingSource;
+        private SqlDataAdapter dataAdapter;
+
         public UpdateDatabase(List<string> teamlist, List<int> MatchNumbers)
         {
             InitializeComponent();
             this.comboTeamNumber.DataSource = teamlist;
             this.comboMatchNumber.DataSource = MatchNumbers;
+
+            bindingSource = [];
+            dataGridView1.DataSource = bindingSource;
         }
 
         private void BtnCreateTable_Click(object sender, EventArgs e)
@@ -56,7 +61,8 @@ namespace ControllerScouting.Screens
                     SeasonContext seasonframework = new();
                     seasonframework.Database.ExecuteSqlCommand("IF OBJECT_ID ('UpdatePreviews') IS NOT NULL DROP TABLE UpdatePreviews");
                     seasonframework.Database.ExecuteSqlCommand(Query);
-                    this.updatePreviewsTableAdapter.Fill(this.scoutingDBDataSet.UpdatePreviews);
+
+                    LoadDataIntoBindingSource();
                 }
                 else
                 {
@@ -66,6 +72,28 @@ namespace ControllerScouting.Screens
             else
             {
                 MessageBox.Show("Please select at least one record type");
+            }
+        }
+
+        private void LoadDataIntoBindingSource()
+        {
+            string connectionString = Properties.Settings.Default._scoutingdbConnectionString;
+            string query = "SELECT * FROM UpdatePreviews";
+
+            using SqlConnection connection = new(connectionString);
+            dataAdapter = new SqlDataAdapter(query, connection);
+            DataTable dataTable = new();
+
+            try
+            {
+                connection.Open();
+                dataAdapter.Fill(dataTable);
+                bindingSource.DataSource = dataTable;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading data: {ex.Message}");
             }
         }
 
@@ -85,45 +113,6 @@ namespace ControllerScouting.Screens
                 }
                 if (result != null)
                 {
-                    //if (IDNumber > 1 && result.Team == resultPrev.Team)
-                    //{
-                    //    if (result.AcqCoralS > resultPrev.AcqCoralS)
-                    //    {
-                    //        comboCoralAcqLoc.Text = "Station";
-                    //    }
-                    //    else if (result.AcqCoralF > resultPrev.AcqCoralF)
-                    //    {
-                    //        comboCoralAcqLoc.Text = "Floor";
-                    //    }
-                    //    if (result.AcqAlgaeR > resultPrev.AcqAlgaeR)
-                    //    {
-                    //        comboAlgaeAcqLoc.Text = "Reef";
-                    //    }
-                    //    else if (result.AcqAlgaeF > resultPrev.AcqAlgaeF)
-                    //    {
-                    //        comboAlgaeAcqLoc.Text = "Floor";
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    if (result.AcqCoralS == 1)
-                    //    {
-                    //        comboCoralAcqLoc.Text = "Station";
-                    //    }
-                    //    else if (result.AcqCoralF == 1)
-                    //    {
-                    //        comboCoralAcqLoc.Text = "Floor";
-                    //    }
-                    //    if (result.AcqAlgaeR == 1)
-                    //    {
-                    //        comboAlgaeAcqLoc.Text = "Reef";
-                    //    }
-                    //    else if (result.AcqAlgaeF == 1)
-                    //    {
-                    //        comboAlgaeAcqLoc.Text = "Floor";
-                    //    }
-                    //}
-
                     TeleopBumpValue.Text = result.BumpTraversal.ToString();
                     TeleopFeedingTimerValue.Text = result.FeedingTime.ToString();
                     TeleopDefenseTimerValue.Text = result.DefenseTime.ToString();
@@ -135,9 +124,7 @@ namespace ControllerScouting.Screens
                     ClimbAttemptValue.Text = result.AttemptClimb.ToString();
                     ClimbLevelValue.Text = result.EndState.ToString();
                     AutoClimbValue.Text = result.AutoClimb.ToString();
-
-
-
+                    MatchEventValue.Text = result.MatchEvent.ToString();
                 }
                 else
                 {
@@ -150,7 +137,7 @@ namespace ControllerScouting.Screens
             }
         }
 
-        private void BtnUpdateDatabase_Click(object sender, EventArgs e)
+        private async void BtnUpdateDatabase_Click(object sender, EventArgs e)
         {
             using var db = new SeasonContext();
             SeasonContext seasonframework = new();
@@ -173,39 +160,26 @@ namespace ControllerScouting.Screens
                     {
                         BumpChangeAmount = newBumpValue - result.BumpTraversal;
                     }
-                    
-                    string query = "UPDATE Activities SET BumpTraversal = '" + TeleopBumpValue.Text + "' WHERE Id = '" + result.Id + "';";
-                    seasonframework.Database.ExecuteSqlCommand(query);
 
-                    query = "UPDATE Activities SET FeedingTime = '" + TeleopFeedingTimerValue.Text + "' WHERE Id = '" + result.Id + "';";
-                    seasonframework.Database.ExecuteSqlCommand(query);
+                    string query = $"UPDATE Activities SET " +
+                                    $"BumpTraversal = {TeleopBumpValue.Text}, " +
+                                    $"FeedingTime = {TeleopFeedingTimerValue.Text}, " +
+                                    $"DefenseTime = {TeleopDefenseTimerValue.Text}, " +
+                                    $"FuelShootingTime = {TeleopShootingTimerValue.Text}, " +
+                                    $"FuelIntakingTime = {TeleopIntakeTimerValue.Text}, " +
+                                    $"ClimbTime = {EndGameClimbTimerValue.Text}, " +
+                                    $"Defense = '{DefenseStrategyValue.Text}', " +
+                                    $"AttemptClimb = '{ClimbAttemptValue.Text}', " +
+                                    $"EndState = '{ClimbLevelValue.Text}', " +
+                                    $"AutoClimb = '{AutoClimbValue.Text}', " +
+                                    $"MatchEvent = '{MatchEventValue.Text}' " +
+                                    $"WHERE Id = {result.Id};";
 
-                    query = "UPDATE Activities SET DefenseTime = '" + TeleopDefenseTimerValue.Text + "' WHERE Id = '" + result.Id + "';";
-                    seasonframework.Database.ExecuteSqlCommand(query);
-
-                    query = "UPDATE Activities SET FuelShootingTime = '" + TeleopShootingTimerValue.Text + "' WHERE Id = '" + result.Id + "';";
-                    seasonframework.Database.ExecuteSqlCommand(query);
-
-                    query = "UPDATE Activities SET FuelIntakingTime = '" + TeleopIntakeTimerValue.Text + "' WHERE Id = '" + result.Id + "';";
-                    seasonframework.Database.ExecuteSqlCommand(query);
-
-                    query = "UPDATE Activities SET  ClimbTime = '" + EndGameClimbTimerValue.Text + "' WHERE Id = '" + result.Id + "';";
-                    seasonframework.Database.ExecuteSqlCommand(query);
-
-                    query = "UPDATE Activities SET Defense = '" + DefenseStrategyValue.Text + "' WHERE Id = '" + result.Id + "';";
-                    seasonframework.Database.ExecuteSqlCommand(query);
-
-                    query = "UPDATE Activities SET AttemptClimb = '" + ClimbAttemptValue.Text + "' WHERE Id = '" + result.Id + "';";
-                    seasonframework.Database.ExecuteSqlCommand(query);
-
-                    query = "UPDATE Activities SET EndState = '" + ClimbLevelValue.Text + "' WHERE Id = '" + result.Id + "';";
-                    seasonframework.Database.ExecuteSqlCommand(query);
-
-                    query = "UPDATE Activities SET AutoClimb = '" + AutoClimbValue.Text + "' WHERE Id = '" + result.Id + "';";
                     seasonframework.Database.ExecuteSqlCommand(query);
 
                     string updateRestQuery = $"SELECT * FROM [scoutingdb].[dbo].[Activities] A WHERE (A.Team = '{result.Team}' AND A.Match = {result.Match} AND A.Id > {result.Id}) " +
                         $"UPDATE Activities Set BumpTraversal = BumpTraversal + {BumpChangeAmount};";
+
                     seasonframework.Database.ExecuteSqlCommand(updateRestQuery);
                 }
 

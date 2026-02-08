@@ -1,7 +1,5 @@
 ﻿using ControllerScouting.Database;
 using ControllerScouting.Utilities;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace ControllerScouting.Gamepad
@@ -53,7 +51,7 @@ namespace ControllerScouting.Gamepad
                         robot.CycleEventName(RobotState.CYCLE_DIRECTION.Down);
                     }
 
-                    if (gamepad.R3_Down)
+                    if (gamepad.R3_Press)
                     {
                         DatabaseCode.SaveToRecord(robot, "Match_Event");
                     }

@@ -323,28 +323,28 @@ namespace ControllerScouting.Gamepad
         public bool DpadLeft_Down
         { get { return _dpadleft; } }
 
-        public bool leftStickUp_Down
+        public bool LeftStickUp_Down
         { get { return _leftStickUp; } }
 
-        public bool leftStickRight_Down
+        public bool LeftStickRight_Down
         { get { return _leftStickRight; } }
 
-        public bool leftStickDown_Down
+        public bool LeftStickDown_Down
         { get { return _leftStickDown; } }
 
-        public bool leftStickLeft_Down
+        public bool LeftStickLeft_Down
         { get { return _leftStickLeft; } }
 
-        public bool rightStickUp_Down
+        public bool RightStickUp_Down
         { get { return _rightStickUp; } }
 
-        public bool rightStickRight_Down
+        public bool RightStickRight_Down
         { get { return _rightStickRight; } }
 
-        public bool rightStickDown_Down
+        public bool RightStickDown_Down
         { get { return _rightStickDown; } }
 
-        public bool rightStickLeft_Down
+        public bool RightStickLeft_Down
         { get { return _rightStickLeft; } }
 
         public bool BackButton_Down

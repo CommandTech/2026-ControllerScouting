@@ -39,17 +39,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Update="scoutingdbDataSet.xsc">
-      <DependentUpon>scoutingdbDataSet.xsd</DependentUpon>
-    </None>
-    <None Update="scoutingdbDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>scoutingdbDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Update="scoutingdbDataSet.xss">
-      <DependentUpon>scoutingdbDataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="log.txt" />

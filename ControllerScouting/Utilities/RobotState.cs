@@ -49,9 +49,12 @@ namespace ControllerScouting.Utilities
         }
         public SCOUTER_NAME GetScouterName()
         { return _ScouterName; }
-        
-        public MATCHEVENT_NAME GetMatchEvent()
-        { return _MatchEvent; }
+
+        public MATCHEVENT_NAME MatchEvent
+        {
+            get { return _MatchEvent; }
+            set { _MatchEvent = value; }
+        }
         
         public ROBOT_MODE GetRobotMode()
         { return _RobotMode; }

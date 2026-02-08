@@ -91,17 +91,6 @@ namespace ControllerScouting.Screens
             {
                 DatabaseCode.MoveCSV(oldLocation, Settings.Default.CSVLocation);
             }
-
-            if (rdioLocalSQL.Checked)
-            {
-                Settings.Default._scoutingdbConnectionString = txtServerSQLLocation.Text;
-                BackgroundCode.iniFile.Write("ProgramSettings", "localConnectionString", Settings.Default._scoutingdbConnectionString);
-            }
-            else if (rdioServerSQL.Checked)
-            {
-                Settings.Default._scoutingdbServerConnectionString = txtLocalSQLLocation.Text;
-                BackgroundCode.iniFile.Write("ProgramSettings", "serverConnectionString", Settings.Default._scoutingdbServerConnectionString);
-            }
             this.Hide();
         }
 

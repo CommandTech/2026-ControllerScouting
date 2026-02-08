@@ -86,9 +86,6 @@ namespace ControllerScouting.Screens
             checkActivities = new CheckBox();
             checkMatchEvent = new CheckBox();
             btnCreateTable = new Button();
-            scoutingDBDataSet = new scoutingdbDataSet();
-            updatePreviewsBindingSource = new BindingSource(components);
-            updatePreviewsTableAdapter = new ControllerScouting.scoutingdbDataSetTableAdapters.UpdatePreviewsTableAdapter();
             panel1 = new Panel();
             dataGridView1 = new DataGridView();
             idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -97,37 +94,7 @@ namespace ControllerScouting.Screens
             timeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             recordTypeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             modeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            DriveSta = new DataGridViewTextBoxColumn();
-            Defense = new DataGridViewTextBoxColumn();
-            DefenseValue = new DataGridViewTextBoxColumn();
-            Avoidance = new DataGridViewTextBoxColumn();
-            ScouterName = new DataGridViewTextBoxColumn();
-            ScouterError = new DataGridViewTextBoxColumn();
-            Match_event = new DataGridViewTextBoxColumn();
-            Strategy = new DataGridViewTextBoxColumn();
-            Coop = new DataGridViewTextBoxColumn();
-            DZTime = new DataGridViewTextBoxColumn();
-            Del_Near_Far = new DataGridViewTextBoxColumn();
-            AcqAlgae_Near_Far = new DataGridViewTextBoxColumn();
-            AcqCoral_Near_Far = new DataGridViewTextBoxColumn();
-            Starting_Loc = new DataGridViewTextBoxColumn();
-            Leave = new DataGridViewTextBoxColumn();
-            AcqCoralS = new DataGridViewTextBoxColumn();
-            AcqCoralF = new DataGridViewTextBoxColumn();
-            AcqAlgaeR = new DataGridViewTextBoxColumn();
-            AcqAlgaeF = new DataGridViewTextBoxColumn();
-            DelCoralL1 = new DataGridViewTextBoxColumn();
-            DelCoralL2 = new DataGridViewTextBoxColumn();
-            DelCoralL3 = new DataGridViewTextBoxColumn();
-            DelCoralL4 = new DataGridViewTextBoxColumn();
-            DelCoralF = new DataGridViewTextBoxColumn();
-            DelAlgaeP = new DataGridViewTextBoxColumn();
-            DelAlgaeN = new DataGridViewTextBoxColumn();
-            DelAlgaeF = new DataGridViewTextBoxColumn();
-            ClimbT = new DataGridViewTextBoxColumn();
-            EndState = new DataGridViewTextBoxColumn();
-            CageAttempt = new DataGridViewTextBoxColumn();
-            PointScored = new DataGridViewTextBoxColumn();
+            DriveStation = new DataGridViewTextBoxColumn();
             label3 = new Label();
             txtID = new TextBox();
             panel10.SuspendLayout();
@@ -143,8 +110,6 @@ namespace ControllerScouting.Screens
             panel4.SuspendLayout();
             panel11.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)scoutingDBDataSet).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)updatePreviewsBindingSource).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -185,6 +150,7 @@ namespace ControllerScouting.Screens
             btnFetchValues.TabIndex = 11;
             btnFetchValues.Text = "Fetch Values";
             btnFetchValues.UseVisualStyleBackColor = false;
+            btnFetchValues.Click += new System.EventHandler(BtnFetchValues_Click);
             // 
             // panel5
             // 
@@ -247,6 +213,7 @@ namespace ControllerScouting.Screens
             btnUpdateDatabase.TabIndex = 11;
             btnUpdateDatabase.Text = "Update Database";
             btnUpdateDatabase.UseVisualStyleBackColor = false;
+            btnUpdateDatabase.Click += new System.EventHandler(BtnUpdateDatabase_Click);
             // 
             // button2
             // 
@@ -847,21 +814,7 @@ namespace ControllerScouting.Screens
             btnCreateTable.TabIndex = 11;
             btnCreateTable.Text = "Create Table";
             btnCreateTable.UseVisualStyleBackColor = false;
-            // 
-            // scoutingDBDataSet
-            // 
-            scoutingDBDataSet.DataSetName = "scoutingdbDataSet";
-            scoutingDBDataSet.Namespace = "http://tempuri.org/scoutingdbDataSet.xsd";
-            scoutingDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // updatePreviewsBindingSource
-            // 
-            updatePreviewsBindingSource.DataMember = "UpdatePreviews";
-            updatePreviewsBindingSource.DataSource = scoutingDBDataSet;
-            // 
-            // updatePreviewsTableAdapter
-            // 
-            updatePreviewsTableAdapter.ClearBeforeFill = true;
+            btnCreateTable.Click += new System.EventHandler(BtnCreateTable_Click);
             // 
             // panel1
             // 
@@ -876,17 +829,15 @@ namespace ControllerScouting.Screens
             // 
             // dataGridView1
             // 
-            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AutoGenerateColumns = true;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, teamDataGridViewTextBoxColumn, matchDataGridViewTextBoxColumn, timeDataGridViewTextBoxColumn, recordTypeDataGridViewTextBoxColumn, modeDataGridViewTextBoxColumn, DriveSta, Defense, DefenseValue, Avoidance, ScouterName, ScouterError, Match_event, Strategy, Coop, DZTime, Del_Near_Far, AcqAlgae_Near_Far, AcqCoral_Near_Far, Starting_Loc, Leave, AcqCoralS, AcqCoralF, AcqAlgaeR, AcqAlgaeF, DelCoralL1, DelCoralL2, DelCoralL3, DelCoralL4, DelCoralF, DelAlgaeP, DelAlgaeN, DelAlgaeF, ClimbT, EndState, CageAttempt, PointScored });
-            dataGridView1.DataSource = updatePreviewsBindingSource;
-            dataGridView1.Location = new Point(2, 2);
-            dataGridView1.Margin = new Padding(2);
+            dataGridView1.Location = new Point(-1, -1);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 24;
-            dataGridView1.Size = new Size(984, 261);
-            dataGridView1.TabIndex = 12;
+            dataGridView1.ReadOnly = true;
+            dataGridView1.Size = new Size(1003, 236);
+            dataGridView1.TabIndex = 0;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -937,253 +888,13 @@ namespace ControllerScouting.Screens
             modeDataGridViewTextBoxColumn.Name = "modeDataGridViewTextBoxColumn";
             modeDataGridViewTextBoxColumn.Width = 125;
             // 
-            // DriveSta
+            // DriveStation
             // 
-            DriveSta.DataPropertyName = "DriveSta";
-            DriveSta.HeaderText = "DriveSta";
-            DriveSta.MinimumWidth = 6;
-            DriveSta.Name = "DriveSta";
-            DriveSta.Width = 125;
-            // 
-            // Defense
-            // 
-            Defense.DataPropertyName = "Defense";
-            Defense.HeaderText = "Defense";
-            Defense.MinimumWidth = 6;
-            Defense.Name = "Defense";
-            Defense.Width = 125;
-            // 
-            // DefenseValue
-            // 
-            DefenseValue.DataPropertyName = "DefenseValue";
-            DefenseValue.HeaderText = "DefenseValue";
-            DefenseValue.MinimumWidth = 6;
-            DefenseValue.Name = "DefenseValue";
-            DefenseValue.Width = 125;
-            // 
-            // Avoidance
-            // 
-            Avoidance.DataPropertyName = "Avoidance";
-            Avoidance.HeaderText = "Avoidance";
-            Avoidance.MinimumWidth = 6;
-            Avoidance.Name = "Avoidance";
-            Avoidance.Width = 125;
-            // 
-            // ScouterName
-            // 
-            ScouterName.DataPropertyName = "ScouterName";
-            ScouterName.HeaderText = "ScouterName";
-            ScouterName.MinimumWidth = 6;
-            ScouterName.Name = "ScouterName";
-            ScouterName.Width = 125;
-            // 
-            // ScouterError
-            // 
-            ScouterError.DataPropertyName = "ScouterError";
-            ScouterError.HeaderText = "ScouterError";
-            ScouterError.MinimumWidth = 6;
-            ScouterError.Name = "ScouterError";
-            ScouterError.Width = 125;
-            // 
-            // Match_event
-            // 
-            Match_event.DataPropertyName = "Match_event";
-            Match_event.HeaderText = "Match_event";
-            Match_event.MinimumWidth = 6;
-            Match_event.Name = "Match_event";
-            Match_event.Width = 125;
-            // 
-            // Strategy
-            // 
-            Strategy.DataPropertyName = "Strategy";
-            Strategy.HeaderText = "Strategy";
-            Strategy.MinimumWidth = 6;
-            Strategy.Name = "Strategy";
-            Strategy.Width = 125;
-            // 
-            // Coop
-            // 
-            Coop.DataPropertyName = "Coop";
-            Coop.HeaderText = "Coop";
-            Coop.MinimumWidth = 6;
-            Coop.Name = "Coop";
-            Coop.Width = 125;
-            // 
-            // DZTime
-            // 
-            DZTime.DataPropertyName = "DZTime";
-            DZTime.HeaderText = "DZTime";
-            DZTime.MinimumWidth = 6;
-            DZTime.Name = "DZTime";
-            DZTime.Width = 125;
-            // 
-            // Del_Near_Far
-            // 
-            Del_Near_Far.DataPropertyName = "Del_Near_Far";
-            Del_Near_Far.HeaderText = "Del_Near_Far";
-            Del_Near_Far.MinimumWidth = 6;
-            Del_Near_Far.Name = "Del_Near_Far";
-            Del_Near_Far.Width = 125;
-            // 
-            // AcqAlgae_Near_Far
-            // 
-            AcqAlgae_Near_Far.DataPropertyName = "AcqAlgae_Near_Far";
-            AcqAlgae_Near_Far.HeaderText = "AcqAlgae_Near_Far";
-            AcqAlgae_Near_Far.MinimumWidth = 6;
-            AcqAlgae_Near_Far.Name = "AcqAlgae_Near_Far";
-            AcqAlgae_Near_Far.Width = 125;
-            // 
-            // AcqCoral_Near_Far
-            // 
-            AcqCoral_Near_Far.DataPropertyName = "AcqCoral_Near_Far";
-            AcqCoral_Near_Far.HeaderText = "AcqCoral_Near_Far";
-            AcqCoral_Near_Far.MinimumWidth = 6;
-            AcqCoral_Near_Far.Name = "AcqCoral_Near_Far";
-            AcqCoral_Near_Far.Width = 125;
-            // 
-            // Starting_Loc
-            // 
-            Starting_Loc.DataPropertyName = "Starting_Loc";
-            Starting_Loc.HeaderText = "Starting_Loc";
-            Starting_Loc.MinimumWidth = 6;
-            Starting_Loc.Name = "Starting_Loc";
-            Starting_Loc.Width = 125;
-            // 
-            // Leave
-            // 
-            Leave.DataPropertyName = "Leave";
-            Leave.HeaderText = "Leave";
-            Leave.MinimumWidth = 6;
-            Leave.Name = "Leave";
-            Leave.Width = 125;
-            // 
-            // AcqCoralS
-            // 
-            AcqCoralS.DataPropertyName = "AcqCoralS";
-            AcqCoralS.HeaderText = "AcqCoralS";
-            AcqCoralS.MinimumWidth = 6;
-            AcqCoralS.Name = "AcqCoralS";
-            AcqCoralS.Width = 125;
-            // 
-            // AcqCoralF
-            // 
-            AcqCoralF.DataPropertyName = "AcqCoralF";
-            AcqCoralF.HeaderText = "AcqCoralF";
-            AcqCoralF.MinimumWidth = 6;
-            AcqCoralF.Name = "AcqCoralF";
-            AcqCoralF.Width = 125;
-            // 
-            // AcqAlgaeR
-            // 
-            AcqAlgaeR.DataPropertyName = "AcqAlgaeR";
-            AcqAlgaeR.HeaderText = "AcqAlgaeR";
-            AcqAlgaeR.MinimumWidth = 6;
-            AcqAlgaeR.Name = "AcqAlgaeR";
-            AcqAlgaeR.Width = 125;
-            // 
-            // AcqAlgaeF
-            // 
-            AcqAlgaeF.DataPropertyName = "AcqAlgaeF";
-            AcqAlgaeF.HeaderText = "AcqAlgaeF";
-            AcqAlgaeF.MinimumWidth = 6;
-            AcqAlgaeF.Name = "AcqAlgaeF";
-            AcqAlgaeF.Width = 125;
-            // 
-            // DelCoralL1
-            // 
-            DelCoralL1.DataPropertyName = "DelCoralL1";
-            DelCoralL1.HeaderText = "DelCoralL1";
-            DelCoralL1.MinimumWidth = 6;
-            DelCoralL1.Name = "DelCoralL1";
-            DelCoralL1.Width = 125;
-            // 
-            // DelCoralL2
-            // 
-            DelCoralL2.DataPropertyName = "DelCoralL2";
-            DelCoralL2.HeaderText = "DelCoralL2";
-            DelCoralL2.MinimumWidth = 6;
-            DelCoralL2.Name = "DelCoralL2";
-            DelCoralL2.Width = 125;
-            // 
-            // DelCoralL3
-            // 
-            DelCoralL3.DataPropertyName = "DelCoralL3";
-            DelCoralL3.HeaderText = "DelCoralL3";
-            DelCoralL3.MinimumWidth = 6;
-            DelCoralL3.Name = "DelCoralL3";
-            DelCoralL3.Width = 125;
-            // 
-            // DelCoralL4
-            // 
-            DelCoralL4.DataPropertyName = "DelCoralL4";
-            DelCoralL4.HeaderText = "DelCoralL4";
-            DelCoralL4.MinimumWidth = 6;
-            DelCoralL4.Name = "DelCoralL4";
-            DelCoralL4.Width = 125;
-            // 
-            // DelCoralF
-            // 
-            DelCoralF.DataPropertyName = "DelCoralF";
-            DelCoralF.HeaderText = "DelCoralF";
-            DelCoralF.MinimumWidth = 6;
-            DelCoralF.Name = "DelCoralF";
-            DelCoralF.Width = 125;
-            // 
-            // DelAlgaeP
-            // 
-            DelAlgaeP.DataPropertyName = "DelAlgaeP";
-            DelAlgaeP.HeaderText = "DelAlgaeP";
-            DelAlgaeP.MinimumWidth = 6;
-            DelAlgaeP.Name = "DelAlgaeP";
-            DelAlgaeP.Width = 125;
-            // 
-            // DelAlgaeN
-            // 
-            DelAlgaeN.DataPropertyName = "DelAlgaeN";
-            DelAlgaeN.HeaderText = "DelAlgaeN";
-            DelAlgaeN.MinimumWidth = 6;
-            DelAlgaeN.Name = "DelAlgaeN";
-            DelAlgaeN.Width = 125;
-            // 
-            // DelAlgaeF
-            // 
-            DelAlgaeF.DataPropertyName = "DelAlgaeF";
-            DelAlgaeF.HeaderText = "DelAlgaeF";
-            DelAlgaeF.MinimumWidth = 6;
-            DelAlgaeF.Name = "DelAlgaeF";
-            DelAlgaeF.Width = 125;
-            // 
-            // ClimbT
-            // 
-            ClimbT.DataPropertyName = "ClimbT";
-            ClimbT.HeaderText = "ClimbT";
-            ClimbT.MinimumWidth = 6;
-            ClimbT.Name = "ClimbT";
-            ClimbT.Width = 125;
-            // 
-            // EndState
-            // 
-            EndState.DataPropertyName = "EndState";
-            EndState.HeaderText = "EndState";
-            EndState.MinimumWidth = 6;
-            EndState.Name = "EndState";
-            EndState.Width = 125;
-            // 
-            // CageAttempt
-            // 
-            CageAttempt.DataPropertyName = "CageAttempt";
-            CageAttempt.HeaderText = "CageAttempt";
-            CageAttempt.MinimumWidth = 6;
-            CageAttempt.Name = "CageAttempt";
-            CageAttempt.Width = 125;
-            // 
-            // PointScored
-            // 
-            PointScored.DataPropertyName = "PointScored";
-            PointScored.HeaderText = "PointScored";
-            PointScored.MinimumWidth = 6;
-            PointScored.Name = "PointScored";
-            PointScored.Width = 125;
+            DriveStation.DataPropertyName = "DriveStation";
+            DriveStation.HeaderText = "DriveStation";
+            DriveStation.MinimumWidth = 6;
+            DriveStation.Name = "DriveStation";
+            DriveStation.Width = 125;
             // 
             // label3
             // 
@@ -1246,8 +957,6 @@ namespace ControllerScouting.Screens
             panel11.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)scoutingDBDataSet).EndInit();
-            ((System.ComponentModel.ISupportInitialize)updatePreviewsBindingSource).EndInit();
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
@@ -1262,28 +971,6 @@ namespace ControllerScouting.Screens
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox checkEndMatch;
         private System.Windows.Forms.CheckBox checkEndAuto;
-        private scoutingdbDataSet scoutingDBDataSet;
-        private System.Windows.Forms.BindingSource updatePreviewsBindingSource;
-        private scoutingdbDataSetTableAdapters.UpdatePreviewsTableAdapter updatePreviewsTableAdapter;
-        //private System.Windows.Forms.DataGridViewTextBoxColumn acqLocDataGridViewTextBoxColumn;
-        //private System.Windows.Forms.DataGridViewTextBoxColumn acqCenterDataGridViewTextBoxColumn;
-        //private System.Windows.Forms.DataGridViewTextBoxColumn acqDisDataGridViewTextBoxColumn;
-        //private System.Windows.Forms.DataGridViewTextBoxColumn acqDrpDataGridViewTextBoxColumn;
-        //private System.Windows.Forms.DataGridViewTextBoxColumn delOrigDataGridViewTextBoxColumn;
-        //private System.Windows.Forms.DataGridViewTextBoxColumn delDestDataGridViewTextBoxColumn;
-        //private System.Windows.Forms.DataGridViewTextBoxColumn delMissDataGridViewTextBoxColumn;
-        //private System.Windows.Forms.DataGridViewTextBoxColumn robotStaDataGridViewTextBoxColumn;
-        //private System.Windows.Forms.DataGridViewTextBoxColumn hPAmpDataGridViewTextBoxColumn;
-        //private System.Windows.Forms.DataGridViewTextBoxColumn stageStatDataGridViewTextBoxColumn;
-        //private System.Windows.Forms.DataGridViewTextBoxColumn stageAttDataGridViewTextBoxColumn;
-        //private System.Windows.Forms.DataGridViewTextBoxColumn stageLocDataGridViewTextBoxColumn;
-        //private System.Windows.Forms.DataGridViewTextBoxColumn harmonyDataGridViewTextBoxColumn;
-        //private System.Windows.Forms.DataGridViewTextBoxColumn spotlitDataGridViewTextBoxColumn;
-        //private System.Windows.Forms.DataGridViewTextBoxColumn oZTimeDataGridViewTextBoxColumn;
-        //private System.Windows.Forms.DataGridViewTextBoxColumn nZTimeDataGridViewTextBoxColumn;
-        //private System.Windows.Forms.DataGridViewTextBoxColumn aZTimeDataGridViewTextBoxColumn;
-        //private System.Windows.Forms.DataGridViewTextBoxColumn micsDataGridViewTextBoxColumn;
-        //private System.Windows.Forms.DataGridViewTextBoxColumn matcheventDataGridViewTextBoxColumn;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Label label37;
@@ -1349,36 +1036,6 @@ namespace ControllerScouting.Screens
         private DataGridViewTextBoxColumn timeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn recordTypeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn modeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn DriveSta;
-        private DataGridViewTextBoxColumn Defense;
-        private DataGridViewTextBoxColumn DefenseValue;
-        private DataGridViewTextBoxColumn Avoidance;
-        private DataGridViewTextBoxColumn ScouterName;
-        private DataGridViewTextBoxColumn ScouterError;
-        private DataGridViewTextBoxColumn Match_event;
-        private DataGridViewTextBoxColumn Strategy;
-        private DataGridViewTextBoxColumn Coop;
-        private DataGridViewTextBoxColumn DZTime;
-        private DataGridViewTextBoxColumn Del_Near_Far;
-        private DataGridViewTextBoxColumn AcqAlgae_Near_Far;
-        private DataGridViewTextBoxColumn AcqCoral_Near_Far;
-        private DataGridViewTextBoxColumn Starting_Loc;
-        private DataGridViewTextBoxColumn Leave;
-        private DataGridViewTextBoxColumn AcqCoralS;
-        private DataGridViewTextBoxColumn AcqCoralF;
-        private DataGridViewTextBoxColumn AcqAlgaeR;
-        private DataGridViewTextBoxColumn AcqAlgaeF;
-        private DataGridViewTextBoxColumn DelCoralL1;
-        private DataGridViewTextBoxColumn DelCoralL2;
-        private DataGridViewTextBoxColumn DelCoralL3;
-        private DataGridViewTextBoxColumn DelCoralL4;
-        private DataGridViewTextBoxColumn DelCoralF;
-        private DataGridViewTextBoxColumn DelAlgaeP;
-        private DataGridViewTextBoxColumn DelAlgaeN;
-        private DataGridViewTextBoxColumn DelAlgaeF;
-        private DataGridViewTextBoxColumn ClimbT;
-        private DataGridViewTextBoxColumn EndState;
-        private DataGridViewTextBoxColumn CageAttempt;
-        private DataGridViewTextBoxColumn PointScored;
+        private DataGridViewTextBoxColumn DriveStation;
     }
 }

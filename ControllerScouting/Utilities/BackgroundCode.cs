@@ -2,18 +2,17 @@
 using ControllerScouting.Gamepad;
 using ControllerScouting.Properties;
 using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Windows.Forms;
 using Supabase;
+using System;
+using System.Collections.Concurrent;
+using System.Security.Policy;
 using Client = Supabase.Client;
 
 namespace ControllerScouting.Utilities
 {
     internal class BackgroundCode
     {
-        public static GamePad[]? gamePads;                           //List of all the gamepads connected to the computer
+        public static GamePad[] gamePads;                           //List of all the gamepads connected to the computer
         public static Controllers controllers = new();              //The controller class that handles all the gamepad stuff
         public static readonly List<Thread> controllerThreads = [];
         public static readonly List<CancellationTokenSource> controllerCancellationTokens = [];
@@ -26,9 +25,10 @@ namespace ControllerScouting.Utilities
 
         public static List<string> teamlist = [];                   //The list of teams for the event selected
 
-        public static Queue<Activity> activitiesQueue = new();      //The queue of activities to be sent to the database
+        public static ConcurrentQueue<Activity> activitiesQueue = new();      //The queue of activities to be sent to the database
         public static Activity[] activity_record = new Activity[6]; //The activity record being sent to the database
-        public static SeasonContext seasonframework = new();        //The database context
+        public static SeasonContext localSeasonframework = new();        //The database context
+        public static SeasonContext serverSeasonframework = new();        //The database context
 
         public static List<string> teamPrio = [];                   //List of teams to prioritize scouting
         public static string homeTeam = "frc842";                   //Your team number
@@ -40,7 +40,6 @@ namespace ControllerScouting.Utilities
         public static string loadedEvent = "";                      //The event currently loaded
         public static bool practiceMode = false;                    //Is the scouting system in practice mode?
         public static int practiceTeam = 0;
-        public static Client supabase;
 
         public static readonly string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
         public static readonly string projectBaseDirectory = System.IO.Path.GetFullPath(System.IO.Path.Combine(baseDirectory, @"..\..\"));
@@ -122,75 +121,100 @@ namespace ControllerScouting.Utilities
         {
             if (Settings.Default.sqlExists)
             {
+                // Ensure Local DB exists (creating with unique file names if necessary)
+                EnsureDatabaseCreated(Settings.Default._scoutingdbConnectionString);
                 // Sets the connection string to the database
-                seasonframework.Database.Connection.ConnectionString = Settings.Default._scoutingdbConnectionString;
-
+                localSeasonframework.Database.Connection.ConnectionString = Settings.Default._scoutingdbConnectionString;
                 // initializes the database
-                seasonframework.Database.Initialize(true);
-            }
+                localSeasonframework.Database.Initialize(true);
 
-            _ = InitialzeSupabase();
+
+                // Ensure Server DB exists
+                EnsureDatabaseCreated(Settings.Default._scoutingdbServerConnectionString);
+                // Sets the connection string to the database
+                serverSeasonframework.Database.Connection.ConnectionString = Settings.Default._scoutingdbServerConnectionString;
+                // initializes the database
+                serverSeasonframework.Database.Initialize(true);
+            }
         }
 
-        private static async Task InitialzeSupabase()
+        private static void EnsureDatabaseCreated(string connectionString)
         {
-            Supabase.Gotrue.NetworkStatus status = new();
+            var builder = new System.Data.SqlClient.SqlConnectionStringBuilder(connectionString);
+            string targetDb = builder.InitialCatalog;
+            // Connect to master to perform CREATE DATABASE operations
+            builder.InitialCatalog = "master";
 
-            SupabaseOptions options = new()
+            using (var conn = new System.Data.SqlClient.SqlConnection(builder.ConnectionString))
             {
-                AutoRefreshToken = true
-            };
-
-            Client _supabase = new(iniFile.Read("SupaBase","url",""), iniFile.Read("SupaBase", "key", ""), options);
-
-            status.Client = (Supabase.Gotrue.Client)_supabase.Auth;
-
-            _supabase.Auth.LoadSession();
-
-            _supabase.Auth.Options.AllowUnconfirmedUserSessions = true;
-
-            string url = $"{iniFile.Read("SupaBase", "url", "")}/auth/v1/settings?apikey={iniFile.Read("SupaBase", "key", "")}";
-            try
-            {
-                _supabase!.Auth.Online = await status.StartAsync(url);
-            }
-            catch (NotSupportedException)
-            {
-                _supabase!.Auth.Online = true;
-            }
-            catch (Exception e)
-            {
-                _ = Logger.Log($"Network Error {e.GetType()}");
-                _supabase!.Auth.Online = false;
-            }
-            if (_supabase.Auth.Online)
-            {
-                await _supabase.InitializeAsync();
-
-                await _supabase.Auth.Settings();
-
-                try
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
                 {
-                    var email = iniFile.Read("SupaBase","email","");
-                    var password = iniFile.Read("SupaBase", "password","");
+                    // Check if DB logically exists
+                    cmd.CommandText = $"SELECT database_id FROM sys.databases WHERE name = '{targetDb}'";
+                    if (cmd.ExecuteScalar() != null) return;
 
-                    if (!string.IsNullOrWhiteSpace(email) && !string.IsNullOrWhiteSpace(password))
+                    // Try to create the database normally
+                    try
                     {
-                        var session = await _supabase.Auth.SignInWithPassword(email, password);
-                        System.Diagnostics.Debug.WriteLine($"Supabase sign-in success. User: {session?.User?.Email ?? "unknown"}");
-
-                        supabase = _supabase;
+                        cmd.CommandText = $"CREATE DATABASE [{targetDb}]";
+                        cmd.ExecuteNonQuery();
                     }
-                    else
+                    catch (System.Data.SqlClient.SqlException ex)
                     {
-                        System.Diagnostics.Debug.WriteLine("Supabase sign-in skipped: missing INI credentials (Supabase.Auth email/password).");
+                        // Check for file existence error (Error 1802: CREATE DATABASE failed. Some file names listed could not be created.)
+                        // or (Error 5170: Cannot create file '...mdf' because it already exists.)
+                        if (ex.Message.Contains("already exists"))
+                        {
+                            // Retrieve default data paths to construct a unique filename
+                            string dataPath = GetSqlDataPath(conn, "InstanceDefaultDataPath");
+                            string logPath = GetSqlDataPath(conn, "InstanceDefaultLogPath");
+
+                            // Fallback to master file location if default paths aren't set (common in some configs)
+                            if (string.IsNullOrEmpty(dataPath))
+                            {
+                                dataPath = GetMasterPath(conn);
+                            }
+                            if (string.IsNullOrEmpty(logPath))
+                            {
+                                logPath = dataPath;
+                            }
+
+                            string uniqueSuffix = DateTime.Now.Ticks.ToString();
+                            string mdfName = System.IO.Path.Combine(dataPath, $"{targetDb}_{uniqueSuffix}.mdf");
+                            string ldfName = System.IO.Path.Combine(logPath, $"{targetDb}_log_{uniqueSuffix}.ldf");
+
+                            // Create database with explicit unique filenames
+                            cmd.CommandText = $@"CREATE DATABASE [{targetDb}] 
+                                                 ON PRIMARY (NAME=[{targetDb}_Data], FILENAME='{mdfName}')
+                                                 LOG ON (NAME=[{targetDb}_Log], FILENAME='{ldfName}')";
+                            cmd.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            throw; // Rethrow other unexpected errors
+                        }
                     }
                 }
-                catch (Exception ex)
-                {
-                    _ = Logger.Log($"Supabase sign-in failed: {ex.Message}");
-                    System.Diagnostics.Debug.WriteLine($"Supabase sign-in failed: {ex}");
-                }
+            }
+        }
+        private static string GetSqlDataPath(System.Data.SqlClient.SqlConnection conn, string property)
+        {
+            using (var cmd = conn.CreateCommand())
+            {
+                cmd.CommandText = $"SELECT CAST(SERVERPROPERTY('{property}') AS NVARCHAR(MAX))";
+                var res = cmd.ExecuteScalar();
+                return res as string;
+            }
+        }
+
+        private static string GetMasterPath(System.Data.SqlClient.SqlConnection conn)
+        {
+            using (var cmd = conn.CreateCommand())
+            {
+                cmd.CommandText = "SELECT TOP 1 physical_name FROM sys.master_files WHERE database_id = 1 AND type = 0";
+                var res = cmd.ExecuteScalar() as string;
+                return res != null ? System.IO.Path.GetDirectoryName(res) : null;
             }
         }
 

@@ -1983,7 +1983,6 @@ namespace ControllerScouting.Screens
         private Label lblRedScore;
         private Panel statusLight;
         private Panel topPanel;
-        private scoutingdbDataSetTableAdapters.__MigrationHistoryTableAdapter ___MigrationHistoryTableAdapter;
         private Label lbl0Position5;
         private Label lbl0Position1;
         private Label lbl0Position2;

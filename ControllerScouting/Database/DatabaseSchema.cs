@@ -382,8 +382,9 @@ namespace ControllerScouting.Database
 
                         break;
                     case "Match_Event":
-                        activity_record.MatchEvent = controller.GetMatchEvent().ToString();
+                        activity_record.MatchEvent = controller.MatchEvent.ToString();
 
+                        controller.MatchEvent = RobotState.MATCHEVENT_NAME.Match_Event;
                         break;
                     default:
                         MessageBox.Show("Error: Record Type not found");
@@ -394,52 +395,36 @@ namespace ControllerScouting.Database
                 BackgroundCode.activitiesQueue.Enqueue(activityCopy);
             }
         }
-        public static void SendToDatabase()
+        public static void SendToDatabase(Activity activity)
         {
-            foreach (Activity activity in BackgroundCode.activitiesQueue)
+            switch (BackgroundCode.dataExport)
             {
-                switch (BackgroundCode.dataExport)
-                {
-                    case BackgroundCode.EXPORT_TYPE.CSV:
-                        {
-                            //Save Record to the CSV file
-                            string locationFixed = Settings.Default.CSVLocation.Replace(@"\", @"\\");
-                            using StreamWriter sw = File.AppendText(locationFixed + "\\" + databaseName);
-                            sw.WriteLine(activity.ToCSV());
-                        }
-                        break;
-                    case BackgroundCode.EXPORT_TYPE.SQLonline:
-                        BackgroundCode.seasonframework.Database.Connection.Close();
-                        BackgroundCode.seasonframework.Database.Connection.ConnectionString = Settings.Default._scoutingdbServerConnectionString;
-                        BackgroundCode.seasonframework.Database.Connection.Open();
+                case BackgroundCode.EXPORT_TYPE.CSV:
+                    {
+                        //Save Record to the CSV file
+                        string locationFixed = Settings.Default.CSVLocation.Replace(@"\", @"\\");
+                        using StreamWriter sw = File.AppendText(locationFixed + "\\" + databaseName);
+                        sw.WriteLine(activity.ToCSV());
+                    }
+                    break;
+                case BackgroundCode.EXPORT_TYPE.SQLonline:
 
-                        //Save Record to the database
-                        BackgroundCode.seasonframework.ActivitySet.Add(activity);
-                        BackgroundCode.seasonframework.SaveChanges();
+                    //Save Record to the database
+                    BackgroundCode.localSeasonframework.ActivitySet.Add(activity);
+                    BackgroundCode.localSeasonframework.SaveChanges();
 
-                        break;
-                    case BackgroundCode.EXPORT_TYPE.SQLlocal:
-                        BackgroundCode.seasonframework.Database.Connection.Close();
-                        BackgroundCode.seasonframework.Database.Connection.ConnectionString = Settings.Default._scoutingdbConnectionString;
-                        BackgroundCode.seasonframework.Database.Connection.Open();
+                    //Save Record to the database
+                    BackgroundCode.serverSeasonframework.ActivitySet.Add(activity);
+                    BackgroundCode.serverSeasonframework.SaveChanges();
 
-                        //Save Record to the database
-                        BackgroundCode.seasonframework.ActivitySet.Add(activity);
-                        BackgroundCode.seasonframework.SaveChanges();
+                    break;
+                case BackgroundCode.EXPORT_TYPE.SQLlocal:
+
+                    //Save Record to the database
+                    BackgroundCode.localSeasonframework.ActivitySet.Add(activity);
+                    BackgroundCode.localSeasonframework.SaveChanges();
                         
-                        break;
-                }
-                _ = SupabaseActivity.WriteToSupabase(activity);
-            }
-            
-            BackgroundCode.activitiesQueue.Clear();
-
-            for (int i = 0; i < BackgroundCode.gamePads.Length; i++)
-            {
-                if (BackgroundCode.gamePads[i] != null)
-                {
-                    BackgroundCode.Robots[i] = RobotState.ResetScouter(BackgroundCode.Robots[i]);
-                }
+                    break;
             }
         }
 

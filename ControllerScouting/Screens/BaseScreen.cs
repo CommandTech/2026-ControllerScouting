@@ -36,8 +36,11 @@ namespace ControllerScouting.Screens
             }
 
             timerJoysticks.Interval = 20;
-            timerJoysticks.Tick += new EventHandler(this.UpdateScreen);
+            timerJoysticks.Tick += new EventHandler(UpdateScreen);
             timerJoysticks.Enabled = true;
+
+            Thread databaseThread = new(() => SendngToDatabaseThread());
+            databaseThread.Start();
 
             Thread statusLightThread = new(() => StatusLightThread());
             statusLightThread.Start();
@@ -84,16 +87,22 @@ namespace ControllerScouting.Screens
             while (true)
             {
                 //Check the fore color of status light in the top right corner, if red, make it green. If green, make it red.
-                if (this.statusLight.BackColor == Color.Green)
+                _ = statusLight.BackColor == Color.Green ? statusLight.BackColor = Color.Red : statusLight.BackColor = Color.Green;
+                
+                Thread.Sleep(500);
+            }
+        }
+
+        private static void SendngToDatabaseThread()
+        {
+            while (true)
+            {
+                while (BackgroundCode.activitiesQueue.TryDequeue(out Activity activity))
                 {
-                    this.statusLight.BackColor = Color.Red;
-                }
-                else
-                {
-                    this.statusLight.BackColor = Color.Green;
+                    DatabaseCode.SendToDatabase(activity);
                 }
 
-                Thread.Sleep(500);
+                Thread.Sleep(20);
             }
         }
 
@@ -130,7 +139,8 @@ namespace ControllerScouting.Screens
                 //Close the connection then exit
                 if (Settings.Default.sqlExists) 
                 {
-                    BackgroundCode.seasonframework.Database.Connection.Close();
+                    BackgroundCode.localSeasonframework.Database.Connection.Close();
+                    BackgroundCode.serverSeasonframework.Database.Connection.Close();
                 }
                 Environment.Exit(0);
             }
@@ -139,14 +149,16 @@ namespace ControllerScouting.Screens
         {
             if (Settings.Default.sqlExists)
             {
-                BackgroundCode.seasonframework.Database.Connection.Close();
+                BackgroundCode.localSeasonframework.Database.Connection.Close();
+                BackgroundCode.serverSeasonframework.Database.Connection.Close();
             }
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to load The Blue Alliance data?", "Please Confirm", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 if (Settings.Default.sqlExists)
                 {
-                    BackgroundCode.seasonframework.Database.Connection.Open();
+                    BackgroundCode.localSeasonframework.Database.Connection.Open();
+                    BackgroundCode.serverSeasonframework.Database.Connection.Open();
                 }
                 GetEvents(false);
                 SetRedRight();
@@ -201,7 +213,8 @@ namespace ControllerScouting.Screens
 
                 if (Settings.Default.sqlExists)
                 {
-                    BackgroundCode.seasonframework.Database.Connection.Close();
+                    BackgroundCode.localSeasonframework.Database.Connection.Close();
+                    BackgroundCode.serverSeasonframework.Database.Connection.Close();
                 }
 
                 if (comboBoxSelectRegional.SelectedItem.ToString() == "manualEvent")
@@ -224,7 +237,15 @@ namespace ControllerScouting.Screens
                 {
                     DatabaseCode.SaveToRecord(BackgroundCode.Robots[BackgroundCode.Robots[i].ScouterBox], "EndMatch");
                 }
-                DatabaseCode.SendToDatabase();
+
+                for (int i = 0; i < BackgroundCode.gamePads.Length; i++)
+                {
+                    if (BackgroundCode.gamePads[i] != null)
+                    {
+                        BackgroundCode.Robots[i] = RobotState.ResetScouter(BackgroundCode.Robots[i]);
+                    }
+                }
+
                 cbxEndMatch.Checked = false;
 
                 if (BackgroundCode.currentMatch == BackgroundCode.InMemoryMatchList.Count)
@@ -308,6 +329,82 @@ namespace ControllerScouting.Screens
             label.ForeColor = Color.Orange;
             CheckPrio(label, teamName);
         }
+        void SafeRenameDatabase(SeasonContext context, string oldName, string newName)
+        {
+            try
+            {
+                // 1. Close the active connection to the database we want to rename
+                if (context.Database.Connection.State == System.Data.ConnectionState.Open)
+                    context.Database.Connection.Close();
+
+                // 2. Connect to 'master' to perform the rename operation
+                var builder = new System.Data.SqlClient.SqlConnectionStringBuilder(context.Database.Connection.ConnectionString);
+                builder.InitialCatalog = "master";
+
+                using (var conn = new System.Data.SqlClient.SqlConnection(builder.ConnectionString))
+                {
+                    conn.Open();
+                    using (var cmd = conn.CreateCommand())
+                    {
+                        // 3. Check if the TARGET name already exists
+                        cmd.CommandText = $"SELECT database_id FROM sys.databases WHERE name = '{newName}'";
+                        bool targetExists = cmd.ExecuteScalar() != null;
+
+                        // 4. If target exists, generate a unique backup name to prevent crash
+                        string finalName = newName;
+                        if (targetExists)
+                        {
+                            finalName = $"{newName}_Backup_{DateTime.Now:yyyyMMddHHmmss}";
+                        }
+
+                        // 5. Perform the rename
+                        // We set SINGLE_USER to kick off any other open connections
+                        cmd.CommandText = $@"
+                                            IF EXISTS (SELECT name FROM sys.databases WHERE name = '{oldName}')
+                                            BEGIN
+                                                ALTER DATABASE [{oldName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+                                                ALTER DATABASE [{oldName}] MODIFY NAME = [{finalName}];
+                                                ALTER DATABASE [{finalName}] SET MULTI_USER;
+                                            END";
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log invalid operations but do not crash the app
+                Console.WriteLine($"Database rename warning: {ex.Message}");
+            }
+        }
+
+        private void RenameDatabaseThread()
+        {
+            SafeRenameDatabase(BackgroundCode.serverSeasonframework, "scoutingdb", $"{DateTime.Now.Year}{regional}");
+            SafeRenameDatabase(BackgroundCode.localSeasonframework, "scoutingdb", $"{DateTime.Now.Year}{regional}");
+
+
+            var localBuilder = new System.Data.SqlClient.SqlConnectionStringBuilder(Settings.Default._scoutingdbConnectionString);
+            localBuilder.InitialCatalog = $"{DateTime.Now.Year}{regional}";
+            BackgroundCode.localSeasonframework.Database.Connection.ConnectionString = localBuilder.ConnectionString;
+
+            var serverBuilder = new System.Data.SqlClient.SqlConnectionStringBuilder(Settings.Default._scoutingdbServerConnectionString);
+            serverBuilder.InitialCatalog = $"{DateTime.Now.Year}{regional}";
+            BackgroundCode.serverSeasonframework.Database.Connection.ConnectionString = serverBuilder.ConnectionString;
+
+            // Attempt to persist the new connection strings to Settings
+            try
+            {
+                // Using indexer to bypass potential property readonly restrictions if attempting to set directly
+                Settings.Default["_scoutingdbConnectionString"] = localBuilder.ConnectionString;
+                Settings.Default["_scoutingdbServerConnectionString"] = serverBuilder.ConnectionString;
+                Settings.Default.Save();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Could not save new connection strings to Settings: " + ex.Message);
+            }
+        }
+
         private async void BtnpopulateForEvent_Click(object sender, EventArgs e)
         {
             if (!loading)
@@ -392,7 +489,13 @@ namespace ControllerScouting.Screens
                         int index = regional.IndexOf(',');
                         if (index > 0) regional = regional[..index];
 
+
+                        //string uri = $"https://www.thebluealliance.com/api/v3/event/{DateTime.Now.Year}{regional}/teams?X-TBA-Auth-Key={Settings.Default.API_KEY}";
                         string uri = $"https://www.thebluealliance.com/api/v3/event/2025{regional}/teams?X-TBA-Auth-Key={Settings.Default.API_KEY}";
+
+                        Thread renameDatabaseThread = new(() => RenameDatabaseThread());
+                        renameDatabaseThread.Start();
+
 
                         using (HttpClient client = new())
                         {
@@ -422,7 +525,7 @@ namespace ControllerScouting.Screens
                                 loading = false;
                             }
                         }
-
+                        //string matchesuri = $"https://www.thebluealliance.com/api/v3/event/{DateTime.Now.Year}{regional}/matches?X-TBA-Auth-Key={Settings.Default.API_KEY}";
                         string matchesuri = $"https://www.thebluealliance.com/api/v3/event/2025{regional}/matches?X-TBA-Auth-Key={Settings.Default.API_KEY}";
 
                         using (HttpClient client = new())
@@ -488,6 +591,7 @@ namespace ControllerScouting.Screens
                     {
                         MessageBox.Show("Please select an event from the drop down.");
                     }
+
                 }
                 try
                 {
@@ -506,6 +610,7 @@ namespace ControllerScouting.Screens
             }
             else
             {
+                //string uri = $"https://www.thebluealliance.com/api/v3/events/{DateTime.Now.Year}?X-TBA-Auth-Key={Settings.Default.API_KEY}";
                 string uri = $"https://www.thebluealliance.com/api/v3/events/2025?X-TBA-Auth-Key={Settings.Default.API_KEY}";
 
                 using HttpClient client = new();
@@ -559,29 +664,33 @@ namespace ControllerScouting.Screens
             //Loops through all 6 boxes to update the text to be based on the RobotState
             for (int i = 0; i < BackgroundCode.gamePads.Length; i++)
             {
-                RobotState robot = BackgroundCode.Robots[i];
-                int robotBox = robot.ScouterBox;
-                switch (BackgroundCode.Robots[i].GetRobotMode())
+                if (BackgroundCode.gamePads[i] != null)
                 {
-                    case RobotState.ROBOT_MODE.Auto:
-                        InAutoMode(i, robotBox);
-                        break;
-                    case RobotState.ROBOT_MODE.Teleop:
-                        InTeleopMode(i, robotBox);
-                        break;
-                    case RobotState.ROBOT_MODE.Endgame:
-                        InEndgameMode(i, robotBox);
-                        break;
+                    RobotState robot = BackgroundCode.Robots[i];
+                    int robotBox = robot.ScouterBox;
+                    switch (BackgroundCode.Robots[i].GetRobotMode())
+                    {
+                        case RobotState.ROBOT_MODE.Auto:
+                            InAutoMode(i, robotBox);
+                            break;
+                        case RobotState.ROBOT_MODE.Teleop:
+                            InTeleopMode(i, robotBox);
+                            break;
+                        case RobotState.ROBOT_MODE.Endgame:
+                            InEndgameMode(i, robotBox);
+                            break;
+                    }
+
+
+                    ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ScoutName", true)[0]).Text = robot.GetScouterName().ToString();
+                    ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ScoutName", true)[0]).Visible = true;
+                    ((Label)this.Controls.Find($"lbl{robot.ScouterBox}MatchEvent", true)[0]).Text = robot.MatchEvent.ToString();
+                    ((Label)this.Controls.Find($"lbl{robot.ScouterBox}MatchEvent", true)[0]).Visible = true;
+                    ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).Text = robot.GetRobotMode().ToString() + " Mode";
+                    ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).Visible = true;
+
+                    ((Label)this.Controls.Find($"lbl{robot.ScouterBox}TeamName", true)[0]).Visible = true;
                 }
-
-                ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ScoutName", true)[0]).Text = robot.GetScouterName().ToString();
-                ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ScoutName", true)[0]).Visible = true;
-                ((Label)this.Controls.Find($"lbl{robot.ScouterBox}MatchEvent", true)[0]).Text = robot.GetMatchEvent().ToString();
-                ((Label)this.Controls.Find($"lbl{robot.ScouterBox}MatchEvent", true)[0]).Visible = true;
-                ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).Text = robot.GetRobotMode().ToString() + " Mode";
-                ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).Visible = true;
-
-                ((Label)this.Controls.Find($"lbl{robot.ScouterBox}TeamName", true)[0]).Visible = true;
             }
 
         }
