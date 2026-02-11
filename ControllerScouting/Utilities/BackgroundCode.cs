@@ -118,22 +118,22 @@ namespace ControllerScouting.Utilities
             if (Settings.Default.sqlExists)
             {
                 localSeasonframework.Database.Connection.Close();
-                serverSeasonframework.Database.Connection.Close();
 
                 // Sets the connection string to the database
                 localSeasonframework.Database.Connection.ConnectionString = Settings.Default._scoutingdbConnectionString;
-                // Sets the connection string to the database
-                serverSeasonframework.Database.Connection.ConnectionString = Settings.Default._scoutingdbServerConnectionString;
 
                 // initializes the database
                 localSeasonframework.Database.Initialize(true);
-                // initializes the database
-                serverSeasonframework.Database.Initialize(true);
 
                 localSeasonframework.Database.Connection.Open();
-                serverSeasonframework.Database.Connection.Open();
 
             }
+            serverSeasonframework.Database.Connection.Close();
+            // Sets the connection string to the database
+            serverSeasonframework.Database.Connection.ConnectionString = Settings.Default._scoutingdbServerConnectionString;
+            // initializes the database
+            serverSeasonframework.Database.Initialize(true);
+            serverSeasonframework.Database.Connection.Open();
         }
 
         public static void StartControllerThreads()
