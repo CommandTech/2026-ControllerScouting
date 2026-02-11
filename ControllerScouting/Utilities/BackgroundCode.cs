@@ -97,10 +97,11 @@ namespace ControllerScouting.Utilities
             }
             Settings.Default.sqlExists = instanceKey != null;
 
-            if (!Settings.Default.sqlExists)
-            {
-                dataExport = EXPORT_TYPE.CSV;
-            }
+            //if (!Settings.Default.sqlExists)
+            //{
+            //    dataExport = EXPORT_TYPE.CSV;
+            //}
+            dataExport = EXPORT_TYPE.SQLonline;
         }
         private static void ControllerThreadMethod(GamePad gamePad, CancellationToken token)
         {

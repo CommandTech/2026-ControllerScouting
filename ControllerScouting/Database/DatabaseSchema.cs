@@ -455,9 +455,12 @@ namespace ControllerScouting.Database
                     break;
                 default:
                     //Save Record to the database
-                    BackgroundCode.localSeasonframework.ActivitySet.Add(activity);
-                    BackgroundCode.localSeasonframework.SaveChanges();
-                    BackgroundCode.localSQLChanges = true;
+                    if (Settings.Default.sqlExists)
+                    {
+                        BackgroundCode.localSeasonframework.ActivitySet.Add(activity);
+                        BackgroundCode.localSeasonframework.SaveChanges();
+                        BackgroundCode.localSQLChanges = true;
+                    }
                     break;
             }
         }
