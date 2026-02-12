@@ -325,6 +325,35 @@ namespace ControllerScouting.Screens
             label.ForeColor = Color.Orange;
             CheckPrio(label, teamName);
         }
+        private void ChangeSQLConnectionString(String newName)
+        {
+            var localBuilder = new System.Data.SqlClient.SqlConnectionStringBuilder(Settings.Default._scoutingdbConnectionString)
+            {
+                InitialCatalog = $"{DateTime.Now.Year}{newName}"
+            };
+            BackgroundCode.localSeasonframework.Database.Connection.ConnectionString = localBuilder.ConnectionString;
+
+            var serverBuilder = new System.Data.SqlClient.SqlConnectionStringBuilder(Settings.Default._scoutingdbServerConnectionString)
+            {
+                InitialCatalog = $"{DateTime.Now.Year}{newName}"
+            };
+            BackgroundCode.serverSeasonframework.Database.Connection.ConnectionString = serverBuilder.ConnectionString;
+
+            // Attempt to persist the new connection strings to Settings
+            try
+            {
+                // Using indexer to bypass potential property readonly restrictions if attempting to set directly
+                Settings.Default["_scoutingdbConnectionString"] = localBuilder.ConnectionString;
+                Settings.Default["_scoutingdbServerConnectionString"] = serverBuilder.ConnectionString;
+                Settings.Default.Save();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Could not save new connection strings to Settings: " + ex.Message);
+            }
+
+            BackgroundCode.InitalizeDB();
+        }
         private async void BtnpopulateForEvent_Click(object sender, EventArgs e)
         {
             if (!loading)
@@ -343,6 +372,8 @@ namespace ControllerScouting.Screens
                 BackgroundCode.InMemoryMatchList.Clear();
                 if (BackgroundCode.manualMatchList != null)
                 {
+                    ChangeSQLConnectionString("manualMatch");
+
                     List<string> manualTeams = [];
 
                     for (int i = 0; i < BackgroundCode.manualMatchList.Count; i++)
@@ -423,32 +454,7 @@ namespace ControllerScouting.Screens
                         string uri = $"https://www.thebluealliance.com/api/v3/event/2025{regional}/teams?X-TBA-Auth-Key={Settings.Default.API_KEY}";
 
 
-                        var localBuilder = new System.Data.SqlClient.SqlConnectionStringBuilder(Settings.Default._scoutingdbConnectionString)
-                        {
-                            InitialCatalog = $"{DateTime.Now.Year}{regional}"
-                        };
-                        BackgroundCode.localSeasonframework.Database.Connection.ConnectionString = localBuilder.ConnectionString;
-
-                        var serverBuilder = new System.Data.SqlClient.SqlConnectionStringBuilder(Settings.Default._scoutingdbServerConnectionString)
-                        {
-                            InitialCatalog = $"{DateTime.Now.Year}{regional}"
-                        };
-                        BackgroundCode.serverSeasonframework.Database.Connection.ConnectionString = serverBuilder.ConnectionString;
-
-                        // Attempt to persist the new connection strings to Settings
-                        try
-                        {
-                            // Using indexer to bypass potential property readonly restrictions if attempting to set directly
-                            Settings.Default["_scoutingdbConnectionString"] = localBuilder.ConnectionString;
-                            Settings.Default["_scoutingdbServerConnectionString"] = serverBuilder.ConnectionString;
-                            Settings.Default.Save();
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine("Could not save new connection strings to Settings: " + ex.Message);
-                        }
-
-                        BackgroundCode.InitalizeDB();
+                        ChangeSQLConnectionString(regional);
 
 
                         using (HttpClient client = new())
