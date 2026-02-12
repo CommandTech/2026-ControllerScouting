@@ -456,8 +456,7 @@ namespace ControllerScouting.Screens
                         if (index > 0) regional = regional[..index];
 
 
-                        //string uri = $"https://www.thebluealliance.com/api/v3/event/{DateTime.Now.Year}{regional}/teams?X-TBA-Auth-Key={Settings.Default.API_KEY}";
-                        string uri = $"https://www.thebluealliance.com/api/v3/event/2025{regional}/teams?X-TBA-Auth-Key={Settings.Default.API_KEY}";
+                        string uri = $"https://www.thebluealliance.com/api/v3/event/{DateTime.Now.Year}{regional}/teams?X-TBA-Auth-Key={Settings.Default.API_KEY}";
 
 
                         ChangeSQLConnectionString(regional);
@@ -491,8 +490,7 @@ namespace ControllerScouting.Screens
                                 loading = false;
                             }
                         }
-                        //string matchesuri = $"https://www.thebluealliance.com/api/v3/event/{DateTime.Now.Year}{regional}/matches?X-TBA-Auth-Key={Settings.Default.API_KEY}";
-                        string matchesuri = $"https://www.thebluealliance.com/api/v3/event/2025{regional}/matches?X-TBA-Auth-Key={Settings.Default.API_KEY}";
+                        string matchesuri = $"https://www.thebluealliance.com/api/v3/event/{DateTime.Now.Year}{regional}/matches?X-TBA-Auth-Key={Settings.Default.API_KEY}";
 
                         using (HttpClient client = new())
                         {
@@ -576,8 +574,7 @@ namespace ControllerScouting.Screens
             }
             else
             {
-                //string uri = $"https://www.thebluealliance.com/api/v3/events/{DateTime.Now.Year}?X-TBA-Auth-Key={Settings.Default.API_KEY}";
-                string uri = $"https://www.thebluealliance.com/api/v3/events/2025?X-TBA-Auth-Key={Settings.Default.API_KEY}";
+                string uri = $"https://www.thebluealliance.com/api/v3/events/{DateTime.Now.Year}?X-TBA-Auth-Key={Settings.Default.API_KEY}";
 
                 using HttpClient client = new();
                 try
@@ -676,23 +673,34 @@ namespace ControllerScouting.Screens
 
 
             // Text change
+            if (BackgroundCode.Robots[Box_Number].GetStartingLocation() == RobotState.STARTING_LOCATION.None)
+            {
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).ForeColor = Color.Yellow;
+            }
+            else
+            {
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).ForeColor = Color.White;
+            }
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Text = "Starting Location: " + BackgroundCode.Robots[Box_Number].GetStartingLocation();
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + BackgroundCode.Robots[Box_Number].FuelIntakingTime.TotalSeconds;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Shooting Timer: " + BackgroundCode.Robots[Box_Number].FuelShootingTime.TotalSeconds;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Text = "Bump: " + BackgroundCode.Robots[Box_Number].BumpTraversal;
 
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Climb: ";
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = System.Drawing.Color.Yellow;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = System.Drawing.Color.Yellow;
-
-            if (BackgroundCode.Robots[Box_Number].GetAutoClimb() == RobotState.BOOLEAN.Yes)
+            if (BackgroundCode.Robots[Box_Number].GetAutoClimb() == RobotState.BOOLEAN.Z)
             {
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = System.Drawing.Color.Green;
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = System.Drawing.Color.Green;
-            } else if (BackgroundCode.Robots[Box_Number].GetAutoClimb() == RobotState.BOOLEAN.No)
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = Color.Yellow;
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = Color.Yellow;
+            }
+            else if (BackgroundCode.Robots[Box_Number].GetAutoClimb() == RobotState.BOOLEAN.Yes)
             {
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = System.Drawing.Color.Red;
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = System.Drawing.Color.Red;
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = Color.Green;
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = Color.Green;
+            } 
+            else if (BackgroundCode.Robots[Box_Number].GetAutoClimb() == RobotState.BOOLEAN.No)
+            {
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = Color.Red;
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = Color.Red;
             }
 
         }
@@ -732,40 +740,64 @@ namespace ControllerScouting.Screens
 
 
             //text change
+            if (BackgroundCode.Robots[Box_Number].GetAvoidanceStrategy() == RobotState.AVOIDANCE_STRATEGY.Select)
+            {
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).ForeColor = Color.Yellow;
+            }
+            else
+            {
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).ForeColor = Color.White;
+            }
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Avoidance: " + BackgroundCode.Robots[Box_Number].GetAvoidanceStrategy();
+            if (BackgroundCode.Robots[Box_Number].GetDefenseStrategy() == RobotState.DEFENSE_STRATEGY.Select)
+            {
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).ForeColor = Color.Yellow;
+            }
+            else
+            {
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).ForeColor = Color.White;
+            }
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).Text = "Defense: " + BackgroundCode.Robots[Box_Number].GetDefenseStrategy();
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Climb Timer: " + BackgroundCode.Robots[Box_Number].ClimbTime.TotalSeconds;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position6", true)[0]).Text = "Climb Level: " + BackgroundCode.Robots[Box_Number].GetClimbLevel();
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).Text = "Defense: " + BackgroundCode.Robots[Box_Number].GetDefenseStrategy();
+            if (BackgroundCode.Robots[Box_Number].GetStrategy() == RobotState.STRATEGY.Select)
+            {
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).ForeColor = Color.Yellow;
+            }
+            else
+            {
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).ForeColor = Color.White;
+            }
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Text = "Strategy: " + BackgroundCode.Robots[Box_Number].GetStrategy();
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position9", true)[0]).Text = "Ladder Location: " + BackgroundCode.Robots[Box_Number].GetLadderLocation();   
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "End Match: ";
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Text = "Climb Attempt: ";
 
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).ForeColor = System.Drawing.Color.Yellow;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).BackColor = System.Drawing.Color.Yellow;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).ForeColor = System.Drawing.Color.Yellow;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).BackColor = System.Drawing.Color.Yellow;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).ForeColor = Color.Yellow;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).BackColor = Color.Yellow;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).ForeColor = Color.Yellow;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).BackColor = Color.Yellow;
 
             if (BackgroundCode.Robots[Box_Number].GetEndMatch() == RobotState.BOOLEAN.Yes)
             {
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).ForeColor = System.Drawing.Color.Green;
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).BackColor = System.Drawing.Color.Green;
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).ForeColor = Color.Green;
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).BackColor = Color.Green;
             }
             else if (BackgroundCode.Robots[Box_Number].GetEndMatch() == RobotState.BOOLEAN.No)
             {
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).ForeColor = System.Drawing.Color.Red;
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).BackColor = System.Drawing.Color.Red;
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).ForeColor = Color.Red;
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).BackColor = Color.Red;
             }
             
             if (BackgroundCode.Robots[Box_Number].GetClimbSuccess() == RobotState.BOOLEAN.Yes)
             {
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).ForeColor = System.Drawing.Color.Green;
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).BackColor = System.Drawing.Color.Green;
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).ForeColor = Color.Green;
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).BackColor = Color.Green;
             }
             else if (BackgroundCode.Robots[Box_Number].GetClimbSuccess() == RobotState.BOOLEAN.No)
             {
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).ForeColor = System.Drawing.Color.Red;
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).BackColor = System.Drawing.Color.Red;
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).ForeColor = Color.Red;
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).BackColor = Color.Red;
             }
         }
     }
