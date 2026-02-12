@@ -32,29 +32,7 @@ namespace ControllerScouting.Database
     {
         protected ActivityBase()
         {
-            foreach (var prop in this.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
-            {
-                if (prop.PropertyType == typeof(string) && prop.CanWrite)
-                {
-                    prop.SetValue(this, "-");
-                }
-                else if (prop.PropertyType == typeof(int) && prop.CanWrite && prop.Name != "Id")
-                {
-                    prop.SetValue(this, -1);
-                }
-                else if (prop.PropertyType == typeof(double) && prop.CanWrite)
-                {
-                    prop.SetValue(this, -1.0);
-                }
-                else if (prop.PropertyType == typeof(DateTime) && prop.CanWrite)
-                {
-                    prop.SetValue(this, DateTime.MinValue);
-                }
-                else if (prop.PropertyType == typeof(long) && prop.CanWrite)
-                {
-                    prop.SetValue(this, -1L);
-                }
-            }
+
         }
 
         //2026
@@ -474,31 +452,29 @@ namespace ControllerScouting.Database
             try
             {
                 var localActivities = BackgroundCode.localSeasonframework.ActivitySet.AsNoTracking().ToList();
-                var serverActivities = BackgroundCode.serverSeasonframework.ActivitySet.ToList();
+                var serverActivities = BackgroundCode.serverSeasonframework.ActivitySet.AsNoTracking().ToList();
 
                 var serverActivityMap = serverActivities.ToDictionary(a => (a.Team, a.Match, a.ScouterName, a.Time));
-
-                var activitiesToAddToServer = new List<Activity>();
 
                 foreach (var localActivity in localActivities)
                 {
                     var key = (localActivity.Team, localActivity.Match, localActivity.ScouterName, localActivity.Time);
                     if (serverActivityMap.TryGetValue(key, out var serverActivity))
                     {
+                        // Existing record: Update it
                         var originalId = serverActivity.Id;
-                        BackgroundCode.serverSeasonframework.Entry(serverActivity).CurrentValues.SetValues(localActivity);
-                        serverActivity.Id = originalId;
+                        // Use a fresh, untracked entity for setting values
+                        var tempServerActivity = new Activity();
+                        BackgroundCode.serverSeasonframework.Entry(tempServerActivity).CurrentValues.SetValues(localActivity);
+                        tempServerActivity.Id = originalId; // Restore the correct ID
+                        BackgroundCode.serverSeasonframework.Entry(tempServerActivity).State = EntityState.Modified;
                     }
                     else
                     {
-                        localActivity.Id = 0;
-                        activitiesToAddToServer.Add(localActivity);
+                        // New record: Add it
+                        localActivity.Id = 0; // Ensure EF treats it as new
+                        BackgroundCode.serverSeasonframework.ActivitySet.Add(localActivity);
                     }
-                }
-
-                if (activitiesToAddToServer.Any())
-                {
-                    BackgroundCode.serverSeasonframework.ActivitySet.AddRange(activitiesToAddToServer);
                 }
 
                 BackgroundCode.serverSeasonframework.SaveChanges();
@@ -510,6 +486,7 @@ namespace ControllerScouting.Database
             finally
             {
                 BackgroundCode.localSQLChanges = false;
+                BackgroundCode.localSQLChanges = true;
             }
         }
 
