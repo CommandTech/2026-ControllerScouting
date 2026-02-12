@@ -7,6 +7,8 @@ using System.Windows.Forms;
 
 namespace ControllerScouting.Utilities
 {
+    // To Publish: Run this command
+    // dotnet publish -c Release -r win-x64 /p:SelfContained=true /p:PublishSingleFile=true /p:IncludeAllContentForSelfExtract=true
     static class Program
     {
         ///The main entry point for the application.

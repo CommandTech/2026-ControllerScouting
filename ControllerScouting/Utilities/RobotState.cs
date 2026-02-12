@@ -247,6 +247,7 @@ namespace ControllerScouting.Utilities
             {
                 _Starting_Location = (STARTING_LOCATION)GetPreviousEnum<STARTING_LOCATION>(_Starting_Location);
             }
+            if (_Starting_Location == STARTING_LOCATION.None) CycleStartingLocation(CycleDirection);
         }
         public void CycleLadderLocation(CYCLE_DIRECTION CycleDirection)
         {
@@ -269,6 +270,7 @@ namespace ControllerScouting.Utilities
             {
                 _Defense_Strategy = (DEFENSE_STRATEGY)GetPreviousEnum<DEFENSE_STRATEGY>(_Defense_Strategy);
             }
+            if (_Defense_Strategy == DEFENSE_STRATEGY.Select) CycleDefenseStrategy(CycleDirection);
         }
         public void CycleAvoidanceStrategy(CYCLE_DIRECTION CycleDirection)
         {
@@ -280,6 +282,7 @@ namespace ControllerScouting.Utilities
             {
                 _Avoidance_Strategy = (AVOIDANCE_STRATEGY)GetPreviousEnum<AVOIDANCE_STRATEGY>(_Avoidance_Strategy);
             }
+            if (_Avoidance_Strategy == AVOIDANCE_STRATEGY.Select) CycleAvoidanceStrategy(CycleDirection);
         }
         public void CycleStrategy(CYCLE_DIRECTION CycleDirection)
         {
@@ -291,6 +294,7 @@ namespace ControllerScouting.Utilities
             {
                 _Strategy = (STRATEGY)GetPreviousEnum<STRATEGY>(_Strategy);
             }
+            if (_Strategy == STRATEGY.Select) CycleStrategy(CycleDirection);
         }
         public void CycleClimbLevel(CYCLE_DIRECTION CycleDirection)
         {
@@ -329,11 +333,7 @@ namespace ControllerScouting.Utilities
             {
                 _End_Match = (BOOLEAN)GetPreviousEnum<BOOLEAN>(_End_Match);
             }
-
-            if (_End_Match == BOOLEAN.Z)
-            {
-                CycleEndMatch(CycleDirection);
-            }
+            if (_End_Match == BOOLEAN.Z) CycleEndMatch(CycleDirection);
         }
         public void CycleClimbSuccess(CYCLE_DIRECTION CycleDirection)
         {
@@ -346,10 +346,7 @@ namespace ControllerScouting.Utilities
                 _Climb_Success = (BOOLEAN)GetPreviousEnum<BOOLEAN>(_Climb_Success);
             }
 
-            if (_Climb_Success == BOOLEAN.Z)
-            {
-                CycleClimbSuccess(CycleDirection);
-            }
+            if (_Climb_Success == BOOLEAN.Z) CycleClimbSuccess(CycleDirection);
         }
 
 
