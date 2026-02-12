@@ -145,8 +145,8 @@ namespace ControllerScouting.Screens
                 if (Settings.Default.sqlExists) 
                 {
                     BackgroundCode.localSeasonframework.Database.Connection.Close();
-                    BackgroundCode.serverSeasonframework.Database.Connection.Close();
                 }
+                BackgroundCode.serverSeasonframework.Database.Connection.Close();
                 Environment.Exit(0);
             }
         }
@@ -209,8 +209,8 @@ namespace ControllerScouting.Screens
                 if (Settings.Default.sqlExists)
                 {
                     BackgroundCode.localSeasonframework.Database.Connection.Close();
-                    BackgroundCode.serverSeasonframework.Database.Connection.Close();
                 }
+                BackgroundCode.serverSeasonframework.Database.Connection.Close();
 
                 if (comboBoxSelectRegional.SelectedItem.ToString() == "manualEvent")
                 {
@@ -327,6 +327,13 @@ namespace ControllerScouting.Screens
         }
         private void ChangeSQLConnectionString(String newName)
         {
+            if (Settings.Default.sqlExists)
+            {
+                BackgroundCode.localSeasonframework.Database.Connection.Close();
+            }
+            BackgroundCode.serverSeasonframework.Database.Connection.Close();
+
+            BackgroundCode.localSeasonframework.
             var localBuilder = new System.Data.SqlClient.SqlConnectionStringBuilder(Settings.Default._scoutingdbConnectionString)
             {
                 InitialCatalog = $"{DateTime.Now.Year}{newName}"
