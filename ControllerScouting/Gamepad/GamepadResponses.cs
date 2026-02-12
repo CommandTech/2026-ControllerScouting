@@ -191,17 +191,29 @@ namespace ControllerScouting.Gamepad
                     {
                         robot.CycleLadderLocation(RobotState.CYCLE_DIRECTION.Up);
                     }
-                    if (gamepad.YButton_Press)
+                    if (gamepad.YButton_Press && robot.Climb_Level != RobotState.CLIMB_LEVEL.L3)
                     {
                         robot.Climb_Level = RobotState.CLIMB_LEVEL.L3;
                     }
-                    else if (gamepad.XButton_Press)
+                    else if (gamepad.YButton_Press)
+                    {
+                        robot.Climb_Level = RobotState.CLIMB_LEVEL.No_Climb;
+                    }
+                    else if (gamepad.XButton_Press && robot.Climb_Level != RobotState.CLIMB_LEVEL.L2)
                     {
                         robot.Climb_Level = RobotState.CLIMB_LEVEL.L2;
                     }
-                    else if (gamepad.BButton_Press)
+                    else if (gamepad.XButton_Press)
+                    {
+                        robot.Climb_Level = RobotState.CLIMB_LEVEL.No_Climb;
+                    }
+                    else if (gamepad.BButton_Press && robot.Climb_Level != RobotState.CLIMB_LEVEL.L1)
                     {
                         robot.Climb_Level = RobotState.CLIMB_LEVEL.L1;
+                    }
+                    else if (gamepad.BButton_Press)
+                    {
+                        robot.Climb_Level = RobotState.CLIMB_LEVEL.No_Climb;
                     }
                     else if (gamepad.LeftStickLeft_Press)
                     {

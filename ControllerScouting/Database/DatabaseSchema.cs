@@ -360,11 +360,11 @@ namespace ControllerScouting.Database
                     case "Activities":
                         if (controller.FuelIntakingTime == TimeSpan.Zero)
                         {
-                            controller.ScouterError += 100000;
+                            controller.ScouterError += 1000000;
                         }
                         if (controller.FuelShootingTime == TimeSpan.Zero && controller.FeedingTime == TimeSpan.Zero)
                         {
-                            controller.ScouterError += 10000000;
+                            controller.ScouterError += 100000000;
                         }
 
                         activity_record.BumpTraversal = controller.BumpTraversal;
@@ -398,6 +398,10 @@ namespace ControllerScouting.Database
                         if (controller.Strategy == RobotState.STRATEGY.None)
                         {
                             controller.ScouterError += 10000;
+                        }
+                        if (controller.End_Match != RobotState.BOOLEAN.Yes)
+                        {
+                            controller.ScouterError += 100000;
                         }
 
                         activity_record.ClimbTime = controller.ClimbTime.TotalSeconds;

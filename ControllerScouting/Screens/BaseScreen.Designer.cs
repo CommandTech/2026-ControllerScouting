@@ -94,7 +94,7 @@ namespace ControllerScouting.Screens
             lbl2Position7 = new Label();
             lbl2Position6 = new Label();
             lbl2Position5 = new Label();
-            lbl2Postion4 = new Label();
+            lbl2Position4 = new Label();
             lbl2Position3 = new Label();
             lbl2Position2 = new Label();
             lbl2Position1 = new Label();
@@ -118,7 +118,7 @@ namespace ControllerScouting.Screens
             lbl1Position4 = new Label();
             lbl1Position3 = new Label();
             lbl1Position2 = new Label();
-            lbl1Postion1 = new Label();
+            lbl1Position1 = new Label();
             lbl1Position4Value = new Label();
             lbl1Position0 = new Label();
             panel2 = new Panel();
@@ -1069,7 +1069,7 @@ namespace ControllerScouting.Screens
             panel5.Controls.Add(lbl2Position7);
             panel5.Controls.Add(lbl2Position6);
             panel5.Controls.Add(lbl2Position5);
-            panel5.Controls.Add(lbl2Postion4);
+            panel5.Controls.Add(lbl2Position4);
             panel5.Controls.Add(lbl2Position3);
             panel5.Controls.Add(lbl2Position2);
             panel5.Controls.Add(lbl2Position1);
@@ -1193,16 +1193,16 @@ namespace ControllerScouting.Screens
             lbl2Position5.TabIndex = 400;
             lbl2Position5.Text = "Feeding Timer: 0:00.0";
             // 
-            // lbl2Postion4
+            // lbl2Position4
             // 
-            lbl2Postion4.AutoSize = true;
-            lbl2Postion4.Font = new Font("Microsoft Sans Serif", 13.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl2Postion4.ForeColor = Color.White;
-            lbl2Postion4.Location = new Point(2, 231);
-            lbl2Postion4.Name = "lbl2Postion4";
-            lbl2Postion4.Size = new Size(66, 22);
-            lbl2Postion4.TabIndex = 399;
-            lbl2Postion4.Text = "Climb:";
+            lbl2Position4.AutoSize = true;
+            lbl2Position4.Font = new Font("Microsoft Sans Serif", 13.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl2Position4.ForeColor = Color.White;
+            lbl2Position4.Location = new Point(2, 231);
+            lbl2Position4.Name = "lbl2Position4";
+            lbl2Position4.Size = new Size(66, 22);
+            lbl2Position4.TabIndex = 399;
+            lbl2Position4.Text = "Climb:";
             // 
             // lbl2Position3
             // 
@@ -1325,7 +1325,7 @@ namespace ControllerScouting.Screens
             panel1.Controls.Add(lbl1Position4);
             panel1.Controls.Add(lbl1Position3);
             panel1.Controls.Add(lbl1Position2);
-            panel1.Controls.Add(lbl1Postion1);
+            panel1.Controls.Add(lbl1Position1);
             panel1.Controls.Add(lbl1Position4Value);
             panel1.Controls.Add(lbl1Position0);
             panel1.Controls.Add(panel2);
@@ -1479,16 +1479,16 @@ namespace ControllerScouting.Screens
             lbl1Position2.TabIndex = 397;
             lbl1Position2.Text = "Shooting Timer: 0:00.0";
             // 
-            // lbl1Postion1
+            // lbl1Position1
             // 
-            lbl1Postion1.AutoSize = true;
-            lbl1Postion1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl1Postion1.ForeColor = Color.White;
-            lbl1Postion1.Location = new Point(0, 61);
-            lbl1Postion1.Name = "lbl1Postion1";
-            lbl1Postion1.Size = new Size(193, 24);
-            lbl1Postion1.TabIndex = 396;
-            lbl1Postion1.Text = "Intake Timer: 0:00.0";
+            lbl1Position1.AutoSize = true;
+            lbl1Position1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl1Position1.ForeColor = Color.White;
+            lbl1Position1.Location = new Point(0, 61);
+            lbl1Position1.Name = "lbl1Position1";
+            lbl1Position1.Size = new Size(193, 24);
+            lbl1Position1.TabIndex = 396;
+            lbl1Position1.Text = "Intake Timer: 0:00.0";
             // 
             // lbl1Position4Value
             // 
@@ -2005,7 +2005,7 @@ namespace ControllerScouting.Screens
         private Label lbl1Position4;
         private Label lbl1Position3;
         private Label lbl1Position2;
-        private Label lbl1Postion1;
+        private Label lbl1Position1;
         private Label lbl1Position4Value;
         private Label lbl1Position0;
         private Panel panel2;
@@ -2086,7 +2086,7 @@ namespace ControllerScouting.Screens
         private Label lbl2Position7;
         private Label lbl2Position6;
         private Label lbl2Position5;
-        private Label lbl2Postion4;
+        private Label lbl2Position4;
         private Label lbl2Position3;
         private Label lbl2Position2;
         private Label lbl2Position1;

@@ -154,9 +154,9 @@ namespace ControllerScouting.Utilities
         public bool DisplayClimbSuccess = false;
         public enum STARTING_LOCATION { None, Far_Trench, Far_Bump, Hub, Near_Bump, Near_Trench }
         public enum LADDER_LOCATION { None, Outpost, Center, Depot };
-        public enum DEFENSE_STRATEGY { None, Lane, Neutral_Zone, Hub, Pinning, Counter };
-        public enum AVOIDANCE_STRATEGY { None, Lane, Neutral_Zone, Hub, Pinning, Counter };
-        public enum STRATEGY { None, Shooting, Feeding, Defense, Climb };
+        public enum DEFENSE_STRATEGY { Select, None, Lane, Neutral_Zone, Hub, Pinning, Counter };
+        public enum AVOIDANCE_STRATEGY { Select, None, Lane, Neutral_Zone, Hub, Pinning, Counter };
+        public enum STRATEGY { Select, None, Shooting, Feeding, Defense, Climb };
         public enum CLIMB_LEVEL { No_Climb, L1, L2, L3 };
 
 
