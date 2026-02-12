@@ -333,7 +333,6 @@ namespace ControllerScouting.Screens
             }
             BackgroundCode.serverSeasonframework.Database.Connection.Close();
 
-            BackgroundCode.localSeasonframework.
             var localBuilder = new System.Data.SqlClient.SqlConnectionStringBuilder(Settings.Default._scoutingdbConnectionString)
             {
                 InitialCatalog = $"{DateTime.Now.Year}{newName}"
