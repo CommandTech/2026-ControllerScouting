@@ -128,6 +128,7 @@ namespace ControllerScouting.Utilities
                 localSeasonframework.Database.Connection.Open();
 
             }
+
             serverSeasonframework.Database.Connection.Close();
             // Sets the connection string to the database
             serverSeasonframework.Database.Connection.ConnectionString = Settings.Default._scoutingdbServerConnectionString;

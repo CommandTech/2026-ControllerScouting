@@ -29,11 +29,11 @@ namespace ControllerScouting.Gamepad
                     //Select Scouter Name
                     if (gamepad.AButton_Down && gamepad.LeftStickLeft_Press)
                     {
-                        robot.ChangeScouterName(RobotState.CYCLE_DIRECTION.Up);
+                        robot.ChangeScouterName(RobotState.CYCLE_DIRECTION.Down);
                     }
                     else if (gamepad.AButton_Down && gamepad.LeftStickRight_Press)
                     {
-                        robot.ChangeScouterName(RobotState.CYCLE_DIRECTION.Down);
+                        robot.ChangeScouterName(RobotState.CYCLE_DIRECTION.Up);
                     }
                 }
 

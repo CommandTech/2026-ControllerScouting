@@ -451,28 +451,24 @@ namespace ControllerScouting.Database
         {
             try
             {
-                var localActivities = BackgroundCode.localSeasonframework.ActivitySet.AsNoTracking().ToList();
+                var localActivities = BackgroundCode.localSeasonframework.ActivitySet.AsNoTracking().OrderBy(a => a.Id).ToList();
                 var serverActivities = BackgroundCode.serverSeasonframework.ActivitySet.AsNoTracking().ToList();
 
-                var serverActivityMap = serverActivities.ToDictionary(a => (a.Team, a.Match, a.ScouterName, a.Time));
+                // Use a HashSet to store the keys of existing server activities.
+                // This handles potential duplicates in the server data without crashing.
+                var serverActivityKeys = new HashSet<(string, int, string, DateTime)>(
+                    serverActivities.Select(a => (a.Team, a.Match, a.ScouterName, a.Time))
+                );
 
                 foreach (var localActivity in localActivities)
                 {
                     var key = (localActivity.Team, localActivity.Match, localActivity.ScouterName, localActivity.Time);
-                    if (serverActivityMap.TryGetValue(key, out var serverActivity))
+
+                    // Only add the local activity if its key is not in the set of server keys.
+                    if (!serverActivityKeys.Contains(key))
                     {
-                        // Existing record: Update it
-                        var originalId = serverActivity.Id;
-                        // Use a fresh, untracked entity for setting values
-                        var tempServerActivity = new Activity();
-                        BackgroundCode.serverSeasonframework.Entry(tempServerActivity).CurrentValues.SetValues(localActivity);
-                        tempServerActivity.Id = originalId; // Restore the correct ID
-                        BackgroundCode.serverSeasonframework.Entry(tempServerActivity).State = EntityState.Modified;
-                    }
-                    else
-                    {
-                        // New record: Add it
-                        localActivity.Id = 0; // Ensure EF treats it as new
+                        // Record does not exist on the server, so add it.
+                        BackgroundCode.localSeasonframework.Entry(localActivity).State = EntityState.Detached;
                         BackgroundCode.serverSeasonframework.ActivitySet.Add(localActivity);
                     }
                 }
@@ -486,7 +482,6 @@ namespace ControllerScouting.Database
             finally
             {
                 BackgroundCode.localSQLChanges = false;
-                BackgroundCode.localSQLChanges = true;
             }
         }
 
