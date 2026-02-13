@@ -557,8 +557,6 @@ namespace ControllerScouting.Screens
                     }
 
                 }
-                MessageBox.Show(Settings.Default._scoutingdbConnectionString);
-                MessageBox.Show(Settings.Default._scoutingdbServerConnectionString);
                 try
                 {
                     BackgroundCode.currentMatch = 0;
