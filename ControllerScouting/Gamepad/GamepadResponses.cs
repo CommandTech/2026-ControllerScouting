@@ -26,14 +26,24 @@ namespace ControllerScouting.Gamepad
                 //***********************************
                 if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Auto)
                 {
-                    //Select Scouter Name
+                    //Select Scouter Name for Student names
                     if (gamepad.AButton_Down && gamepad.LeftStickLeft_Press)
                     {
-                        robot.ChangeScouterName(RobotState.CYCLE_DIRECTION.Down);
+                        robot.ChangeStudentScouterName(RobotState.CYCLE_DIRECTION.Down);
                     }
                     else if (gamepad.AButton_Down && gamepad.LeftStickRight_Press)
                     {
-                        robot.ChangeScouterName(RobotState.CYCLE_DIRECTION.Up);
+                        robot.ChangeStudentScouterName(RobotState.CYCLE_DIRECTION.Up);
+                    }
+
+                    // For Mentor Scouter Name
+                    else if (gamepad.YButton_Down && gamepad.LeftStickLeft_Press)
+                    {
+                        robot.ChangeMentorScouterName(RobotState.CYCLE_DIRECTION.Down);
+                    }
+                    else if (gamepad.YButton_Down && gamepad.LeftStickRight_Press)
+                    {
+                        robot.ChangeMentorScouterName(RobotState.CYCLE_DIRECTION.Up);
                     }
                 }
 

@@ -9,7 +9,8 @@ namespace ControllerScouting.Utilities
         public enum ROBOT_MODE { Auto, Teleop, Endgame };
         public enum CYCLE_DIRECTION { Up, Down }
         public enum MATCHEVENT_NAME { Match_Event, TippedOver, LostParts, GotStuck, BrokenDown, NoShow, JammedPiece, Other }
-        public enum SCOUTER_NAME { Select_Name, Scouter1, Scouter2, Scouter3, Scouter4, Scouter5, Scouter6 }
+        public enum SCOUTER_NAME { Select_Name, Abel, Abhi_R, Abhi_V, Adel, Adrika, Aishani, Ananth, Andrew, Anh, Anshu, Arnav, Aryan, Ashley, Atharv, Avani, Avanti, Charlotte, Chris, Corey, Grace, Hasini, Issac, Ishan, Jack, Jasmin, Jasmine, Jay, Liam, Manha, Maria, Noah, Parnitha, Ravena, Rddhima, Rishi, Rohan, Ruchir, Saanvi, Sam_W, Sanchi, Sanvi, Sri, Suhrit, Tanay, Vaibhav, Varsha, Xander, Scouter1, Scouter2, Scouter3, Scouter4, Scouter5, Scouter6, Adnan, Alex, Alyssa, Charlie, Deven, Elliot, Grant, Josh, Katie, Kevin, Logan, Luke, Marcus, Max, Sam_B, Spencer, William }
+        public enum MENTOR_SCOUTER_NAME { Select_Name,  }
 
         public enum BOOLEAN { Z, Yes, No, Error }
 
@@ -61,14 +62,67 @@ namespace ControllerScouting.Utilities
 
 
         //Scouter Name
-        public void ChangeScouterName(CYCLE_DIRECTION CycleDirection)
+        public void ChangeStudentScouterName(CYCLE_DIRECTION CycleDirection)
         {
+            var values = (SCOUTER_NAME[])Enum.GetValues(typeof(SCOUTER_NAME));
+            int start = 0;
+            int end = 53;
+            int currentIndex = Array.IndexOf(values, _ScouterName);
+
+            if (currentIndex < start || currentIndex > end)
+                currentIndex = start;
+
+            int rangeLength = end - start + 1;
+
             if (CycleDirection == CYCLE_DIRECTION.Up)
-                _ScouterName = (SCOUTER_NAME)GetNextEnum<SCOUTER_NAME>(_ScouterName);
+                currentIndex = start + ((currentIndex - start + 1) % rangeLength);
+            else
+                currentIndex = start + ((currentIndex - start - 1 + rangeLength) % rangeLength);
+
+            _ScouterName = values[currentIndex];
+        }
+        public void ChangeMentorScouterName(CYCLE_DIRECTION CycleDirection)
+        {
+            var values = (SCOUTER_NAME[])Enum.GetValues(typeof(SCOUTER_NAME));
+            int mentorStart = 54;
+            int mentorEnd = values.Length - 1;
+            int currentIndex = Array.IndexOf(values, _ScouterName);
+
+            if (currentIndex == 0)
+            {
+                if (CycleDirection == CYCLE_DIRECTION.Up)
+                {
+                    currentIndex = mentorStart;
+                }
+                else // Down from 0 goes to last mentor
+                {
+                    currentIndex = mentorEnd;
+                }
+            }
+            else if (currentIndex >= mentorStart && currentIndex <= mentorEnd)
+            {
+                if (CycleDirection == CYCLE_DIRECTION.Up)
+                {
+                    if (currentIndex == mentorEnd)
+                        currentIndex = 0; // wrap to Select_Name
+                    else
+                        currentIndex++;
+                }
+                else
+                {
+                    if (currentIndex == mentorStart)
+                        currentIndex = 0; // wrap to Select_Name
+                    else
+                        currentIndex--;
+                }
+            }
             else
             {
-                _ScouterName = (SCOUTER_NAME)GetPreviousEnum<SCOUTER_NAME>(_ScouterName);
+                // If not in mentor range or 0, reset to 0
+                currentIndex = 0;
             }
+
+            _ScouterName = values[currentIndex];
         }
 
         //Cycle Event Name
