@@ -60,12 +60,12 @@ namespace ControllerScouting.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Public\\Downloads")]
-        public string CSVLocation {
+        public string SQLLiteLocation {
             get {
-                return ((string)(this["CSVLocation"]));
+                return ((string)(this["SQLLiteLocation"]));
             }
             set {
-                this["CSVLocation"] = value;
+                this["SQLLiteLocation"] = value;
             }
         }
         

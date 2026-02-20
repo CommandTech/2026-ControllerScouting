@@ -197,9 +197,13 @@ namespace ControllerScouting.Gamepad
                         robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
                     }
 
-                    if (gamepad.AButton_Press)
+                    if (gamepad.AButton_Press && robot.GetClimbLevel() != RobotState.CLIMB_LEVEL.No_Climb)
                     {
                         robot.CycleLadderLocation(RobotState.CYCLE_DIRECTION.Up);
+                    }
+                    else
+                    {
+                        robot.Ladder_Location = RobotState.LADDER_LOCATION.None;
                     }
                     if (gamepad.YButton_Press && robot.Climb_Level != RobotState.CLIMB_LEVEL.L3)
                     {

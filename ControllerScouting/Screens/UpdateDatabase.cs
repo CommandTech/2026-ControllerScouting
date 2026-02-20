@@ -1,4 +1,5 @@
 ﻿using ControllerScouting.Database;
+using ControllerScouting.Properties;
 using ControllerScouting.Utilities;
 using System.Data;
 using System.Data.SqlClient;
@@ -24,7 +25,7 @@ namespace ControllerScouting.Screens
         {
             if (checkEndAuto.Checked || checkActivities.Checked || checkEndMatch.Checked || checkMatchEvent.Checked)
             {
-                using var db = new SeasonContext();
+                using var db = new SeasonContext(Settings.Default._scoutingdbConnectionString);
                 string cbEA = "";
                 string cbA = "";
                 string cbD = "";
@@ -58,7 +59,7 @@ namespace ControllerScouting.Screens
                 if (isNumeric)
                 {
                     string Query = "Select * INTO UpdatePreviews FROM Activities WHERE Team = 'frc" + teamNumber + "' AND Match = '" + matchNumber + "' AND RecordType IN (" + cbEA + cbA + cbEM + cbME + cbD + ")";
-                    SeasonContext seasonframework = new();
+                    SeasonContext seasonframework = new(Settings.Default._scoutingdbConnectionString);
                     seasonframework.Database.ExecuteSqlCommand("IF OBJECT_ID ('UpdatePreviews') IS NOT NULL DROP TABLE UpdatePreviews");
                     seasonframework.Database.ExecuteSqlCommand(Query);
 
@@ -99,7 +100,7 @@ namespace ControllerScouting.Screens
 
         private void BtnFetchValues_Click(object sender, EventArgs e)
         {
-            using var db = new SeasonContext();
+            using var db = new SeasonContext(Settings.Default._scoutingdbConnectionString);
             bool isNumeric = int.TryParse(txtID.Text, out _);
             if (isNumeric)
             {
@@ -139,8 +140,8 @@ namespace ControllerScouting.Screens
 
         private async void BtnUpdateDatabase_Click(object sender, EventArgs e)
         {
-            using var db = new SeasonContext();
-            SeasonContext seasonframework = new();
+            using var db = new SeasonContext(Settings.Default._scoutingdbConnectionString);
+            SeasonContext seasonframework = new(Settings.Default._scoutingdbConnectionString);
             bool isNumeric = int.TryParse(txtID.Text, out _);
             if (isNumeric)
             {

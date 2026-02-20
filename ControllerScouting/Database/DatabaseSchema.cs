@@ -17,8 +17,8 @@ namespace ControllerScouting.Database
 
     internal class SeasonContext : DbContext
     {
-        public SeasonContext()
-            : base(Settings.Default._scoutingdbConnectionString)
+        public SeasonContext(string connectionString)
+            : base(connectionString)
         { }
 
         public EventSummary Eventset { get; set; }
@@ -235,7 +235,7 @@ namespace ControllerScouting.Database
             return matches;
         }
 
-        public const string databaseName = "database.csv";
+        public static string databaseName = "database.db";
         public static void LoadManualMatches()
         {
 
@@ -427,12 +427,16 @@ namespace ControllerScouting.Database
         {
             switch (BackgroundCode.dataExport)
             {
-                case BackgroundCode.EXPORT_TYPE.CSV:
+                case BackgroundCode.EXPORT_TYPE.NoDownloadSQL:
                     {
-                        //Save Record to the CSV file
-                        string locationFixed = Settings.Default.CSVLocation.Replace(@"\", @"\\");
-                        using StreamWriter sw = File.AppendText(locationFixed + "\\" + databaseName);
-                        sw.WriteLine(activity.ToCSV());
+                        string sqlLiteConnectionString = "";
+                        //Save Record to the DB file
+                        string locationFixed = Settings.Default.SQLLiteLocation.Replace(@"\", @"\\");
+                        var localContext = new SeasonContext(sqlLiteConnectionString);
+
+                        localContext.ActivitySet.Add(activity);
+                        localContext.SaveChanges();
+                        BackgroundCode.localSQLChanges = true;
                     }
                     break;
                 default:
@@ -451,7 +455,22 @@ namespace ControllerScouting.Database
         {
             try
             {
-                var localActivities = BackgroundCode.localSeasonframework.ActivitySet.AsNoTracking().OrderBy(a => a.Id).ToList();
+                List<Activity> localActivities;
+                if (BackgroundCode.dataExport == BackgroundCode.EXPORT_TYPE.NoDownloadSQL)
+                {
+                    // Use SQLite database as the local source
+                    string sqliteConnectionString = $"Data Source={Settings.Default.SQLLiteLocation};";
+                    using (var localContext = new SeasonContext(sqliteConnectionString))
+                    {
+                        localActivities = localContext.ActivitySet.AsNoTracking().OrderBy(a => a.Id).ToList();
+                    }
+                }
+                else
+                {
+                    // Use the default localSeasonframework
+                    localActivities = BackgroundCode.localSeasonframework.ActivitySet.AsNoTracking().OrderBy(a => a.Id).ToList();
+                }
+
                 var serverActivities = BackgroundCode.serverSeasonframework.ActivitySet.AsNoTracking().ToList();
 
                 // Use a HashSet to store the keys of existing server activities.
@@ -485,7 +504,7 @@ namespace ControllerScouting.Database
             }
         }
 
-        public static bool DoesCSVExist(string location)
+        public static bool DoesSQLLiteExist(string location)
         {
             static string DoubleBackslashesAndEnsureTrailing(string input)
             {
@@ -501,7 +520,7 @@ namespace ControllerScouting.Database
 
             return File.Exists(locationCorrected + databaseName);
         }
-        public static void CreateCSV(string location)
+        public static void CreateSQLLite(string location)
         {
             static string DoubleBackslashesAndEnsureTrailing(string input)
             {
@@ -520,10 +539,10 @@ namespace ControllerScouting.Database
             Directory.CreateDirectory(directoryPath);
             File.Create(filePath).Close();
 
-            Settings.Default.csvExists = true;
+            Settings.Default.sqlExists = true;
         }
 
-        public static void MoveCSV(string oldLocation, string newLocation)
+        public static void MoveSQLLite(string oldLocation, string newLocation)
         {
             static string DoubleBackslashesAndEnsureTrailing(string input)
             {

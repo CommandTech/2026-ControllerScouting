@@ -43,14 +43,14 @@ namespace ControllerScouting.Screens
                 this.rdioServerSQL.Visible = false;
             }
 
-            this.rdioCSV.Checked = false;
+            this.rdioSQLLite.Checked = false;
             this.rdioLocalSQL.Checked = false;
             this.rdioServerSQL.Checked = false;
 
             switch (BackgroundCode.dataExport)
             {
-                case BackgroundCode.EXPORT_TYPE.CSV:
-                    this.rdioCSV.Checked = true;
+                case BackgroundCode.EXPORT_TYPE.NoDownloadSQL:
+                    this.rdioSQLLite.Checked = true;
                     break;
                 case BackgroundCode.EXPORT_TYPE.SQLlocal:
                     this.rdioLocalSQL.Checked = true;
@@ -60,9 +60,9 @@ namespace ControllerScouting.Screens
                     break;
             }
 
-            this.txtCSVLocation.Visible = this.rdioCSV.Checked;
-            this.txtCSVLocation.Text = Settings.Default.CSVLocation;
-            oldLocation = Settings.Default.CSVLocation;
+            this.txtSQLLiteLocation.Visible = this.rdioSQLLite.Checked;
+            this.txtSQLLiteLocation.Text = Settings.Default.SQLLiteLocation;
+            oldLocation = Settings.Default.SQLLiteLocation;
 
             this.txtLocalSQLLocation.Visible = this.rdioLocalSQL.Checked;
             this.txtLocalSQLLocation.Text = Settings.Default._scoutingdbConnectionString;
@@ -79,17 +79,17 @@ namespace ControllerScouting.Screens
         {
             BackgroundCode.dataExport = this.rdioLocalSQL.Checked ? BackgroundCode.EXPORT_TYPE.SQLlocal :
                             this.rdioServerSQL.Checked ? BackgroundCode.EXPORT_TYPE.SQLonline :
-                            BackgroundCode.EXPORT_TYPE.CSV;
+                            BackgroundCode.EXPORT_TYPE.NoDownloadSQL;
 
             BackgroundCode.iniFile.Write("ProgramSettings", "exportType", BackgroundCode.dataExport.ToString());
 
-            if (!Settings.Default.csvExists && rdioCSV.Checked)
+            if (!Settings.Default.csvExists && rdioSQLLite.Checked)
             {
-                DatabaseCode.CreateCSV(Settings.Default.CSVLocation);
+                DatabaseCode.CreateSQLLite(Settings.Default.SQLLiteLocation);
             }
-            else if (Settings.Default.csvExists && rdioCSV.Checked)
+            else if (Settings.Default.csvExists && rdioSQLLite.Checked)
             {
-                DatabaseCode.MoveCSV(oldLocation, Settings.Default.CSVLocation);
+                DatabaseCode.MoveSQLLite(oldLocation, Settings.Default.SQLLiteLocation);
             }
             this.Hide();
         }
@@ -134,9 +134,9 @@ namespace ControllerScouting.Screens
             frm.Show();
         }
 
-        private void RdioCSV_CheckedChanged(object sender, EventArgs e)
+        private void RdioSQLLite_CheckedChanged(object sender, EventArgs e)
         {
-            this.txtCSVLocation.Visible = this.rdioCSV.Checked;
+            this.txtSQLLiteLocation.Visible = this.rdioSQLLite.Checked;
         }
         private void RdioLocalSQL_CheckedChanged(object sender, EventArgs e)
         {
@@ -147,21 +147,21 @@ namespace ControllerScouting.Screens
             this.txtServerSQLLocation.Visible = this.rdioServerSQL.Checked;
         }
 
-        private void TxtCSVLocation_TextChanged(object sender, EventArgs e)
+        private void TxtSQLLiteLocation_TextChanged(object sender, EventArgs e)
         {
 
-            Settings.Default.CSVLocation = this.txtCSVLocation.Text;
-            BackgroundCode.iniFile.Write("ProgramSettings", "csvLocation", Settings.Default.CSVLocation.ToString());
+            Settings.Default.SQLLiteLocation = this.txtSQLLiteLocation.Text;
+            BackgroundCode.iniFile.Write("ProgramSettings", "sqlLiteLocation", Settings.Default.SQLLiteLocation.ToString());
         }
 
-        private void BtnBrowseCSV_Click(object sender, EventArgs e)
+        private void BtnBrowseSQLLite_Click(object sender, EventArgs e)
         {
             using var fbd = new FolderBrowserDialog();
             DialogResult result = fbd.ShowDialog();
 
             if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
             {
-                this.txtCSVLocation.Text = fbd.SelectedPath;
+                this.txtSQLLiteLocation.Text = fbd.SelectedPath;
             }
         }
     }

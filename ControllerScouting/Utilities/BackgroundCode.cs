@@ -23,8 +23,8 @@ namespace ControllerScouting.Utilities
 
         public static ConcurrentQueue<Activity> activitiesQueue = new();      //The queue of activities to be sent to the database
         public static Activity[] activity_record = new Activity[6]; //The activity record being sent to the database
-        public static SeasonContext localSeasonframework = new();        //The database context
-        public static SeasonContext serverSeasonframework = new();        //The database context
+        public static SeasonContext localSeasonframework = new(Settings.Default._scoutingdbConnectionString);        //The database context
+        public static SeasonContext serverSeasonframework = new(Settings.Default._scoutingdbServerConnectionString);        //The database context
         public static bool localSQLChanges = false;                 //If the local database has had changes
 
         public static List<string> teamPrio = [];                   //List of teams to prioritize scouting
@@ -42,7 +42,7 @@ namespace ControllerScouting.Utilities
         public static readonly string projectBaseDirectory = System.IO.Path.GetFullPath(System.IO.Path.Combine(baseDirectory, @"..\..\"));
         public static readonly string iniPath = System.IO.Path.Combine(projectBaseDirectory, "config.ini");
         public static readonly INIFile iniFile = new(iniPath);
-        public enum EXPORT_TYPE { CSV, SQLlocal, SQLonline}
+        public enum EXPORT_TYPE { NoDownloadSQL, SQLlocal, SQLonline}
         public static EXPORT_TYPE dataExport = EXPORT_TYPE.CSV;
         public BackgroundCode()
         {
@@ -57,13 +57,13 @@ namespace ControllerScouting.Utilities
             }
             else
             {
-                dataExport = EXPORT_TYPE.CSV;
+                dataExport = EXPORT_TYPE.NoDownloadSQL;
             }
-            Settings.Default.CSVLocation = iniFile.Read("ProgramSettings", "csvLocation", "");
+            Settings.Default.SQLLiteLocation = iniFile.Read("ProgramSettings", "sqlLocation", "");
 
-            if (dataExport == EXPORT_TYPE.CSV)
+            if (dataExport == EXPORT_TYPE.NoDownloadSQL)
             {
-                Settings.Default.csvExists = DatabaseCode.DoesCSVExist(Settings.Default.CSVLocation);
+                Settings.Default.sqlLiteExists = DatabaseCode.DoesSQLLiteExist(Settings.Default.SQLLiteLocation);
             }
 
             //Sets the default values for the robots
@@ -97,11 +97,10 @@ namespace ControllerScouting.Utilities
             }
             Settings.Default.sqlExists = instanceKey != null;
 
-            //if (!Settings.Default.sqlExists)
-            //{
-            //    dataExport = EXPORT_TYPE.CSV;
-            //}
-            dataExport = EXPORT_TYPE.SQLonline;
+            if (!Settings.Default.sqlExists)
+            {
+                dataExport = EXPORT_TYPE.NoDownloadSQL;
+            }
         }
         private static void ControllerThreadMethod(GamePad gamePad, CancellationToken token)
         {
