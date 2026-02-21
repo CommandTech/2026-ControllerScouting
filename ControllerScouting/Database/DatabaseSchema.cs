@@ -443,6 +443,11 @@ namespace ControllerScouting.Database
                         BackgroundCode.localSeasonframework.SaveChanges();
                         BackgroundCode.localSQLChanges = true;
                     }
+                    else
+                    {
+                        BackgroundCode.serverSeasonframework.ActivitySet.Add(activity);
+                        BackgroundCode.serverSeasonframework.SaveChanges();
+                    }
                     break;
             }
         }
