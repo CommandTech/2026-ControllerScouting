@@ -434,6 +434,9 @@ namespace ControllerScouting.Database
                         using StreamWriter sw = File.AppendText(locationFixed + "\\" + databaseName);
                         sw.WriteLine(activity.ToCSV());
                     }
+
+                    BackgroundCode.serverSeasonframework.ActivitySet.Add(activity);
+                    BackgroundCode.serverSeasonframework.SaveChanges();
                     break;
                 default:
                     //Save Record to the database
