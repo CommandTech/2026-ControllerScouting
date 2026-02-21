@@ -235,7 +235,6 @@ namespace ControllerScouting.Database
             return matches;
         }
 
-        public static string databaseName = "database.db";
         public static void LoadManualMatches()
         {
 
@@ -518,7 +517,7 @@ namespace ControllerScouting.Database
 
             string locationCorrected = DoubleBackslashesAndEnsureTrailing(location);
 
-            return File.Exists(locationCorrected + databaseName);
+            return File.Exists(locationCorrected + BackgroundCode.sqlLiteDatabaseName);
         }
         public static void CreateSQLLite(string location)
         {
@@ -534,12 +533,25 @@ namespace ControllerScouting.Database
 
             string locationCorrected = DoubleBackslashesAndEnsureTrailing(location);
 
-            string filePath = locationCorrected + databaseName;
+            string filePath = locationCorrected + BackgroundCode.sqlLiteDatabaseName;
             string directoryPath = Path.GetDirectoryName(filePath);
             Directory.CreateDirectory(directoryPath);
             File.Create(filePath).Close();
 
             Settings.Default.sqlExists = true;
+        }
+
+        public static void RenameSQLLite(string newName)
+        {
+            string oldFilePath = Path.Combine(Settings.Default.SQLLiteLocation, BackgroundCode.sqlLiteDatabaseName);
+            string newFilePath = Path.Combine(Settings.Default.SQLLiteLocation, newName);
+
+            if (File.Exists(oldFilePath))
+            {
+                File.Move(oldFilePath, newFilePath);
+            }
+
+            BackgroundCode.sqlLiteDatabaseName = newName;
         }
 
         public static void MoveSQLLite(string oldLocation, string newLocation)
@@ -557,8 +569,8 @@ namespace ControllerScouting.Database
             string oldLocationCorrected = DoubleBackslashesAndEnsureTrailing(oldLocation);
             string newLocationCorrected = DoubleBackslashesAndEnsureTrailing(newLocation);
 
-            string oldFilePath = oldLocationCorrected + databaseName;
-            string newFilePath = newLocationCorrected + databaseName;
+            string oldFilePath = oldLocationCorrected + BackgroundCode.sqlLiteDatabaseName;
+            string newFilePath = newLocationCorrected + BackgroundCode.sqlLiteDatabaseName;
 
             string directoryPath = Path.GetDirectoryName(newFilePath);
             Directory.CreateDirectory(directoryPath);

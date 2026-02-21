@@ -83,11 +83,11 @@ namespace ControllerScouting.Screens
 
             BackgroundCode.iniFile.Write("ProgramSettings", "exportType", BackgroundCode.dataExport.ToString());
 
-            if (!Settings.Default.csvExists && rdioSQLLite.Checked)
+            if (!Settings.Default.sqlLiteExists && rdioSQLLite.Checked)
             {
                 DatabaseCode.CreateSQLLite(Settings.Default.SQLLiteLocation);
             }
-            else if (Settings.Default.csvExists && rdioSQLLite.Checked)
+            else if (Settings.Default.sqlLiteExists && rdioSQLLite.Checked)
             {
                 DatabaseCode.MoveSQLLite(oldLocation, Settings.Default.SQLLiteLocation);
             }

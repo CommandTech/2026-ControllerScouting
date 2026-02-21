@@ -72,24 +72,24 @@ namespace ControllerScouting.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool csvExists {
-            get {
-                return ((bool)(this["csvExists"]));
-            }
-            set {
-                this["csvExists"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool sqlExists {
             get {
                 return ((bool)(this["sqlExists"]));
             }
             set {
                 this["sqlExists"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool sqlLiteExists {
+            get {
+                return ((bool)(this["sqlLiteExists"]));
+            }
+            set {
+                this["sqlLiteExists"] = value;
             }
         }
     }

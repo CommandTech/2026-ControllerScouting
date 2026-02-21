@@ -43,7 +43,8 @@ namespace ControllerScouting.Utilities
         public static readonly string iniPath = System.IO.Path.Combine(projectBaseDirectory, "config.ini");
         public static readonly INIFile iniFile = new(iniPath);
         public enum EXPORT_TYPE { NoDownloadSQL, SQLlocal, SQLonline}
-        public static EXPORT_TYPE dataExport = EXPORT_TYPE.CSV;
+        public static EXPORT_TYPE dataExport = EXPORT_TYPE.NoDownloadSQL;
+        public static string sqlLiteDatabaseName = "database.db";
         public BackgroundCode()
         {
 

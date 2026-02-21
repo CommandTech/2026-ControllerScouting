@@ -331,6 +331,11 @@ namespace ControllerScouting.Screens
             {
                 BackgroundCode.localSeasonframework.Database.Connection.Close();
             }
+            
+            if (BackgroundCode.dataExport == BackgroundCode.EXPORT_TYPE.NoDownloadSQL)
+            {
+                DatabaseCode.RenameSQLLite($"{DateTime.Now.Year}{newName}.db");
+            }
             BackgroundCode.serverSeasonframework.Database.Connection.Close();
 
             var localBuilder = new System.Data.SqlClient.SqlConnectionStringBuilder(Settings.Default._scoutingdbConnectionString)
