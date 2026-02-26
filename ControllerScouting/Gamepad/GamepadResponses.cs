@@ -140,6 +140,7 @@ namespace ControllerScouting.Gamepad
                             }
                         }
 
+                        // If out of auto only
                         if (gamepad.L3_Down)
                         {
                             robot.DefenseTime_StopWatch.Start();
@@ -159,6 +160,7 @@ namespace ControllerScouting.Gamepad
                         {
                             DatabaseCode.SaveToRecord(robot, "Activities");
                         }
+                        // Only if in auto
                         else if (gamepad.BButton_Press) {
                             robot.Auto_Climb = RobotState.BOOLEAN.Yes;
                         }
