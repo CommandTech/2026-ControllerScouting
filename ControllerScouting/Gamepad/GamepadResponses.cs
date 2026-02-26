@@ -24,7 +24,7 @@ namespace ControllerScouting.Gamepad
                 //***********************************
                 //CHANGE SCOUTER NAME
                 //***********************************
-                if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Auto)
+                if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Prematch)
                 {
                     //Select Scouter Name for Student names
                     if (gamepad.AButton_Down && gamepad.LeftStickLeft_Press)
@@ -54,11 +54,11 @@ namespace ControllerScouting.Gamepad
                 {
                     if (gamepad.RightStickRight_Press)
                     {
-                        robot.CycleEventName(RobotState.CYCLE_DIRECTION.Up);
+                        robot.CycleMatchEvent(RobotState.CYCLE_DIRECTION.Up);
                     }
                     else if (gamepad.RightStickLeft_Press)
                     {
-                        robot.CycleEventName(RobotState.CYCLE_DIRECTION.Down);
+                        robot.CycleMatchEvent(RobotState.CYCLE_DIRECTION.Down);
                     }
 
                     if (gamepad.R3_Press && robot.MatchEvent != RobotState.MATCHEVENT_NAME.Match_Event)
@@ -67,222 +67,207 @@ namespace ControllerScouting.Gamepad
                     }
                 }
 
-                //***********************************
-                //AUTO MODE
-                //***********************************
-                if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Auto && robot.GetScouterName() != RobotState.SCOUTER_NAME.Select_Name)
+                if (robot.GetScouterName() != RobotState.SCOUTER_NAME.Select_Name)
                 {
-                    if (gamepad.LeftTrigger_Press)
+                    if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Prematch)
                     {
-                        robot.BumpTraversal++;
-                    }
-                    else if (gamepad.RightTrigger_Press)
-                    {
-                        DatabaseCode.SaveToRecord(robot, "Activities");
-                    }
-                    else if (gamepad.XButton_Press)
-                    {
-                        robot.CycleStartingLocation(RobotState.CYCLE_DIRECTION.Up);
-                    }
-                    else if (gamepad.BButton_Press)
-                    {
-                        robot.CycleStartingLocation(RobotState.CYCLE_DIRECTION.Down);
-                    }
-                    else if (gamepad.DpadUp_Press) {
-                        robot.Auto_Climb = RobotState.BOOLEAN.Yes;
-                    }
-                    else if (gamepad.DpadDown_Press)
-                    {
-                        robot.Auto_Climb = RobotState.BOOLEAN.No;
-                    }
+                        if (gamepad.XButton_Press)
+                        {
+                            robot.CycleStartingLocation(RobotState.CYCLE_DIRECTION.Up);
+                        }
+                        else if (gamepad.BButton_Press)
+                        {
+                            robot.CycleStartingLocation(RobotState.CYCLE_DIRECTION.Down);
+                        }
 
-                    if (gamepad.LeftButton_Down)
-                    {
-                        robot.FuelIntakingTime_StopWatch.Start();
-                        robot.FuelIntakingTime = robot.FuelIntakingTime_StopWatch.Elapsed;
+                        if (gamepad.StartButton_Press)
+                        {
+                            // Switch to alliance zone
+                        }
                     }
-                    else if (gamepad.LeftButton_Release)
+                    //***********************************
+                    //ZONES MODE
+                    //***********************************
+                    else if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Red ||
+                             robot.GetRobotMode() == RobotState.ROBOT_MODE.Neutral ||
+                             robot.GetRobotMode() == RobotState.ROBOT_MODE.Blue)
                     {
-                        robot.FuelIntakingTime_StopWatch.Stop();
-                        robot.FuelIntakingTime = robot.FuelIntakingTime_StopWatch.Elapsed;
-                    }
+                        if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Red)
+                        {
+                            robot.RedZoneTime_StopWatch.Start();
+                            robot.RedZoneTime = robot.RedZoneTime_StopWatch.Elapsed;
 
-                    if (gamepad.RightButton_Down)
-                    {
-                        robot.FuelShootingTime_StopWatch.Start();
-                        robot.FuelShootingTime = robot.FuelShootingTime_StopWatch.Elapsed;
-                    }
-                    else if (gamepad.RightButton_Release) {
-                        robot.FuelShootingTime_StopWatch.Stop();
-                        robot.FuelShootingTime = robot.FuelShootingTime_StopWatch.Elapsed;
-                    }
+                            // If left or right, switch to neutral zone
+                            // Stop current timer
 
-                    if (gamepad.StartButton_Press)
-                    {
-                        DatabaseCode.SaveToRecord(robot, "EndAuto");
-                        robot.CycleRobotMode(RobotState.CYCLE_DIRECTION.Up);
-                    }
-                }
-                //***********************************
-                //TELEOP MODE
-                //***********************************
-                else if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Teleop && robot.GetScouterName() != RobotState.SCOUTER_NAME.Select_Name)
-                {
-                    if (gamepad.L3_Down) {
-                        robot.DefenseTime_StopWatch.Start();
-                        robot.DefenseTime_StopWatch_Running = true;
-                        robot.DefenseTime = robot.DefenseTime_StopWatch.Elapsed;
-                    } else if (gamepad.L3_Release) {
-                        robot.DefenseTime_StopWatch.Stop();
-                        robot.DefenseTime_StopWatch_Running = false;
-                        robot.DefenseTime = robot.DefenseTime_StopWatch.Elapsed;
-                    }
+                            // Feed or shoot depending on robot
+                            //if (gamepad.RightButton_Down)
+                            //{
+                            //    robot.FuelShootingTime_StopWatch.Start();
+                            //    robot.FuelShootingTime = robot.FuelShootingTime_StopWatch.Elapsed;
+                            //}
+                            //else if (gamepad.RightButton_Release)
+                            //{
+                            //    robot.FuelShootingTime_StopWatch.Stop();
+                            //    robot.FuelShootingTime = robot.FuelShootingTime_StopWatch.Elapsed;
+                            //}
+                        }
+                        else if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Blue)
+                        {
+                            robot.BlueZoneTime_StopWatch.Start();
+                            robot.BlueZoneTime = robot.BlueZoneTime_StopWatch.Elapsed;
 
-                    if (gamepad.LeftTrigger_Press)
-                    {
-                        robot.BumpTraversal++;
-                    }
-                    else if (gamepad.RightTrigger_Press)
-                    {
-                        DatabaseCode.SaveToRecord(robot, "Activities");
-                    }
-                    if (gamepad.LeftButton_Down)
-                    {
-                        robot.FuelIntakingTime_StopWatch.Start();
-                        robot.FuelIntakingTime = robot.FuelIntakingTime_StopWatch.Elapsed;
-                    }
-                    else if (gamepad.LeftButton_Release)
-                    {
-                        robot.FuelIntakingTime_StopWatch.Stop();
-                        robot.FuelIntakingTime = robot.FuelIntakingTime_StopWatch.Elapsed;
-                    }
+                            // If left or right, switch to neutral zone
+                            // Stop current timer
+                        } 
+                        else if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Neutral)
+                        {
+                            robot.NeutralZoneTime_StopWatch.Start();
+                            robot.NeutralZoneTime = robot.NeutralZoneTime_StopWatch.Elapsed;
 
-                    if (gamepad.RightButton_Down)
-                    {
-                        robot.FuelShootingTime_StopWatch.Start();
-                        robot.FuelShootingTime = robot.FuelShootingTime_StopWatch.Elapsed;
-                    }
-                    else if (gamepad.RightButton_Release)
-                    {
-                        robot.FuelShootingTime_StopWatch.Stop();
-                        robot.FuelShootingTime = robot.FuelShootingTime_StopWatch.Elapsed;
-                    }
+                            // If left or right, switch to blue or red zone
+                            // Stop current timer
 
-                    if (gamepad.YButton_Down)
-                    {
-                        robot.FeedingTime_StopWatch.Start();
-                        robot.FeedingTime = robot.FeedingTime_StopWatch.Elapsed;
-                    }
-                    else if (gamepad.YButton_Release)
-                    {
-                        robot.FeedingTime_StopWatch.Stop();
-                        robot.FeedingTime = robot.FeedingTime_StopWatch.Elapsed;
-                    }
+                            if (gamepad.YButton_Down)
+                            {
+                                robot.FeedingTime_StopWatch.Start();
+                                robot.FeedingTime = robot.FeedingTime_StopWatch.Elapsed;
+                            }
+                            else if (gamepad.YButton_Release)
+                            {
+                                robot.FeedingTime_StopWatch.Stop();
+                                robot.FeedingTime = robot.FeedingTime_StopWatch.Elapsed;
+                            }
+                        }
 
-                    if (gamepad.StartButton_Press)
-                    {
-                        robot.CycleRobotMode(RobotState.CYCLE_DIRECTION.Up);
-                        robot.TimeOfClimb_StopWatch.Start(); // starts the time
-                    }
-                }
+                        if (gamepad.L3_Down)
+                        {
+                            robot.DefenseTime_StopWatch.Start();
+                            robot.DefenseTime = robot.DefenseTime_StopWatch.Elapsed;
+                        }
+                        else if (gamepad.L3_Release)
+                        {
+                            robot.DefenseTime_StopWatch.Stop();
+                            robot.DefenseTime = robot.DefenseTime_StopWatch.Elapsed;
+                        }
 
-                //***********************************
-                //ENDGAME MODE
-                //***********************************
-                else if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Endgame && robot.GetScouterName() != RobotState.SCOUTER_NAME.Select_Name)
-                {
+                        if (gamepad.LeftTrigger_Press)
+                        {
+                            robot.BumpTraversal++;
+                        }
+                        else if (gamepad.RightTrigger_Press)
+                        {
+                            DatabaseCode.SaveToRecord(robot, "Activities");
+                        }
+                        else if (gamepad.BButton_Press) {
+                            robot.Auto_Climb = RobotState.BOOLEAN.Yes;
+                        }
+                        else if (gamepad.AButton_Press)
+                        {
+                            robot.Auto_Climb = RobotState.BOOLEAN.No;
+                        }
 
-                    if (!robot.ClimbedTime)
-                    {
-                        robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
-                    }
+                        if (gamepad.LeftButton_Down)
+                        {
+                            robot.FuelIntakingTime_StopWatch.Start();
+                            robot.FuelIntakingTime = robot.FuelIntakingTime_StopWatch.Elapsed;
+                        }
+                        else if (gamepad.LeftButton_Release)
+                        {
+                            robot.FuelIntakingTime_StopWatch.Stop();
+                            robot.FuelIntakingTime = robot.FuelIntakingTime_StopWatch.Elapsed;
+                        }
 
-                    if (gamepad.AButton_Press)
-                    {
-                        robot.CycleLadderLocation(RobotState.CYCLE_DIRECTION.Up);
-                    }
-                    if (gamepad.YButton_Press && robot.Climb_Level != RobotState.CLIMB_LEVEL.L3)
-                    {
-                        robot.Climb_Level = RobotState.CLIMB_LEVEL.L3;
-                    }
-                    else if (gamepad.YButton_Press)
-                    {
-                        robot.Climb_Level = RobotState.CLIMB_LEVEL.No_Climb;
-                    }
-                    else if (gamepad.XButton_Press && robot.Climb_Level != RobotState.CLIMB_LEVEL.L2)
-                    {
-                        robot.Climb_Level = RobotState.CLIMB_LEVEL.L2;
-                    }
-                    else if (gamepad.XButton_Press)
-                    {
-                        robot.Climb_Level = RobotState.CLIMB_LEVEL.No_Climb;
-                    }
-                    else if (gamepad.BButton_Press && robot.Climb_Level != RobotState.CLIMB_LEVEL.L1)
-                    {
-                        robot.Climb_Level = RobotState.CLIMB_LEVEL.L1;
-                    }
-                    else if (gamepad.BButton_Press)
-                    {
-                        robot.Climb_Level = RobotState.CLIMB_LEVEL.No_Climb;
-                    }
-                    else if (gamepad.LeftStickLeft_Press)
-                    {
-                        robot.CycleStrategy(RobotState.CYCLE_DIRECTION.Up);
-                    }
-                    else if (gamepad.LeftStickRight_Press)
-                    {
-                        robot.CycleStrategy(RobotState.CYCLE_DIRECTION.Down);
-                    }
-                    if (gamepad.LeftButton_Press)
-                    {
-                        robot.TimeOfClimb_StopWatch.Start();
-                    }
-                    if (gamepad.LeftTrigger_Press && robot.TimeOfClimb_StopWatch.IsRunning)
-                    {
-                        robot.TimeOfClimb_StopWatch.Reset();
-                        robot.TimeOfClimb_StopWatch.Stop();
-                        robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
-                        robot.ClimbedTime = false;
-                    }
-                    if (gamepad.RightButton_Press && robot.ClimbedTime)
-                    {
-                        robot.TimeOfClimb_StopWatch.Stop();
-                        robot.TimeOfClimb = robot.TimeOfClimb_StopWatch.Elapsed;
-                        robot.End_Match = RobotState.BOOLEAN.Yes;
-                    }
-                    else if (gamepad.RightButton_Press) {
-                        robot.ClimbedTime = true;
-                        robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
-                    }
+                        if (gamepad.StartButton_Press)
+                        {
+                            DatabaseCode.SaveToRecord(robot, "EndAuto");
+                        }
 
-                    if (gamepad.DpadLeft_Press)
+                        if (gamepad.BackButton_Down)
+                        {
+                            // into endgame
+                            robot.RobotMode = RobotState.ROBOT_MODE.Endgame;
+                            robot.TimeOfClimb_StopWatch.Start(); // starts the time
+                        }
+                    }
+                    //***********************************
+                    //ENDGAME MODE
+                    //***********************************
+                    else if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Endgame)
                     {
-                        robot.CycleDefenseStrategy(RobotState.CYCLE_DIRECTION.Up);
-                    }
-                    else if (gamepad.DpadRight_Press)
-                    {
-                        robot.CycleAvoidanceStrategy(RobotState.CYCLE_DIRECTION.Up);
-                    }
-                    else if (gamepad.DpadUp_Press) {
-                        robot.Climb_Success = RobotState.BOOLEAN.Yes;
-                    } 
-                    else if (gamepad.DpadDown_Press) {
-                        robot.Climb_Success = RobotState.BOOLEAN.No;
-                    }
 
-                    if (gamepad.StartButton_Press && !robot.ClimbedTime && robot.TimeOfClimb_StopWatch.IsRunning)
-                    {
-                        robot.CycleRobotMode(RobotState.CYCLE_DIRECTION.Down);
-                        robot.TimeOfClimb_StopWatch.Stop();
-                        robot.TimeOfClimb_StopWatch.Reset();
+                        if (!robot.ClimbedTime)
+                        {
+                            robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
+                        }
+
+                        if (gamepad.AButton_Press)
+                        {
+                            robot.CycleLadderLocation(RobotState.CYCLE_DIRECTION.Up);
+                        }
+                        if (gamepad.YButton_Press && robot.Climb_Level != RobotState.CLIMB_LEVEL.L3)
+                        {
+                            robot.Climb_Level = RobotState.CLIMB_LEVEL.L3;
+                        }
+                        else if (gamepad.YButton_Press)
+                        {
+                            robot.Climb_Level = RobotState.CLIMB_LEVEL.No_Climb;
+                        }
+                        else if (gamepad.XButton_Press && robot.Climb_Level != RobotState.CLIMB_LEVEL.L2)
+                        {
+                            robot.Climb_Level = RobotState.CLIMB_LEVEL.L2;
+                        }
+                        else if (gamepad.XButton_Press)
+                        {
+                            robot.Climb_Level = RobotState.CLIMB_LEVEL.No_Climb;
+                        }
+                        else if (gamepad.BButton_Press && robot.Climb_Level != RobotState.CLIMB_LEVEL.L1)
+                        {
+                            robot.Climb_Level = RobotState.CLIMB_LEVEL.L1;
+                        }
+                        else if (gamepad.BButton_Press)
+                        {
+                            robot.Climb_Level = RobotState.CLIMB_LEVEL.No_Climb;
+                        }
+
+                        if (gamepad.LeftButton_Press)
+                        {
+                            robot.TimeOfClimb_StopWatch.Start();
+                        }
+                        if (gamepad.LeftTrigger_Press && robot.TimeOfClimb_StopWatch.IsRunning)
+                        {
+                            robot.TimeOfClimb_StopWatch.Reset();
+                            robot.TimeOfClimb_StopWatch.Stop();
+                            robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
+                            robot.ClimbedTime = false;
+                        }
+                        if (gamepad.RightButton_Press && robot.ClimbedTime)
+                        {
+                            robot.TimeOfClimb_StopWatch.Stop();
+                            robot.TimeOfClimb = robot.TimeOfClimb_StopWatch.Elapsed;
+                            robot.End_Match = RobotState.BOOLEAN.Yes;
+                        }
+                        else if (gamepad.RightButton_Press) {
+                            robot.ClimbedTime = true;
+                            robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
+                        }
+                        
+                        if (gamepad.DpadUp_Press) {
+                            robot.Climb_Success = RobotState.BOOLEAN.Yes;
+                        } 
+                        else if (gamepad.DpadDown_Press) {
+                            robot.Climb_Success = RobotState.BOOLEAN.No;
+                        }
+
+                        if (gamepad.StartButton_Press && !robot.ClimbedTime && robot.TimeOfClimb_StopWatch.IsRunning)
+                        {
+                            // Switch to alliance zone
+                            //robot.CycleRobotMode(RobotState.CYCLE_DIRECTION.Down);
+                            robot.TimeOfClimb_StopWatch.Stop();
+                            robot.TimeOfClimb_StopWatch.Reset();
+                        }
+
                     }
-
-                }
-
-                // Values if robot is NoSho
-                else if (robot.NoSho)
-                {
-
                 }
             }
         }

@@ -6,7 +6,7 @@ namespace ControllerScouting.Utilities
 {
     public class RobotState
     {
-        public enum ROBOT_MODE { Auto, Teleop, Endgame };
+        public enum ROBOT_MODE { Prematch, Red, Neutral, Blue, Endgame };
         public enum CYCLE_DIRECTION { Up, Down }
         public enum MATCHEVENT_NAME { Match_Event, TippedOver, LostParts, GotStuck, BrokenDown, NoShow, JammedPiece, Other }
         public enum SCOUTER_NAME { Select_Name, Abel, Abhi_R, Abhi_V, Adel, Adrika, Aishani, Ananth, Andrew, Anh, Anshu, Arnav, Aryan, Ashley, Atharv, Avani, Avanti, Charlotte, Chris, Corey, Grace, Hasini, Issac, Ishan, Jack, Jasmin, Jasmine, Jay, Liam, Manha, Maria, Noah, Parnitha, Ravena, Rddhima, Rishi, Rohan, Ruchir, Saanvi, Sam_W, Sanchi, Sanvi, Sri, Suhrit, Tanay, Vaibhav, Varsha, Xander, Scouter1, Scouter2, Scouter3, Scouter4, Scouter5, Scouter6, Adnan, Alex, Alyssa, Charlie, Deven, Elliot, Grant, Josh, Katie, Kevin, Logan, Luke, Marcus, Max, Sam_B, Spencer, William }
@@ -47,6 +47,12 @@ namespace ControllerScouting.Utilities
         {
             get { return _TeamName; }
             set { _TeamName = value; }
+        }
+        
+        public ROBOT_MODE RobotMode
+        {
+            get { return _RobotMode; }
+            set { _RobotMode = value; }
         }
         public SCOUTER_NAME GetScouterName()
         { return _ScouterName; }
@@ -126,7 +132,7 @@ namespace ControllerScouting.Utilities
         }
 
         //Cycle Event Name
-        public void CycleEventName(CYCLE_DIRECTION CycleDirection)
+        public void CycleMatchEvent(CYCLE_DIRECTION CycleDirection)
         {
             if (CycleDirection == CYCLE_DIRECTION.Up)
             {
@@ -180,29 +186,29 @@ namespace ControllerScouting.Utilities
 
         public TimeSpan TimeOfClimb = TimeSpan.Zero;
         public Stopwatch TimeOfClimb_StopWatch;
-        public double TimeOfClimbDouble;
         public TimeSpan ClimbTime;
         public bool ClimbedTime;
 
+        public TimeSpan RedZoneTime = TimeSpan.Zero;
+        public Stopwatch RedZoneTime_StopWatch;
+
+        public TimeSpan NeutralZoneTime = TimeSpan.Zero;
+        public Stopwatch NeutralZoneTime_StopWatch;
+
+        public TimeSpan BlueZoneTime = TimeSpan.Zero;
+        public Stopwatch BlueZoneTime_StopWatch;
+
         public TimeSpan DefenseTime = TimeSpan.Zero;
         public Stopwatch DefenseTime_StopWatch;
-        public bool DefenseTime_StopWatch_Running;
-        public double DefenseTimeDouble;
 
         public TimeSpan FuelIntakingTime = TimeSpan.Zero;
         public Stopwatch FuelIntakingTime_StopWatch;
-        public bool FuelIntakingTime_StopWatch_Running;
-        public double FuelIntakingTimeDouble;
 
         public TimeSpan FuelShootingTime = TimeSpan.Zero;
         public Stopwatch FuelShootingTime_StopWatch;
-        public bool FuelShootingTime_StopWatch_Running;
-        public double FuelShootingTimeDouble;
 
         public TimeSpan FeedingTime = TimeSpan.Zero;
         public Stopwatch FeedingTime_StopWatch;
-        public bool FeedingTime_StopWatch_Running;
-        public double FeedingTimeDouble;
 
         public int BumpTraversal = 0;
         public bool DisplayClimbSuccess = false;
