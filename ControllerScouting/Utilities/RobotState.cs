@@ -21,7 +21,7 @@ namespace ControllerScouting.Utilities
         public bool TransactionCheck;
 
         // Year to Year strings
-        public string color;
+        public ROBOT_MODE color;
 
         // Year to Year bools
         public bool RTHUP_Lock;
