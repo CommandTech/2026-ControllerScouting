@@ -111,6 +111,12 @@ namespace ControllerScouting.Gamepad
                             robot.RedZoneTime_StopWatch.Start();
                             robot.RedZoneTime = robot.RedZoneTime_StopWatch.Elapsed;
 
+                            if (robot.BumpTraversal == robot.prevBumpTraversal)
+                            {
+                                robot.TrenchTraversal++;
+                            }
+                            robot.prevBumpTraversal = robot.BumpTraversal;
+
                             if ((gamepad.DpadLeft_Press && BackgroundCode.redRight) || (gamepad.DpadRight_Press && !BackgroundCode.redRight))
                             {
                                 robot.RobotMode = RobotState.ROBOT_MODE.Neutral;
@@ -124,6 +130,12 @@ namespace ControllerScouting.Gamepad
                             robot.BlueZoneTime_StopWatch.Start();
                             robot.BlueZoneTime = robot.BlueZoneTime_StopWatch.Elapsed;
 
+                            if (robot.BumpTraversal == robot.prevBumpTraversal)
+                            {
+                                robot.TrenchTraversal++;
+                            }
+                            robot.prevBumpTraversal = robot.BumpTraversal;
+
                             if ((gamepad.DpadRight_Press && BackgroundCode.redRight) || (gamepad.DpadLeft_Press && !BackgroundCode.redRight))
                             {
                                 robot.RobotMode = RobotState.ROBOT_MODE.Neutral;
@@ -136,6 +148,12 @@ namespace ControllerScouting.Gamepad
                         {
                             robot.NeutralZoneTime_StopWatch.Start();
                             robot.NeutralZoneTime = robot.NeutralZoneTime_StopWatch.Elapsed;
+
+                            if (robot.BumpTraversal == robot.prevBumpTraversal)
+                            {
+                                robot.TrenchTraversal++;
+                            }
+                            robot.prevBumpTraversal = robot.BumpTraversal;
 
                             if ((gamepad.DpadRight_Press && BackgroundCode.redRight) || (gamepad.DpadLeft_Press && !BackgroundCode.redRight))
                             {

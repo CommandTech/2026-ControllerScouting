@@ -27,7 +27,6 @@ namespace ControllerScouting.Screens
             lbl5Position8 = new Label();
             lbl5Position7 = new Label();
             lbl5Position6 = new Label();
-            lbl5Position5 = new Label();
             lbl5Position4 = new Label();
             lbl5Position3 = new Label();
             lbl5Position2 = new Label();
@@ -48,7 +47,6 @@ namespace ControllerScouting.Screens
             lbl4Position8 = new Label();
             lbl4Position7 = new Label();
             lbl4Position6 = new Label();
-            lbl4Position5 = new Label();
             lbl4Position4 = new Label();
             lbl4Position3 = new Label();
             lbl4Position2 = new Label();
@@ -69,7 +67,6 @@ namespace ControllerScouting.Screens
             lbl3Position8 = new Label();
             lbl3Position7 = new Label();
             lbl3Position6 = new Label();
-            lbl3Position5 = new Label();
             lbl3Position4 = new Label();
             lbl3Position3 = new Label();
             lbl3Position2 = new Label();
@@ -93,7 +90,6 @@ namespace ControllerScouting.Screens
             lbl2Position8 = new Label();
             lbl2Position7 = new Label();
             lbl2Position6 = new Label();
-            lbl2Position5 = new Label();
             lbl2Position4 = new Label();
             lbl2Position3 = new Label();
             lbl2Position2 = new Label();
@@ -114,7 +110,6 @@ namespace ControllerScouting.Screens
             lbl1Position8 = new Label();
             lbl1Position7 = new Label();
             lbl1Position6 = new Label();
-            lbl1Position5 = new Label();
             lbl1Position4 = new Label();
             lbl1Position3 = new Label();
             lbl1Position2 = new Label();
@@ -134,7 +129,6 @@ namespace ControllerScouting.Screens
             lbl0Position8 = new Label();
             lbl0Position7 = new Label();
             lbl0Position6 = new Label();
-            lbl0Position5 = new Label();
             lbl0Position4 = new Label();
             lbl0Position3 = new Label();
             lbl0Position2 = new Label();
@@ -289,7 +283,6 @@ namespace ControllerScouting.Screens
             panel17.Controls.Add(lbl5Position8);
             panel17.Controls.Add(lbl5Position7);
             panel17.Controls.Add(lbl5Position6);
-            panel17.Controls.Add(lbl5Position5);
             panel17.Controls.Add(lbl5Position4);
             panel17.Controls.Add(lbl5Position3);
             panel17.Controls.Add(lbl5Position2);
@@ -382,17 +375,6 @@ namespace ControllerScouting.Screens
             lbl5Position6.Size = new Size(179, 22);
             lbl5Position6.TabIndex = 401;
             lbl5Position6.Text = "Avoidance: VALUE";
-            // 
-            // lbl5Position5
-            // 
-            lbl5Position5.AutoSize = true;
-            lbl5Position5.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl5Position5.ForeColor = Color.White;
-            lbl5Position5.Location = new Point(112, 92);
-            lbl5Position5.Name = "lbl5Position5";
-            lbl5Position5.Size = new Size(216, 24);
-            lbl5Position5.TabIndex = 400;
-            lbl5Position5.Text = "Feeding Timer: 0:00.0";
             // 
             // lbl5Position4
             // 
@@ -542,7 +524,6 @@ namespace ControllerScouting.Screens
             panel13.Controls.Add(lbl4Position8);
             panel13.Controls.Add(lbl4Position7);
             panel13.Controls.Add(lbl4Position6);
-            panel13.Controls.Add(lbl4Position5);
             panel13.Controls.Add(lbl4Position4);
             panel13.Controls.Add(lbl4Position3);
             panel13.Controls.Add(lbl4Position2);
@@ -635,17 +616,6 @@ namespace ControllerScouting.Screens
             lbl4Position6.Size = new Size(179, 22);
             lbl4Position6.TabIndex = 401;
             lbl4Position6.Text = "Avoidance: VALUE";
-            // 
-            // lbl4Position5
-            // 
-            lbl4Position5.AutoSize = true;
-            lbl4Position5.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl4Position5.ForeColor = Color.White;
-            lbl4Position5.Location = new Point(112, 92);
-            lbl4Position5.Name = "lbl4Position5";
-            lbl4Position5.Size = new Size(216, 24);
-            lbl4Position5.TabIndex = 400;
-            lbl4Position5.Text = "Feeding Timer: 0:00.0";
             // 
             // lbl4Position4
             // 
@@ -795,7 +765,6 @@ namespace ControllerScouting.Screens
             panel9.Controls.Add(lbl3Position8);
             panel9.Controls.Add(lbl3Position7);
             panel9.Controls.Add(lbl3Position6);
-            panel9.Controls.Add(lbl3Position5);
             panel9.Controls.Add(lbl3Position4);
             panel9.Controls.Add(lbl3Position3);
             panel9.Controls.Add(lbl3Position2);
@@ -888,17 +857,6 @@ namespace ControllerScouting.Screens
             lbl3Position6.Size = new Size(179, 22);
             lbl3Position6.TabIndex = 401;
             lbl3Position6.Text = "Avoidance: VALUE";
-            // 
-            // lbl3Position5
-            // 
-            lbl3Position5.AutoSize = true;
-            lbl3Position5.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl3Position5.ForeColor = Color.White;
-            lbl3Position5.Location = new Point(112, 92);
-            lbl3Position5.Name = "lbl3Position5";
-            lbl3Position5.Size = new Size(216, 24);
-            lbl3Position5.TabIndex = 400;
-            lbl3Position5.Text = "Feeding Timer: 0:00.0";
             // 
             // lbl3Position4
             // 
@@ -1068,7 +1026,6 @@ namespace ControllerScouting.Screens
             panel5.Controls.Add(lbl2Position8);
             panel5.Controls.Add(lbl2Position7);
             panel5.Controls.Add(lbl2Position6);
-            panel5.Controls.Add(lbl2Position5);
             panel5.Controls.Add(lbl2Position4);
             panel5.Controls.Add(lbl2Position3);
             panel5.Controls.Add(lbl2Position2);
@@ -1181,17 +1138,6 @@ namespace ControllerScouting.Screens
             lbl2Position6.Size = new Size(179, 22);
             lbl2Position6.TabIndex = 401;
             lbl2Position6.Text = "Avoidance: VALUE";
-            // 
-            // lbl2Position5
-            // 
-            lbl2Position5.AutoSize = true;
-            lbl2Position5.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl2Position5.ForeColor = Color.White;
-            lbl2Position5.Location = new Point(112, 92);
-            lbl2Position5.Name = "lbl2Position5";
-            lbl2Position5.Size = new Size(216, 24);
-            lbl2Position5.TabIndex = 400;
-            lbl2Position5.Text = "Feeding Timer: 0:00.0";
             // 
             // lbl2Position4
             // 
@@ -1321,7 +1267,6 @@ namespace ControllerScouting.Screens
             panel1.Controls.Add(lbl1Position8);
             panel1.Controls.Add(lbl1Position7);
             panel1.Controls.Add(lbl1Position6);
-            panel1.Controls.Add(lbl1Position5);
             panel1.Controls.Add(lbl1Position4);
             panel1.Controls.Add(lbl1Position3);
             panel1.Controls.Add(lbl1Position2);
@@ -1434,17 +1379,6 @@ namespace ControllerScouting.Screens
             lbl1Position6.Size = new Size(179, 22);
             lbl1Position6.TabIndex = 401;
             lbl1Position6.Text = "Avoidance: VALUE";
-            // 
-            // lbl1Position5
-            // 
-            lbl1Position5.AutoSize = true;
-            lbl1Position5.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl1Position5.ForeColor = Color.White;
-            lbl1Position5.Location = new Point(112, 92);
-            lbl1Position5.Name = "lbl1Position5";
-            lbl1Position5.Size = new Size(216, 24);
-            lbl1Position5.TabIndex = 400;
-            lbl1Position5.Text = "Feeding Timer: 0:00.0";
             // 
             // lbl1Position4
             // 
@@ -1573,7 +1507,6 @@ namespace ControllerScouting.Screens
             team0.Controls.Add(lbl0Position8);
             team0.Controls.Add(lbl0Position7);
             team0.Controls.Add(lbl0Position6);
-            team0.Controls.Add(lbl0Position5);
             team0.Controls.Add(lbl0Position4);
             team0.Controls.Add(lbl0Position3);
             team0.Controls.Add(lbl0Position2);
@@ -1673,17 +1606,6 @@ namespace ControllerScouting.Screens
             lbl0Position6.Size = new Size(179, 22);
             lbl0Position6.TabIndex = 401;
             lbl0Position6.Text = "Avoidance: VALUE";
-            // 
-            // lbl0Position5
-            // 
-            lbl0Position5.AutoSize = true;
-            lbl0Position5.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl0Position5.ForeColor = Color.White;
-            lbl0Position5.Location = new Point(112, 92);
-            lbl0Position5.Name = "lbl0Position5";
-            lbl0Position5.Size = new Size(216, 24);
-            lbl0Position5.TabIndex = 400;
-            lbl0Position5.Text = "Feeding Timer: 0:00.0";
             // 
             // lbl0Position4
             // 
@@ -1983,7 +1905,6 @@ namespace ControllerScouting.Screens
         private Label lblRedScore;
         private Panel statusLight;
         private Panel topPanel;
-        private Label lbl0Position5;
         private Label lbl0Position1;
         private Label lbl0Position2;
         private Label lbl0Position3;
@@ -2001,7 +1922,6 @@ namespace ControllerScouting.Screens
         private Label lbl1Position8;
         private Label lbl1Position7;
         private Label lbl1Position6;
-        private Label lbl1Position5;
         private Label lbl1Position4;
         private Label lbl1Position3;
         private Label lbl1Position2;
@@ -2020,7 +1940,6 @@ namespace ControllerScouting.Screens
         private Label lbl5Position8;
         private Label lbl5Position7;
         private Label lbl5Position6;
-        private Label lbl5Position5;
         private Label lbl5Position4;
         private Label lbl5Position3;
         private Label lbl5Position2;
@@ -2041,7 +1960,6 @@ namespace ControllerScouting.Screens
         private Label lbl4Position8;
         private Label lbl4Position7;
         private Label lbl4Position6;
-        private Label lbl4Position5;
         private Label lbl4Position4;
         private Label lbl4Position3;
         private Label lbl4Position2;
@@ -2062,7 +1980,6 @@ namespace ControllerScouting.Screens
         private Label lbl3Position8;
         private Label lbl3Position7;
         private Label lbl3Position6;
-        private Label lbl3Position5;
         private Label lbl3Position4;
         private Label lbl3Position3;
         private Label lbl3Position2;
@@ -2085,7 +2002,6 @@ namespace ControllerScouting.Screens
         private Label lbl2Position8;
         private Label lbl2Position7;
         private Label lbl2Position6;
-        private Label lbl2Position5;
         private Label lbl2Position4;
         private Label lbl2Position3;
         private Label lbl2Position2;

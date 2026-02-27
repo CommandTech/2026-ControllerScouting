@@ -209,6 +209,8 @@ namespace ControllerScouting.Utilities
         public Stopwatch FeedingTime_StopWatch;
 
         public int BumpTraversal = 0;
+        public int prevBumpTraversal = 0;
+        public int TrenchTraversal = 0;
         public bool DisplayClimbSuccess = false;
         public enum STARTING_LOCATION { None, Far_Trench, Far_Bump, Hub, Near_Bump, Near_Trench }
         public enum LADDER_LOCATION { None, Outpost, Center, Depot };

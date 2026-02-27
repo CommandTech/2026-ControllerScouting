@@ -634,19 +634,19 @@ namespace ControllerScouting.Screens
                     switch (BackgroundCode.Robots[i].GetRobotMode())
                     {
                         case RobotState.ROBOT_MODE.Prematch:
-                            InPrematchMode(i, robotBox);
+                            InPrematchMode(BackgroundCode.Robots[i], robotBox);
                             break;
                         case RobotState.ROBOT_MODE.Red:
-                            InRedMode(i, robotBox);
+                            InRedMode(BackgroundCode.Robots[i], robotBox);
                             break;
                         case RobotState.ROBOT_MODE.Neutral:
-                            InNeutralMode(i, robotBox);
+                            InNeutralMode(BackgroundCode.Robots[i], robotBox);
                             break;
                         case RobotState.ROBOT_MODE.Blue:
-                            InBlueMode(i, robotBox);
+                            InBlueMode(BackgroundCode.Robots[i], robotBox);
                             break;
                         case RobotState.ROBOT_MODE.Endgame:
-                            InEndgameMode(i, robotBox);
+                            InEndgameMode(BackgroundCode.Robots[i], robotBox);
                             break;
                     }
 
@@ -663,7 +663,7 @@ namespace ControllerScouting.Screens
             }
 
         }
-        private void InPrematchMode(int Box_Number, int ScouterBox)
+        private void InPrematchMode(RobotState robot, int ScouterBox)
         {
             // Visible
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Visible = false;
@@ -679,7 +679,7 @@ namespace ControllerScouting.Screens
 
 
             // Text change
-            if (BackgroundCode.Robots[Box_Number].GetStartingLocation() == RobotState.STARTING_LOCATION.None)
+            if (robot.GetStartingLocation() == RobotState.STARTING_LOCATION.None)
             {
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).ForeColor = Color.Yellow;
             }
@@ -687,99 +687,109 @@ namespace ControllerScouting.Screens
             {
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).ForeColor = Color.White;
             }
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Text = "Starting Location: " + BackgroundCode.Robots[Box_Number].GetStartingLocation();
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + BackgroundCode.Robots[Box_Number].FuelIntakingTime.TotalSeconds.ToString("F2");
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Shooting Timer: " + BackgroundCode.Robots[Box_Number].FuelShootingTime.TotalSeconds.ToString("F2");
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Text = "Bump: " + BackgroundCode.Robots[Box_Number].BumpTraversal;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Text = "Starting Location: " + robot.GetStartingLocation();
+        }
+        private void InRedMode(RobotState robot, int ScouterBox)
+        {
+            //visibility
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Visible = true;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position9", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position6", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = false;
 
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Climb: ";
-            if (BackgroundCode.Robots[Box_Number].GetAutoClimb() == RobotState.BOOLEAN.Z)
+
+            //text change
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + robot.FuelIntakingTime.TotalSeconds.ToString("F2");
+            if (robot.color == RobotState.COLOR.Red)
             {
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = Color.Yellow;
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = Color.Yellow;
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Shooting Timer: " + robot.FuelShootingTime.TotalSeconds.ToString("F2");
             }
-            else if (BackgroundCode.Robots[Box_Number].GetAutoClimb() == RobotState.BOOLEAN.Yes)
+            else
             {
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = Color.Green;
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = Color.Green;
-            } 
-            else if (BackgroundCode.Robots[Box_Number].GetAutoClimb() == RobotState.BOOLEAN.No)
-            {
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = Color.Red;
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = Color.Red;
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Feeding Timer: " + robot.FeedingTime.TotalSeconds.ToString("F2");
             }
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Defense Timer: " + robot.DefenseTime.TotalSeconds.ToString("F2");
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Text = "Bump: " + robot.BumpTraversal;
 
+            if (robot.AUTO)
+            {
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Climb: ";
+
+                if (robot.GetAutoClimb() == RobotState.BOOLEAN.Z)
+                {
+                    ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = Color.Yellow;
+                    ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = Color.Yellow;
+                }
+                else if (robot.GetAutoClimb() == RobotState.BOOLEAN.Yes)
+                {
+                    ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = Color.Green;
+                    ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = Color.Green;
+                }
+                else if (robot.GetAutoClimb() == RobotState.BOOLEAN.No)
+                {
+                    ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = Color.Red;
+                    ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = Color.Red;
+                }
+            }
         }
-        private void InRedMode(int Box_Number, int ScouterBox)
+        private void InNeutralMode(RobotState robot, int ScouterBox)
         {
             //visibility
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Visible = true;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Visible = false;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position9", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position6", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).Visible = false;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position9", true)[0]).Visible = false;
 
 
             //text change
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Defense Timer: " + BackgroundCode.Robots[Box_Number].DefenseTime.TotalSeconds.ToString("F2");
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Text = "Feeding Timer: " + BackgroundCode.Robots[Box_Number].FeedingTime.TotalSeconds.ToString("F2");
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + BackgroundCode.Robots[Box_Number].FuelIntakingTime.TotalSeconds.ToString("F2");
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Shooting Timer: " + BackgroundCode.Robots[Box_Number].FuelShootingTime.TotalSeconds.ToString("F2");
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Text = "Bump: " + BackgroundCode.Robots[Box_Number].BumpTraversal;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + robot.FuelIntakingTime.TotalSeconds.ToString("F2");
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Feeding Timer: " + robot.FeedingTime.TotalSeconds.ToString("F2");
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Text = "Bump: " + robot.BumpTraversal;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Defense Timer: " + robot.DefenseTime.TotalSeconds.ToString("F2");
         }
-        private void InNeutralMode(int Box_Number, int ScouterBox)
+        private void InBlueMode(RobotState robot, int ScouterBox)
         {
             //visibility
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Visible = true;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Visible = false;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position9", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position6", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).Visible = false;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position9", true)[0]).Visible = false;
 
 
             //text change
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Defense Timer: " + BackgroundCode.Robots[Box_Number].DefenseTime.TotalSeconds.ToString("F2");
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Text = "Feeding Timer: " + BackgroundCode.Robots[Box_Number].FeedingTime.TotalSeconds.ToString("F2");
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + BackgroundCode.Robots[Box_Number].FuelIntakingTime.TotalSeconds.ToString("F2");
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Shooting Timer: " + BackgroundCode.Robots[Box_Number].FuelShootingTime.TotalSeconds.ToString("F2");
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Text = "Bump: " + BackgroundCode.Robots[Box_Number].BumpTraversal;
-        }
-        private void InBlueMode(int Box_Number, int ScouterBox)
-        {
-            //visibility
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Visible = false;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = false;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = false;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Visible = true;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Visible = false;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position9", true)[0]).Visible = false;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position6", true)[0]).Visible = false;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).Visible = false;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = false;
-
-
-            //text change
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Defense Timer: " + BackgroundCode.Robots[Box_Number].DefenseTime.TotalSeconds.ToString("F2");
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Text = "Feeding Timer: " + BackgroundCode.Robots[Box_Number].FeedingTime.TotalSeconds.ToString("F2");
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + BackgroundCode.Robots[Box_Number].FuelIntakingTime.TotalSeconds.ToString("F2");
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Shooting Timer: " + BackgroundCode.Robots[Box_Number].FuelShootingTime.TotalSeconds.ToString("F2");
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Text = "Bump: " + BackgroundCode.Robots[Box_Number].BumpTraversal;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + robot.FuelIntakingTime.TotalSeconds.ToString("F2");
+            if (robot.color == RobotState.COLOR.Blue)
+            {
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Shooting Timer: " + robot.FuelShootingTime.TotalSeconds.ToString("F2");
+            }
+            else
+            {
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Feeding Timer: " + robot.FeedingTime.TotalSeconds.ToString("F2");
+            }
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Text = "Bump: " + robot.BumpTraversal;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Defense Timer: " + robot.DefenseTime.TotalSeconds.ToString("F2");
         }
 
-        private void InEndgameMode(int Box_Number, int ScouterBox)
+        private void InEndgameMode(RobotState robot, int ScouterBox)
         {
             //visibility
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Visible = false;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = true;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = true;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position6", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Visible = true;
@@ -787,7 +797,14 @@ namespace ControllerScouting.Screens
 
 
             //text change
-            if (BackgroundCode.Robots[Box_Number].GetAvoidanceStrategy() == RobotState.AVOIDANCE_STRATEGY.Select)
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Climb Timer: " + robot.ClimbTime.TotalSeconds.ToString("F2");
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "End Match: ";
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).ForeColor = Color.Yellow;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).BackColor = Color.Yellow;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Text = "Climb Attempt: ";
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).ForeColor = Color.Yellow;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).BackColor = Color.Yellow;
+            if (robot.GetAvoidanceStrategy() == RobotState.AVOIDANCE_STRATEGY.Select)
             {
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).ForeColor = Color.Yellow;
             }
@@ -795,8 +812,9 @@ namespace ControllerScouting.Screens
             {
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).ForeColor = Color.White;
             }
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Avoidance: " + BackgroundCode.Robots[Box_Number].GetAvoidanceStrategy();
-            if (BackgroundCode.Robots[Box_Number].GetDefenseStrategy() == RobotState.DEFENSE_STRATEGY.Select)
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Avoidance: " + robot.GetAvoidanceStrategy();
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position6", true)[0]).Text = "Climb Level: " + robot.GetClimbLevel();
+            if (robot.GetDefenseStrategy() == RobotState.DEFENSE_STRATEGY.Select)
             {
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).ForeColor = Color.Yellow;
             }
@@ -804,10 +822,8 @@ namespace ControllerScouting.Screens
             {
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).ForeColor = Color.White;
             }
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).Text = "Defense: " + BackgroundCode.Robots[Box_Number].GetDefenseStrategy();
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Climb Timer: " + BackgroundCode.Robots[Box_Number].ClimbTime.TotalSeconds.ToString("F2");
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position6", true)[0]).Text = "Climb Level: " + BackgroundCode.Robots[Box_Number].GetClimbLevel();
-            if (BackgroundCode.Robots[Box_Number].GetStrategy() == RobotState.STRATEGY.Select)
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).Text = "Defense: " + robot.GetDefenseStrategy();
+            if (robot.GetStrategy() == RobotState.STRATEGY.Select)
             {
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).ForeColor = Color.Yellow;
             }
@@ -815,33 +831,27 @@ namespace ControllerScouting.Screens
             {
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).ForeColor = Color.White;
             }
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Text = "Strategy: " + BackgroundCode.Robots[Box_Number].GetStrategy();
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position9", true)[0]).Text = "Ladder Location: " + BackgroundCode.Robots[Box_Number].GetLadderLocation();   
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "End Match: ";
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Text = "Climb Attempt: ";
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Text = "Strategy: " + robot.GetStrategy();
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position9", true)[0]).Text = "Ladder Location: " + robot.GetLadderLocation();   
 
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).ForeColor = Color.Yellow;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).BackColor = Color.Yellow;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).ForeColor = Color.Yellow;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).BackColor = Color.Yellow;
 
-            if (BackgroundCode.Robots[Box_Number].GetEndMatch() == RobotState.BOOLEAN.Yes)
+            if (robot.GetEndMatch() == RobotState.BOOLEAN.Yes)
             {
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).ForeColor = Color.Green;
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).BackColor = Color.Green;
             }
-            else if (BackgroundCode.Robots[Box_Number].GetEndMatch() == RobotState.BOOLEAN.No)
+            else if (robot.GetEndMatch() == RobotState.BOOLEAN.No)
             {
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).ForeColor = Color.Red;
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).BackColor = Color.Red;
             }
             
-            if (BackgroundCode.Robots[Box_Number].GetClimbSuccess() == RobotState.BOOLEAN.Yes)
+            if (robot.GetClimbSuccess() == RobotState.BOOLEAN.Yes)
             {
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).ForeColor = Color.Green;
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).BackColor = Color.Green;
             }
-            else if (BackgroundCode.Robots[Box_Number].GetClimbSuccess() == RobotState.BOOLEAN.No)
+            else if (robot.GetClimbSuccess() == RobotState.BOOLEAN.No)
             {
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).ForeColor = Color.Red;
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).BackColor = Color.Red;

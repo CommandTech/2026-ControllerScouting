@@ -44,6 +44,7 @@ namespace ControllerScouting.Database
         public string DriveStation { get; set; }
         public string StartingLocation { get; set; }
         public int BumpTraversal { get; set; }
+        public int TrenchTraversal { get; set; }
         public string Defense { get; set; }
         public string Avoidance { get; set; }
         public double DefenseTime { get; set; }
