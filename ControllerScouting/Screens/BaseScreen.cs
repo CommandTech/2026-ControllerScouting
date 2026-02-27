@@ -633,11 +633,17 @@ namespace ControllerScouting.Screens
                     int robotBox = robot.ScouterBox;
                     switch (BackgroundCode.Robots[i].GetRobotMode())
                     {
-                        case RobotState.ROBOT_MODE.Auto:
-                            InAutoMode(i, robotBox);
+                        case RobotState.ROBOT_MODE.Prematch:
+                            InPrematchMode(i, robotBox);
                             break;
-                        case RobotState.ROBOT_MODE.Teleop:
-                            InTeleopMode(i, robotBox);
+                        case RobotState.ROBOT_MODE.Red:
+                            InRedMode(i, robotBox);
+                            break;
+                        case RobotState.ROBOT_MODE.Neutral:
+                            InNeutralMode(i, robotBox);
+                            break;
+                        case RobotState.ROBOT_MODE.Blue:
+                            InBlueMode(i, robotBox);
                             break;
                         case RobotState.ROBOT_MODE.Endgame:
                             InEndgameMode(i, robotBox);
@@ -657,7 +663,7 @@ namespace ControllerScouting.Screens
             }
 
         }
-        private void InAutoMode(int Box_Number, int ScouterBox)
+        private void InPrematchMode(int Box_Number, int ScouterBox)
         {
             // Visible
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Visible = false;
@@ -704,7 +710,7 @@ namespace ControllerScouting.Screens
             }
 
         }
-        private void InTeleopMode(int Box_Number, int ScouterBox)
+        private void InRedMode(int Box_Number, int ScouterBox)
         {
             //visibility
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Visible = false;
@@ -724,9 +730,50 @@ namespace ControllerScouting.Screens
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + BackgroundCode.Robots[Box_Number].FuelIntakingTime.TotalSeconds.ToString("F2");
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Shooting Timer: " + BackgroundCode.Robots[Box_Number].FuelShootingTime.TotalSeconds.ToString("F2");
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Text = "Bump: " + BackgroundCode.Robots[Box_Number].BumpTraversal;
-
         }
-      
+        private void InNeutralMode(int Box_Number, int ScouterBox)
+        {
+            //visibility
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Visible = true;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position9", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position6", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = false;
+
+
+            //text change
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Defense Timer: " + BackgroundCode.Robots[Box_Number].DefenseTime.TotalSeconds.ToString("F2");
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Text = "Feeding Timer: " + BackgroundCode.Robots[Box_Number].FeedingTime.TotalSeconds.ToString("F2");
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + BackgroundCode.Robots[Box_Number].FuelIntakingTime.TotalSeconds.ToString("F2");
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Shooting Timer: " + BackgroundCode.Robots[Box_Number].FuelShootingTime.TotalSeconds.ToString("F2");
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Text = "Bump: " + BackgroundCode.Robots[Box_Number].BumpTraversal;
+        }
+        private void InBlueMode(int Box_Number, int ScouterBox)
+        {
+            //visibility
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Visible = true;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position9", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position6", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = false;
+
+
+            //text change
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Defense Timer: " + BackgroundCode.Robots[Box_Number].DefenseTime.TotalSeconds.ToString("F2");
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Text = "Feeding Timer: " + BackgroundCode.Robots[Box_Number].FeedingTime.TotalSeconds.ToString("F2");
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + BackgroundCode.Robots[Box_Number].FuelIntakingTime.TotalSeconds.ToString("F2");
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Shooting Timer: " + BackgroundCode.Robots[Box_Number].FuelShootingTime.TotalSeconds.ToString("F2");
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Text = "Bump: " + BackgroundCode.Robots[Box_Number].BumpTraversal;
+        }
+
         private void InEndgameMode(int Box_Number, int ScouterBox)
         {
             //visibility

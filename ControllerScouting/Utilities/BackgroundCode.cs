@@ -73,7 +73,7 @@ namespace ControllerScouting.Utilities
                 {
                     ScouterBox = i,
                     _ScouterName = RobotState.SCOUTER_NAME.Select_Name,
-                    color = i < 3 ? RobotState.ROBOT_MODE.Red : RobotState.ROBOT_MODE.Blue
+                    color = i < 3 ? RobotState.COLOR.Red : RobotState.COLOR.Blue
                 };
 
                 activity_record[i] = new Activity();
