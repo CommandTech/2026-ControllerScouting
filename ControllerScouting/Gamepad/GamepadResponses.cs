@@ -106,6 +106,9 @@ namespace ControllerScouting.Gamepad
                                 if (gamepad.DpadLeft_Press)
                                 {
                                     robot.RobotMode = RobotState.ROBOT_MODE.Neutral;
+
+                                    robot.RedZoneTime_StopWatch.Stop();
+                                    robot.RedZoneTime = robot.RedZoneTime_StopWatch.Elapsed;
                                 }
                             }
                             else
@@ -113,8 +116,10 @@ namespace ControllerScouting.Gamepad
                                 if (gamepad.DpadRight_Press)
                                 {
                                     robot.RobotMode = RobotState.ROBOT_MODE.Neutral;
-                                }
 
+                                    robot.RedZoneTime_StopWatch.Stop();
+                                    robot.RedZoneTime = robot.RedZoneTime_StopWatch.Elapsed;
+                                }
                             }
                         }
                         else if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Blue)
@@ -122,12 +127,14 @@ namespace ControllerScouting.Gamepad
                             robot.BlueZoneTime_StopWatch.Start();
                             robot.BlueZoneTime = robot.BlueZoneTime_StopWatch.Elapsed;
 
-                            // end timers
                             if (BackgroundCode.redRight)
                             {
                                 if (gamepad.DpadRight_Press)
                                 {
                                     robot.RobotMode = RobotState.ROBOT_MODE.Neutral;
+
+                                    robot.BlueZoneTime_StopWatch.Stop();
+                                    robot.BlueZoneTime = robot.BlueZoneTime_StopWatch.Elapsed;
                                 }
                             }
                             else
@@ -135,8 +142,10 @@ namespace ControllerScouting.Gamepad
                                 if (gamepad.DpadLeft_Press)
                                 {
                                     robot.RobotMode = RobotState.ROBOT_MODE.Neutral;
-                                }
 
+                                    robot.BlueZoneTime_StopWatch.Stop();
+                                    robot.BlueZoneTime = robot.BlueZoneTime_StopWatch.Elapsed;
+                                }
                             }
                         } 
                         else if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Neutral)
@@ -150,10 +159,16 @@ namespace ControllerScouting.Gamepad
                                 if (gamepad.DpadRight_Press)
                                 {
                                     robot.RobotMode = RobotState.ROBOT_MODE.Red;
+
+                                    robot.NeutralZoneTime_StopWatch.Stop();
+                                    robot.NeutralZoneTime = robot.NeutralZoneTime_StopWatch.Elapsed;
                                 }
                                 else if (gamepad.DpadLeft_Press)
                                 {
                                     robot.RobotMode = RobotState.ROBOT_MODE.Blue;
+
+                                    robot.NeutralZoneTime_StopWatch.Stop();
+                                    robot.NeutralZoneTime = robot.NeutralZoneTime_StopWatch.Elapsed;
                                 }
                             }
                             else
@@ -161,10 +176,16 @@ namespace ControllerScouting.Gamepad
                                 if (gamepad.DpadRight_Press)
                                 {
                                     robot.RobotMode = RobotState.ROBOT_MODE.Red;
+
+                                    robot.NeutralZoneTime_StopWatch.Stop();
+                                    robot.NeutralZoneTime = robot.NeutralZoneTime_StopWatch.Elapsed;
                                 }
                                 else if (gamepad.DpadLeft_Press)
                                 {
                                     robot.RobotMode = RobotState.ROBOT_MODE.Blue;
+
+                                    robot.NeutralZoneTime_StopWatch.Stop();
+                                    robot.NeutralZoneTime = robot.NeutralZoneTime_StopWatch.Elapsed;
                                 }
                             }
                         }
