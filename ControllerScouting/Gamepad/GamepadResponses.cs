@@ -16,9 +16,12 @@ namespace ControllerScouting.Gamepad
             robot.FuelIntakingTime_StopWatch ??= new Stopwatch();
             robot.FuelShootingTime_StopWatch ??= new Stopwatch();
             robot.FeedingTime_StopWatch ??= new Stopwatch();
-            robot.BlueZoneTime_StopWatch ??= new Stopwatch();
-            robot.NeutralZoneTime_StopWatch ??= new Stopwatch();
-            robot.RedZoneTime_StopWatch ??= new Stopwatch();
+            robot.NearBlueZoneTime_StopWatch ??= new Stopwatch();
+            robot.FarBlueZoneTime_StopWatch ??= new Stopwatch();
+            robot.NearNeutralZoneTime_StopWatch ??= new Stopwatch();
+            robot.FarNeutralZoneTime_StopWatch ??= new Stopwatch();
+            robot.NearRedZoneTime_StopWatch ??= new Stopwatch();
+            robot.FarRedZoneTime_StopWatch ??= new Stopwatch();
 
 
             if (!robot.NoSho)
@@ -108,8 +111,16 @@ namespace ControllerScouting.Gamepad
                     {
                         if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Red)
                         {
-                            robot.RedZoneTime_StopWatch.Start();
-                            robot.RedZoneTime = robot.RedZoneTime_StopWatch.Elapsed;
+                            if (robot.NearFar)
+                            {
+                                robot.FarRedZoneTime_StopWatch.Start();
+                                robot.FarRedZoneTime = robot.FarRedZoneTime_StopWatch.Elapsed;
+                            }
+                            else
+                            {
+                                robot.NearRedZoneTime_StopWatch.Start();
+                                robot.NearRedZoneTime = robot.NearRedZoneTime_StopWatch.Elapsed;
+                            }
 
                             if (robot.BumpTraversal == robot.prevBumpTraversal)
                             {
@@ -121,14 +132,30 @@ namespace ControllerScouting.Gamepad
                             {
                                 robot.RobotMode = RobotState.ROBOT_MODE.Neutral;
 
-                                robot.BlueZoneTime_StopWatch.Stop();
-                                robot.BlueZoneTime = robot.BlueZoneTime_StopWatch.Elapsed;
+                                if (robot.NearFar)
+                                {
+                                    robot.FarRedZoneTime_StopWatch.Stop();
+                                    robot.FarRedZoneTime = robot.FarRedZoneTime_StopWatch.Elapsed;
+                                }
+                                else
+                                {
+                                    robot.NearRedZoneTime_StopWatch.Stop();
+                                    robot.NearRedZoneTime = robot.NearRedZoneTime_StopWatch.Elapsed;
+                                }
                             }
                         }
                         else if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Blue)
                         {
-                            robot.BlueZoneTime_StopWatch.Start();
-                            robot.BlueZoneTime = robot.BlueZoneTime_StopWatch.Elapsed;
+                            if (robot.NearFar)
+                            {
+                                robot.FarBlueZoneTime_StopWatch.Start();
+                                robot.FarBlueZoneTime = robot.FarBlueZoneTime_StopWatch.Elapsed;
+                            }
+                            else
+                            {
+                                robot.NearBlueZoneTime_StopWatch.Start();
+                                robot.NearBlueZoneTime = robot.NearBlueZoneTime_StopWatch.Elapsed;
+                            }
 
                             if (robot.BumpTraversal == robot.prevBumpTraversal)
                             {
@@ -140,14 +167,30 @@ namespace ControllerScouting.Gamepad
                             {
                                 robot.RobotMode = RobotState.ROBOT_MODE.Neutral;
 
-                                robot.BlueZoneTime_StopWatch.Stop();
-                                robot.BlueZoneTime = robot.BlueZoneTime_StopWatch.Elapsed;
+                                if (robot.NearFar)
+                                {
+                                    robot.FarBlueZoneTime_StopWatch.Stop();
+                                    robot.FarBlueZoneTime = robot.FarBlueZoneTime_StopWatch.Elapsed;
+                                }
+                                else
+                                {
+                                    robot.NearBlueZoneTime_StopWatch.Stop();
+                                    robot.NearBlueZoneTime = robot.NearBlueZoneTime_StopWatch.Elapsed;
+                                }
                             }
                         } 
                         else if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Neutral)
                         {
-                            robot.NeutralZoneTime_StopWatch.Start();
-                            robot.NeutralZoneTime = robot.NeutralZoneTime_StopWatch.Elapsed;
+                            if (robot.NearFar)
+                            {
+                                robot.FarNeutralZoneTime_StopWatch.Start();
+                                robot.FarNeutralZoneTime = robot.FarNeutralZoneTime_StopWatch.Elapsed;
+                            }
+                            else
+                            {
+                                robot.NearNeutralZoneTime_StopWatch.Start();
+                                robot.NearNeutralZoneTime = robot.NearNeutralZoneTime_StopWatch.Elapsed;
+                            }
 
                             if (robot.BumpTraversal == robot.prevBumpTraversal)
                             {
@@ -159,21 +202,41 @@ namespace ControllerScouting.Gamepad
                             {
                                 robot.RobotMode = RobotState.ROBOT_MODE.Red;
 
-                                robot.NeutralZoneTime_StopWatch.Stop();
-                                robot.NeutralZoneTime = robot.NeutralZoneTime_StopWatch.Elapsed;
+                                if (robot.NearFar)
+                                {
+                                    robot.FarNeutralZoneTime_StopWatch.Stop();
+                                    robot.FarNeutralZoneTime = robot.FarNeutralZoneTime_StopWatch.Elapsed;
+                                }
+                                else
+                                {
+                                    robot.NearNeutralZoneTime_StopWatch.Stop();
+                                    robot.NearNeutralZoneTime = robot.NearNeutralZoneTime_StopWatch.Elapsed;
+                                }
                             }
                             else if ((gamepad.DpadLeft_Press && BackgroundCode.redRight) || (gamepad.DpadRight_Press && !BackgroundCode.redRight))
                             {
                                 robot.RobotMode = RobotState.ROBOT_MODE.Blue;
 
-                                robot.NeutralZoneTime_StopWatch.Stop();
-                                robot.NeutralZoneTime = robot.NeutralZoneTime_StopWatch.Elapsed;
+                                if (robot.NearFar)
+                                {
+                                    robot.FarNeutralZoneTime_StopWatch.Stop();
+                                    robot.FarNeutralZoneTime = robot.FarNeutralZoneTime_StopWatch.Elapsed;
+                                }
+                                else
+                                {
+                                    robot.NearNeutralZoneTime_StopWatch.Stop();
+                                    robot.NearNeutralZoneTime = robot.NearNeutralZoneTime_StopWatch.Elapsed;
+                                }
                             }
                         }
 
                         if ((robot.GetRobotMode() == RobotState.ROBOT_MODE.Red && robot.color == RobotState.COLOR.Red) ||
                             (robot.GetRobotMode() == RobotState.ROBOT_MODE.Blue && robot.color == RobotState.COLOR.Blue))
                         {
+                            if (gamepad.XButton_Press)
+                            {
+                                robot.CycleAutoClimb(RobotState.CYCLE_DIRECTION.Up);
+                            }
                             if (gamepad.RightButton_Down)
                             {
                                 robot.FuelShootingTime_StopWatch.Start();

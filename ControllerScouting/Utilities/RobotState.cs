@@ -10,7 +10,7 @@ namespace ControllerScouting.Utilities
         public enum CYCLE_DIRECTION { Up, Down }
         public enum MATCHEVENT_NAME { Match_Event, TippedOver, LostParts, GotStuck, BrokenDown, NoShow, JammedPiece, Other }
         public enum SCOUTER_NAME { Select_Name, Abel, Abhi_R, Abhi_V, Adel, Adrika, Aishani, Ananth, Andrew, Anh, Anshu, Arnav, Aryan, Ashley, Atharv, Avani, Avanti, Charlotte, Chris, Corey, Grace, Hasini, Issac, Ishan, Jack, Jasmin, Jasmine, Jay, Liam, Manha, Maria, Noah, Parnitha, Ravena, Rddhima, Rishi, Rohan, Ruchir, Saanvi, Sam_W, Sanchi, Sanvi, Sri, Suhrit, Tanay, Vaibhav, Varsha, Xander, Scouter1, Scouter2, Scouter3, Scouter4, Scouter5, Scouter6, Adnan, Alex, Alyssa, Charlie, Deven, Elliot, Grant, Josh, Katie, Kevin, Logan, Luke, Marcus, Max, Sam_B, Spencer, William }
-        public enum BOOLEAN { Z, Yes, No, Error }
+        public enum BOOLEAN { Z, Yes, No }
         public enum COLOR { Red, Blue }
         // Year to Year ints
         public long ScouterError;
@@ -187,14 +187,21 @@ namespace ControllerScouting.Utilities
         public TimeSpan ClimbTime;
         public bool ClimbedTime;
 
-        public TimeSpan RedZoneTime = TimeSpan.Zero;
-        public Stopwatch RedZoneTime_StopWatch;
+        public TimeSpan NearRedZoneTime = TimeSpan.Zero;
+        public Stopwatch NearRedZoneTime_StopWatch;
+        public TimeSpan FarRedZoneTime = TimeSpan.Zero;
+        public Stopwatch FarRedZoneTime_StopWatch;
 
-        public TimeSpan NeutralZoneTime = TimeSpan.Zero;
-        public Stopwatch NeutralZoneTime_StopWatch;
+        public TimeSpan NearNeutralZoneTime = TimeSpan.Zero;
+        public Stopwatch NearNeutralZoneTime_StopWatch;
+        public TimeSpan FarNeutralZoneTime = TimeSpan.Zero;
+        public Stopwatch FarNeutralZoneTime_StopWatch;
 
-        public TimeSpan BlueZoneTime = TimeSpan.Zero;
-        public Stopwatch BlueZoneTime_StopWatch;
+        public TimeSpan NearBlueZoneTime = TimeSpan.Zero;
+        public Stopwatch NearBlueZoneTime_StopWatch;
+        public TimeSpan FarBlueZoneTime = TimeSpan.Zero;
+        public Stopwatch FarBlueZoneTime_StopWatch;
+
 
         public TimeSpan DefenseTime = TimeSpan.Zero;
         public Stopwatch DefenseTime_StopWatch;
@@ -211,6 +218,7 @@ namespace ControllerScouting.Utilities
         public int BumpTraversal = 0;
         public int prevBumpTraversal = 0;
         public int TrenchTraversal = 0;
+        public bool NearFar = false; //False for Near, True for Far
         public bool DisplayClimbSuccess = false;
         public enum STARTING_LOCATION { None, Far_Trench, Far_Bump, Hub, Near_Bump, Near_Trench }
         public enum LADDER_LOCATION { None, Outpost, Center, Depot };
