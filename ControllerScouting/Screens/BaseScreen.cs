@@ -655,9 +655,18 @@ namespace ControllerScouting.Screens
                     ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ScoutName", true)[0]).Visible = true;
                     ((Label)this.Controls.Find($"lbl{robot.ScouterBox}MatchEvent", true)[0]).Text = robot.MatchEvent.ToString();
                     ((Label)this.Controls.Find($"lbl{robot.ScouterBox}MatchEvent", true)[0]).Visible = true;
-                    ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).Text = robot.GetRobotMode().ToString() + " Mode";
-                    ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).Visible = true;
+                    if (robot.AUTO && robot.GetRobotMode() != RobotState.ROBOT_MODE.Prematch)
+                    {
+                        ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).Text = "AUTO " + robot.GetRobotMode().ToString() + " Mode";
+                        ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).ForeColor = Color.Yellow;
+                    }
+                    else
+                    {
+                        ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).Text = robot.GetRobotMode().ToString() + " Mode";
+                        ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).ForeColor = Color.White;
 
+                    }
+                    ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).Visible = true;
                     ((Label)this.Controls.Find($"lbl{robot.ScouterBox}TeamName", true)[0]).Visible = true;
                 }
             }
@@ -666,16 +675,15 @@ namespace ControllerScouting.Screens
         private void InPrematchMode(RobotState robot, int ScouterBox)
         {
             // Visible
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Visible = true;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = false;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position6", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position9", true)[0]).Visible = false;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = false;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = false;
 
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Visible = true;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = true;
 
 
             // Text change
@@ -692,9 +700,9 @@ namespace ControllerScouting.Screens
         private void InRedMode(RobotState robot, int ScouterBox)
         {
             //visibility
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = false;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position9", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position6", true)[0]).Visible = false;
@@ -743,7 +751,6 @@ namespace ControllerScouting.Screens
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = false;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position6", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Visible = false;
@@ -763,7 +770,6 @@ namespace ControllerScouting.Screens
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = false;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position6", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Visible = false;
@@ -787,9 +793,9 @@ namespace ControllerScouting.Screens
         private void InEndgameMode(RobotState robot, int ScouterBox)
         {
             //visibility
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = true;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position5", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position6", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Visible = true;
