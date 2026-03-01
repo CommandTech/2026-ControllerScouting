@@ -543,12 +543,12 @@ namespace ControllerScouting.Database
             switch (BackgroundCode.dataExport)
             {
                 case BackgroundCode.EXPORT_TYPE.CSV:
-                    {
-                        //Save Record to the CSV file
-                        string locationFixed = Settings.Default.CSVLocation.Replace(@"\", @"\\");
-                        using StreamWriter sw = File.AppendText(locationFixed + "\\" + databaseName);
-                        sw.WriteLine(activity.ToCSV());
-                    }
+                    //{
+                    //    //Save Record to the CSV file
+                    //    string locationFixed = Settings.Default.CSVLocation.Replace(@"\", @"\\");
+                    //    using StreamWriter sw = File.AppendText(locationFixed + "\\" + databaseName);
+                    //    sw.WriteLine(activity.ToCSV());
+                    //}
 
                     BackgroundCode.serverSeasonframework.ActivitySet.Add(activity);
                     BackgroundCode.serverSeasonframework.SaveChanges();
