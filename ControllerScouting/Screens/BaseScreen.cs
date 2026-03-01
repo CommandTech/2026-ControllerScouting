@@ -658,7 +658,7 @@ namespace ControllerScouting.Screens
                     if (robot.AUTO && robot.GetRobotMode() != RobotState.ROBOT_MODE.Prematch)
                     {
                         ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).Text = "AUTO " + robot.GetRobotMode().ToString() + " Mode";
-                        ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).ForeColor = Color.Yellow;
+                        ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).ForeColor = Color.LimeGreen;
                     }
                     else
                     {
@@ -700,7 +700,6 @@ namespace ControllerScouting.Screens
         private void InRedMode(RobotState robot, int ScouterBox)
         {
             //visibility
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Visible = false;
@@ -711,6 +710,7 @@ namespace ControllerScouting.Screens
 
 
             //text change
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Text = robot.NearFar.ToString() + " Side";
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + robot.FuelIntakingTime.TotalSeconds.ToString("F2");
             if (robot.color == RobotState.COLOR.Red)
             {
@@ -747,7 +747,6 @@ namespace ControllerScouting.Screens
         private void InNeutralMode(RobotState robot, int ScouterBox)
         {
             //visibility
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = false;
@@ -758,6 +757,7 @@ namespace ControllerScouting.Screens
 
 
             //text change
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Text = robot.NearFar.ToString() + " Side";
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + robot.FuelIntakingTime.TotalSeconds.ToString("F2");
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Feeding Timer: " + robot.FeedingTime.TotalSeconds.ToString("F2");
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Text = "Bump: " + robot.BumpTraversal;
@@ -766,7 +766,6 @@ namespace ControllerScouting.Screens
         private void InBlueMode(RobotState robot, int ScouterBox)
         {
             //visibility
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = false;
@@ -777,6 +776,7 @@ namespace ControllerScouting.Screens
 
 
             //text change
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Text = robot.NearFar.ToString() + " Side";
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + robot.FuelIntakingTime.TotalSeconds.ToString("F2");
             if (robot.color == RobotState.COLOR.Blue)
             {

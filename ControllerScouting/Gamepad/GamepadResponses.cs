@@ -86,11 +86,11 @@ namespace ControllerScouting.Gamepad
                             robot.CycleStartingLocation(RobotState.CYCLE_DIRECTION.Up);
                             if (robot.GetStartingLocation() == RobotState.STARTING_LOCATION.Far_Trench || robot.GetStartingLocation() == RobotState.STARTING_LOCATION.Far_Bump)
                             {
-                                robot.NearFar = true;
+                                robot.NearFar = RobotState.NEAR_FAR.Far;
                             }
                             else
                             {
-                                robot.NearFar = false;
+                                robot.NearFar = RobotState.NEAR_FAR.Near;
                             }
                         }
                         else if (gamepad.BButton_Press)
@@ -98,11 +98,11 @@ namespace ControllerScouting.Gamepad
                             robot.CycleStartingLocation(RobotState.CYCLE_DIRECTION.Down);
                             if (robot.GetStartingLocation() == RobotState.STARTING_LOCATION.Far_Trench || robot.GetStartingLocation() == RobotState.STARTING_LOCATION.Far_Bump)
                             {
-                                robot.NearFar = true;
+                                robot.NearFar = RobotState.NEAR_FAR.Far;
                             }
                             else
                             {
-                                robot.NearFar = false;
+                                robot.NearFar = RobotState.NEAR_FAR.Near;
                             }
                         }
 
@@ -125,6 +125,15 @@ namespace ControllerScouting.Gamepad
                              robot.GetRobotMode() == RobotState.ROBOT_MODE.Neutral ||
                              robot.GetRobotMode() == RobotState.ROBOT_MODE.Blue)
                     {
+                        if (gamepad.YButton_Press)
+                        {
+                            robot.NearFar = RobotState.NEAR_FAR.Far;
+                        }
+                        else if (gamepad.AButton_Press)
+                        {
+                            robot.NearFar = RobotState.NEAR_FAR.Near;
+                        }
+
                         if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Red)
                         {
                             if (robot.NearFar == RobotState.NEAR_FAR.Far)
@@ -138,15 +147,15 @@ namespace ControllerScouting.Gamepad
                                 robot.NearRedZoneTime = robot.NearRedZoneTime_StopWatch.Elapsed;
                             }
 
-                            if (robot.BumpTraversal == robot.prevBumpTraversal)
-                            {
-                                robot.TrenchTraversal++;
-                            }
-                            robot.prevBumpTraversal = robot.BumpTraversal;
-
                             if ((gamepad.DpadLeft_Press && BackgroundCode.redRight) || (gamepad.DpadRight_Press && !BackgroundCode.redRight))
                             {
                                 robot.RobotMode = RobotState.ROBOT_MODE.Neutral;
+
+                                if (robot.BumpTraversal == robot.prevBumpTraversal)
+                                {
+                                    robot.TrenchTraversal++;
+                                }
+                                robot.prevBumpTraversal = robot.BumpTraversal;
 
                                 if (robot.NearFar == RobotState.NEAR_FAR.Far)
                                 {
@@ -173,15 +182,15 @@ namespace ControllerScouting.Gamepad
                                 robot.NearBlueZoneTime = robot.NearBlueZoneTime_StopWatch.Elapsed;
                             }
 
-                            if (robot.BumpTraversal == robot.prevBumpTraversal)
-                            {
-                                robot.TrenchTraversal++;
-                            }
-                            robot.prevBumpTraversal = robot.BumpTraversal;
-
                             if ((gamepad.DpadRight_Press && BackgroundCode.redRight) || (gamepad.DpadLeft_Press && !BackgroundCode.redRight))
                             {
                                 robot.RobotMode = RobotState.ROBOT_MODE.Neutral;
+
+                                if (robot.BumpTraversal == robot.prevBumpTraversal)
+                                {
+                                    robot.TrenchTraversal++;
+                                }
+                                robot.prevBumpTraversal = robot.BumpTraversal;
 
                                 if (robot.NearFar == RobotState.NEAR_FAR.Far)
                                 {
@@ -194,7 +203,7 @@ namespace ControllerScouting.Gamepad
                                     robot.NearBlueZoneTime = robot.NearBlueZoneTime_StopWatch.Elapsed;
                                 }
                             }
-                        } 
+                        }
                         else if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Neutral)
                         {
                             if (robot.NearFar == RobotState.NEAR_FAR.Far)
@@ -208,15 +217,15 @@ namespace ControllerScouting.Gamepad
                                 robot.NearNeutralZoneTime = robot.NearNeutralZoneTime_StopWatch.Elapsed;
                             }
 
-                            if (robot.BumpTraversal == robot.prevBumpTraversal)
-                            {
-                                robot.TrenchTraversal++;
-                            }
-                            robot.prevBumpTraversal = robot.BumpTraversal;
-
                             if ((gamepad.DpadRight_Press && BackgroundCode.redRight) || (gamepad.DpadLeft_Press && !BackgroundCode.redRight))
                             {
                                 robot.RobotMode = RobotState.ROBOT_MODE.Red;
+
+                                if (robot.BumpTraversal == robot.prevBumpTraversal)
+                                {
+                                    robot.TrenchTraversal++;
+                                }
+                                robot.prevBumpTraversal = robot.BumpTraversal;
 
                                 if (robot.NearFar == RobotState.NEAR_FAR.Far)
                                 {
@@ -232,6 +241,12 @@ namespace ControllerScouting.Gamepad
                             else if ((gamepad.DpadLeft_Press && BackgroundCode.redRight) || (gamepad.DpadRight_Press && !BackgroundCode.redRight))
                             {
                                 robot.RobotMode = RobotState.ROBOT_MODE.Blue;
+
+                                if (robot.BumpTraversal == robot.prevBumpTraversal)
+                                {
+                                    robot.TrenchTraversal++;
+                                }
+                                robot.prevBumpTraversal = robot.BumpTraversal;
 
                                 if (robot.NearFar == RobotState.NEAR_FAR.Far)
                                 {
@@ -249,10 +264,6 @@ namespace ControllerScouting.Gamepad
                         if ((robot.GetRobotMode() == RobotState.ROBOT_MODE.Red && robot.color == RobotState.COLOR.Red) ||
                             (robot.GetRobotMode() == RobotState.ROBOT_MODE.Blue && robot.color == RobotState.COLOR.Blue))
                         {
-                            if (gamepad.XButton_Press)
-                            {
-                                robot.CycleAutoClimb(RobotState.CYCLE_DIRECTION.Up);
-                            }
                             if (gamepad.RightButton_Down)
                             {
                                 robot.FuelShootingTime_StopWatch.Start();
@@ -264,13 +275,9 @@ namespace ControllerScouting.Gamepad
                                 robot.FuelShootingTime = robot.FuelShootingTime_StopWatch.Elapsed;
                             }
 
-                            if (gamepad.BButton_Press && robot.AUTO)
+                            if (gamepad.XButton_Press && robot.AUTO)
                             {
-                                robot.Auto_Climb = RobotState.BOOLEAN.Yes;
-                            }
-                            else if (gamepad.AButton_Press)
-                            {
-                                robot.Auto_Climb = RobotState.BOOLEAN.No;
+                                robot.CycleAutoClimb(RobotState.CYCLE_DIRECTION.Up);
                             }
                         } 
                         else

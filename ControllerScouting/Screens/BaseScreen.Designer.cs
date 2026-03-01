@@ -439,7 +439,7 @@ namespace ControllerScouting.Screens
             lbl5Position0.AutoSize = true;
             lbl5Position0.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl5Position0.ForeColor = Color.White;
-            lbl5Position0.Location = new Point(213, 10);
+            lbl5Position0.Location = new Point(231, 10);
             lbl5Position0.Name = "lbl5Position0";
             lbl5Position0.Size = new Size(262, 20);
             lbl5Position0.TabIndex = 394;
@@ -921,7 +921,7 @@ namespace ControllerScouting.Screens
             lbl3Position0.AutoSize = true;
             lbl3Position0.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl3Position0.ForeColor = Color.White;
-            lbl3Position0.Location = new Point(213, 10);
+            lbl3Position0.Location = new Point(231, 10);
             lbl3Position0.Name = "lbl3Position0";
             lbl3Position0.Size = new Size(262, 20);
             lbl3Position0.TabIndex = 394;
@@ -1202,7 +1202,7 @@ namespace ControllerScouting.Screens
             lbl2Position0.AutoSize = true;
             lbl2Position0.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl2Position0.ForeColor = Color.White;
-            lbl2Position0.Location = new Point(213, 10);
+            lbl2Position0.Location = new Point(231, 10);
             lbl2Position0.Name = "lbl2Position0";
             lbl2Position0.Size = new Size(262, 20);
             lbl2Position0.TabIndex = 394;
@@ -1443,7 +1443,7 @@ namespace ControllerScouting.Screens
             lbl1Position0.AutoSize = true;
             lbl1Position0.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl1Position0.ForeColor = Color.White;
-            lbl1Position0.Location = new Point(213, 10);
+            lbl1Position0.Location = new Point(231, 10);
             lbl1Position0.Name = "lbl1Position0";
             lbl1Position0.Size = new Size(262, 20);
             lbl1Position0.TabIndex = 394;
@@ -1670,12 +1670,11 @@ namespace ControllerScouting.Screens
             lbl0Position0.AutoSize = true;
             lbl0Position0.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl0Position0.ForeColor = Color.White;
-            lbl0Position0.Location = new Point(213, 10);
+            lbl0Position0.Location = new Point(231, 10);
             lbl0Position0.Name = "lbl0Position0";
             lbl0Position0.Size = new Size(262, 20);
             lbl0Position0.TabIndex = 394;
             lbl0Position0.Text = "Starting Location: Outer Trench";
-            lbl0Position0.TextAlign = ContentAlignment.TopRight;
             // 
             // team0Divider
             // 

@@ -335,13 +335,14 @@ namespace ControllerScouting.Database
                         activity_record.StartingLocation = controller.GetStartingLocation().ToString();
 
                         activity_record.BumpTraversal = controller.BumpTraversal;
+                        activity_record.TrenchTraversal = controller.TrenchTraversal;
 
                         activity_record.FuelShootingTime = controller.FuelShootingTime.TotalSeconds;
                         activity_record.FuelIntakingTime = controller.FuelIntakingTime.TotalSeconds;
                         activity_record.FeedingTime = controller.FeedingTime.TotalMinutes;
                         activity_record.NearFar = controller.NearFar.ToString();
-                        activity_record.NearNeutralZoneTime = controller.FuelIntakingTime.TotalSeconds;
-                        activity_record.FarNeutralZoneTime = controller.FuelIntakingTime.TotalSeconds;
+                        activity_record.NearNeutralZoneTime = controller.NearNeutralZoneTime.TotalSeconds;
+                        activity_record.FarNeutralZoneTime = controller.FarNeutralZoneTime.TotalSeconds;
 
                         if (controller.color == RobotState.COLOR.Red)
                         {
@@ -350,11 +351,13 @@ namespace ControllerScouting.Database
 
                             if (controller.Starting_Location == RobotState.STARTING_LOCATION.Far_Trench || controller.Starting_Location == RobotState.STARTING_LOCATION.Far_Bump)
                             {
+                                activity_record.NearRedZoneTime = controller.NearRedZoneTime.TotalSeconds;
                                 activity_record.FarRedZoneTime = 15 - (controller.NearBlueZoneTime.TotalSeconds + controller.FarBlueZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.NearRedZoneTime.TotalSeconds);
                                 controller.FarRedZoneTime = TimeSpan.FromSeconds(activity_record.FarRedZoneTime);
                             }
                             else
                             {
+                                activity_record.FarRedZoneTime = controller.FarRedZoneTime.TotalSeconds;
                                 activity_record.NearRedZoneTime = 15 - (controller.NearBlueZoneTime.TotalSeconds + controller.FarBlueZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.FarRedZoneTime.TotalSeconds);
                                 controller.NearRedZoneTime = TimeSpan.FromSeconds(activity_record.NearRedZoneTime);
                             }
@@ -366,11 +369,13 @@ namespace ControllerScouting.Database
 
                             if (controller.Starting_Location == RobotState.STARTING_LOCATION.Far_Trench || controller.Starting_Location == RobotState.STARTING_LOCATION.Far_Bump)
                             {
+                                activity_record.NearBlueZoneTime = controller.NearBlueZoneTime.TotalSeconds;
                                 activity_record.FarBlueZoneTime = 15 - (controller.NearRedZoneTime.TotalSeconds + controller.FarRedZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.NearBlueZoneTime.TotalSeconds);
                                 controller.FarBlueZoneTime = TimeSpan.FromSeconds(activity_record.FarBlueZoneTime);
                             }
                             else
                             {
+                                activity_record.FarBlueZoneTime = controller.FarBlueZoneTime.TotalSeconds;
                                 activity_record.NearBlueZoneTime = 15 - (controller.NearRedZoneTime.TotalSeconds + controller.FarRedZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.FarBlueZoneTime.TotalSeconds);
                                 controller.NearBlueZoneTime = TimeSpan.FromSeconds(activity_record.NearBlueZoneTime);
                             }
@@ -411,11 +416,14 @@ namespace ControllerScouting.Database
                         }
 
                         activity_record.BumpTraversal = controller.BumpTraversal;
+                        activity_record.TrenchTraversal = controller.TrenchTraversal;
+
                         activity_record.FuelIntakingTime = controller.FuelIntakingTime.TotalSeconds;
                         activity_record.FuelShootingTime = controller.FuelShootingTime.TotalSeconds;
                         activity_record.DefenseTime = controller.DefenseTime.TotalSeconds;
                         activity_record.FeedingTime = controller.FeedingTime.TotalMinutes;
-                        activity_record.NearFar = controller.NearFar;
+                        activity_record.NearFar = controller.NearFar.ToString();
+                        //Might need some logic to determine zone times in auto...
                         activity_record.NearRedZoneTime = controller.NearRedZoneTime.TotalSeconds;
                         activity_record.FarRedZoneTime = controller.FarRedZoneTime.TotalSeconds;
                         activity_record.NearNeutralZoneTime = controller.NearNeutralZoneTime.TotalSeconds;
@@ -482,7 +490,7 @@ namespace ControllerScouting.Database
                         activity_record.FuelShootingTime = controller.FuelShootingTime.TotalSeconds;
                         activity_record.FuelIntakingTime = controller.FuelIntakingTime.TotalSeconds;
                         activity_record.FeedingTime = controller.FeedingTime.TotalSeconds;
-                        activity_record.NearFar = controller.NearFar;
+                        activity_record.NearFar = controller.NearFar.ToString();
                         activity_record.NearRedZoneTime = controller.NearRedZoneTime.TotalSeconds;
                         activity_record.FarRedZoneTime = controller.FarRedZoneTime.TotalSeconds;
                         activity_record.NearNeutralZoneTime = controller.NearNeutralZoneTime.TotalSeconds;
