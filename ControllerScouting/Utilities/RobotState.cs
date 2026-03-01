@@ -218,7 +218,6 @@ namespace ControllerScouting.Utilities
         public int BumpTraversal = 0;
         public int prevBumpTraversal = 0;
         public int TrenchTraversal = 0;
-        public bool NearFar = false; //False for Near, True for Far
         public bool DisplayClimbSuccess = false;
         public enum STARTING_LOCATION { None, Far_Trench, Far_Bump, Hub, Near_Bump, Near_Trench }
         public enum LADDER_LOCATION { None, Outpost, Center, Depot };
@@ -226,8 +225,10 @@ namespace ControllerScouting.Utilities
         public enum AVOIDANCE_STRATEGY { Select, None, Lane, Neutral_Zone, Hub, Pinning, Counter };
         public enum STRATEGY { Select, None, Shooting, Feeding, Defense, Climb };
         public enum CLIMB_LEVEL { No_Climb, L1, L2, L3 };
+        public enum NEAR_FAR { Near, Far };
 
 
+        private NEAR_FAR _NearFar;
         private STARTING_LOCATION _Starting_Location;
         private LADDER_LOCATION _Ladder_Location;
         private DEFENSE_STRATEGY _Defense_Strategy;
@@ -259,6 +260,11 @@ namespace ControllerScouting.Utilities
         { return _Climb_Success; }
 
 
+        public NEAR_FAR NearFar
+        {
+            get { return _NearFar; }
+            set { _NearFar = value; }
+        }
         public STARTING_LOCATION Starting_Location
         {
             get { return _Starting_Location; }

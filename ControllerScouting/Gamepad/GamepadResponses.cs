@@ -111,7 +111,7 @@ namespace ControllerScouting.Gamepad
                     {
                         if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Red)
                         {
-                            if (robot.NearFar)
+                            if (robot.NearFar == RobotState.NEAR_FAR.Far)
                             {
                                 robot.FarRedZoneTime_StopWatch.Start();
                                 robot.FarRedZoneTime = robot.FarRedZoneTime_StopWatch.Elapsed;
@@ -132,7 +132,7 @@ namespace ControllerScouting.Gamepad
                             {
                                 robot.RobotMode = RobotState.ROBOT_MODE.Neutral;
 
-                                if (robot.NearFar)
+                                if (robot.NearFar == RobotState.NEAR_FAR.Far)
                                 {
                                     robot.FarRedZoneTime_StopWatch.Stop();
                                     robot.FarRedZoneTime = robot.FarRedZoneTime_StopWatch.Elapsed;
@@ -146,7 +146,7 @@ namespace ControllerScouting.Gamepad
                         }
                         else if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Blue)
                         {
-                            if (robot.NearFar)
+                            if (robot.NearFar == RobotState.NEAR_FAR.Far)
                             {
                                 robot.FarBlueZoneTime_StopWatch.Start();
                                 robot.FarBlueZoneTime = robot.FarBlueZoneTime_StopWatch.Elapsed;
@@ -167,7 +167,7 @@ namespace ControllerScouting.Gamepad
                             {
                                 robot.RobotMode = RobotState.ROBOT_MODE.Neutral;
 
-                                if (robot.NearFar)
+                                if (robot.NearFar == RobotState.NEAR_FAR.Far)
                                 {
                                     robot.FarBlueZoneTime_StopWatch.Stop();
                                     robot.FarBlueZoneTime = robot.FarBlueZoneTime_StopWatch.Elapsed;
@@ -181,7 +181,7 @@ namespace ControllerScouting.Gamepad
                         } 
                         else if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Neutral)
                         {
-                            if (robot.NearFar)
+                            if (robot.NearFar == RobotState.NEAR_FAR.Far)
                             {
                                 robot.FarNeutralZoneTime_StopWatch.Start();
                                 robot.FarNeutralZoneTime = robot.FarNeutralZoneTime_StopWatch.Elapsed;
@@ -202,7 +202,7 @@ namespace ControllerScouting.Gamepad
                             {
                                 robot.RobotMode = RobotState.ROBOT_MODE.Red;
 
-                                if (robot.NearFar)
+                                if (robot.NearFar == RobotState.NEAR_FAR.Far)
                                 {
                                     robot.FarNeutralZoneTime_StopWatch.Stop();
                                     robot.FarNeutralZoneTime = robot.FarNeutralZoneTime_StopWatch.Elapsed;
@@ -217,7 +217,7 @@ namespace ControllerScouting.Gamepad
                             {
                                 robot.RobotMode = RobotState.ROBOT_MODE.Blue;
 
-                                if (robot.NearFar)
+                                if (robot.NearFar == RobotState.NEAR_FAR.Far)
                                 {
                                     robot.FarNeutralZoneTime_StopWatch.Stop();
                                     robot.FarNeutralZoneTime = robot.FarNeutralZoneTime_StopWatch.Elapsed;

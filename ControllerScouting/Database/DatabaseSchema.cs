@@ -51,7 +51,7 @@ namespace ControllerScouting.Database
         public double FuelIntakingTime { get; set; }
         public double FuelShootingTime { get; set; }
         public double FeedingTime { get; set; }
-        public bool NearFar { get; set; }
+        public string NearFar { get; set; }
         public double NearRedZoneTime { get; set; }
         public double FarRedZoneTime { get; set; }
         public double NearNeutralZoneTime { get; set; }
@@ -339,15 +339,17 @@ namespace ControllerScouting.Database
                         activity_record.FuelShootingTime = controller.FuelShootingTime.TotalSeconds;
                         activity_record.FuelIntakingTime = controller.FuelIntakingTime.TotalSeconds;
                         activity_record.FeedingTime = controller.FeedingTime.TotalMinutes;
-                        activity_record.NearFar = controller.NearFar;
-                        activity_record.NearRedZoneTime = controller.FuelShootingTime.TotalSeconds;
-                        activity_record.FarRedZoneTime = controller.FuelShootingTime.TotalSeconds;
-                        activity_record.NearNeutralZoneTime = controller.FuelIntakingTime.TotalSeconds;
-                        activity_record.FarNeutralZoneTime = controller.FuelIntakingTime.TotalSeconds;
-                        activity_record.NearBlueZoneTime = controller.FeedingTime.TotalMinutes;
-                        activity_record.FarBlueZoneTime = controller.FeedingTime.TotalMinutes;
+                        activity_record.NearFar = controller.NearFar.ToString();
+                        activity_record.NearRedZoneTime = controller.NearRedZoneTime.TotalSeconds;
+                        activity_record.FarRedZoneTime = controller.FarRedZoneTime.TotalSeconds;
+                        activity_record.NearNeutralZoneTime = controller.NearNeutralZoneTime.TotalSeconds;
+                        activity_record.FarNeutralZoneTime = controller.FarNeutralZoneTime.TotalSeconds;
+                        activity_record.NearBlueZoneTime = controller.NearBlueZoneTime.TotalMinutes;
+                        activity_record.FarBlueZoneTime = controller.FarBlueZoneTime.TotalMinutes;
 
                         controller.BumpTraversal = 0;
+                        controller.prevBumpTraversal = 0;
+                        controller.TrenchTraversal = 0;
 
                         controller.FuelShootingTime_StopWatch.Reset();
                         controller.FuelIntakingTime_StopWatch.Reset();
@@ -384,16 +386,18 @@ namespace ControllerScouting.Database
                         activity_record.FuelShootingTime = controller.FuelShootingTime.TotalSeconds;
                         activity_record.DefenseTime = controller.DefenseTime.TotalSeconds;
                         activity_record.FeedingTime = controller.FeedingTime.TotalMinutes;
-                        activity_record.NearFar = controller.NearFar;
-                        activity_record.NearRedZoneTime = controller.FuelShootingTime.TotalSeconds;
-                        activity_record.FarRedZoneTime = controller.FuelShootingTime.TotalSeconds;
-                        activity_record.NearNeutralZoneTime = controller.FuelIntakingTime.TotalSeconds;
-                        activity_record.FarNeutralZoneTime = controller.FuelIntakingTime.TotalSeconds;
-                        activity_record.NearBlueZoneTime = controller.FeedingTime.TotalMinutes;
-                        activity_record.FarBlueZoneTime = controller.FeedingTime.TotalMinutes;
+                        activity_record.NearFar = controller.NearFar.ToString();
+                        activity_record.NearRedZoneTime = controller.NearRedZoneTime.TotalSeconds;
+                        activity_record.FarRedZoneTime = controller.FarRedZoneTime.TotalSeconds;
+                        activity_record.NearNeutralZoneTime = controller.NearNeutralZoneTime.TotalSeconds;
+                        activity_record.FarNeutralZoneTime = controller.FarNeutralZoneTime.TotalSeconds;
+                        activity_record.NearBlueZoneTime = controller.NearBlueZoneTime.TotalMinutes;
+                        activity_record.FarBlueZoneTime = controller.FarBlueZoneTime.TotalMinutes;
 
 
                         controller.BumpTraversal = 0;
+                        controller.prevBumpTraversal = 0;
+                        controller.TrenchTraversal = 0;
 
                         controller.FuelIntakingTime_StopWatch.Reset();
                         controller.FuelShootingTime_StopWatch.Reset();
@@ -449,15 +453,17 @@ namespace ControllerScouting.Database
                         activity_record.FuelShootingTime = controller.FuelShootingTime.TotalSeconds;
                         activity_record.FuelIntakingTime = controller.FuelIntakingTime.TotalSeconds;
                         activity_record.FeedingTime = controller.FeedingTime.TotalSeconds;
-                        activity_record.NearFar = controller.NearFar;
-                        activity_record.NearRedZoneTime = controller.FuelShootingTime.TotalSeconds;
-                        activity_record.FarRedZoneTime = controller.FuelShootingTime.TotalSeconds;
-                        activity_record.NearNeutralZoneTime = controller.FuelIntakingTime.TotalSeconds;
-                        activity_record.FarNeutralZoneTime = controller.FuelIntakingTime.TotalSeconds;
-                        activity_record.NearBlueZoneTime = controller.FeedingTime.TotalMinutes;
-                        activity_record.FarBlueZoneTime = controller.FeedingTime.TotalMinutes;
+                        activity_record.NearFar = controller.NearFar.ToString();
+                        activity_record.NearRedZoneTime = controller.NearRedZoneTime.TotalSeconds;
+                        activity_record.FarRedZoneTime = controller.FarRedZoneTime.TotalSeconds;
+                        activity_record.NearNeutralZoneTime = controller.NearNeutralZoneTime.TotalSeconds;
+                        activity_record.FarNeutralZoneTime = controller.FarNeutralZoneTime.TotalSeconds;
+                        activity_record.NearBlueZoneTime = controller.NearBlueZoneTime.TotalMinutes;
+                        activity_record.FarBlueZoneTime = controller.FarBlueZoneTime.TotalMinutes;
 
                         controller.BumpTraversal = 0;
+                        controller.prevBumpTraversal = 0;
+                        controller.TrenchTraversal = 0;
 
                         controller.FuelIntakingTime_StopWatch.Reset();
                         controller.FuelShootingTime_StopWatch.Reset();
