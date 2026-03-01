@@ -84,10 +84,26 @@ namespace ControllerScouting.Gamepad
                         if (gamepad.XButton_Press)
                         {
                             robot.CycleStartingLocation(RobotState.CYCLE_DIRECTION.Up);
+                            if (robot.GetStartingLocation() == RobotState.STARTING_LOCATION.Far_Trench || robot.GetStartingLocation() == RobotState.STARTING_LOCATION.Far_Bump)
+                            {
+                                robot.NearFar = true;
+                            }
+                            else
+                            {
+                                robot.NearFar = false;
+                            }
                         }
                         else if (gamepad.BButton_Press)
                         {
                             robot.CycleStartingLocation(RobotState.CYCLE_DIRECTION.Down);
+                            if (robot.GetStartingLocation() == RobotState.STARTING_LOCATION.Far_Trench || robot.GetStartingLocation() == RobotState.STARTING_LOCATION.Far_Bump)
+                            {
+                                robot.NearFar = true;
+                            }
+                            else
+                            {
+                                robot.NearFar = false;
+                            }
                         }
 
                         if (gamepad.StartButton_Press)
