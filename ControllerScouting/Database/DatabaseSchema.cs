@@ -538,7 +538,7 @@ namespace ControllerScouting.Database
                 BackgroundCode.activitiesQueue.Enqueue(activityCopy);
             }
         }
-        public static void SendToDatabase(Activity activity)
+        public static void SendToDatabase()
         {
             switch (BackgroundCode.dataExport)
             {
@@ -549,25 +549,25 @@ namespace ControllerScouting.Database
                     //    using StreamWriter sw = File.AppendText(locationFixed + "\\" + databaseName);
                     //    sw.WriteLine(activity.ToCSV());
                     //}
-
-                    BackgroundCode.serverSeasonframework.ActivitySet.Add(activity);
+                    BackgroundCode.serverSeasonframework.ActivitySet.AddRange(BackgroundCode.activitiesQueue);
                     BackgroundCode.serverSeasonframework.SaveChanges();
                     break;
                 default:
                     //Save Record to the database
                     if (Settings.Default.sqlExists)
                     {
-                        BackgroundCode.localSeasonframework.ActivitySet.Add(activity);
+                        BackgroundCode.localSeasonframework.ActivitySet.AddRange(BackgroundCode.activitiesQueue);
                         BackgroundCode.localSeasonframework.SaveChanges();
                         BackgroundCode.localSQLChanges = true;
                     }
                     else
                     {
-                        BackgroundCode.serverSeasonframework.ActivitySet.Add(activity);
+                        BackgroundCode.serverSeasonframework.ActivitySet.AddRange(BackgroundCode.activitiesQueue);
                         BackgroundCode.serverSeasonframework.SaveChanges();
                     }
                     break;
             }
+            BackgroundCode.activitiesQueue = new();
         }
 
         public static void UpdateServerSQL()

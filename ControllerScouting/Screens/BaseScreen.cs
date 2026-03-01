@@ -5,6 +5,7 @@ using ControllerScouting.Utilities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net.Http;
@@ -96,10 +97,10 @@ namespace ControllerScouting.Screens
         private static void SendngToDatabaseThread()
         {
             while (true)
-            {
-                while (BackgroundCode.activitiesQueue.TryDequeue(out Activity activity))
+            {  
+                if (!BackgroundCode.activitiesQueue.IsEmpty)
                 {
-                    DatabaseCode.SendToDatabase(activity);
+                    DatabaseCode.SendToDatabase();
                 }
 
                 if (BackgroundCode.dataExport == BackgroundCode.EXPORT_TYPE.SQLonline && BackgroundCode.localSQLChanges)
