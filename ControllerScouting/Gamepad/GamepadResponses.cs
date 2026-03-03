@@ -409,7 +409,7 @@ namespace ControllerScouting.Gamepad
                         else if (gamepad.DpadLeft_Press) {
                             robot.CycleDefenseStrategy(RobotState.CYCLE_DIRECTION.Up);
                         }
-                        else if (gamepad.DpadLeft_Press)
+                        else if (gamepad.DpadRight_Press)
                         {
                             robot.CycleAvoidanceStrategy(RobotState.CYCLE_DIRECTION.Up);
                         }

@@ -279,6 +279,9 @@ namespace ControllerScouting.Database
 
             return records;
         }
+
+        private static readonly List<List<Activity>> _autoActivities =
+            new(Enumerable.Range(0, 6).Select(_ => new List<Activity>()));
         internal static void SaveToRecord(RobotState controller, string recordtype)
         {
             if (controller.GetScouterName() != RobotState.SCOUTER_NAME.Select_Name && controller.TeamName != null)
@@ -385,25 +388,61 @@ namespace ControllerScouting.Database
                         controller.prevBumpTraversal = 0;
                         controller.TrenchTraversal = 0;
 
+                        // Process buffered activities
+                        DateTime autoEndTime = activity_record.Time;
+                        foreach (var bufferedAct in _autoActivities[controller.ScouterBox])
+                        {
+                            // Calculate elapsed time in auto: 15s - (how long ago this activity happened relative to EndAuto)
+                            double secondsAgo = (autoEndTime - bufferedAct.Time).TotalSeconds;
+                            double elapsed = 15.0 - secondsAgo;
+
+                            if (elapsed < 0) elapsed = 0;
+                            if (elapsed > 15) elapsed = 15;
+
+                            // Recalculate the "dirty" starting zone time
+                            if (controller.color == RobotState.COLOR.Red)
+                            {
+                                double cleanSum = bufferedAct.NearBlueZoneTime + bufferedAct.FarBlueZoneTime
+                                                + bufferedAct.NearNeutralZoneTime + bufferedAct.FarNeutralZoneTime;
+
+                                if (controller.Starting_Location == RobotState.STARTING_LOCATION.Far_Trench || controller.Starting_Location == RobotState.STARTING_LOCATION.Far_Bump)
+                                {
+                                    cleanSum += bufferedAct.NearRedZoneTime; // Near is clean
+                                    bufferedAct.FarRedZoneTime = Math.Max(0, elapsed - cleanSum);
+                                }
+                                else
+                                {
+                                    cleanSum += bufferedAct.FarRedZoneTime; // Far is clean
+                                    bufferedAct.NearRedZoneTime = Math.Max(0, elapsed - cleanSum);
+                                }
+                            }
+                            else // Blue
+                            {
+                                double cleanSum = bufferedAct.NearRedZoneTime + bufferedAct.FarRedZoneTime
+                                                + bufferedAct.NearNeutralZoneTime + bufferedAct.FarNeutralZoneTime;
+
+                                if (controller.Starting_Location == RobotState.STARTING_LOCATION.Far_Trench || controller.Starting_Location == RobotState.STARTING_LOCATION.Far_Bump)
+                                {
+                                    cleanSum += bufferedAct.NearBlueZoneTime; // Near is clean
+                                    bufferedAct.FarBlueZoneTime = Math.Max(0, elapsed - cleanSum);
+                                }
+                                else
+                                {
+                                    cleanSum += bufferedAct.FarBlueZoneTime; // Far is clean
+                                    bufferedAct.NearBlueZoneTime = Math.Max(0, elapsed - cleanSum);
+                                }
+                            }
+                            BackgroundCode.activitiesQueue.Enqueue(bufferedAct);
+                        }
+                        _autoActivities[controller.ScouterBox].Clear();
+
                         controller.FuelShootingTime_StopWatch.Reset();
                         controller.FuelIntakingTime_StopWatch.Reset();
                         controller.FeedingTime_StopWatch.Reset();
-                        controller.NearRedZoneTime_StopWatch.Reset();
-                        controller.FarRedZoneTime_StopWatch.Reset();
-                        controller.NearNeutralZoneTime_StopWatch.Reset();
-                        controller.FarNeutralZoneTime_StopWatch.Reset();
-                        controller.NearBlueZoneTime_StopWatch.Reset();
-                        controller.FarBlueZoneTime_StopWatch.Reset();
 
                         controller.FuelIntakingTime = controller.FuelIntakingTime_StopWatch.Elapsed;
                         controller.FuelShootingTime = controller.FuelShootingTime_StopWatch.Elapsed;
                         controller.FeedingTime = controller.FeedingTime_StopWatch.Elapsed;
-                        controller.NearRedZoneTime = controller.NearRedZoneTime_StopWatch.Elapsed;
-                        controller.FarRedZoneTime = controller.FarRedZoneTime_StopWatch.Elapsed;
-                        controller.NearNeutralZoneTime = controller.NearNeutralZoneTime_StopWatch.Elapsed;
-                        controller.FarNeutralZoneTime = controller.FarNeutralZoneTime_StopWatch.Elapsed;
-                        controller.NearBlueZoneTime = controller.NearBlueZoneTime_StopWatch.Elapsed;
-                        controller.FarBlueZoneTime = controller.FarBlueZoneTime_StopWatch.Elapsed;
                         break;
                     case "Activities":
                         if (controller.FuelIntakingTime == TimeSpan.Zero)
@@ -423,23 +462,13 @@ namespace ControllerScouting.Database
                         activity_record.DefenseTime = controller.DefenseTime.TotalSeconds;
                         activity_record.FeedingTime = controller.FeedingTime.TotalMinutes;
                         activity_record.NearFar = controller.NearFar.ToString();
-                        //Might need some logic to determine zone times in auto...
-                        if (controller.AUTO)
-                        {
-                            activity_record.NearRedZoneTime = 0;
-                            activity_record.FarRedZoneTime = 0;
-                            activity_record.NearNeutralZoneTime = 0;
-                            activity_record.FarNeutralZoneTime = 0;
-                            activity_record.NearBlueZoneTime = 0;
-                            activity_record.FarBlueZoneTime = 0;
-                        }
-                        activity_record.NearRedZoneTime = controller.NearRedZoneTime.TotalSeconds;
-                        activity_record.FarRedZoneTime = controller.FarRedZoneTime.TotalSeconds;
+
                         activity_record.NearNeutralZoneTime = controller.NearNeutralZoneTime.TotalSeconds;
                         activity_record.FarNeutralZoneTime = controller.FarNeutralZoneTime.TotalSeconds;
-                        activity_record.NearBlueZoneTime = controller.NearBlueZoneTime.TotalMinutes;
-                        activity_record.FarBlueZoneTime = controller.FarBlueZoneTime.TotalMinutes;
-
+                        activity_record.NearRedZoneTime = controller.NearRedZoneTime.TotalSeconds;
+                        activity_record.FarRedZoneTime = controller.FarRedZoneTime.TotalSeconds;
+                        activity_record.NearBlueZoneTime = controller.NearBlueZoneTime.TotalSeconds;
+                        activity_record.FarBlueZoneTime = controller.FarBlueZoneTime.TotalSeconds;
 
                         controller.BumpTraversal = 0;
                         controller.prevBumpTraversal = 0;
@@ -449,23 +478,17 @@ namespace ControllerScouting.Database
                         controller.FuelShootingTime_StopWatch.Reset();
                         controller.DefenseTime_StopWatch.Reset();
                         controller.FeedingTime_StopWatch.Reset();
-                        controller.NearRedZoneTime_StopWatch.Reset();
-                        controller.FarRedZoneTime_StopWatch.Reset();
-                        controller.NearNeutralZoneTime_StopWatch.Reset();
-                        controller.FarNeutralZoneTime_StopWatch.Reset();
-                        controller.NearBlueZoneTime_StopWatch.Reset();
-                        controller.FarBlueZoneTime_StopWatch.Reset();
 
                         controller.FuelIntakingTime = controller.FuelIntakingTime_StopWatch.Elapsed;
                         controller.FuelShootingTime = controller.FuelShootingTime_StopWatch.Elapsed;
                         controller.DefenseTime = controller.DefenseTime_StopWatch.Elapsed;
                         controller.FeedingTime = controller.FeedingTime_StopWatch.Elapsed;
-                        controller.NearRedZoneTime = controller.NearRedZoneTime_StopWatch.Elapsed;
-                        controller.FarRedZoneTime = controller.FarRedZoneTime_StopWatch.Elapsed;
-                        controller.NearNeutralZoneTime = controller.NearNeutralZoneTime_StopWatch.Elapsed;
-                        controller.FarNeutralZoneTime = controller.FarNeutralZoneTime_StopWatch.Elapsed;
-                        controller.NearBlueZoneTime = controller.NearBlueZoneTime_StopWatch.Elapsed;
-                        controller.FarBlueZoneTime = controller.FarBlueZoneTime_StopWatch.Elapsed;
+
+                        if (controller.AUTO)
+                        {
+                            _autoActivities[controller.ScouterBox].Add(activity_record.DeepCopy());
+                            return;
+                        }
                         break;
                     case "EndMatch":
                         if (controller.Climb_Success == RobotState.BOOLEAN.Z)
@@ -515,23 +538,11 @@ namespace ControllerScouting.Database
                         controller.FuelShootingTime_StopWatch.Reset();
                         controller.DefenseTime_StopWatch.Reset();
                         controller.FeedingTime_StopWatch.Reset();
-                        controller.NearRedZoneTime_StopWatch.Reset();
-                        controller.FarRedZoneTime_StopWatch.Reset();
-                        controller.NearNeutralZoneTime_StopWatch.Reset();
-                        controller.FarNeutralZoneTime_StopWatch.Reset();
-                        controller.NearBlueZoneTime_StopWatch.Reset();
-                        controller.FarBlueZoneTime_StopWatch.Reset();
 
                         controller.FuelIntakingTime = controller.FuelIntakingTime_StopWatch.Elapsed;
                         controller.FuelShootingTime = controller.FuelShootingTime_StopWatch.Elapsed;
                         controller.DefenseTime = controller.DefenseTime_StopWatch.Elapsed;
                         controller.FeedingTime = controller.FeedingTime_StopWatch.Elapsed;
-                        controller.NearRedZoneTime = controller.NearRedZoneTime_StopWatch.Elapsed;
-                        controller.FarRedZoneTime = controller.FarRedZoneTime_StopWatch.Elapsed;
-                        controller.NearNeutralZoneTime = controller.NearNeutralZoneTime_StopWatch.Elapsed;
-                        controller.FarNeutralZoneTime = controller.FarNeutralZoneTime_StopWatch.Elapsed;
-                        controller.NearBlueZoneTime = controller.NearBlueZoneTime_StopWatch.Elapsed;
-                        controller.FarBlueZoneTime = controller.FarBlueZoneTime_StopWatch.Elapsed;
                         break;
                     case "Match_Event":
                         activity_record.MatchEvent = controller.MatchEvent.ToString();
