@@ -326,7 +326,7 @@ namespace ControllerScouting.Gamepad
                             robot.FuelIntakingTime = robot.FuelIntakingTime_StopWatch.Elapsed;
                         }
 
-                        if (gamepad.StartButton_Press)
+                        if (gamepad.StartButton_Press && robot.AUTO)
                         {
                             DatabaseCode.SaveToRecord(robot, "EndAuto");
                             robot.AUTO = false;
@@ -406,10 +406,33 @@ namespace ControllerScouting.Gamepad
                         else if (gamepad.DpadDown_Press) {
                             robot.Climb_Success = RobotState.BOOLEAN.No;
                         }
+                        else if (gamepad.DpadLeft_Press) {
+                            robot.CycleDefenseStrategy(RobotState.CYCLE_DIRECTION.Up);
+                        }
+                        else if (gamepad.DpadLeft_Press)
+                        {
+                            robot.CycleAvoidanceStrategy(RobotState.CYCLE_DIRECTION.Up);
+                        }
+
+                        if (gamepad.LeftStickLeft_Press)
+                        {
+                            robot.CycleStrategy(RobotState.CYCLE_DIRECTION.Down);
+                        }
+                        else if (gamepad.LeftStickRight_Press)
+                        {
+                            robot.CycleStrategy(RobotState.CYCLE_DIRECTION.Up);
+                        }
 
                         if (gamepad.StartButton_Press && !robot.ClimbedTime && robot.TimeOfClimb_StopWatch.IsRunning)
                         {
-                            robot.RobotMode = (RobotState.ROBOT_MODE)robot.color;
+                            if (robot.color == RobotState.COLOR.Red)
+                            {
+                                robot.RobotMode = RobotState.ROBOT_MODE.Red;
+                            }
+                            else
+                            {
+                                robot.RobotMode = RobotState.ROBOT_MODE.Blue;
+                            }
                             robot.TimeOfClimb_StopWatch.Stop();
                             robot.TimeOfClimb_StopWatch.Reset();
                         }

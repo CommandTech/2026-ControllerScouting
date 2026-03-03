@@ -250,28 +250,28 @@ namespace ControllerScouting.Gamepad
         public bool DpadLeft_Release
         { get { return IsReleased(_dpadleft, _dpadleftPrev); } }
 
-        public bool leftStickUp_Release
+        public bool LeftStickUp_Release
         { get { return IsReleased(_leftStickUp, _leftStickUpPrev); } }
 
-        public bool leftStickRight_Release
+        public bool LeftStickRight_Release
         { get { return IsReleased(_leftStickRight, _leftStickRightPrev); } }
 
-        public bool leftStickDown_Release
+        public bool LeftStickDown_Release
         { get { return IsReleased(_leftStickDown, _leftStickDownPrev); } }
 
-        public bool leftStickLeft_Release
+        public bool LeftStickLeft_Release
         { get { return IsReleased(_leftStickLeft, _leftStickLeftPrev); } }
 
-        public bool rightStickUp_Release
+        public bool RightStickUp_Release
         { get { return IsReleased(_rightStickUp, _rightStickUpPrev); } }
 
-        public bool rightStickRight_Release
+        public bool RightStickRight_Release
         { get { return IsReleased(_rightStickRight, _rightStickRightPrev); } }
 
-        public bool rightStickDown_Release
+        public bool RightStickDown_Release
         { get { return IsReleased(_rightStickDown, _rightStickDownPrev); } }
 
-        public bool rightStickLeft_Release
+        public bool RightStickLeft_Release
         { get { return IsReleased(_rightStickLeft, _rightStickLeftPrev); } }
 
         public bool BackButton_Release

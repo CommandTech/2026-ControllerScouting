@@ -424,6 +424,15 @@ namespace ControllerScouting.Database
                         activity_record.FeedingTime = controller.FeedingTime.TotalMinutes;
                         activity_record.NearFar = controller.NearFar.ToString();
                         //Might need some logic to determine zone times in auto...
+                        if (controller.AUTO)
+                        {
+                            activity_record.NearRedZoneTime = 0;
+                            activity_record.FarRedZoneTime = 0;
+                            activity_record.NearNeutralZoneTime = 0;
+                            activity_record.FarNeutralZoneTime = 0;
+                            activity_record.NearBlueZoneTime = 0;
+                            activity_record.FarBlueZoneTime = 0;
+                        }
                         activity_record.NearRedZoneTime = controller.NearRedZoneTime.TotalSeconds;
                         activity_record.FarRedZoneTime = controller.FarRedZoneTime.TotalSeconds;
                         activity_record.NearNeutralZoneTime = controller.NearNeutralZoneTime.TotalSeconds;
