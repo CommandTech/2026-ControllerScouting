@@ -725,34 +725,38 @@ namespace ControllerScouting.Screens
             if (robot.color == RobotState.COLOR.Red)
             {
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Shooting Timer: " + robot.FuelShootingTime.TotalSeconds.ToString("F2");
+
+                if (robot.AUTO)
+                {
+                    ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Climb: ";
+
+                    if (robot.GetAutoClimb() == RobotState.BOOLEAN.Z)
+                    {
+                        ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = Color.Yellow;
+                        ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = Color.Yellow;
+                    }
+                    else if (robot.GetAutoClimb() == RobotState.BOOLEAN.Yes)
+                    {
+                        ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = Color.Green;
+                        ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = Color.Green;
+                    }
+                    else if (robot.GetAutoClimb() == RobotState.BOOLEAN.No)
+                    {
+                        ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = Color.Red;
+                        ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = Color.Red;
+                    }
+                }
             }
             else
             {
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Feeding Timer: " + robot.FeedingTime.TotalSeconds.ToString("F2");
             }
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Defense Timer: " + robot.DefenseTime.TotalSeconds.ToString("F2");
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Text = "Bump: " + robot.BumpTraversal;
-
-            if (robot.AUTO)
+            if (!robot.AUTO)
             {
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Climb: ";
-
-                if (robot.GetAutoClimb() == RobotState.BOOLEAN.Z)
-                {
-                    ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = Color.Yellow;
-                    ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = Color.Yellow;
-                }
-                else if (robot.GetAutoClimb() == RobotState.BOOLEAN.Yes)
-                {
-                    ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = Color.Green;
-                    ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = Color.Green;
-                }
-                else if (robot.GetAutoClimb() == RobotState.BOOLEAN.No)
-                {
-                    ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = Color.Red;
-                    ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = Color.Red;
-                }
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = false;
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Defense Timer: " + robot.DefenseTime.TotalSeconds.ToString("F2");
             }
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Text = "Bump: " + robot.BumpTraversal;
         }
         private void InNeutralMode(RobotState robot, int ScouterBox)
         {
@@ -801,13 +805,37 @@ namespace ControllerScouting.Screens
             if (robot.color == RobotState.COLOR.Blue)
             {
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Shooting Timer: " + robot.FuelShootingTime.TotalSeconds.ToString("F2");
+                if (robot.AUTO)
+                {
+                    ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Climb: ";
+
+                    if (robot.GetAutoClimb() == RobotState.BOOLEAN.Z)
+                    {
+                        ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = Color.Yellow;
+                        ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = Color.Yellow;
+                    }
+                    else if (robot.GetAutoClimb() == RobotState.BOOLEAN.Yes)
+                    {
+                        ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = Color.Green;
+                        ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = Color.Green;
+                    }
+                    else if (robot.GetAutoClimb() == RobotState.BOOLEAN.No)
+                    {
+                        ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).ForeColor = Color.Red;
+                        ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).BackColor = Color.Red;
+                    }
+                }
             }
             else
             {
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Feeding Timer: " + robot.FeedingTime.TotalSeconds.ToString("F2");
             }
+            if (!robot.AUTO)
+            {
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = false;
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Defense Timer: " + robot.DefenseTime.TotalSeconds.ToString("F2");
+            }
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Text = "Bump: " + robot.BumpTraversal;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Defense Timer: " + robot.DefenseTime.TotalSeconds.ToString("F2");
         }
 
         private void InEndgameMode(RobotState robot, int ScouterBox)

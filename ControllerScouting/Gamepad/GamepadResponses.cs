@@ -332,7 +332,7 @@ namespace ControllerScouting.Gamepad
                             robot.AUTO = false;
                         }
 
-                        if (gamepad.BackButton_Down)
+                        if (gamepad.BackButton_Down && !robot.AUTO)
                         {
                             robot.RobotMode = RobotState.ROBOT_MODE.Endgame;
                             robot.TimeOfClimb_StopWatch.Start(); // starts the time
@@ -382,7 +382,7 @@ namespace ControllerScouting.Gamepad
                         {
                             robot.TimeOfClimb_StopWatch.Start();
                         }
-                        if (gamepad.LeftTrigger_Press && robot.TimeOfClimb_StopWatch.IsRunning)
+                        if (gamepad.LeftTrigger_Press)
                         {
                             robot.TimeOfClimb_StopWatch.Reset();
                             robot.TimeOfClimb_StopWatch.Stop();
