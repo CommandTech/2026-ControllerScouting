@@ -343,6 +343,13 @@ namespace ControllerScouting.Gamepad
                     //***********************************
                     else if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Endgame)
                     {
+                        robot.NearBlueZoneTime_StopWatch.Stop();
+                        robot.FarBlueZoneTime_StopWatch.Stop();
+                        robot.NearNeutralZoneTime_StopWatch.Stop();
+                        robot.FarNeutralZoneTime_StopWatch.Stop();
+                        robot.NearRedZoneTime_StopWatch.Stop();
+                        robot.FarRedZoneTime_StopWatch.Stop();
+
 
                         if (!robot.ClimbedTime)
                         {
