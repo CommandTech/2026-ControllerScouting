@@ -355,13 +355,13 @@ namespace ControllerScouting.Database
                             if (controller.Starting_Location == RobotState.STARTING_LOCATION.Far_Trench || controller.Starting_Location == RobotState.STARTING_LOCATION.Far_Bump)
                             {
                                 activity_record.NearRedZoneTime = controller.NearRedZoneTime.TotalSeconds;
-                                activity_record.FarRedZoneTime = 15 - (controller.NearBlueZoneTime.TotalSeconds + controller.FarBlueZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.NearRedZoneTime.TotalSeconds);
+                                activity_record.FarRedZoneTime = 20 - (controller.NearBlueZoneTime.TotalSeconds + controller.FarBlueZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.NearRedZoneTime.TotalSeconds);
                                 controller.FarRedZoneTime = TimeSpan.FromSeconds(activity_record.FarRedZoneTime);
                             }
                             else
                             {
                                 activity_record.FarRedZoneTime = controller.FarRedZoneTime.TotalSeconds;
-                                activity_record.NearRedZoneTime = 15 - (controller.NearBlueZoneTime.TotalSeconds + controller.FarBlueZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.FarRedZoneTime.TotalSeconds);
+                                activity_record.NearRedZoneTime = 20 - (controller.NearBlueZoneTime.TotalSeconds + controller.FarBlueZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.FarRedZoneTime.TotalSeconds);
                                 controller.NearRedZoneTime = TimeSpan.FromSeconds(activity_record.NearRedZoneTime);
                             }
                         }
@@ -373,13 +373,13 @@ namespace ControllerScouting.Database
                             if (controller.Starting_Location == RobotState.STARTING_LOCATION.Far_Trench || controller.Starting_Location == RobotState.STARTING_LOCATION.Far_Bump)
                             {
                                 activity_record.NearBlueZoneTime = controller.NearBlueZoneTime.TotalSeconds;
-                                activity_record.FarBlueZoneTime = 15 - (controller.NearRedZoneTime.TotalSeconds + controller.FarRedZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.NearBlueZoneTime.TotalSeconds);
+                                activity_record.FarBlueZoneTime = 20 - (controller.NearRedZoneTime.TotalSeconds + controller.FarRedZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.NearBlueZoneTime.TotalSeconds);
                                 controller.FarBlueZoneTime = TimeSpan.FromSeconds(activity_record.FarBlueZoneTime);
                             }
                             else
                             {
                                 activity_record.FarBlueZoneTime = controller.FarBlueZoneTime.TotalSeconds;
-                                activity_record.NearBlueZoneTime = 15 - (controller.NearRedZoneTime.TotalSeconds + controller.FarRedZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.FarBlueZoneTime.TotalSeconds);
+                                activity_record.NearBlueZoneTime = 20 - (controller.NearRedZoneTime.TotalSeconds + controller.FarRedZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.FarBlueZoneTime.TotalSeconds);
                                 controller.NearBlueZoneTime = TimeSpan.FromSeconds(activity_record.NearBlueZoneTime);
                             }
                         }
@@ -392,12 +392,12 @@ namespace ControllerScouting.Database
                         DateTime autoEndTime = activity_record.Time;
                         foreach (var bufferedAct in _autoActivities[controller.ScouterBox])
                         {
-                            // Calculate elapsed time in auto: 15s - (how long ago this activity happened relative to EndAuto)
+                            // Calculate elapsed time in auto: 20s - (how long ago this activity happened relative to EndAuto)
                             double secondsAgo = (autoEndTime - bufferedAct.Time).TotalSeconds;
-                            double elapsed = 15.0 - secondsAgo;
+                            double elapsed = 20.0 - secondsAgo;
 
                             if (elapsed < 0) elapsed = 0;
-                            if (elapsed > 15) elapsed = 15;
+                            if (elapsed > 20) elapsed = 20;
 
                             // Recalculate the "dirty" starting zone time
                             if (controller.color == RobotState.COLOR.Red)
