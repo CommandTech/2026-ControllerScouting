@@ -207,11 +207,7 @@ namespace ControllerScouting.Screens
 
                 BackgroundCode.InMemoryMatchList = DatabaseCode.ListToMatch(BackgroundCode.iniFile.Read("EventData", "Matches", "").Split(','));
 
-                if (Settings.Default.sqlExists)
-                {
-                    BackgroundCode.localSeasonframework.Database.Connection.Close();
-                }
-                BackgroundCode.serverSeasonframework.Database.Connection.Close();
+                ChangeSQLConnectionString(BackgroundCode.loadedEvent);
 
                 if (comboBoxSelectRegional.SelectedItem.ToString() == "manualEvent")
                 {
@@ -326,7 +322,7 @@ namespace ControllerScouting.Screens
             label.ForeColor = Color.Orange;
             CheckPrio(label, teamName);
         }
-        private void ChangeSQLConnectionString(String newName)
+        private static void ChangeSQLConnectionString(string newName)
         {
             if (Settings.Default.sqlExists)
             {
@@ -712,7 +708,6 @@ namespace ControllerScouting.Screens
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Visible = true;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position6", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Visible = false;
@@ -729,6 +724,7 @@ namespace ControllerScouting.Screens
                 if (robot.AUTO)
                 {
                     ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Climb: ";
+                    ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = true;
 
                     if (robot.GetAutoClimb() == RobotState.BOOLEAN.Z)
                     {
@@ -792,7 +788,6 @@ namespace ControllerScouting.Screens
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Visible = true;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position6", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Visible = false;
@@ -808,6 +803,7 @@ namespace ControllerScouting.Screens
                 if (robot.AUTO)
                 {
                     ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Climb: ";
+                    ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = true;
 
                     if (robot.GetAutoClimb() == RobotState.BOOLEAN.Z)
                     {
