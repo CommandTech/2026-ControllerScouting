@@ -802,6 +802,7 @@ namespace ControllerScouting.Screens
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Shooting Timer: " + robot.FuelShootingTime.TotalSeconds.ToString("F2");
                 if (robot.AUTO)
                 {
+                    ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = true;
                     ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Climb: ";
                     ((Label)this.Controls.Find($"lbl{ScouterBox}Position4Value", true)[0]).Visible = true;
 
