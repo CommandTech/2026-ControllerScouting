@@ -354,14 +354,20 @@ namespace ControllerScouting.Database
 
                             if (controller.Starting_Location == RobotState.STARTING_LOCATION.Far_Trench || controller.Starting_Location == RobotState.STARTING_LOCATION.Far_Bump)
                             {
+                                double sum = (controller.NearBlueZoneTime.TotalSeconds + controller.FarBlueZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.NearRedZoneTime.TotalSeconds);
+                                if (sum > 20) { sum = 20; }
                                 activity_record.NearRedZoneTime = controller.NearRedZoneTime.TotalSeconds;
-                                activity_record.FarRedZoneTime = 20 - (controller.NearBlueZoneTime.TotalSeconds + controller.FarBlueZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.NearRedZoneTime.TotalSeconds);
+                                activity_record.FarRedZoneTime = 23 - sum;
                                 controller.FarRedZoneTime = TimeSpan.FromSeconds(activity_record.FarRedZoneTime);
                             }
                             else
                             {
+                                double sum = (controller.NearBlueZoneTime.TotalSeconds + controller.FarBlueZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.FarRedZoneTime.TotalSeconds);
+                                if (sum > 20) {
+                                    sum = 20;
+                                }
                                 activity_record.FarRedZoneTime = controller.FarRedZoneTime.TotalSeconds;
-                                activity_record.NearRedZoneTime = 20 - (controller.NearBlueZoneTime.TotalSeconds + controller.FarBlueZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.FarRedZoneTime.TotalSeconds);
+                                activity_record.NearRedZoneTime = 23 - sum;
                                 controller.NearRedZoneTime = TimeSpan.FromSeconds(activity_record.NearRedZoneTime);
                             }
                         }
@@ -372,14 +378,24 @@ namespace ControllerScouting.Database
 
                             if (controller.Starting_Location == RobotState.STARTING_LOCATION.Far_Trench || controller.Starting_Location == RobotState.STARTING_LOCATION.Far_Bump)
                             {
+                                double sum = (controller.NearRedZoneTime.TotalSeconds + controller.FarRedZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.FarBlueZoneTime.TotalSeconds);
+                                if (sum > 20)
+                                {
+                                    sum = 20;
+                                }
                                 activity_record.NearBlueZoneTime = controller.NearBlueZoneTime.TotalSeconds;
-                                activity_record.FarBlueZoneTime = 20 - (controller.NearRedZoneTime.TotalSeconds + controller.FarRedZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.NearBlueZoneTime.TotalSeconds);
+                                activity_record.FarBlueZoneTime = 23 - (controller.NearRedZoneTime.TotalSeconds + controller.FarRedZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.NearBlueZoneTime.TotalSeconds);
                                 controller.FarBlueZoneTime = TimeSpan.FromSeconds(activity_record.FarBlueZoneTime);
                             }
                             else
                             {
+                                double sum = (controller.NearRedZoneTime.TotalSeconds + controller.FarRedZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.FarBlueZoneTime.TotalSeconds);
+                                if (sum > 20)
+                                {
+                                    sum = 20;
+                                }
                                 activity_record.FarBlueZoneTime = controller.FarBlueZoneTime.TotalSeconds;
-                                activity_record.NearBlueZoneTime = 20 - (controller.NearRedZoneTime.TotalSeconds + controller.FarRedZoneTime.TotalSeconds + controller.NearNeutralZoneTime.TotalSeconds + controller.FarNeutralZoneTime.TotalSeconds + controller.FarBlueZoneTime.TotalSeconds);
+                                activity_record.NearBlueZoneTime = 23 - sum;
                                 controller.NearBlueZoneTime = TimeSpan.FromSeconds(activity_record.NearBlueZoneTime);
                             }
                         }
