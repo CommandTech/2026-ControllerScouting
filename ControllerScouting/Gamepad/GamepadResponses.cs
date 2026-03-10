@@ -71,6 +71,10 @@ namespace ControllerScouting.Gamepad
                     if (gamepad.R3_Press && robot.MatchEvent != RobotState.MATCHEVENT_NAME.Match_Event)
                     {
                         DatabaseCode.SaveToRecord(robot, "Match_Event");
+                        if (robot.MatchEvent == RobotState.MATCHEVENT_NAME.NoShow)
+                        {
+                            robot.NoSho = true;
+                        }
                     }
                 }
 

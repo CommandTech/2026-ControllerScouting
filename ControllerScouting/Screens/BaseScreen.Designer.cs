@@ -20,7 +20,7 @@ namespace ControllerScouting.Screens
             btnpopulateForEvent = new Button();
             btnExit = new Button();
             blueTeams = new TableLayoutPanel();
-            panel17 = new Panel();
+            lbl5Background = new Panel();
             lbl5Position2Value = new Label();
             lbl5Position3Value = new Label();
             lbl5Position9 = new Label();
@@ -33,14 +33,14 @@ namespace ControllerScouting.Screens
             lbl5Position1 = new Label();
             lbl5Position4Value = new Label();
             lbl5Position0 = new Label();
-            panel18 = new Panel();
-            panel19 = new Panel();
-            panel20 = new Panel();
+            lbl5Divider1 = new Panel();
+            lbl5Divider0 = new Panel();
+            lbl5Divider2 = new Panel();
             lbl5MatchEvent = new Label();
             lbl5TeamName = new Label();
             lbl5ScoutName = new Label();
             lbl5ModeValue = new Label();
-            panel13 = new Panel();
+            lbl4Background = new Panel();
             lbl4Position2Value = new Label();
             lbl4Position3Value = new Label();
             lbl4Position9 = new Label();
@@ -53,14 +53,14 @@ namespace ControllerScouting.Screens
             lbl4Position1 = new Label();
             lbl4Position4Value = new Label();
             lbl4Position0 = new Label();
-            panel14 = new Panel();
-            panel15 = new Panel();
-            panel16 = new Panel();
+            lbl4Divider1 = new Panel();
+            lbl4Divider0 = new Panel();
+            lbl4Divider2 = new Panel();
             lbl4MatchEvent = new Label();
             lbl4TeamName = new Label();
             lbl4ScoutName = new Label();
             lbl4ModeValue = new Label();
-            panel9 = new Panel();
+            lbl3Background = new Panel();
             lbl3Position2Value = new Label();
             lbl3Position3Value = new Label();
             lbl3Position9 = new Label();
@@ -73,15 +73,15 @@ namespace ControllerScouting.Screens
             lbl3Position1 = new Label();
             lbl3Position4Value = new Label();
             lbl3Position0 = new Label();
-            panel10 = new Panel();
-            panel11 = new Panel();
-            panel12 = new Panel();
+            lbl3Divider1 = new Panel();
+            lbl3Divider0 = new Panel();
+            lbl3Divider2 = new Panel();
             lbl3MatchEvent = new Label();
             lbl3TeamName = new Label();
             lbl3ScoutName = new Label();
             lbl3ModeValue = new Label();
             redTeams = new TableLayoutPanel();
-            panel5 = new Panel();
+            lbl2Background = new Panel();
             lbl2MatchEvent = new Label();
             lbl2TeamName = new Label();
             lbl2Position2Value = new Label();
@@ -96,12 +96,12 @@ namespace ControllerScouting.Screens
             lbl2Position1 = new Label();
             lbl2Position4Value = new Label();
             lbl2Position0 = new Label();
-            panel6 = new Panel();
-            panel7 = new Panel();
-            panel8 = new Panel();
+            lbl2Divider1 = new Panel();
+            lbl2Divider0 = new Panel();
+            lbl2Divider2 = new Panel();
             lbl2ScoutName = new Label();
             lbl2ModeValue = new Label();
-            panel1 = new Panel();
+            lbl1Background = new Panel();
             lbl1MatchEvent = new Label();
             lbl1TeamName = new Label();
             lbl1Position2Value = new Label();
@@ -116,13 +116,13 @@ namespace ControllerScouting.Screens
             lbl1Position1 = new Label();
             lbl1Position4Value = new Label();
             lbl1Position0 = new Label();
-            panel2 = new Panel();
-            panel3 = new Panel();
-            panel4 = new Panel();
+            lbl1Divider1 = new Panel();
+            lbl1Divider0 = new Panel();
+            lbl1Divider2 = new Panel();
             lbl1ScoutName = new Label();
             lbl1ModeValue = new Label();
-            team0 = new Panel();
-            panel21 = new Panel();
+            lbl0Background = new Panel();
+            lbl0Divider0 = new Panel();
             lbl0Position2Value = new Label();
             lbl0Position3Value = new Label();
             lbl0Position9 = new Label();
@@ -135,8 +135,8 @@ namespace ControllerScouting.Screens
             lbl0Position1 = new Label();
             lbl0Position4Value = new Label();
             lbl0Position0 = new Label();
-            team0Divider = new Panel();
-            team0TeamDivider = new Panel();
+            lbl0Divider1 = new Panel();
+            lbl0Divider2 = new Panel();
             lbl0MatchEvent = new Label();
             lbl0TeamName = new Label();
             lbl0ScoutName = new Label();
@@ -151,13 +151,13 @@ namespace ControllerScouting.Screens
             topPanel = new Panel();
             tableLayoutPanel = new TableLayoutPanel();
             blueTeams.SuspendLayout();
-            panel17.SuspendLayout();
-            panel13.SuspendLayout();
-            panel9.SuspendLayout();
+            lbl5Background.SuspendLayout();
+            lbl4Background.SuspendLayout();
+            lbl3Background.SuspendLayout();
             redTeams.SuspendLayout();
-            panel5.SuspendLayout();
-            panel1.SuspendLayout();
-            team0.SuspendLayout();
+            lbl2Background.SuspendLayout();
+            lbl1Background.SuspendLayout();
+            lbl0Background.SuspendLayout();
             topPanel.SuspendLayout();
             tableLayoutPanel.SuspendLayout();
             SuspendLayout();
@@ -263,9 +263,9 @@ namespace ControllerScouting.Screens
             blueTeams.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33F));
             blueTeams.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33F));
             blueTeams.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33F));
-            blueTeams.Controls.Add(panel17, 2, 0);
-            blueTeams.Controls.Add(panel13, 1, 0);
-            blueTeams.Controls.Add(panel9, 0, 0);
+            blueTeams.Controls.Add(lbl5Background, 2, 0);
+            blueTeams.Controls.Add(lbl4Background, 1, 0);
+            blueTeams.Controls.Add(lbl3Background, 0, 0);
             blueTeams.Dock = DockStyle.Fill;
             blueTeams.Location = new Point(3, 438);
             blueTeams.Name = "blueTeams";
@@ -274,33 +274,33 @@ namespace ControllerScouting.Screens
             blueTeams.Size = new Size(1294, 379);
             blueTeams.TabIndex = 0;
             // 
-            // panel17
+            // lbl5Background
             // 
-            panel17.BackColor = Color.Black;
-            panel17.Controls.Add(lbl5Position2Value);
-            panel17.Controls.Add(lbl5Position3Value);
-            panel17.Controls.Add(lbl5Position9);
-            panel17.Controls.Add(lbl5Position8);
-            panel17.Controls.Add(lbl5Position7);
-            panel17.Controls.Add(lbl5Position6);
-            panel17.Controls.Add(lbl5Position4);
-            panel17.Controls.Add(lbl5Position3);
-            panel17.Controls.Add(lbl5Position2);
-            panel17.Controls.Add(lbl5Position1);
-            panel17.Controls.Add(lbl5Position4Value);
-            panel17.Controls.Add(lbl5Position0);
-            panel17.Controls.Add(panel18);
-            panel17.Controls.Add(panel19);
-            panel17.Controls.Add(panel20);
-            panel17.Controls.Add(lbl5MatchEvent);
-            panel17.Controls.Add(lbl5TeamName);
-            panel17.Controls.Add(lbl5ScoutName);
-            panel17.Controls.Add(lbl5ModeValue);
-            panel17.Dock = DockStyle.Fill;
-            panel17.Location = new Point(865, 3);
-            panel17.Name = "panel17";
-            panel17.Size = new Size(426, 373);
-            panel17.TabIndex = 3;
+            lbl5Background.BackColor = Color.Black;
+            lbl5Background.Controls.Add(lbl5Position2Value);
+            lbl5Background.Controls.Add(lbl5Position3Value);
+            lbl5Background.Controls.Add(lbl5Position9);
+            lbl5Background.Controls.Add(lbl5Position8);
+            lbl5Background.Controls.Add(lbl5Position7);
+            lbl5Background.Controls.Add(lbl5Position6);
+            lbl5Background.Controls.Add(lbl5Position4);
+            lbl5Background.Controls.Add(lbl5Position3);
+            lbl5Background.Controls.Add(lbl5Position2);
+            lbl5Background.Controls.Add(lbl5Position1);
+            lbl5Background.Controls.Add(lbl5Position4Value);
+            lbl5Background.Controls.Add(lbl5Position0);
+            lbl5Background.Controls.Add(lbl5Divider1);
+            lbl5Background.Controls.Add(lbl5Divider0);
+            lbl5Background.Controls.Add(lbl5Divider2);
+            lbl5Background.Controls.Add(lbl5MatchEvent);
+            lbl5Background.Controls.Add(lbl5TeamName);
+            lbl5Background.Controls.Add(lbl5ScoutName);
+            lbl5Background.Controls.Add(lbl5ModeValue);
+            lbl5Background.Dock = DockStyle.Fill;
+            lbl5Background.Location = new Point(865, 3);
+            lbl5Background.Name = "lbl5Background";
+            lbl5Background.Size = new Size(426, 373);
+            lbl5Background.TabIndex = 3;
             // 
             // lbl5Position2Value
             // 
@@ -446,29 +446,29 @@ namespace ControllerScouting.Screens
             lbl5Position0.Text = "Starting Location: Outer Trench";
             lbl5Position0.TextAlign = ContentAlignment.TopRight;
             // 
-            // panel18
+            // lbl5Divider1
             // 
-            panel18.BackColor = Color.Blue;
-            panel18.Location = new Point(-5, 119);
-            panel18.Name = "panel18";
-            panel18.Size = new Size(534, 11);
-            panel18.TabIndex = 389;
+            lbl5Divider1.BackColor = Color.Blue;
+            lbl5Divider1.Location = new Point(-5, 119);
+            lbl5Divider1.Name = "lbl5Divider1";
+            lbl5Divider1.Size = new Size(534, 11);
+            lbl5Divider1.TabIndex = 389;
             // 
-            // panel19
+            // lbl5Divider0
             // 
-            panel19.BackColor = Color.Blue;
-            panel19.Location = new Point(-5, 40);
-            panel19.Name = "panel19";
-            panel19.Size = new Size(534, 11);
-            panel19.TabIndex = 390;
+            lbl5Divider0.BackColor = Color.Blue;
+            lbl5Divider0.Location = new Point(-5, 40);
+            lbl5Divider0.Name = "lbl5Divider0";
+            lbl5Divider0.Size = new Size(534, 11);
+            lbl5Divider0.TabIndex = 390;
             // 
-            // panel20
+            // lbl5Divider2
             // 
-            panel20.BackColor = Color.Blue;
-            panel20.Location = new Point(0, 314);
-            panel20.Name = "panel20";
-            panel20.Size = new Size(534, 11);
-            panel20.TabIndex = 279;
+            lbl5Divider2.BackColor = Color.Blue;
+            lbl5Divider2.Location = new Point(0, 314);
+            lbl5Divider2.Name = "lbl5Divider2";
+            lbl5Divider2.Size = new Size(534, 11);
+            lbl5Divider2.TabIndex = 279;
             // 
             // lbl5MatchEvent
             // 
@@ -515,33 +515,33 @@ namespace ControllerScouting.Screens
             lbl5ModeValue.TabIndex = 2;
             lbl5ModeValue.Text = "Auto Mode:";
             // 
-            // panel13
+            // lbl4Background
             // 
-            panel13.BackColor = Color.Black;
-            panel13.Controls.Add(lbl4Position2Value);
-            panel13.Controls.Add(lbl4Position3Value);
-            panel13.Controls.Add(lbl4Position9);
-            panel13.Controls.Add(lbl4Position8);
-            panel13.Controls.Add(lbl4Position7);
-            panel13.Controls.Add(lbl4Position6);
-            panel13.Controls.Add(lbl4Position4);
-            panel13.Controls.Add(lbl4Position3);
-            panel13.Controls.Add(lbl4Position2);
-            panel13.Controls.Add(lbl4Position1);
-            panel13.Controls.Add(lbl4Position4Value);
-            panel13.Controls.Add(lbl4Position0);
-            panel13.Controls.Add(panel14);
-            panel13.Controls.Add(panel15);
-            panel13.Controls.Add(panel16);
-            panel13.Controls.Add(lbl4MatchEvent);
-            panel13.Controls.Add(lbl4TeamName);
-            panel13.Controls.Add(lbl4ScoutName);
-            panel13.Controls.Add(lbl4ModeValue);
-            panel13.Dock = DockStyle.Fill;
-            panel13.Location = new Point(434, 3);
-            panel13.Name = "panel13";
-            panel13.Size = new Size(425, 373);
-            panel13.TabIndex = 2;
+            lbl4Background.BackColor = Color.Black;
+            lbl4Background.Controls.Add(lbl4Position2Value);
+            lbl4Background.Controls.Add(lbl4Position3Value);
+            lbl4Background.Controls.Add(lbl4Position9);
+            lbl4Background.Controls.Add(lbl4Position8);
+            lbl4Background.Controls.Add(lbl4Position7);
+            lbl4Background.Controls.Add(lbl4Position6);
+            lbl4Background.Controls.Add(lbl4Position4);
+            lbl4Background.Controls.Add(lbl4Position3);
+            lbl4Background.Controls.Add(lbl4Position2);
+            lbl4Background.Controls.Add(lbl4Position1);
+            lbl4Background.Controls.Add(lbl4Position4Value);
+            lbl4Background.Controls.Add(lbl4Position0);
+            lbl4Background.Controls.Add(lbl4Divider1);
+            lbl4Background.Controls.Add(lbl4Divider0);
+            lbl4Background.Controls.Add(lbl4Divider2);
+            lbl4Background.Controls.Add(lbl4MatchEvent);
+            lbl4Background.Controls.Add(lbl4TeamName);
+            lbl4Background.Controls.Add(lbl4ScoutName);
+            lbl4Background.Controls.Add(lbl4ModeValue);
+            lbl4Background.Dock = DockStyle.Fill;
+            lbl4Background.Location = new Point(434, 3);
+            lbl4Background.Name = "lbl4Background";
+            lbl4Background.Size = new Size(425, 373);
+            lbl4Background.TabIndex = 2;
             // 
             // lbl4Position2Value
             // 
@@ -687,29 +687,29 @@ namespace ControllerScouting.Screens
             lbl4Position0.Text = "Starting Location: Outer Trench";
             lbl4Position0.TextAlign = ContentAlignment.TopRight;
             // 
-            // panel14
+            // lbl4Divider1
             // 
-            panel14.BackColor = Color.Blue;
-            panel14.Location = new Point(-5, 119);
-            panel14.Name = "panel14";
-            panel14.Size = new Size(534, 11);
-            panel14.TabIndex = 389;
+            lbl4Divider1.BackColor = Color.Blue;
+            lbl4Divider1.Location = new Point(-5, 119);
+            lbl4Divider1.Name = "lbl4Divider1";
+            lbl4Divider1.Size = new Size(534, 11);
+            lbl4Divider1.TabIndex = 389;
             // 
-            // panel15
+            // lbl4Divider0
             // 
-            panel15.BackColor = Color.Blue;
-            panel15.Location = new Point(-5, 40);
-            panel15.Name = "panel15";
-            panel15.Size = new Size(534, 11);
-            panel15.TabIndex = 390;
+            lbl4Divider0.BackColor = Color.Blue;
+            lbl4Divider0.Location = new Point(-5, 40);
+            lbl4Divider0.Name = "lbl4Divider0";
+            lbl4Divider0.Size = new Size(534, 11);
+            lbl4Divider0.TabIndex = 390;
             // 
-            // panel16
+            // lbl4Divider2
             // 
-            panel16.BackColor = Color.Blue;
-            panel16.Location = new Point(0, 314);
-            panel16.Name = "panel16";
-            panel16.Size = new Size(534, 11);
-            panel16.TabIndex = 279;
+            lbl4Divider2.BackColor = Color.Blue;
+            lbl4Divider2.Location = new Point(0, 314);
+            lbl4Divider2.Name = "lbl4Divider2";
+            lbl4Divider2.Size = new Size(534, 11);
+            lbl4Divider2.TabIndex = 279;
             // 
             // lbl4MatchEvent
             // 
@@ -756,33 +756,33 @@ namespace ControllerScouting.Screens
             lbl4ModeValue.TabIndex = 2;
             lbl4ModeValue.Text = "Auto Mode:";
             // 
-            // panel9
+            // lbl3Background
             // 
-            panel9.BackColor = Color.Black;
-            panel9.Controls.Add(lbl3Position2Value);
-            panel9.Controls.Add(lbl3Position3Value);
-            panel9.Controls.Add(lbl3Position9);
-            panel9.Controls.Add(lbl3Position8);
-            panel9.Controls.Add(lbl3Position7);
-            panel9.Controls.Add(lbl3Position6);
-            panel9.Controls.Add(lbl3Position4);
-            panel9.Controls.Add(lbl3Position3);
-            panel9.Controls.Add(lbl3Position2);
-            panel9.Controls.Add(lbl3Position1);
-            panel9.Controls.Add(lbl3Position4Value);
-            panel9.Controls.Add(lbl3Position0);
-            panel9.Controls.Add(panel10);
-            panel9.Controls.Add(panel11);
-            panel9.Controls.Add(panel12);
-            panel9.Controls.Add(lbl3MatchEvent);
-            panel9.Controls.Add(lbl3TeamName);
-            panel9.Controls.Add(lbl3ScoutName);
-            panel9.Controls.Add(lbl3ModeValue);
-            panel9.Dock = DockStyle.Fill;
-            panel9.Location = new Point(3, 3);
-            panel9.Name = "panel9";
-            panel9.Size = new Size(425, 373);
-            panel9.TabIndex = 1;
+            lbl3Background.BackColor = Color.Black;
+            lbl3Background.Controls.Add(lbl3Position2Value);
+            lbl3Background.Controls.Add(lbl3Position3Value);
+            lbl3Background.Controls.Add(lbl3Position9);
+            lbl3Background.Controls.Add(lbl3Position8);
+            lbl3Background.Controls.Add(lbl3Position7);
+            lbl3Background.Controls.Add(lbl3Position6);
+            lbl3Background.Controls.Add(lbl3Position4);
+            lbl3Background.Controls.Add(lbl3Position3);
+            lbl3Background.Controls.Add(lbl3Position2);
+            lbl3Background.Controls.Add(lbl3Position1);
+            lbl3Background.Controls.Add(lbl3Position4Value);
+            lbl3Background.Controls.Add(lbl3Position0);
+            lbl3Background.Controls.Add(lbl3Divider1);
+            lbl3Background.Controls.Add(lbl3Divider0);
+            lbl3Background.Controls.Add(lbl3Divider2);
+            lbl3Background.Controls.Add(lbl3MatchEvent);
+            lbl3Background.Controls.Add(lbl3TeamName);
+            lbl3Background.Controls.Add(lbl3ScoutName);
+            lbl3Background.Controls.Add(lbl3ModeValue);
+            lbl3Background.Dock = DockStyle.Fill;
+            lbl3Background.Location = new Point(3, 3);
+            lbl3Background.Name = "lbl3Background";
+            lbl3Background.Size = new Size(425, 373);
+            lbl3Background.TabIndex = 1;
             // 
             // lbl3Position2Value
             // 
@@ -928,29 +928,29 @@ namespace ControllerScouting.Screens
             lbl3Position0.Text = "Starting Location: Outer Trench";
             lbl3Position0.TextAlign = ContentAlignment.TopRight;
             // 
-            // panel10
+            // lbl3Divider1
             // 
-            panel10.BackColor = Color.Blue;
-            panel10.Location = new Point(-5, 119);
-            panel10.Name = "panel10";
-            panel10.Size = new Size(534, 11);
-            panel10.TabIndex = 389;
+            lbl3Divider1.BackColor = Color.Blue;
+            lbl3Divider1.Location = new Point(-5, 119);
+            lbl3Divider1.Name = "lbl3Divider1";
+            lbl3Divider1.Size = new Size(534, 11);
+            lbl3Divider1.TabIndex = 389;
             // 
-            // panel11
+            // lbl3Divider0
             // 
-            panel11.BackColor = Color.Blue;
-            panel11.Location = new Point(-5, 40);
-            panel11.Name = "panel11";
-            panel11.Size = new Size(534, 11);
-            panel11.TabIndex = 390;
+            lbl3Divider0.BackColor = Color.Blue;
+            lbl3Divider0.Location = new Point(-5, 40);
+            lbl3Divider0.Name = "lbl3Divider0";
+            lbl3Divider0.Size = new Size(534, 11);
+            lbl3Divider0.TabIndex = 390;
             // 
-            // panel12
+            // lbl3Divider2
             // 
-            panel12.BackColor = Color.Blue;
-            panel12.Location = new Point(0, 314);
-            panel12.Name = "panel12";
-            panel12.Size = new Size(534, 11);
-            panel12.TabIndex = 279;
+            lbl3Divider2.BackColor = Color.Blue;
+            lbl3Divider2.Location = new Point(0, 314);
+            lbl3Divider2.Name = "lbl3Divider2";
+            lbl3Divider2.Size = new Size(534, 11);
+            lbl3Divider2.TabIndex = 279;
             // 
             // lbl3MatchEvent
             // 
@@ -1004,9 +1004,9 @@ namespace ControllerScouting.Screens
             redTeams.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33F));
             redTeams.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33F));
             redTeams.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33F));
-            redTeams.Controls.Add(panel5, 2, 0);
-            redTeams.Controls.Add(panel1, 1, 0);
-            redTeams.Controls.Add(team0, 0, 0);
+            redTeams.Controls.Add(lbl2Background, 2, 0);
+            redTeams.Controls.Add(lbl1Background, 1, 0);
+            redTeams.Controls.Add(lbl0Background, 0, 0);
             redTeams.Dock = DockStyle.Fill;
             redTeams.Location = new Point(3, 53);
             redTeams.Name = "redTeams";
@@ -1015,33 +1015,33 @@ namespace ControllerScouting.Screens
             redTeams.Size = new Size(1294, 379);
             redTeams.TabIndex = 0;
             // 
-            // panel5
+            // lbl2Background
             // 
-            panel5.BackColor = Color.Black;
-            panel5.Controls.Add(lbl2MatchEvent);
-            panel5.Controls.Add(lbl2TeamName);
-            panel5.Controls.Add(lbl2Position2Value);
-            panel5.Controls.Add(lbl2Position3Value);
-            panel5.Controls.Add(lbl2Position9);
-            panel5.Controls.Add(lbl2Position8);
-            panel5.Controls.Add(lbl2Position7);
-            panel5.Controls.Add(lbl2Position6);
-            panel5.Controls.Add(lbl2Position4);
-            panel5.Controls.Add(lbl2Position3);
-            panel5.Controls.Add(lbl2Position2);
-            panel5.Controls.Add(lbl2Position1);
-            panel5.Controls.Add(lbl2Position4Value);
-            panel5.Controls.Add(lbl2Position0);
-            panel5.Controls.Add(panel6);
-            panel5.Controls.Add(panel7);
-            panel5.Controls.Add(panel8);
-            panel5.Controls.Add(lbl2ScoutName);
-            panel5.Controls.Add(lbl2ModeValue);
-            panel5.Dock = DockStyle.Fill;
-            panel5.Location = new Point(865, 3);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(426, 373);
-            panel5.TabIndex = 2;
+            lbl2Background.BackColor = Color.Black;
+            lbl2Background.Controls.Add(lbl2MatchEvent);
+            lbl2Background.Controls.Add(lbl2TeamName);
+            lbl2Background.Controls.Add(lbl2Position2Value);
+            lbl2Background.Controls.Add(lbl2Position3Value);
+            lbl2Background.Controls.Add(lbl2Position9);
+            lbl2Background.Controls.Add(lbl2Position8);
+            lbl2Background.Controls.Add(lbl2Position7);
+            lbl2Background.Controls.Add(lbl2Position6);
+            lbl2Background.Controls.Add(lbl2Position4);
+            lbl2Background.Controls.Add(lbl2Position3);
+            lbl2Background.Controls.Add(lbl2Position2);
+            lbl2Background.Controls.Add(lbl2Position1);
+            lbl2Background.Controls.Add(lbl2Position4Value);
+            lbl2Background.Controls.Add(lbl2Position0);
+            lbl2Background.Controls.Add(lbl2Divider1);
+            lbl2Background.Controls.Add(lbl2Divider0);
+            lbl2Background.Controls.Add(lbl2Divider2);
+            lbl2Background.Controls.Add(lbl2ScoutName);
+            lbl2Background.Controls.Add(lbl2ModeValue);
+            lbl2Background.Dock = DockStyle.Fill;
+            lbl2Background.Location = new Point(865, 3);
+            lbl2Background.Name = "lbl2Background";
+            lbl2Background.Size = new Size(426, 373);
+            lbl2Background.TabIndex = 2;
             // 
             // lbl2MatchEvent
             // 
@@ -1209,29 +1209,29 @@ namespace ControllerScouting.Screens
             lbl2Position0.Text = "Starting Location: Outer Trench";
             lbl2Position0.TextAlign = ContentAlignment.TopRight;
             // 
-            // panel6
+            // lbl2Divider1
             // 
-            panel6.BackColor = Color.Red;
-            panel6.Location = new Point(-5, 119);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(534, 11);
-            panel6.TabIndex = 389;
+            lbl2Divider1.BackColor = Color.Red;
+            lbl2Divider1.Location = new Point(-5, 119);
+            lbl2Divider1.Name = "lbl2Divider1";
+            lbl2Divider1.Size = new Size(534, 11);
+            lbl2Divider1.TabIndex = 389;
             // 
-            // panel7
+            // lbl2Divider0
             // 
-            panel7.BackColor = Color.Red;
-            panel7.Location = new Point(-5, 40);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(534, 11);
-            panel7.TabIndex = 390;
+            lbl2Divider0.BackColor = Color.Red;
+            lbl2Divider0.Location = new Point(-5, 40);
+            lbl2Divider0.Name = "lbl2Divider0";
+            lbl2Divider0.Size = new Size(534, 11);
+            lbl2Divider0.TabIndex = 390;
             // 
-            // panel8
+            // lbl2Divider2
             // 
-            panel8.BackColor = Color.Red;
-            panel8.Location = new Point(0, 314);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(529, 11);
-            panel8.TabIndex = 279;
+            lbl2Divider2.BackColor = Color.Red;
+            lbl2Divider2.Location = new Point(0, 314);
+            lbl2Divider2.Name = "lbl2Divider2";
+            lbl2Divider2.Size = new Size(529, 11);
+            lbl2Divider2.TabIndex = 279;
             // 
             // lbl2ScoutName
             // 
@@ -1256,33 +1256,33 @@ namespace ControllerScouting.Screens
             lbl2ModeValue.TabIndex = 2;
             lbl2ModeValue.Text = "Auto Mode:";
             // 
-            // panel1
+            // lbl1Background
             // 
-            panel1.BackColor = Color.Black;
-            panel1.Controls.Add(lbl1MatchEvent);
-            panel1.Controls.Add(lbl1TeamName);
-            panel1.Controls.Add(lbl1Position2Value);
-            panel1.Controls.Add(lbl1Position3Value);
-            panel1.Controls.Add(lbl1Position9);
-            panel1.Controls.Add(lbl1Position8);
-            panel1.Controls.Add(lbl1Position7);
-            panel1.Controls.Add(lbl1Position6);
-            panel1.Controls.Add(lbl1Position4);
-            panel1.Controls.Add(lbl1Position3);
-            panel1.Controls.Add(lbl1Position2);
-            panel1.Controls.Add(lbl1Position1);
-            panel1.Controls.Add(lbl1Position4Value);
-            panel1.Controls.Add(lbl1Position0);
-            panel1.Controls.Add(panel2);
-            panel1.Controls.Add(panel3);
-            panel1.Controls.Add(panel4);
-            panel1.Controls.Add(lbl1ScoutName);
-            panel1.Controls.Add(lbl1ModeValue);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(434, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(425, 373);
-            panel1.TabIndex = 1;
+            lbl1Background.BackColor = Color.Black;
+            lbl1Background.Controls.Add(lbl1MatchEvent);
+            lbl1Background.Controls.Add(lbl1TeamName);
+            lbl1Background.Controls.Add(lbl1Position2Value);
+            lbl1Background.Controls.Add(lbl1Position3Value);
+            lbl1Background.Controls.Add(lbl1Position9);
+            lbl1Background.Controls.Add(lbl1Position8);
+            lbl1Background.Controls.Add(lbl1Position7);
+            lbl1Background.Controls.Add(lbl1Position6);
+            lbl1Background.Controls.Add(lbl1Position4);
+            lbl1Background.Controls.Add(lbl1Position3);
+            lbl1Background.Controls.Add(lbl1Position2);
+            lbl1Background.Controls.Add(lbl1Position1);
+            lbl1Background.Controls.Add(lbl1Position4Value);
+            lbl1Background.Controls.Add(lbl1Position0);
+            lbl1Background.Controls.Add(lbl1Divider1);
+            lbl1Background.Controls.Add(lbl1Divider0);
+            lbl1Background.Controls.Add(lbl1Divider2);
+            lbl1Background.Controls.Add(lbl1ScoutName);
+            lbl1Background.Controls.Add(lbl1ModeValue);
+            lbl1Background.Dock = DockStyle.Fill;
+            lbl1Background.Location = new Point(434, 3);
+            lbl1Background.Name = "lbl1Background";
+            lbl1Background.Size = new Size(425, 373);
+            lbl1Background.TabIndex = 1;
             // 
             // lbl1MatchEvent
             // 
@@ -1450,29 +1450,29 @@ namespace ControllerScouting.Screens
             lbl1Position0.Text = "Starting Location: Outer Trench";
             lbl1Position0.TextAlign = ContentAlignment.TopRight;
             // 
-            // panel2
+            // lbl1Divider1
             // 
-            panel2.BackColor = Color.Red;
-            panel2.Location = new Point(-5, 119);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(534, 11);
-            panel2.TabIndex = 389;
+            lbl1Divider1.BackColor = Color.Red;
+            lbl1Divider1.Location = new Point(-5, 119);
+            lbl1Divider1.Name = "lbl1Divider1";
+            lbl1Divider1.Size = new Size(534, 11);
+            lbl1Divider1.TabIndex = 389;
             // 
-            // panel3
+            // lbl1Divider0
             // 
-            panel3.BackColor = Color.Red;
-            panel3.Location = new Point(-5, 40);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(534, 11);
-            panel3.TabIndex = 390;
+            lbl1Divider0.BackColor = Color.Red;
+            lbl1Divider0.Location = new Point(-5, 40);
+            lbl1Divider0.Name = "lbl1Divider0";
+            lbl1Divider0.Size = new Size(534, 11);
+            lbl1Divider0.TabIndex = 390;
             // 
-            // panel4
+            // lbl1Divider2
             // 
-            panel4.BackColor = Color.Red;
-            panel4.Location = new Point(0, 314);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(529, 11);
-            panel4.TabIndex = 279;
+            lbl1Divider2.BackColor = Color.Red;
+            lbl1Divider2.Location = new Point(0, 314);
+            lbl1Divider2.Name = "lbl1Divider2";
+            lbl1Divider2.Size = new Size(529, 11);
+            lbl1Divider2.TabIndex = 279;
             // 
             // lbl1ScoutName
             // 
@@ -1497,41 +1497,41 @@ namespace ControllerScouting.Screens
             lbl1ModeValue.TabIndex = 2;
             lbl1ModeValue.Text = "Auto Mode:";
             // 
-            // team0
+            // lbl0Background
             // 
-            team0.BackColor = Color.Black;
-            team0.Controls.Add(panel21);
-            team0.Controls.Add(lbl0Position2Value);
-            team0.Controls.Add(lbl0Position3Value);
-            team0.Controls.Add(lbl0Position9);
-            team0.Controls.Add(lbl0Position8);
-            team0.Controls.Add(lbl0Position7);
-            team0.Controls.Add(lbl0Position6);
-            team0.Controls.Add(lbl0Position4);
-            team0.Controls.Add(lbl0Position3);
-            team0.Controls.Add(lbl0Position2);
-            team0.Controls.Add(lbl0Position1);
-            team0.Controls.Add(lbl0Position4Value);
-            team0.Controls.Add(lbl0Position0);
-            team0.Controls.Add(team0Divider);
-            team0.Controls.Add(team0TeamDivider);
-            team0.Controls.Add(lbl0MatchEvent);
-            team0.Controls.Add(lbl0TeamName);
-            team0.Controls.Add(lbl0ScoutName);
-            team0.Controls.Add(lbl0ModeValue);
-            team0.Dock = DockStyle.Fill;
-            team0.Location = new Point(3, 3);
-            team0.Name = "team0";
-            team0.Size = new Size(425, 373);
-            team0.TabIndex = 0;
+            lbl0Background.BackColor = Color.Black;
+            lbl0Background.Controls.Add(lbl0Divider0);
+            lbl0Background.Controls.Add(lbl0Position2Value);
+            lbl0Background.Controls.Add(lbl0Position3Value);
+            lbl0Background.Controls.Add(lbl0Position9);
+            lbl0Background.Controls.Add(lbl0Position8);
+            lbl0Background.Controls.Add(lbl0Position7);
+            lbl0Background.Controls.Add(lbl0Position6);
+            lbl0Background.Controls.Add(lbl0Position4);
+            lbl0Background.Controls.Add(lbl0Position3);
+            lbl0Background.Controls.Add(lbl0Position2);
+            lbl0Background.Controls.Add(lbl0Position1);
+            lbl0Background.Controls.Add(lbl0Position4Value);
+            lbl0Background.Controls.Add(lbl0Position0);
+            lbl0Background.Controls.Add(lbl0Divider1);
+            lbl0Background.Controls.Add(lbl0Divider2);
+            lbl0Background.Controls.Add(lbl0MatchEvent);
+            lbl0Background.Controls.Add(lbl0TeamName);
+            lbl0Background.Controls.Add(lbl0ScoutName);
+            lbl0Background.Controls.Add(lbl0ModeValue);
+            lbl0Background.Dock = DockStyle.Fill;
+            lbl0Background.Location = new Point(3, 3);
+            lbl0Background.Name = "lbl0Background";
+            lbl0Background.Size = new Size(425, 373);
+            lbl0Background.TabIndex = 0;
             // 
-            // panel21
+            // lbl0Divider0
             // 
-            panel21.BackColor = Color.Red;
-            panel21.Location = new Point(-1, 40);
-            panel21.Name = "panel21";
-            panel21.Size = new Size(534, 11);
-            panel21.TabIndex = 408;
+            lbl0Divider0.BackColor = Color.Red;
+            lbl0Divider0.Location = new Point(-1, 40);
+            lbl0Divider0.Name = "lbl0Divider0";
+            lbl0Divider0.Size = new Size(534, 11);
+            lbl0Divider0.TabIndex = 408;
             // 
             // lbl0Position2Value
             // 
@@ -1676,21 +1676,21 @@ namespace ControllerScouting.Screens
             lbl0Position0.TabIndex = 394;
             lbl0Position0.Text = "Starting Location: Outer Trench";
             // 
-            // team0Divider
+            // lbl0Divider1
             // 
-            team0Divider.BackColor = Color.Red;
-            team0Divider.Location = new Point(-5, 119);
-            team0Divider.Name = "team0Divider";
-            team0Divider.Size = new Size(534, 11);
-            team0Divider.TabIndex = 389;
+            lbl0Divider1.BackColor = Color.Red;
+            lbl0Divider1.Location = new Point(-5, 119);
+            lbl0Divider1.Name = "lbl0Divider1";
+            lbl0Divider1.Size = new Size(534, 11);
+            lbl0Divider1.TabIndex = 389;
             // 
-            // team0TeamDivider
+            // lbl0Divider2
             // 
-            team0TeamDivider.BackColor = Color.Red;
-            team0TeamDivider.Location = new Point(0, 314);
-            team0TeamDivider.Name = "team0TeamDivider";
-            team0TeamDivider.Size = new Size(529, 11);
-            team0TeamDivider.TabIndex = 279;
+            lbl0Divider2.BackColor = Color.Red;
+            lbl0Divider2.Location = new Point(0, 314);
+            lbl0Divider2.Name = "lbl0Divider2";
+            lbl0Divider2.Size = new Size(529, 11);
+            lbl0Divider2.TabIndex = 279;
             // 
             // lbl0MatchEvent
             // 
@@ -1855,19 +1855,19 @@ namespace ControllerScouting.Screens
             Name = "BaseScreen";
             WindowState = FormWindowState.Maximized;
             blueTeams.ResumeLayout(false);
-            panel17.ResumeLayout(false);
-            panel17.PerformLayout();
-            panel13.ResumeLayout(false);
-            panel13.PerformLayout();
-            panel9.ResumeLayout(false);
-            panel9.PerformLayout();
+            lbl5Background.ResumeLayout(false);
+            lbl5Background.PerformLayout();
+            lbl4Background.ResumeLayout(false);
+            lbl4Background.PerformLayout();
+            lbl3Background.ResumeLayout(false);
+            lbl3Background.PerformLayout();
             redTeams.ResumeLayout(false);
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            team0.ResumeLayout(false);
-            team0.PerformLayout();
+            lbl2Background.ResumeLayout(false);
+            lbl2Background.PerformLayout();
+            lbl1Background.ResumeLayout(false);
+            lbl1Background.PerformLayout();
+            lbl0Background.ResumeLayout(false);
+            lbl0Background.PerformLayout();
             topPanel.ResumeLayout(false);
             topPanel.PerformLayout();
             tableLayoutPanel.ResumeLayout(false);
@@ -1886,8 +1886,8 @@ namespace ControllerScouting.Screens
         private Button btnExit;
         private TableLayoutPanel blueTeams;
         private TableLayoutPanel redTeams;
-        private Panel team0;
-        private Panel team0TeamDivider;
+        private Panel lbl0Background;
+        private Panel lbl0Divider2;
         private Label lbl0MatchEvent;
         private Label lbl0TeamName;
         private Label lbl0ScoutName;
@@ -1899,7 +1899,7 @@ namespace ControllerScouting.Screens
         private Button btnFunctions;
         private Label lbl0Position4Value;
         private Label lbl0Position0;
-        private Panel team0Divider;
+        private Panel lbl0Divider1;
         private Label lblBlueScore;
         private Label lblRedScore;
         private Panel statusLight;
@@ -1914,7 +1914,7 @@ namespace ControllerScouting.Screens
         private Label lbl0Position8;
         private Label lbl0Position3Value;
         private Label lbl0Position2Value;
-        private Panel panel1;
+        private Panel lbl1Background;
         private Label lbl1Position2Value;
         private Label lbl1Position3Value;
         private Label lbl1Position9;
@@ -1927,12 +1927,12 @@ namespace ControllerScouting.Screens
         private Label lbl1Position1;
         private Label lbl1Position4Value;
         private Label lbl1Position0;
-        private Panel panel2;
-        private Panel panel3;
-        private Panel panel4;
+        private Panel lbl1Divider1;
+        private Panel lbl1Divider0;
+        private Panel lbl1Divider2;
         private Label lbl1ScoutName;
         private Label lbl1ModeValue;
-        private Panel panel17;
+        private Panel lbl5Background;
         private Label lbl5Position2Value;
         private Label lbl5Position3Value;
         private Label lbl5Position9;
@@ -1945,14 +1945,14 @@ namespace ControllerScouting.Screens
         private Label lbl5Position1;
         private Label lbl5Position4Value;
         private Label lbl5Position0;
-        private Panel panel18;
-        private Panel panel19;
-        private Panel panel20;
+        private Panel lbl5Divider1;
+        private Panel lbl5Divider0;
+        private Panel lbl5Divider2;
         private Label lbl5MatchEvent;
         private Label lbl5TeamName;
         private Label lbl5ScoutName;
         private Label lbl5ModeValue;
-        private Panel panel13;
+        private Panel lbl4Background;
         private Label lbl4Position2Value;
         private Label lbl4Position3Value;
         private Label lbl4Position9;
@@ -1965,14 +1965,14 @@ namespace ControllerScouting.Screens
         private Label lbl4Position1;
         private Label lbl4Position4Value;
         private Label lbl4Position0;
-        private Panel panel14;
-        private Panel panel15;
-        private Panel panel16;
+        private Panel lbl4Divider1;
+        private Panel lbl4Divider0;
+        private Panel lbl4Divider2;
         private Label lbl4MatchEvent;
         private Label lbl4TeamName;
         private Label lbl4ScoutName;
         private Label lbl4ModeValue;
-        private Panel panel9;
+        private Panel lbl3Background;
         private Label lbl3Position2Value;
         private Label lbl3Position3Value;
         private Label lbl3Position9;
@@ -1985,14 +1985,14 @@ namespace ControllerScouting.Screens
         private Label lbl3Position1;
         private Label lbl3Position4Value;
         private Label lbl3Position0;
-        private Panel panel10;
-        private Panel panel11;
-        private Panel panel12;
+        private Panel lbl3Divider1;
+        private Panel lbl3Divider0;
+        private Panel lbl3Divider2;
         private Label lbl3MatchEvent;
         private Label lbl3TeamName;
         private Label lbl3ScoutName;
         private Label lbl3ModeValue;
-        private Panel panel5;
+        private Panel lbl2Background;
         private Label lbl2MatchEvent;
         private Label lbl2TeamName;
         private Label lbl2Position2Value;
@@ -2007,13 +2007,13 @@ namespace ControllerScouting.Screens
         private Label lbl2Position1;
         private Label lbl2Position4Value;
         private Label lbl2Position0;
-        private Panel panel6;
-        private Panel panel7;
-        private Panel panel8;
+        private Panel lbl2Divider1;
+        private Panel lbl2Divider0;
+        private Panel lbl2Divider2;
         private Label lbl2ScoutName;
         private Label lbl2ModeValue;
         private Label lbl1MatchEvent;
         private Label lbl1TeamName;
-        private Panel panel21;
+        private Panel lbl0Divider0;
     }
 }

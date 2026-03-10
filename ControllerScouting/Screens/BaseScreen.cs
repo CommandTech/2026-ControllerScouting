@@ -656,12 +656,22 @@ namespace ControllerScouting.Screens
                     {
                         ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).Text = "AUTO " + robot.GetRobotMode().ToString() + " Mode";
                         ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).ForeColor = Color.LimeGreen;
+                        ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).BackColor = Color.Black;
                     }
                     else
                     {
-                        ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).Text = robot.GetRobotMode().ToString() + " Mode";
-                        ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).ForeColor = Color.White;
-
+                        if (robot.NoSho)
+                        {
+                            ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).Text = "NO SHOW";
+                            ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).ForeColor = Color.White;
+                            ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).BackColor = Color.Red;
+                        }
+                        else
+                        {
+                            ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).Text = robot.GetRobotMode().ToString() + " Mode";
+                            ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).ForeColor = Color.White;
+                            ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).BackColor = Color.Black;
+                        }
                     }
                     ((Label)this.Controls.Find($"lbl{robot.ScouterBox}ModeValue", true)[0]).Visible = true;
                     ((Label)this.Controls.Find($"lbl{robot.ScouterBox}TeamName", true)[0]).Visible = true;
