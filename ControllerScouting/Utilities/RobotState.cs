@@ -9,7 +9,7 @@ namespace ControllerScouting.Utilities
         public enum ROBOT_MODE { Prematch, Red, Neutral, Blue, Endgame };
         public enum CYCLE_DIRECTION { Up, Down }
         public enum MATCHEVENT_NAME { Match_Event, TrenchFeed, TippedOver, LostParts, GotStuck, BrokenDown, NoShow, JammedPiece, Other }
-        public enum SCOUTER_NAME { Select_Name, Abel, Abhi_R, Abhi_V, Adel, Adrika, Aishani, Ananth, Andrew, Anh, Anshu, Arnav, Aryan, Ashley, Atharv, Avani, Avanti, Charlotte, Chris, Corey, Grace, Hasini, Issac, Ishan, Jack, Jasmin, Jasmine, Jay, Liam, Manha, Maria, Noah, Parnitha, Ravena, Rddhima, Rishi, Rohan, Ruchir, Saanvi, Sam_W, Sanchi, Sanvi, Sri, Suhrit, Tanay, Vaibhav, Varsha, Xander, Scouter1, Scouter2, Scouter3, Scouter4, Scouter5, Scouter6, Adnan, Alex, Alyssa, Charlie, Deven, Elliot, Grant, Josh, Katie, Kevin, Logan, Luke, Marcus, Max, Sam_B, Spencer, William }
+        public enum SCOUTER_NAME { Select_Name, Abel, Abhi_R, Abhi_V, Adel, Adrika, Aishani, Ananth, Andrew, Anh, Anshu, Arnav, Aryan, Ashley, Atharv, Avani, Avanti, Charlotte, Chris, Corey, Grace, Hasini, Isaac, Ishan, Jack, Jasmin, Jasmine, Jay, Liam, Manha, Maria, Noah, Parnitha, Ravena, Rddhima, Rishi, Rohan, Ruchir, Saanvi, Sam_W, Sanchi, Sanvi, Sri, Suhrit, Tanay, Vaibhav, Varsha, Xander, Scouter1, Scouter2, Scouter3, Scouter4, Scouter5, Scouter6, Adnan, Alex, Alyssa, Charlie, Deven, Elliot, Grant, Josh, Katie, Kevin, Logan, Luke, Marcus, Max, Sam_B, Spencer, William }
         public enum BOOLEAN { Z, Yes, No }
         public enum COLOR { Red, Blue }
         // Year to Year ints

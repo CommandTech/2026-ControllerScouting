@@ -268,6 +268,11 @@ namespace ControllerScouting.Gamepad
                         if ((robot.GetRobotMode() == RobotState.ROBOT_MODE.Red && robot.color == RobotState.COLOR.Red) ||
                             (robot.GetRobotMode() == RobotState.ROBOT_MODE.Blue && robot.color == RobotState.COLOR.Blue))
                         {
+                            if (robot.AUTO && gamepad.DpadDown_Down && gamepad.StartButton_Press)
+                            {
+                                robot.RobotMode = RobotState.ROBOT_MODE.Prematch;
+                            }
+
                             if (gamepad.RightButton_Down)
                             {
                                 robot.FuelShootingTime_StopWatch.Start();
@@ -330,7 +335,7 @@ namespace ControllerScouting.Gamepad
                             robot.FuelIntakingTime = robot.FuelIntakingTime_StopWatch.Elapsed;
                         }
 
-                        if (gamepad.StartButton_Press && robot.AUTO)
+                        if (gamepad.StartButton_Press && robot.AUTO && !gamepad.DpadDown_Down)
                         {
                             DatabaseCode.SaveToRecord(robot, "EndAuto");
                             robot.AUTO = false;
