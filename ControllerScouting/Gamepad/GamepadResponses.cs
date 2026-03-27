@@ -283,6 +283,11 @@ namespace ControllerScouting.Gamepad
                                 robot.FuelShootingTime_StopWatch.Stop();
                                 robot.FuelShootingTime = robot.FuelShootingTime_StopWatch.Elapsed;
                             }
+
+                            if (gamepad.XButton_Press && robot.AUTO)
+                            {
+                                robot.CycleAutoClimb(RobotState.CYCLE_DIRECTION.Up);
+                            }
                         } 
                         else
                         {
@@ -363,6 +368,30 @@ namespace ControllerScouting.Gamepad
                         if (gamepad.AButton_Press)
                         {
                             robot.CycleLadderLocation(RobotState.CYCLE_DIRECTION.Up);
+                        }
+                        if (gamepad.YButton_Press && robot.Climb_Level != RobotState.CLIMB_LEVEL.L3)
+                        {
+                            robot.Climb_Level = RobotState.CLIMB_LEVEL.L3;
+                        }
+                        else if (gamepad.YButton_Press)
+                        {
+                            robot.Climb_Level = RobotState.CLIMB_LEVEL.No_Climb;
+                        }
+                        else if (gamepad.XButton_Press && robot.Climb_Level != RobotState.CLIMB_LEVEL.L2)
+                        {
+                            robot.Climb_Level = RobotState.CLIMB_LEVEL.L2;
+                        }
+                        else if (gamepad.XButton_Press)
+                        {
+                            robot.Climb_Level = RobotState.CLIMB_LEVEL.No_Climb;
+                        }
+                        else if (gamepad.BButton_Press && robot.Climb_Level != RobotState.CLIMB_LEVEL.L1)
+                        {
+                            robot.Climb_Level = RobotState.CLIMB_LEVEL.L1;
+                        }
+                        else if (gamepad.BButton_Press)
+                        {
+                            robot.Climb_Level = RobotState.CLIMB_LEVEL.No_Climb;
                         }
 
                         if (gamepad.LeftButton_Press)
