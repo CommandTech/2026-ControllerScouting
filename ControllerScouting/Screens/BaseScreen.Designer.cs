@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace ControllerScouting.Screens
 {
     partial class BaseScreen
     {
-        #region
+        #region Windows Form Designer generated code
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
