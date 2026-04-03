@@ -451,21 +451,72 @@ namespace ControllerScouting.Gamepad
             }
             return [.. sticks];
         }
+
+
+        // Persistent mapping of device GUID to assigned slot (0-5)
+        // This ensures controllers maintain their positions even after disconnect/reconnect
+        private static readonly Dictionary<Guid, int> _deviceSlotMapping = [];
+
+        /// <summary>
+        /// Returns a GamePad array of exactly 6 elements, maintaining persistent controller assignments.
+        /// When a controller is plugged in for the first time, it is assigned to the first available slot.
+        /// If a controller is unplugged and replugged, it returns to its original slot.
+        /// Null entries indicate slots without connected controllers.
+        /// </summary>
         public static GamePad[] GetGamePads()
         {
             DirectInput input = new();
-            List<GamePad> gamepads = [];
+            var sticks = GetSticks(input);
 
-            foreach (var stick in GetSticks(input))
+            // Track which slots are currently occupied
+            bool[] slotsOccupied = new bool[6];
+
+            // Create a temporary mapping of currently connected devices
+            Dictionary<Guid, Joystick> currentDevices = [];
+            foreach (var stick in sticks)
             {
-                gamepads.Add(new GamePad(stick));
-                _ = Logger.Log(stick.Information.InstanceName);
+                currentDevices[stick.Information.InstanceGuid] = stick;
             }
-            while (gamepads.Count < 6)
+
+            // Remove mappings for devices that are no longer connected
+            var disconnectedDevices = _deviceSlotMapping.Keys.Where(guid => !currentDevices.ContainsKey(guid)).ToList();
+            foreach (var guid in disconnectedDevices)
             {
-                gamepads.Add(null);
+                _deviceSlotMapping.Remove(guid);
             }
-            return [.. gamepads];
+
+            // Assign connected devices to their known or new slots
+            foreach (var stick in sticks)
+            {
+                Guid deviceGuid = stick.Information.InstanceGuid;
+
+                if (!_deviceSlotMapping.ContainsKey(deviceGuid))
+                {
+                    // New device – find the first available slot
+                    for (int i = 0; i < 6; i++)
+                    {
+                        if (!slotsOccupied[i] && !_deviceSlotMapping.Values.Contains(i))
+                        {
+                            _deviceSlotMapping[deviceGuid] = i;
+                            break;
+                        }
+                    }
+                }
+
+                int assignedSlot = _deviceSlotMapping[deviceGuid];
+                slotsOccupied[assignedSlot] = true;
+            }
+
+            // Build the output array with GamePads in their assigned slots
+            GamePad[] gamepads = new GamePad[6];
+            foreach (var stick in sticks)
+            {
+                int slot = _deviceSlotMapping[stick.Information.InstanceGuid];
+                gamepads[slot] = new GamePad(stick);
+                _ = Logger.Log($"[Slot {slot}] {stick.Information.InstanceName}");
+            }
+
+            return gamepads;
         }
     }
 }
