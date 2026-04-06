@@ -70,7 +70,7 @@ namespace ControllerScouting.Utilities
         {
             var values = (SCOUTER_NAME[])Enum.GetValues(typeof(SCOUTER_NAME));
             int start = 0;
-            int end = 53;
+            int end = 55;
             int currentIndex = Array.IndexOf(values, _ScouterName);
 
             if (currentIndex < start || currentIndex > end)
