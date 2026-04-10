@@ -114,10 +114,9 @@ namespace ControllerScouting.Screens
                 if (result != null)
                 {
                     TeleopBumpValue.Text = result.BumpTraversal.ToString();
-                    TeleopFeedingTimerValue.Text = result.FeedingTime.ToString();
+                    TeleopFeedingTimerValue.Text = result.FuelFed.ToString();
                     TeleopDefenseTimerValue.Text = result.DefenseTime.ToString();
-                    TeleopShootingTimerValue.Text = result.FuelShootingTime.ToString();
-                    TeleopIntakeTimerValue.Text = result.FuelIntakingTime.ToString();
+                    TeleopShootingTimerValue.Text = result.FuelShot.ToString();
                     EndGameClimbTimerValue.Text = result.ClimbTime.ToString();
                     AvoidanceStrategyValue.Text = result.Avoidance.ToString();
                     DefenseStrategyValue.Text = result.Defense.ToString();

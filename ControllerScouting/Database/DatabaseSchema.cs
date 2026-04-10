@@ -48,9 +48,8 @@ namespace ControllerScouting.Database
         public string Defense { get; set; }
         public string Avoidance { get; set; }
         public double DefenseTime { get; set; }
-        public double FuelIntakingTime { get; set; }
-        public double FuelShootingTime { get; set; }
-        public double FeedingTime { get; set; }
+        public double FuelShot { get; set; }
+        public double FuelFed { get; set; }
         public string NearFar { get; set; }
         public double NearRedZoneTime { get; set; }
         public double FarRedZoneTime { get; set; }
@@ -101,9 +100,8 @@ namespace ControllerScouting.Database
                 Defense,
                 Avoidance,
                 DefenseTime.ToString(),
-                FuelIntakingTime.ToString(),
-                FuelShootingTime.ToString(),
-                FeedingTime.ToString(),
+                FuelShot.ToString(),
+                FuelFed.ToString(),
                 NearFar.ToString(),
                 NearRedZoneTime.ToString(),
                 FarRedZoneTime.ToString(),
@@ -340,9 +338,8 @@ namespace ControllerScouting.Database
                         activity_record.BumpTraversal = controller.BumpTraversal;
                         activity_record.TrenchTraversal = controller.TrenchTraversal;
 
-                        activity_record.FuelShootingTime = controller.FuelShootingTime.TotalSeconds;
-                        activity_record.FuelIntakingTime = controller.FuelIntakingTime.TotalSeconds;
-                        activity_record.FeedingTime = controller.FeedingTime.TotalMinutes;
+                        activity_record.FuelShot = controller.FuelShot;
+                        activity_record.FuelFed = controller.FuelFed;
                         activity_record.NearFar = controller.NearFar.ToString();
                         activity_record.NearNeutralZoneTime = controller.NearNeutralZoneTime.TotalSeconds;
                         activity_record.FarNeutralZoneTime = controller.FarNeutralZoneTime.TotalSeconds;
@@ -449,32 +446,19 @@ namespace ControllerScouting.Database
                             BackgroundCode.activitiesQueue.Enqueue(bufferedAct);
                         }
                         _autoActivities[controller.ScouterBox].Clear();
-
-                        controller.FuelShootingTime_StopWatch.Reset();
-                        controller.FuelIntakingTime_StopWatch.Reset();
-                        controller.FeedingTime_StopWatch.Reset();
-
-                        controller.FuelIntakingTime = controller.FuelIntakingTime_StopWatch.Elapsed;
-                        controller.FuelShootingTime = controller.FuelShootingTime_StopWatch.Elapsed;
-                        controller.FeedingTime = controller.FeedingTime_StopWatch.Elapsed;
                         break;
                     case "Activities":
-                        if (controller.FuelIntakingTime == TimeSpan.Zero)
+                        if (controller.FuelShot == 0 && controller.FuelFed == 0)
                         {
                             controller.ScouterError += 1000000;
                         }
-                        if (controller.FuelShootingTime == TimeSpan.Zero && controller.FeedingTime == TimeSpan.Zero)
-                        {
-                            controller.ScouterError += 100000000;
-                        }
 
+                        activity_record.FuelShot = controller.FuelShot;
+                        activity_record.FuelFed = controller.FuelFed;
                         activity_record.BumpTraversal = controller.BumpTraversal;
                         activity_record.TrenchTraversal = controller.TrenchTraversal;
 
-                        activity_record.FuelIntakingTime = controller.FuelIntakingTime.TotalSeconds;
-                        activity_record.FuelShootingTime = controller.FuelShootingTime.TotalSeconds;
                         activity_record.DefenseTime = controller.DefenseTime.TotalSeconds;
-                        activity_record.FeedingTime = controller.FeedingTime.TotalMinutes;
                         activity_record.NearFar = controller.NearFar.ToString();
 
                         activity_record.NearNeutralZoneTime = controller.NearNeutralZoneTime.TotalSeconds;
@@ -488,15 +472,8 @@ namespace ControllerScouting.Database
                         controller.prevBumpTraversal = 0;
                         controller.TrenchTraversal = 0;
 
-                        controller.FuelIntakingTime_StopWatch.Reset();
-                        controller.FuelShootingTime_StopWatch.Reset();
                         controller.DefenseTime_StopWatch.Reset();
-                        controller.FeedingTime_StopWatch.Reset();
-
-                        controller.FuelIntakingTime = controller.FuelIntakingTime_StopWatch.Elapsed;
-                        controller.FuelShootingTime = controller.FuelShootingTime_StopWatch.Elapsed;
                         controller.DefenseTime = controller.DefenseTime_StopWatch.Elapsed;
-                        controller.FeedingTime = controller.FeedingTime_StopWatch.Elapsed;
 
                         if (controller.AUTO)
                         {
@@ -533,9 +510,8 @@ namespace ControllerScouting.Database
 
                         activity_record.DefenseTime = controller.DefenseTime.TotalSeconds;
                         activity_record.BumpTraversal = controller.BumpTraversal;
-                        activity_record.FuelShootingTime = controller.FuelShootingTime.TotalSeconds;
-                        activity_record.FuelIntakingTime = controller.FuelIntakingTime.TotalSeconds;
-                        activity_record.FeedingTime = controller.FeedingTime.TotalSeconds;
+                        activity_record.FuelFed = controller.FuelFed;
+                        activity_record.FuelFed = controller.FuelFed;
                         activity_record.NearFar = controller.NearFar.ToString();
                         activity_record.NearRedZoneTime = controller.NearRedZoneTime.TotalSeconds;
                         activity_record.FarRedZoneTime = controller.FarRedZoneTime.TotalSeconds;
@@ -548,15 +524,9 @@ namespace ControllerScouting.Database
                         controller.prevBumpTraversal = 0;
                         controller.TrenchTraversal = 0;
 
-                        controller.FuelIntakingTime_StopWatch.Reset();
-                        controller.FuelShootingTime_StopWatch.Reset();
                         controller.DefenseTime_StopWatch.Reset();
-                        controller.FeedingTime_StopWatch.Reset();
 
-                        controller.FuelIntakingTime = controller.FuelIntakingTime_StopWatch.Elapsed;
-                        controller.FuelShootingTime = controller.FuelShootingTime_StopWatch.Elapsed;
                         controller.DefenseTime = controller.DefenseTime_StopWatch.Elapsed;
-                        controller.FeedingTime = controller.FeedingTime_StopWatch.Elapsed;
                         break;
                     case "Match_Event":
                         activity_record.MatchEvent = controller.MatchEvent.ToString();

@@ -13,9 +13,6 @@ namespace ControllerScouting.Gamepad
             //If the stopwatch does not exist, creates it
             robot.TimeOfClimb_StopWatch ??= new Stopwatch();
             robot.DefenseTime_StopWatch ??= new Stopwatch();
-            robot.FuelIntakingTime_StopWatch ??= new Stopwatch();
-            robot.FuelShootingTime_StopWatch ??= new Stopwatch();
-            robot.FeedingTime_StopWatch ??= new Stopwatch();
             robot.NearBlueZoneTime_StopWatch ??= new Stopwatch();
             robot.FarBlueZoneTime_StopWatch ??= new Stopwatch();
             robot.NearNeutralZoneTime_StopWatch ??= new Stopwatch();
@@ -273,15 +270,9 @@ namespace ControllerScouting.Gamepad
                                 robot.RobotMode = RobotState.ROBOT_MODE.Prematch;
                             }
 
-                            if (gamepad.RightButton_Down)
+                            if (gamepad.RightButton_Press)
                             {
-                                robot.FuelShootingTime_StopWatch.Start();
-                                robot.FuelShootingTime = robot.FuelShootingTime_StopWatch.Elapsed;
-                            }
-                            else if (gamepad.RightButton_Release)
-                            {
-                                robot.FuelShootingTime_StopWatch.Stop();
-                                robot.FuelShootingTime = robot.FuelShootingTime_StopWatch.Elapsed;
+                                robot.FuelShot += 5;
                             }
 
                             if (gamepad.XButton_Press && robot.AUTO)
@@ -291,15 +282,9 @@ namespace ControllerScouting.Gamepad
                         } 
                         else
                         {
-                            if (gamepad.RightButton_Down)
+                            if (gamepad.RightButton_Press)
                             {
-                                robot.FeedingTime_StopWatch.Start();
-                                robot.FeedingTime = robot.FeedingTime_StopWatch.Elapsed;
-                            }
-                            else if (gamepad.RightButton_Release)
-                            {
-                                robot.FeedingTime_StopWatch.Stop();
-                                robot.FeedingTime = robot.FeedingTime_StopWatch.Elapsed;
+                                robot.FuelFed += 5;
                             }
 
                         }
@@ -322,17 +307,6 @@ namespace ControllerScouting.Gamepad
                         else if (gamepad.RightTrigger_Press)
                         {
                             DatabaseCode.SaveToRecord(robot, "Activities");
-                        }
-
-                        if (gamepad.LeftButton_Down)
-                        {
-                            robot.FuelIntakingTime_StopWatch.Start();
-                            robot.FuelIntakingTime = robot.FuelIntakingTime_StopWatch.Elapsed;
-                        }
-                        else if (gamepad.LeftButton_Release)
-                        {
-                            robot.FuelIntakingTime_StopWatch.Stop();
-                            robot.FuelIntakingTime = robot.FuelIntakingTime_StopWatch.Elapsed;
                         }
 
                         if (gamepad.StartButton_Press && robot.AUTO && !gamepad.DpadDown_Down)

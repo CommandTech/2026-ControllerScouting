@@ -712,7 +712,7 @@ namespace ControllerScouting.Screens
         {
             //visibility
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Visible = true;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Visible = true;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Visible = true;
@@ -727,10 +727,10 @@ namespace ControllerScouting.Screens
 
             //text change
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Text = robot.NearFar.ToString() + " Side";
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + robot.FuelIntakingTime.TotalSeconds.ToString("F2");
+            //((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + robot.FuelIntakingTime.TotalSeconds.ToString("F2");
             if (robot.color == RobotState.COLOR.Red)
             {
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Shooting Timer: " + robot.FuelShootingTime.TotalSeconds.ToString("F2");
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Fuel Shot: " + robot.FuelShot;
 
                 if (robot.AUTO)
                 {
@@ -753,7 +753,7 @@ namespace ControllerScouting.Screens
             }
             else
             {
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Feeding Timer: " + robot.FeedingTime.TotalSeconds.ToString("F2");
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Fuel Fed: " + robot.FuelFed;
             }
             if (!robot.AUTO)
             {
@@ -766,7 +766,7 @@ namespace ControllerScouting.Screens
         {
             //visibility
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Visible = true;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Visible = true;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Visible = true;
@@ -781,8 +781,8 @@ namespace ControllerScouting.Screens
 
             //text change
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Text = robot.NearFar.ToString() + " Side";
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + robot.FuelIntakingTime.TotalSeconds.ToString("F2");
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Feeding Timer: " + robot.FeedingTime.TotalSeconds.ToString("F2");
+            //((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + robot.FuelIntakingTime.TotalSeconds.ToString("F2");
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Fuel Fed: " + robot.FuelFed;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Text = "Bump: " + robot.BumpTraversal;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Defense Timer: " + robot.DefenseTime.TotalSeconds.ToString("F2");
         }
@@ -790,7 +790,7 @@ namespace ControllerScouting.Screens
         {
             //visibility
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Visible = true;
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Visible = true;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3", true)[0]).Visible = true;
@@ -804,10 +804,10 @@ namespace ControllerScouting.Screens
 
             //text change
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Text = robot.NearFar.ToString() + " Side";
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + robot.FuelIntakingTime.TotalSeconds.ToString("F2");
+            //((Label)this.Controls.Find($"lbl{ScouterBox}Position1", true)[0]).Text = "Intake Timer: " + robot.FuelIntakingTime.TotalSeconds.ToString("F2");
             if (robot.color == RobotState.COLOR.Blue)
             {
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Shooting Timer: " + robot.FuelShootingTime.TotalSeconds.ToString("F2");
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Fuel Shot: " + robot.FuelShot;
                 if (robot.AUTO)
                 {
                     ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Text = "Climb: ";
@@ -832,7 +832,7 @@ namespace ControllerScouting.Screens
             }
             else
             {
-                ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Feeding Timer: " + robot.FeedingTime.TotalSeconds.ToString("F2");
+                ((Label)this.Controls.Find($"lbl{ScouterBox}Position2", true)[0]).Text = "Fuel Fed: " + robot.FuelFed;
             }
             if (!robot.AUTO)
             {

@@ -206,15 +206,8 @@ namespace ControllerScouting.Utilities
         public TimeSpan DefenseTime = TimeSpan.Zero;
         public Stopwatch DefenseTime_StopWatch;
 
-        public TimeSpan FuelIntakingTime = TimeSpan.Zero;
-        public Stopwatch FuelIntakingTime_StopWatch;
-
-        public TimeSpan FuelShootingTime = TimeSpan.Zero;
-        public Stopwatch FuelShootingTime_StopWatch;
-
-        public TimeSpan FeedingTime = TimeSpan.Zero;
-        public Stopwatch FeedingTime_StopWatch;
-
+        public int FuelShot = 0;
+        public int FuelFed = 0;
         public int BumpTraversal = 0;
         public int prevBumpTraversal = 0;
         public int TrenchTraversal = 0;
