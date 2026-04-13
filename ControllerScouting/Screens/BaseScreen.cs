@@ -121,7 +121,7 @@ namespace ControllerScouting.Screens
         private static void KeyboardListenerThread()
         {
             const int autoModeDurationSeconds = 23;
-            const int totalMatchDurationSeconds = 160; // 2:40
+            const int totalMatchDurationSeconds = 163; // 2:43
 
             while (true)
             {
