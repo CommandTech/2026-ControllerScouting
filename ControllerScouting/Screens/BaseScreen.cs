@@ -224,18 +224,17 @@ namespace ControllerScouting.Screens
 
         private static void EnterEndgameModeForRobot(RobotState robot)
         {
-            if (robot.GetRobotMode() != RobotState.ROBOT_MODE.Endgame)
-            {
-                robot.RobotMode = RobotState.ROBOT_MODE.Endgame;
-                robot.End_Match = RobotState.BOOLEAN.Yes;
-                if (robot.TimeOfClimb_StopWatch != null)
-                {
-                    robot.TimeOfClimb_StopWatch.Stop();
-                    robot.TimeOfClimb = robot.TimeOfClimb_StopWatch.Elapsed;
+            robot.End_Match = RobotState.BOOLEAN.Yes;
 
-                    robot.ClimbedTime = true;
-                    robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
-                }
+            robot.RobotMode = RobotState.ROBOT_MODE.Endgame;
+
+            if (robot.TimeOfClimb_StopWatch != null)
+            {
+                robot.TimeOfClimb_StopWatch.Stop();
+                robot.TimeOfClimb = robot.TimeOfClimb_StopWatch.Elapsed;
+
+                robot.ClimbedTime = true;
+                robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
             }
         }
         private static void ResetMatchTiming()
