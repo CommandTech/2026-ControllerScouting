@@ -295,10 +295,7 @@ namespace ControllerScouting.Gamepad
                         if (gamepad.BackButton_Down && !robot.AUTO)
                         {
                             robot.RobotMode = RobotState.ROBOT_MODE.Endgame;
-                            if (robot.End_Match == RobotState.BOOLEAN.No)
-                            {
-                                robot.TimeOfClimb_StopWatch.Start(); // starts the time
-                            }
+                            robot.TimeOfClimb_StopWatch.Start(); // starts the time
                         }
                     }
                     //***********************************
