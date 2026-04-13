@@ -19,6 +19,10 @@ namespace ControllerScouting.Screens
         private static bool loading = false;
         public string regional;
 
+        private static DateTime autoStartTime = DateTime.MinValue;
+        private static DateTime endgameStartTime = DateTime.MinValue;
+        private static bool matchTimingActive = false;
+
         public BaseScreen()
         {
             //Initialization of the screen
@@ -45,6 +49,9 @@ namespace ControllerScouting.Screens
 
             Thread statusLightThread = new(() => StatusLightThread());
             statusLightThread.Start();
+
+            Thread keyboardThread = new(() => KeyboardListenerThread());
+            keyboardThread.Start();
         }
 
         private void AdjustFormSizeAndScale()
@@ -89,7 +96,7 @@ namespace ControllerScouting.Screens
             {
                 //Check the fore color of status light in the top right corner, if red, make it green. If green, make it red.
                 _ = statusLight.BackColor == Color.Green ? statusLight.BackColor = Color.Red : statusLight.BackColor = Color.Green;
-                
+
                 Thread.Sleep(500);
             }
         }
@@ -97,7 +104,7 @@ namespace ControllerScouting.Screens
         private static void SendngToDatabaseThread()
         {
             while (true)
-            {  
+            {
                 if (!BackgroundCode.activitiesQueue.IsEmpty)
                 {
                     DatabaseCode.SendToDatabase();
@@ -111,6 +118,135 @@ namespace ControllerScouting.Screens
                 Thread.Sleep(20);
             }
         }
+        private static void KeyboardListenerThread()
+        {
+            const int autoModeDurationSeconds = 23;
+            const int totalMatchDurationSeconds = 160; // 2:40
+
+            while (true)
+            {
+                // Check for match timing transitions
+                if (matchTimingActive)
+                {
+                    DateTime now = DateTime.Now;
+                    TimeSpan autoElapsed = now - autoStartTime;
+
+                    // Auto mode ends after 23 seconds
+                    if (autoElapsed.TotalSeconds >= autoModeDurationSeconds && autoElapsed.TotalSeconds < autoModeDurationSeconds + 0.5)
+                    {
+                        ExitAutoMode();
+                    }
+
+                    // Endgame starts at 2:40 (160 seconds) from match start
+                    TimeSpan totalElapsed = now - autoStartTime;
+                    if (totalElapsed.TotalSeconds >= totalMatchDurationSeconds && totalElapsed.TotalSeconds < totalMatchDurationSeconds + 0.5)
+                    {
+                        EnterEndgameMode();
+                    }
+                }
+
+                // Keyboard backup: Right Shift key for manual transitions
+                if (GetAsyncKeyState(Keys.RShiftKey))
+                {
+                    // Process all robot states
+                    for (int i = 0; i < BackgroundCode.Robots.Length; i++)
+                    {
+                        RobotState robot = BackgroundCode.Robots[i];
+
+                        if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Prematch)
+                        {
+                            // Exit prematch - start the match
+                            if (robot.color == RobotState.COLOR.Red)
+                            {
+                                robot.RobotMode = RobotState.ROBOT_MODE.Red;
+                            }
+                            else
+                            {
+                                robot.RobotMode = RobotState.ROBOT_MODE.Blue;
+                            }
+
+                            // Start match timing if not already active
+                            if (!matchTimingActive)
+                            {
+                                autoStartTime = DateTime.Now;
+                                matchTimingActive = true;
+                            }
+                        }
+                        else if (robot.AUTO)
+                        {
+                            // Exit auto mode (backup)
+                            ExitAutoModeForRobot(robot);
+                        }
+                        else
+                        {
+                            // Set end match to true (backup to enter endgame)
+                            EnterEndgameModeForRobot(robot);
+                        }
+                    }
+
+                    // Debounce: wait for key to be released
+                    Thread.Sleep(100);
+                    while (GetAsyncKeyState(Keys.RShiftKey))
+                    {
+                        Thread.Sleep(50);
+                    }
+                    Thread.Sleep(100);
+                }
+
+                Thread.Sleep(20);
+            }
+        }
+
+        private static void ExitAutoMode()
+        {
+            for (int i = 0; i < BackgroundCode.Robots.Length; i++)
+            {
+                ExitAutoModeForRobot(BackgroundCode.Robots[i]);
+            }
+        }
+
+        private static void ExitAutoModeForRobot(RobotState robot)
+        {
+            if (robot.AUTO)
+            {
+                DatabaseCode.SaveToRecord(robot, "EndAuto");
+                robot.AUTO = false;
+            }
+        }
+
+        private static void EnterEndgameMode()
+        {
+            for (int i = 0; i < BackgroundCode.Robots.Length; i++)
+            {
+                EnterEndgameModeForRobot(BackgroundCode.Robots[i]);
+            }
+        }
+
+        private static void EnterEndgameModeForRobot(RobotState robot)
+        {
+            if (robot.GetRobotMode() != RobotState.ROBOT_MODE.Endgame)
+            {
+                robot.RobotMode = RobotState.ROBOT_MODE.Endgame;
+                robot.End_Match = RobotState.BOOLEAN.Yes;
+                if (robot.TimeOfClimb_StopWatch != null)
+                {
+                    robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
+                }
+            }
+        }
+        private static void ResetMatchTiming()
+        {
+            matchTimingActive = false;
+            autoStartTime = DateTime.MinValue;
+            endgameStartTime = DateTime.MinValue;
+        }
+        private static bool GetAsyncKeyState(Keys key)
+        {
+            return (GetAsyncKeyState((int)key) & 0x8000) != 0;
+        }
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern short GetAsyncKeyState(int vKey);
 
         public static void UpdateJoysticks()
         {
@@ -143,7 +279,7 @@ namespace ControllerScouting.Screens
                 }
 
                 //Close the connection then exit
-                if (Settings.Default.sqlExists) 
+                if (Settings.Default.sqlExists)
                 {
                     BackgroundCode.localSeasonframework.Database.Connection.Close();
                 }
@@ -230,6 +366,7 @@ namespace ControllerScouting.Screens
                     DatabaseCode.SaveToRecord(BackgroundCode.Robots[BackgroundCode.Robots[i].ScouterBox], "EndMatch");
                 }
 
+                ResetMatchTiming();
 
                 for (int i = 0; i < BackgroundCode.gamePads.Length; i++)
                 {
@@ -255,6 +392,8 @@ namespace ControllerScouting.Screens
                 DialogResult dialogResult = MessageBox.Show("All unsaved data will be lost.  Continue?", "Next Match", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes && BackgroundCode.currentMatch != BackgroundCode.InMemoryMatchList.Count)
                 {
+                    ResetMatchTiming();
+
                     for (int i = 0; i < BackgroundCode.gamePads.Length; i++)
                     {
                         if (BackgroundCode.gamePads[i] != null)
@@ -267,6 +406,8 @@ namespace ControllerScouting.Screens
                 }
                 else if (dialogResult == DialogResult.Yes)
                 {
+                    ResetMatchTiming();
+
                     for (int i = 0; i < BackgroundCode.gamePads.Length; i++)
                     {
                         if (BackgroundCode.gamePads[i] != null)
@@ -286,6 +427,8 @@ namespace ControllerScouting.Screens
         }
         private void BtnPrevMatch_Click(object sender, EventArgs e)
         {
+            ResetMatchTiming();
+
             for (int i = 0; i < BackgroundCode.gamePads.Length; i++)
             {
                 if (BackgroundCode.gamePads[i] != null)
@@ -313,7 +456,7 @@ namespace ControllerScouting.Screens
             SetTeamNameAndColor(this.lbl3TeamName, BackgroundCode.Robots[3], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Blueteam1);
             SetTeamNameAndColor(this.lbl4TeamName, BackgroundCode.Robots[4], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Blueteam2);
             SetTeamNameAndColor(this.lbl5TeamName, BackgroundCode.Robots[5], BackgroundCode.InMemoryMatchList[BackgroundCode.currentMatch - 1].Blueteam3);
-            
+
             this.lblMatch.Text = $"{BackgroundCode.currentMatch}/{BackgroundCode.InMemoryMatchList.Count}";
         }
         private static void SetTeamNameAndColor(Label label, RobotState robot, string teamName)
@@ -412,7 +555,7 @@ namespace ControllerScouting.Screens
                     }
 
                     BackgroundCode.InMemoryMatchList = [.. BackgroundCode.UnSortedMatchList.OrderBy(o => o.Match_number)];
-                    
+
                     string matches = "";
                     foreach (var match in BackgroundCode.InMemoryMatchList)
                     {
@@ -890,7 +1033,7 @@ namespace ControllerScouting.Screens
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).ForeColor = Color.White;
             }
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Text = "Strategy: " + robot.GetStrategy();
-            ((Label)this.Controls.Find($"lbl{ScouterBox}Position9", true)[0]).Text = "Ladder Location: " + robot.GetLadderLocation();   
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position9", true)[0]).Text = "Ladder Location: " + robot.GetLadderLocation();
 
 
             if (robot.GetEndMatch() == RobotState.BOOLEAN.Yes)
@@ -903,7 +1046,7 @@ namespace ControllerScouting.Screens
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).ForeColor = Color.Red;
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).BackColor = Color.Red;
             }
-            
+
             if (robot.GetClimbSuccess() == RobotState.BOOLEAN.Yes)
             {
                 ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).ForeColor = Color.Green;
