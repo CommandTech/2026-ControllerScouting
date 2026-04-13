@@ -230,6 +230,10 @@ namespace ControllerScouting.Screens
                 robot.End_Match = RobotState.BOOLEAN.Yes;
                 if (robot.TimeOfClimb_StopWatch != null)
                 {
+                    robot.TimeOfClimb_StopWatch.Stop();
+                    robot.TimeOfClimb = robot.TimeOfClimb_StopWatch.Elapsed;
+
+                    robot.ClimbedTime = true;
                     robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
                 }
             }
