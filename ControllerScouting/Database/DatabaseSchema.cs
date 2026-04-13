@@ -510,7 +510,7 @@ namespace ControllerScouting.Database
 
                         activity_record.DefenseTime = controller.DefenseTime.TotalSeconds;
                         activity_record.BumpTraversal = controller.BumpTraversal;
-                        activity_record.FuelFed = controller.FuelFed;
+                        activity_record.FuelShot = controller.FuelShot;
                         activity_record.FuelFed = controller.FuelFed;
                         activity_record.NearFar = controller.NearFar.ToString();
                         activity_record.NearRedZoneTime = controller.NearRedZoneTime.TotalSeconds;
