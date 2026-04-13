@@ -106,18 +106,6 @@ namespace ControllerScouting.Gamepad
                                 robot.NearFar = RobotState.NEAR_FAR.Near;
                             }
                         }
-
-                        if (gamepad.StartButton_Press)
-                        {
-                            if (robot.color == RobotState.COLOR.Red)
-                            {
-                                robot.RobotMode = RobotState.ROBOT_MODE.Red;
-                            }
-                            else
-                            {
-                                robot.RobotMode = RobotState.ROBOT_MODE.Blue;
-                            }
-                        }
                     }
                     //***********************************
                     //ZONES MODE
@@ -265,11 +253,6 @@ namespace ControllerScouting.Gamepad
                         if ((robot.GetRobotMode() == RobotState.ROBOT_MODE.Red && robot.color == RobotState.COLOR.Red) ||
                             (robot.GetRobotMode() == RobotState.ROBOT_MODE.Blue && robot.color == RobotState.COLOR.Blue))
                         {
-                            if (robot.AUTO && gamepad.DpadDown_Down && gamepad.StartButton_Press)
-                            {
-                                robot.RobotMode = RobotState.ROBOT_MODE.Prematch;
-                            }
-
                             if (gamepad.RightButton_Press)
                             {
                                 robot.FuelShot += 5;
@@ -309,16 +292,13 @@ namespace ControllerScouting.Gamepad
                             DatabaseCode.SaveToRecord(robot, "Activities");
                         }
 
-                        if (gamepad.StartButton_Press && robot.AUTO && !gamepad.DpadDown_Down)
-                        {
-                            DatabaseCode.SaveToRecord(robot, "EndAuto");
-                            robot.AUTO = false;
-                        }
-
                         if (gamepad.BackButton_Down && !robot.AUTO)
                         {
                             robot.RobotMode = RobotState.ROBOT_MODE.Endgame;
-                            robot.TimeOfClimb_StopWatch.Start(); // starts the time
+                            if (robot.End_Match == RobotState.BOOLEAN.No)
+                            {
+                                robot.TimeOfClimb_StopWatch.Start(); // starts the time
+                            }
                         }
                     }
                     //***********************************
@@ -377,16 +357,15 @@ namespace ControllerScouting.Gamepad
                             robot.TimeOfClimb_StopWatch.Reset();
                             robot.TimeOfClimb_StopWatch.Stop();
                             robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
-                            robot.ClimbedTime = false;
                         }
-                        if (gamepad.RightButton_Press && robot.ClimbedTime)
+                        if (gamepad.RightButton_Press && robot.End_Match == RobotState.BOOLEAN.Yes)
                         {
                             robot.TimeOfClimb_StopWatch.Stop();
                             robot.TimeOfClimb = robot.TimeOfClimb_StopWatch.Elapsed;
                             robot.End_Match = RobotState.BOOLEAN.Yes;
                         }
                         else if (gamepad.RightButton_Press) {
-                            robot.ClimbedTime = true;
+                            robot.End_Match = RobotState.BOOLEAN.Yes;
                             robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
                         }
                         
@@ -413,7 +392,7 @@ namespace ControllerScouting.Gamepad
                             robot.CycleStrategy(RobotState.CYCLE_DIRECTION.Up);
                         }
 
-                        if (gamepad.StartButton_Press && !robot.ClimbedTime && robot.TimeOfClimb_StopWatch.IsRunning)
+                        if (gamepad.StartButton_Press && robot.End_Match == RobotState.BOOLEAN.No && robot.TimeOfClimb_StopWatch.IsRunning)
                         {
                             if (robot.color == RobotState.COLOR.Red)
                             {
@@ -426,7 +405,6 @@ namespace ControllerScouting.Gamepad
                             robot.TimeOfClimb_StopWatch.Stop();
                             robot.TimeOfClimb_StopWatch.Reset();
                         }
-
                     }
                 }
             }
