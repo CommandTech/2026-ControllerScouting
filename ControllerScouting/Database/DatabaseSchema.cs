@@ -4,9 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
-using System.Windows.Forms;
-using System.Text.Json;
 using System.Reflection;
+using System.Text.Json;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace ControllerScouting.Database
 {
@@ -505,6 +506,8 @@ namespace ControllerScouting.Database
                         }
                         break;
                     case "EndMatch":
+                        activity_record.Time = controller.EndMatchTime;
+
                         if (controller.Climb_Success == RobotState.BOOLEAN.Z)
                         {
                             controller.ScouterError += 100;

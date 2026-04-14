@@ -236,6 +236,8 @@ namespace ControllerScouting.Screens
                 robot.ClimbedTime = true;
                 robot.ClimbTime = robot.TimeOfClimb_StopWatch.Elapsed;
             }
+
+            robot.EndMatchTime = DateTime.Now;
         }
         private static void ResetMatchTiming()
         {

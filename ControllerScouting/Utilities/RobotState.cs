@@ -186,6 +186,7 @@ namespace ControllerScouting.Utilities
         public Stopwatch TimeOfClimb_StopWatch;
         public TimeSpan ClimbTime;
         public bool ClimbedTime;
+        public DateTime EndMatchTime;
 
         public TimeSpan NearRedZoneTime = TimeSpan.Zero;
         public Stopwatch NearRedZoneTime_StopWatch;
