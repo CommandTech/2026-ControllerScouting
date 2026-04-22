@@ -151,6 +151,8 @@ namespace ControllerScouting.Screens
                     // Process all robot states
                     for (int i = 0; i < BackgroundCode.Robots.Length; i++)
                     {
+                        if (BackgroundCode.gamePads[i] == null || BackgroundCode.Robots[i].GetScouterName() == RobotState.SCOUTER_NAME.Select_Name) continue;
+
                         RobotState robot = BackgroundCode.Robots[i];
 
                         if (robot.GetRobotMode() == RobotState.ROBOT_MODE.Prematch)
@@ -996,6 +998,7 @@ namespace ControllerScouting.Screens
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position0", true)[0]).Visible = false;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position2Value", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position3Value", true)[0]).Visible = true;
+            ((Label)this.Controls.Find($"lbl{ScouterBox}Position4", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position6", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position7", true)[0]).Visible = true;
             ((Label)this.Controls.Find($"lbl{ScouterBox}Position8", true)[0]).Visible = true;
